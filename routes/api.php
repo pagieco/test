@@ -1,18 +1,31 @@
 <?php
 
-use Illuminate\Http\Request;
+// Asset routes...
+Route::get('/assets', 'Api\Asset\GetAssetsController')->name('get-assets');
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
+// Page routes...
+Route::get('/pages', 'Api\Page\GetPagesController')->name('get-pages');
 
-Route::middleware('auth')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Collection routes...
+Route::get('/collections', 'Api\Collection\GetCollectionsController')->name('get-collections');
+
+// Form routes...
+Route::get('/forms', 'Api\Form\GetFormsController')->name('get-forms');
+
+// Email routes...
+Route::get('/emails', 'Api\Email\GetEmailsController')->name('get-emails');
+
+// Profile routes...
+Route::get('/profiles', 'Api\Profile\GetProfilesController')->name('get-profiles');
+
+// Automation routes...
+Route::get('/automations', 'Api\Automation\GetAutomationsController')->name('get-automations');
+
+// Domain routes...
+Route::get('/domains', 'Api\Domain\GetDomainsController')->name('get-domains');
+
+// Workflow routes...
+Route::get('/workflows', 'Api\Workflow\GetWorkflowsController')->name('get-workflows');
+
+// Setting routes...
+Route::get('/settings', 'Api\Setting\GetSettingsController')->name('get-settings');

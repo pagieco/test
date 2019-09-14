@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Collection extends Model
@@ -31,5 +32,25 @@ class Collection extends Model
     public function project(): BelongsTo
     {
         return $this->belongsTo(Project::class);
+    }
+
+    /**
+     * Get the entries that belong to this collection.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function entries(): HasMany
+    {
+        return $this->hasMany(CollectionEntry::class);
+    }
+
+    /**
+     * Get the fields that belong to this collection.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function fields(): HasMany
+    {
+        return $this->hasMany(CollectionField::class);
     }
 }

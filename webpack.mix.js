@@ -21,4 +21,7 @@ mix
       tailwindcss('./tailwind.config.js'),
     ],
   })
+  .webpackConfig({
+    output: { chunkFilename: 'js/[name].js?id=[chunkhash]' },
+  })
   .version();

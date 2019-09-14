@@ -31,6 +31,7 @@ class AppController extends Controller
                     'title' => config('app.name'),
                 ],
                 'user' => $request->user(),
+                'project' => $request->user()->currentProject,
             ],
         ]);
     }

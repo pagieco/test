@@ -10,6 +10,9 @@
     "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.22",
+    "@fortawesome/free-solid-svg-icons": "^5.10.2",
+    "@fortawesome/vue-fontawesome": "^0.1.7",
     "@vue/eslint-config-airbnb": "^4.0.1",
     "axios": "^0.19",
     "babel-eslint": "^10.0.3",
@@ -19,10 +22,12 @@
     "laravel-mix": "^4.0.7",
     "lodash": "^4.17.13",
     "popper.js": "^1.15.0",
+    "portal-vue": "^2.1.6",
     "resolve-url-loader": "^2.3.1",
     "sass": "^1.15.2",
     "sass-loader": "^7.1.0",
     "tailwindcss": "^1.1.2",
+    "tinycolor2": "^1.4.1",
     "vue": "^2.6.10",
     "vue-meta": "^2.2.2",
     "vue-router": "^3.1.3",

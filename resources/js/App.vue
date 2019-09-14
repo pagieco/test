@@ -1,47 +1,61 @@
 <script>
 
-import Sidebar from './shared/Sidebar.vue';
 import {
+  Frame,
   TopBar,
-} from './components';
+  Navigation,
+  NavigationItem,
+  NavigationSection,
+} from '../focus-ui/src';
 
 export default {
   components: {
+    Frame,
     TopBar,
-    Sidebar,
-  },
-
-  metaInfo: {
-    titleTemplate(title) {
-      title = typeof title === 'function' ? title(this.$store) : title;
-
-      return title ? `${title} | ${appConfig.app.title}` : appConfig.app.title;
-    },
+    Navigation,
+    NavigationItem,
+    NavigationSection,
   },
 };
 
 </script>
 
 <template>
-  <div id="app" class="min-h-screen flex">
-    <div class="flex-shrink-0 w-64 bg-gray-800 flex">
-      <Sidebar />
-    </div>
+  <Frame>
+    <template v-slot:top-bar>
+      <TopBar :user-menu="{
+        name: appConfig.user.name,
+        detail: appConfig.project.name,
+      }" />
+    </template>
 
-    <div class="flex-grow flex flex-col">
-      <div class="relative shadow-md bg-green-700 flex-shrink-0">
-        <TopBar />
-      </div>
+    <template v-slot:navigation>
+      <Navigation>
+        <NavigationSection>
+          <NavigationItem label="Dashboard" :to="{ name: 'dashboard' }" />
+        </NavigationSection>
 
-      <div class="flex-grow flex flex-col">
-        <div class="flex-grow">
-          <!--
-            Even when routes use the same component, treat them
-            as distict and create the component again.
-          -->
-          <RouterView :key="$route.fullPath" />
-        </div>
-      </div>
-    </div>
-  </div>
+        <NavigationSection title="Content">
+          <NavigationItem label="Assets" :to="{ name: 'assets' }" />
+          <NavigationItem label="Pages" />
+          <NavigationItem label="Collections" />
+        </NavigationSection>
+
+        <NavigationSection title="Engagement">
+          <NavigationItem label="Forms" />
+          <NavigationItem label="Emails" />
+          <NavigationItem label="Profiles" />
+          <NavigationItem label="Automation" />
+        </NavigationSection>
+
+        <NavigationSection title="Management">
+          <NavigationItem label="Domains" />
+          <NavigationItem label="Workflows" />
+          <NavigationItem label="Settings" />
+        </NavigationSection>
+      </Navigation>
+    </template>
+
+    <RouterView :key="$route.fullPath" />
+  </Frame>
 </template>

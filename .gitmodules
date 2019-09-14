@@ -1,0 +1,3 @@
+[submodule "resources/focus-ui"]
+	path = resources/focus-ui
+	url = https://github.com/pagieco/focus-ui.git

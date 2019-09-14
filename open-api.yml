@@ -1,0 +1,441 @@
+openapi: '3.0.0'
+
+info:
+  title: service-mono
+  version: 1.0.0
+  contact:
+    name: Pagie
+    url: https://pagie.co
+    email: hello@pagie.co
+
+servers:
+  - url: https://pagie.co/api
+
+tags:
+  - name: Asset
+  - name: Page
+  - name: Collection
+  - name: Form
+  - name: Email
+  - name: Profile
+  - name: Automation
+  - name: Domain
+  - name: Workflow
+
+paths:
+  /assets:
+    get:
+      description: Get a list of assets
+      tags:
+        - Asset
+      operationId: GetAssets
+      responses:
+        200:
+          $ref: '#/components/responses/get-assets'
+        204:
+          description: No assets found
+        403:
+          $ref: '#/components/responses/status-403-response'
+
+  /pages:
+    get:
+      description: Get a list of pages
+      tags:
+        - Page
+      operationId: GetPages
+      responses:
+        200:
+          $ref: '#/components/responses/get-pages'
+        204:
+          description: No pages found
+        403:
+          $ref: '#/components/responses/status-403-response'
+
+  /collections:
+    get:
+      description: Get a list of collections
+      tags:
+        - Collection
+      operationId: GetCollections
+      responses:
+        200:
+          $ref: '#/components/responses/get-collections'
+        204:
+          description: No collections found
+        403:
+          $ref: '#/components/responses/status-403-response'
+
+  /forms:
+    get:
+      description: Get a list of forms
+      tags:
+        - Form
+      operationId: GetForms
+      responses:
+        200:
+          $ref: '#/components/responses/get-forms'
+        204:
+          description: No forms found
+        403:
+          $ref: '#/components/responses/status-403-response'
+
+  /emails:
+    get:
+      description: Get a list of emails
+      tags:
+        - Email
+      operationId: GetEmails
+      responses:
+        200:
+          $ref: '#/components/responses/get-emails'
+        204:
+          description: No emails found
+        403:
+          $ref: '#/components/responses/status-403-response'
+
+  /profiles:
+    get:
+      description: Get a list of profiles
+      tags:
+        - Profile
+      operationId: GetProfiles
+      responses:
+        200:
+          $ref: '#/components/responses/get-profiles'
+        204:
+          description: No profiles found
+        403:
+          $ref: '#/components/responses/status-403-response'
+
+  /automations:
+    get:
+      description: Get a list of automations
+      tags:
+        - Automation
+      operationId: GetAutomations
+      responses:
+        200:
+          $ref: '#/components/responses/get-automations'
+        204:
+          description: No automations found
+        403:
+          $ref: '#/components/responses/status-403-response'
+
+  /domains:
+    get:
+      description: Get a list of domains
+      tags:
+        - Domain
+      operationId: GetDomains
+      responses:
+        200:
+          $ref: '#/components/responses/get-domains'
+        204:
+          description: No domains found
+        403:
+          $ref: '#/components/responses/status-403-response'
+
+  /workflows:
+    get:
+      description: Get a list of workflows
+      tags:
+        - Workflow
+      operationId: GetWorkflows
+      responses:
+        200:
+          $ref: '#/components/responses/get-workflows'
+        204:
+          description: No workflows found
+        403:
+          $ref: '#/components/responses/status-403-response'
+
+components:
+  responses:
+    get-assets:
+      description: OK
+      content:
+        application/json:
+          schema:
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/asset'
+
+    get-pages:
+      description: OK
+      content:
+        application/json:
+          schema:
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/page'
+
+    get-collections:
+      description: OK
+      content:
+        application/json:
+          schema:
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/collection'
+
+    get-forms:
+      description: OK
+      content:
+        application/json:
+          schema:
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/form'
+
+    get-emails:
+      description: OK
+      content:
+        application/json:
+          schema:
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/email'
+
+    get-profiles:
+      description: OK
+      content:
+        application/json:
+          schema:
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/profile'
+
+    get-automations:
+      description: OK
+      content:
+        application/json:
+          schema:
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/automation'
+
+    get-domains:
+      description: OK
+      content:
+        application/json:
+          schema:
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/domain'
+
+    get-workflows:
+      description: OK
+      content:
+        application/json:
+          schema:
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/workflow'
+
+    status-201-response:
+      description: Created
+      content:
+        application/json:
+          schema:
+            properties:
+              message:
+                type: string
+                example:
+                  Created
+
+    status-302-response:
+      description: Found
+      content:
+        application/json:
+          schema:
+            properties:
+              message:
+                type: string
+                example:
+                  Found
+
+    status-400-response:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            properties:
+              message:
+                type: string
+                example:
+                  Bad Request
+
+    status-401-response:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            properties:
+              message:
+                type: string
+                example:
+                  Unauthorized
+
+    status-403-response:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            properties:
+              message:
+                type: string
+                example:
+                  Forbidden
+
+    status-404-response:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            properties:
+              message:
+                type: string
+                example:
+                  Not Found
+
+    status-406-response:
+      description: Not Acceptable
+      content:
+        application/json:
+          schema:
+            properties:
+              message:
+                type: string
+                example:
+                  Not Acceptable
+
+    status-422-response:
+      description: Unprocessable Entity
+      content:
+        application/json:
+          schema:
+            properties:
+              message:
+                type: string
+                example:
+                  Unprocessable Entity
+              errors:
+                type: object
+
+  schemas:
+    asset:
+      properties:
+        id:
+          type: integer
+        created_at:
+          type: string
+          format: 'date-time'
+        updated_at:
+          type: string
+          format: 'date-time'
+
+    page:
+      properties:
+        id:
+          type: integer
+        created_at:
+          type: string
+          format: 'date-time'
+        updated_at:
+          type: string
+          format: 'date-time'
+
+    collection:
+      properties:
+        id:
+          type: integer
+        created_at:
+          type: string
+          format: 'date-time'
+        updated_at:
+          type: string
+          format: 'date-time'
+
+    form:
+      properties:
+        id:
+          type: integer
+        created_at:
+          type: string
+          format: 'date-time'
+        updated_at:
+          type: string
+          format: 'date-time'
+
+    email:
+      properties:
+        id:
+          type: integer
+        created_at:
+          type: string
+          format: 'date-time'
+        updated_at:
+          type: string
+          format: 'date-time'
+
+    profile:
+      properties:
+        id:
+          type: integer
+        created_at:
+          type: string
+          format: 'date-time'
+        updated_at:
+          type: string
+          format: 'date-time'
+
+    automation:
+      properties:
+        id:
+          type: integer
+        created_at:
+          type: string
+          format: 'date-time'
+        updated_at:
+          type: string
+          format: 'date-time'
+
+    domain:
+      properties:
+        id:
+          type: integer
+        created_at:
+          type: string
+          format: 'date-time'
+        updated_at:
+          type: string
+          format: 'date-time'
+
+    workflow:
+      properties:
+        id:
+          type: integer
+        created_at:
+          type: string
+          format: 'date-time'
+        updated_at:
+          type: string
+          format: 'date-time'

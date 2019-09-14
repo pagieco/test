@@ -1,23 +1,36 @@
 <script>
 
+import { mapActions } from 'vuex';
 import {
   Page,
-} from '../../components';
+} from '../../../focus-ui/src/components';
 
 export default {
   components: {
     Page,
   },
 
-  metaInfo: {
-    title: 'Assets',
+  mounted() {
+    this.initializeComponentState();
+  },
+
+  methods: {
+    ...mapActions({
+      fetchAssets: 'asset/fetchAssets',
+    }),
+
+    initializeComponentState() {
+      this.fetchAssets();
+    },
   },
 };
 
 </script>
 
 <template>
-  <Page title="Assets">
-    asset overview
+  <Page title="Assets" full-width>
+
+
+
   </Page>
 </template>

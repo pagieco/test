@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Workflow extends Model
@@ -31,5 +32,15 @@ class Workflow extends Model
     public function project(): BelongsTo
     {
         return $this->belongsTo(Project::class);
+    }
+
+    /**
+     * Get the steps that belong to this workflow.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function steps(): HasMany
+    {
+        return $this->hasMany(WorkflowStep::class);
     }
 }

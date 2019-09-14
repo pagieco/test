@@ -68,12 +68,32 @@ class Asset extends Model
     }
 
     /**
+     * Create a tumbnail for this asset.
+     *
+     * @return $this|\App\Models\Asset
+     */
+    public function createThumbnail(): Asset
+    {
+        if (! Str::contains($this->mimetype, 'image')) {
+            return $this;
+        }
+
+        $filename = sprintf('%s/thumbnail_%s', $this->project_id, $this->original_filename);
+
+        Storage::disk()->put($filename, (string) $this->resizeImage(150)->encode());
+
+        $this->update(['thumb_path' => $filename]);
+
+        return $this->refresh();
+    }
+
+    /**
      * Upload the given file and create a new asset instance.
      *
      * @param  \Illuminate\Http\UploadedFile $file
-     * @param  \App\Project $project
-     * @param  \App\AssetFolder $folder
-     * @return \App\Asset
+     * @param  \App\Models\Project $project
+     * @param  \App\Models\AssetFolder $folder
+     * @return \App\Models\Asset
      */
     public static function upload(UploadedFile $file, Project $project, AssetFolder $folder): Asset
     {
@@ -96,26 +116,6 @@ class Asset extends Model
         $asset->save();
 
         return tap($asset)->fill(['path' => Storage::url($path)]);
-    }
-
-    /**
-     * Create a tumbnail for this asset.
-     *
-     * @return $this|\App\Asset
-     */
-    public function createThumbnail(): Asset
-    {
-        if (! Str::contains($this->mimetype, 'image')) {
-            return $this;
-        }
-
-        $filename = sprintf('%s/thumbnail_%s', $this->project_id, $this->original_filename);
-
-        Storage::disk()->put($filename, (string) $this->resizeImage(150)->encode());
-
-        $this->update(['thumb_path' => $filename]);
-
-        return $this->refresh();
     }
 
     /**
