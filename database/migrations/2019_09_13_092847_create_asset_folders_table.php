@@ -15,6 +15,8 @@ class CreateAssetFoldersTable extends Migration
     {
         Schema::create('asset_folders', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

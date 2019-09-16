@@ -100,4 +100,18 @@ return [
         ],
     ],
 
+    /*
+   |--------------------------------------------------------------------------
+   | Permissions
+   |--------------------------------------------------------------------------
+   |
+   | The list of available authorization permissions. These will only be used
+   | when seeding the database and should never directly be referred to.
+   |
+   */
+
+    'permissions' => [
+        'asset:list' => ['List assets', 'List the assets.'],
+    ],
+
 ];

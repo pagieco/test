@@ -9,8 +9,8 @@ class AssetPolicy
 {
     use HandlesAuthorization;
 
-    public function list(User $user)
+    public function list(User $user): bool
     {
-        return true;
+        return $user->hasAccess('asset:list');
     }
 }

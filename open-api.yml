@@ -345,6 +345,30 @@ components:
       properties:
         id:
           type: integer
+        hash:
+          type: string
+        hash_path:
+          type: string
+        filename:
+          type: string
+        original_filename:
+          type: string
+        description:
+          type: string
+        extension:
+          type: string
+        mimetype:
+          type: string
+        filesize:
+          type: integer
+        extra_attributes:
+          type: object
+          nullable: true
+        path:
+          type: string
+        thumb_path:
+          type: string
+          nullable: true
         created_at:
           type: string
           format: 'date-time'

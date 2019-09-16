@@ -16,6 +16,7 @@ class CreateAssetsTable extends Migration
         Schema::create('assets', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('project_id');
+            $table->unsignedBigInteger('asset_folder_id')->nullable();
             $table->string('hash');
             $table->string('filename');
             $table->string('original_filename');
@@ -30,6 +31,10 @@ class CreateAssetsTable extends Migration
 
             $table->foreign('project_id')
                 ->references('id')->on('projects')
+                ->onDelete('cascade');
+
+            $table->foreign('asset_folder_id')
+                ->references('id')->on('asset_folders')
                 ->onDelete('cascade');
         });
     }

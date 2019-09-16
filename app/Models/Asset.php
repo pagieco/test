@@ -48,6 +48,19 @@ class Asset extends Model
     ];
 
     /**
+     * Get the hash attribute.
+     *
+     * @return string
+     */
+    public function getHashPathAttribute(): string
+    {
+        $path = $this->getAttribute('path');
+        $hash = $this->getAttribute('hash');
+
+        return sprintf('%s?id=%s', $path, $hash);
+    }
+
+    /**
      * Get the project that belongs to this model.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -78,7 +91,7 @@ class Asset extends Model
             return $this;
         }
 
-        $filename = sprintf('%s/thumbnail_%s', $this->project_id, $this->original_filename);
+        $filename = sprintf('%s/thumbnail_%s', $this->project->hash, $this->original_filename);
 
         Storage::disk()->put($filename, (string) $this->resizeImage(150)->encode());
 
@@ -92,12 +105,12 @@ class Asset extends Model
      *
      * @param  \Illuminate\Http\UploadedFile $file
      * @param  \App\Models\Project $project
-     * @param  \App\Models\AssetFolder $folder
+     * @param  \App\Models\AssetFolder|null $folder
      * @return \App\Models\Asset
      */
-    public static function upload(UploadedFile $file, Project $project, AssetFolder $folder): Asset
+    public static function upload(UploadedFile $file, Project $project, AssetFolder $folder = null): Asset
     {
-        $path = $file->storeAs($project->getKey(), $file->getClientOriginalName());
+        $path = $file->storeAs($project->hash, $file->getClientOriginalName());
 
         $asset = new Asset([
             'hash' => static::getContentHash($file),
@@ -111,11 +124,14 @@ class Asset extends Model
         ]);
 
         $asset->project()->associate($project);
-        $asset->folder()->associate($folder);
+
+        if ($folder) {
+            $asset->folder()->associate($folder);
+        }
 
         $asset->save();
 
-        return tap($asset)->fill(['path' => Storage::url($path)]);
+        return tap($asset)->fill(['path' => $path]);
     }
 
     /**
@@ -173,7 +189,7 @@ class Asset extends Model
     protected function getPath(string $filename = null): string
     {
         if (is_null($filename)) {
-            $filename = sprintf('%s/%s', $this->project_id, $this->filename);
+            $filename = sprintf('%s/%s', $this->project->hash, $this->filename);
         }
 
         return Storage::disk()->path($filename);

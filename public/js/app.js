@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "js/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"adf99b32ea7ec06295a9","1":"63fc5b0ccf5a044dbb4f"}[chunkId] + ""
+/******/ 		return __webpack_require__.p + "js/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"33aca9c19737af55f8f7","1":"63fc5b0ccf5a044dbb4f"}[chunkId] + ""
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -14912,6 +14912,47 @@ var Placement = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/focus-ui/src/components/top-bar/components/SearchField.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/focus-ui/src/components/top-bar/components/SearchField.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _text_field_components_TextField_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../text-field/components/TextField.vue */ "./resources/focus-ui/src/components/text-field/components/TextField.vue");
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    TextField: _text_field_components_TextField_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  mounted: function mounted() {
+    document.addEventListener('keydown', this.inputFocus);
+  },
+  destroyed: function destroyed() {
+    document.removeEventListener('keydown', this.inputFocus);
+  },
+  methods: {
+    inputFocus: function inputFocus(e) {
+      if (e.metaKey && e.key === '/') {
+        this.$refs['topbar-input'].$el.querySelector('input').focus();
+      }
+    }
+  },
+  render: function render(h) {
+    return h(_text_field_components_TextField_vue__WEBPACK_IMPORTED_MODULE_0__["default"], {
+      ref: 'topbar-input',
+      props: {
+        name: 'gaaf',
+        placeholder: 'Search...'
+      }
+    });
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/focus-ui/src/components/top-bar/components/TopBar.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/focus-ui/src/components/top-bar/components/TopBar.vue?vue&type=script&lang=js& ***!
@@ -14921,45 +14962,12 @@ var Placement = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _UserMenu_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UserMenu.vue */ "./resources/focus-ui/src/components/top-bar/components/UserMenu.vue");
+/* harmony import */ var _SearchField_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SearchField.vue */ "./resources/focus-ui/src/components/top-bar/components/SearchField.vue");
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'focus-top-bar',
   components: {
-    UserMenu: _UserMenu_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
-  },
-  props: {
-    userMenu: {
-      type: Object,
-      required: true
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/focus-ui/src/components/top-bar/components/UserMenu.vue?vue&type=script&lang=js&":
-/*!************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/focus-ui/src/components/top-bar/components/UserMenu.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _avatar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../avatar */ "./resources/focus-ui/src/components/avatar/index.js");
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    Avatar: _avatar__WEBPACK_IMPORTED_MODULE_0__["Avatar"]
-  },
-  props: {
-    name: {
-      type: String,
-      required: true
-    },
-    detail: {
-      type: String
-    }
+    SearchField: _SearchField_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   }
 });
 
@@ -39769,35 +39777,17 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "top-bar" }, [
-    _vm._m(0),
+    _c("div", { staticClass: "top-bar__logo-container" }, [
+      _vm._v("\n    ...\n  ")
+    ]),
     _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "top-bar__contents" },
-      [
-        _c("div", { staticClass: "top-bar__search-field" }, [_vm._v("search")]),
-        _vm._v(" "),
-        _c(
-          "UserMenu",
-          _vm._b({}, "UserMenu", Object.assign({}, _vm.userMenu), false)
-        )
-      ],
-      1
-    )
+    _c("div", { staticClass: "top-bar__contents" }, [
+      _c("div", { staticClass: "top-bar__search" }, [_c("SearchField")], 1),
+      _vm._v("\n\n    test\n  ")
+    ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "top-bar__logo-container" }, [
-      _c("a", { staticClass: "top-bar__logo-link" }, [
-        _vm._v("\n      Application\n    ")
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -39819,27 +39809,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "top-bar__user-menu" }, [
-    _c(
-      "button",
-      [
-        _c("Avatar", { attrs: { name: _vm.name } }),
-        _vm._v(" "),
-        _c("span", { staticClass: "top-bar__user-menu__details" }, [
-          _c("p", { staticClass: "top-bar__user-menu__name" }, [
-            _vm._v(_vm._s(_vm.name))
-          ]),
-          _vm._v(" "),
-          _vm.detail
-            ? _c("p", { staticClass: "top-bar__user-menu__detail" }, [
-                _vm._v(_vm._s(_vm.detail))
-              ])
-            : _vm._e()
-        ])
-      ],
-      1
-    )
-  ])
+  return _c("div", [_vm._v("\n  user-menu\n")])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -62516,15 +62486,17 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _SearchField_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SearchField.vue?vue&type=script&lang=js& */ "./resources/focus-ui/src/components/top-bar/components/SearchField.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 var render, staticRenderFns
-var script = {}
+
+
 
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
-  script,
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  _SearchField_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"],
   render,
   staticRenderFns,
   false,
@@ -62534,8 +62506,24 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
   
 )
 
+/* hot reload */
+if (false) { var api; }
 component.options.__file = "resources/focus-ui/src/components/top-bar/components/SearchField.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/focus-ui/src/components/top-bar/components/SearchField.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************!*\
+  !*** ./resources/focus-ui/src/components/top-bar/components/SearchField.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchField_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./SearchField.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/focus-ui/src/components/top-bar/components/SearchField.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchField_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -62618,17 +62606,15 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _UserMenu_vue_vue_type_template_id_69cc6f7f___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UserMenu.vue?vue&type=template&id=69cc6f7f& */ "./resources/focus-ui/src/components/top-bar/components/UserMenu.vue?vue&type=template&id=69cc6f7f&");
-/* harmony import */ var _UserMenu_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UserMenu.vue?vue&type=script&lang=js& */ "./resources/focus-ui/src/components/top-bar/components/UserMenu.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
-
-
+var script = {}
 
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _UserMenu_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  script,
   _UserMenu_vue_vue_type_template_id_69cc6f7f___WEBPACK_IMPORTED_MODULE_0__["render"],
   _UserMenu_vue_vue_type_template_id_69cc6f7f___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
@@ -62642,20 +62628,6 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 if (false) { var api; }
 component.options.__file = "resources/focus-ui/src/components/top-bar/components/UserMenu.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/focus-ui/src/components/top-bar/components/UserMenu.vue?vue&type=script&lang=js&":
-/*!****************************************************************************************************!*\
-  !*** ./resources/focus-ui/src/components/top-bar/components/UserMenu.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UserMenu_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./UserMenu.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/focus-ui/src/components/top-bar/components/UserMenu.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UserMenu_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -63001,7 +62973,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!***************************************************!*\
   !*** ./resources/focus-ui/src/utilities/index.js ***!
   \***************************************************/
-/*! exports provided: uuidv4, filterClassList, getInitials, whileMouseMove */
+/*! exports provided: filterClassList, getInitials, uuidv4, whileMouseMove */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -63542,8 +63514,8 @@ function dispatchActionForAllModules(actionName) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/jelle/Sites-2020/pagie/framework-test/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/jelle/Sites-2020/pagie/framework-test/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /c/Users/Jelle/Documents/Code/Pagie/pagie/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /c/Users/Jelle/Documents/Code/Pagie/pagie/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

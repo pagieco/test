@@ -24,7 +24,7 @@ class Project extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
+        'name', 'hash',
     ];
 
     /**
@@ -150,7 +150,7 @@ class Project extends Model
     /**
      * Share the project with the given user.
      *
-     * @param  \App\User $user
+     * @param  \App\Models\User $user
      * @return void
      */
     public function shareWith(User $user): void
@@ -164,7 +164,7 @@ class Project extends Model
     /**
      * Stop sharing the project with the given user.
      *
-     * @param  \App\User $user
+     * @param  \App\Models\User $user
      * @return void
      */
     public function stopSharingWith(User $user): void

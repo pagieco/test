@@ -17,6 +17,7 @@ class CreateProjectsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id')->index();
             $table->string('name');
+            $table->string('hash');
             $table->timestamps();
 
             $table->foreign('user_id')

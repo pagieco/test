@@ -35,4 +35,12 @@ class AssetFolderTest extends TestCase
     {
         $this->assertInstanceOf(BelongsTo::class, app(AssetFolder::class)->parent());
     }
+
+    /** @test */
+    public function it_can_insert_a_new_record()
+    {
+        $this->assertDatabaseHas('asset_folders', [
+            'id' => factory(AssetFolder::class)->create()->id,
+        ]);
+    }
 }

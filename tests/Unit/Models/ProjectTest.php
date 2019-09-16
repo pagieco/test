@@ -84,6 +84,14 @@ class ProjectTest extends TestCase
     }
 
     /** @test */
+    public function it_can_insert_a_new_record()
+    {
+        $this->assertDatabaseHas('projects', [
+            'id' => factory(Project::class)->create()->id,
+        ]);
+    }
+
+    /** @test */
     public function it_can_be_shared_with_a_user()
     {
         Event::fake();

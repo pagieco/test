@@ -22,4 +22,12 @@ class AssetTest extends TestCase
     {
         $this->assertInstanceOf(BelongsTo::class, app(Asset::class)->folder());
     }
+
+    /** @test */
+    public function it_can_insert_a_new_record()
+    {
+        $this->assertDatabaseHas('assets', [
+            'id' => factory(Asset::class)->create()->id,
+        ]);
+    }
 }
