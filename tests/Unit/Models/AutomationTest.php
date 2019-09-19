@@ -23,4 +23,12 @@ class AutomationTest extends TestCase
     {
         $this->assertInstanceOf(HasMany::class, app(Automation::class)->nodes());
     }
+
+    /** @test */
+    public function it_can_insert_a_new_record()
+    {
+        $this->assertDatabaseHas('automations', [
+            'id' => factory(Automation::class)->create()->id,
+        ]);
+    }
 }

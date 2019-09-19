@@ -6,9 +6,7 @@ use App\Models\Traits\HasPermissions;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Traits\InteractsWithProjects;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable implements MustVerifyEmail
 {

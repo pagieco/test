@@ -112,6 +112,45 @@ return [
 
     'permissions' => [
         'asset:list' => ['List assets', 'List the assets.'],
+        'asset:view' => ['View asset', 'View an asset.'],
+        'asset:upload' => ['Upload asset', 'Upload an asset.'],
+        'asset:move' => ['Move asset', 'Move an asset.'],
+        'asset:update' => ['Update asset', 'Update an asset.'],
+        'asset:delete' => ['Delete asset', 'Delete an asset.'],
+        'asset-folder:list' => ['List asset folders', 'List the asset folders.'],
+        'asset-folder:view' => ['View asset folder', 'View an asset folder.'],
+        'asset-folder:create' => ['Create asset folder', 'Create an asset folder.'],
+        'asset-folder:update' => ['Update asset folder', 'Update an asset folder.'],
+        'asset-folder:delete' => ['Delete asset folder', 'Delete an asset folder.'],
+
+        'automation:list' => ['List automations', 'List the automations.'],
+        'automation:view' => ['View automation', 'View an automation.'],
+
+        'collection:list' => ['List collections', 'List the collections.'],
+        'collection:view' => ['View collection', 'View a collection.'],
+
+        'domain:list' => ['List domains', 'List the domains.'],
+        'domain:view' => ['View domain', 'View a domain.'],
+
+        'email:list' => ['List emails', 'List the emails.'],
+        'email:view' => ['View email', 'View an email.'],
+
+        'form:list' => ['List forms', 'List the forms.'],
+        'form:view' => ['View form', 'View a form.'],
+        'form:list-submissions' => ['List form submissions', 'List the form submissions.'],
+        'form:view-submission' => ['View form submission', 'View a form submission.'],
+
+        'page:list' => ['List pages', 'List the pages.'],
+        'page:view' => ['View page', 'View a page.'],
+
+        'profile:list' => ['List profiles', 'List the profiles.'],
+        'profile:view' => ['View profile', 'View a profile.'],
+        'profile:delete' => ['Delete profile', 'Delete a profile.'],
+        'profile:list-events' => ['List profile events', 'List the profile events.'],
+        'profile:view-event' => ['View profile event', 'View the profile event.'],
+
+        'workflow:list' => ['List workflows', 'List the workflows.'],
+        'workflow:view' => ['View workflow', 'View a workflow.'],
     ],
 
 ];

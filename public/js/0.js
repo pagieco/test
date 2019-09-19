@@ -21,16 +21,28 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    Page: _focus_ui_src_components__WEBPACK_IMPORTED_MODULE_1__["Page"]
+    Page: _focus_ui_src_components__WEBPACK_IMPORTED_MODULE_1__["Page"],
+    Card: _focus_ui_src_components__WEBPACK_IMPORTED_MODULE_1__["Card"],
+    TextStyle: _focus_ui_src_components__WEBPACK_IMPORTED_MODULE_1__["TextStyle"],
+    ResourceList: _focus_ui_src_components__WEBPACK_IMPORTED_MODULE_1__["ResourceList"],
+    ResourceListItem: _focus_ui_src_components__WEBPACK_IMPORTED_MODULE_1__["ResourceListItem"]
   },
   mounted: function mounted() {
     this.initializeComponentState();
   },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
+    assets: 'asset/assets'
+  })),
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])({
-    fetchAssets: 'asset/fetchAssets'
+    fetchAssets: 'asset/fetchAssets',
+    sortAssets: 'asset/sortAssets'
   }), {
     initializeComponentState: function initializeComponentState() {
       this.fetchAssets();
+    },
+    onSort: function onSort(_ref) {
+      var direction = _ref.direction;
+      this.sortAssets(direction);
     }
   })
 });
@@ -52,7 +64,55 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("Page", { attrs: { title: "Assets", "full-width": "" } })
+  return _c(
+    "Page",
+    { attrs: { title: "Assets", "full-width": "" } },
+    [
+      _c(
+        "Card",
+        [
+          _c("ResourceList", {
+            attrs: {
+              selectable: "",
+              items: _vm.assets,
+              "sort-options": [
+                { label: "Newest update", direction: "desc" },
+                { label: "Oldest update", direction: "asc" }
+              ],
+              "resource-name": { singular: "asset", plural: "assets" }
+            },
+            on: { sort: _vm.onSort },
+            scopedSlots: _vm._u([
+              {
+                key: "default",
+                fn: function(item) {
+                  return [
+                    _c(
+                      "ResourceListItem",
+                      _vm._b(
+                        {},
+                        "ResourceListItem",
+                        Object.assign({}, item),
+                        false
+                      ),
+                      [
+                        _c("TextStyle", { attrs: { variation: "strong" } }, [
+                          _vm._v(_vm._s(item.filename))
+                        ])
+                      ],
+                      1
+                    )
+                  ]
+                }
+              }
+            ])
+          })
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

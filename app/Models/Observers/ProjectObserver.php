@@ -8,12 +8,24 @@ use Illuminate\Support\Str;
 
 class ProjectObserver
 {
-    public function creating(Project $project)
+    /**
+     * Listen to the project model "creating" event.
+     *
+     * @param  \App\Models\Project $project
+     * @return void
+     */
+    public function creating(Project $project): void
     {
         $project->setAttribute('hash', Str::uuid());
     }
 
-    public function created(Project $project)
+    /**
+     * Listen to the project model "created" event.
+     *
+     * @param  \App\Models\Project $project
+     * @return void
+     */
+    public function created(Project $project): void
     {
         $subdomain = sprintf('%s.%s', Haiku::withToken(), config('app.domain'));
 

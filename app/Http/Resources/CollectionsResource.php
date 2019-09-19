@@ -14,6 +14,6 @@ class CollectionsResource extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return CollectionResource::collection($this->collection);
     }
 }

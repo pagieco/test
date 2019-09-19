@@ -17,8 +17,6 @@ class CreateDomainsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('project_id');
             $table->string('domain_name');
-            $table->mediumText('css_rules')->nullable();
-            $table->string('css_file')->nullable();
             $table->timestamps();
 
             $table->foreign('project_id')

@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use App\Models;
 use App\Policies;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -16,7 +15,15 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         Models\Asset::class => Policies\AssetPolicy::class,
-        // 'App\Model' => 'App\Policies\ModelPolicy',
+        Models\AssetFolder::class => Policies\AssetFolderPolicy::class,
+        Models\Automation::class => Policies\AutomationPolicy::class,
+        Models\Collection::class => Policies\CollectionPolicy::class,
+        Models\Domain::class => Policies\DomainPolicy::class,
+        Models\Email::class => Policies\EmailPolicy::class,
+        Models\Form::class => Policies\FormPolicy::class,
+        Models\Page::class => Policies\PagePolicy::class,
+        Models\Profile::class => Policies\ProfilePolicy::class,
+        Models\Workflow::class => Policies\WorkflowPolicy::class,
     ];
 
     /**

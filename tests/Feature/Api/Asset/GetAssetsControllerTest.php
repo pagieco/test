@@ -4,7 +4,6 @@ namespace Tests\Feature\Api\Asset;
 
 use Tests\TestCase;
 use App\Models\Asset;
-use App\Models\Project;
 use Illuminate\Http\Response;
 use Tests\Feature\AuthenticatedRoute;
 use Illuminate\Foundation\Testing\TestResponse;
@@ -20,9 +19,7 @@ class GetAssetsControllerTest extends TestCase
     {
         $this->login()->forceAccess($this->role, 'asset:list');
 
-        $response = $this->get(route('get-assets'));
-
-        $response->assertSchema('GetAssets', Response::HTTP_NO_CONTENT);
+        $this->makeRequest()->assertSchema('GetAssets', Response::HTTP_NO_CONTENT);
     }
 
     /** @test */
@@ -34,11 +31,9 @@ class GetAssetsControllerTest extends TestCase
             'project_id' => $this->project,
         ]);
 
-        factory(Asset::class)->create([
-            'project_id' => factory(Project::class)->create(),
-        ]);
+        factory(Asset::class)->create();
 
-        $response = $this->get(route('get-assets'));
+        $response = $this->makeRequest();
 
         $this->assertCount(1, $response->json('data'));
     }
@@ -48,9 +43,7 @@ class GetAssetsControllerTest extends TestCase
     {
         $this->login();
 
-        $response = $this->get(route('get-assets'));
-
-        $response->assertSchema('GetAssets', Response::HTTP_FORBIDDEN);
+        $this->makeRequest()->assertSchema('GetAssets', Response::HTTP_FORBIDDEN);
     }
 
     /** @test */
@@ -62,9 +55,7 @@ class GetAssetsControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $response = $this->get(route('get-assets'));
-
-        $response->assertSchema('GetAssets', Response::HTTP_OK);
+        $this->makeRequest()->assertSchema('GetAssets', Response::HTTP_OK);
     }
 
     /**

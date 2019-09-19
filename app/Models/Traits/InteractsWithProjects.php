@@ -51,7 +51,12 @@ trait InteractsWithProjects
             || $this->teamProjects->contains($project);
     }
 
-    public function currentProject()
+    /**
+     * Get the project that the user is currently viewing.
+     *
+     * @return \App\Models\Project
+     */
+    public function currentProject(): Project
     {
         if (is_null($this->current_project_id)) {
             $this->switchToProject($this->projects->first());
@@ -64,6 +69,12 @@ trait InteractsWithProjects
         }
     }
 
+    /**
+     * Switch the current project for the user.
+     *
+     * @param  \App\Models\Project $project
+     * @return void
+     */
     public function switchToProject(Project $project)
     {
         $this->current_project_id = $project->id;
@@ -71,7 +82,12 @@ trait InteractsWithProjects
         $this->save();
     }
 
-    protected function refreshCurrentProject()
+    /**
+     * Refresh the current project for the user.
+     *
+     * @return \App\Models\Project
+     */
+    protected function refreshCurrentProject(): Project
     {
         $this->current_project_id = null;
 

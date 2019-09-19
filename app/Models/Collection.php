@@ -2,18 +2,28 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Jenssegers\Mongodb\Eloquent\Model;
+use App\Models\Traits\BelongsToProject;
+use Jenssegers\Mongodb\Relations\HasMany;
+use Jenssegers\Mongodb\Relations\EmbedsMany;
 
 class Collection extends Model
 {
+    use BelongsToProject;
+
     /**
-     * The table associated with the model.
+     * The connection name for the model.
      *
      * @var string
      */
-    protected $table = 'collections';
+    protected $connection = 'mongodb';
+
+    /**
+     * The collection associated with the model.
+     *
+     * @var string
+     */
+    protected $collection = 'collections';
 
     /**
      * The attributes that are mass assignable.
@@ -25,19 +35,9 @@ class Collection extends Model
     ];
 
     /**
-     * Get the project that belongs to this model.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function project(): BelongsTo
-    {
-        return $this->belongsTo(Project::class);
-    }
-
-    /**
      * Get the entries that belong to this collection.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Jenssegers\Mongodb\Relations\HasMany
      */
     public function entries(): HasMany
     {
@@ -47,10 +47,10 @@ class Collection extends Model
     /**
      * Get the fields that belong to this collection.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Jenssegers\Mongodb\Relations\EmbedsMany
      */
-    public function fields(): HasMany
+    public function fields(): EmbedsMany
     {
-        return $this->hasMany(CollectionField::class);
+        return $this->embedsMany(CollectionField::class);
     }
 }

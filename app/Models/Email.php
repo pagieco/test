@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\Traits\BelongsToProject;
 
 class Email extends Model
 {
+    use BelongsToProject;
+
     /**
      * The table associated with the model.
      *
@@ -22,14 +24,4 @@ class Email extends Model
     protected $fillable = [
 
     ];
-
-    /**
-     * Get the project that belongs to this model.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function project(): BelongsTo
-    {
-        return $this->belongsTo(Project::class);
-    }
 }

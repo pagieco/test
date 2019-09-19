@@ -13,6 +13,7 @@ servers:
 
 tags:
   - name: Asset
+  - name: Asset Folder
   - name: Page
   - name: Collection
   - name: Form
@@ -36,6 +37,182 @@ paths:
           description: No assets found
         403:
           $ref: '#/components/responses/status-403-response'
+    post:
+      description: Upload a new asset
+      tags:
+        - Asset
+      operationId: UploadAsset
+      responses:
+        201:
+          $ref: '#/components/responses/get-asset'
+        403:
+          $ref: '#/components/responses/status-403-response'
+        422:
+          $ref: '#/components/responses/status-422-response'
+
+  /assets/{asset}:
+    get:
+      description: Get an asset
+      tags:
+        - Asset
+      operationId: GetAsset
+      parameters:
+        - in: path
+          name: asset
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          $ref: '#/components/responses/get-asset'
+        403:
+          $ref: '#/components/responses/status-403-response'
+        404:
+          $ref: '#/components/responses/status-404-response'
+    patch:
+      description: Update an asset
+      tags:
+        - Asset
+      operationId: UpdateAsset
+      parameters:
+        - in: path
+          name: asset
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          $ref: '#/components/responses/get-asset'
+        403:
+          $ref: '#/components/responses/status-403-response'
+        404:
+          $ref: '#/components/responses/status-404-response'
+        422:
+          $ref: '#/components/responses/status-422-response'
+    delete:
+      description: Delete an asset
+      tags:
+        - Asset
+      operationId: DeleteAsset
+      parameters:
+        - in: path
+          name: asset
+          schema:
+            type: integer
+          required: true
+      responses:
+        204:
+          description: Asset deleted
+        403:
+          $ref: '#/components/responses/status-403-response'
+        404:
+          $ref: '#/components/responses/status-404-response'
+
+  /assets/{asset}/move:
+    put:
+      description: Move an asset
+      tags:
+        - Asset
+      operationId: MoveAsset
+      parameters:
+        - in: path
+          name: asset
+          schema:
+            type: integer
+          required: true
+      responses:
+        201:
+          $ref: '#/components/responses/status-201-response'
+        403:
+          $ref: '#/components/responses/status-403-response'
+        404:
+          $ref: '#/components/responses/status-404-response'
+        422:
+          $ref: '#/components/responses/status-422-response'
+
+  /asset-folders:
+    get:
+      description: Get a list of asset folders
+      tags:
+        - Asset Folder
+      operationId: GetAssetFolders
+      responses:
+        200:
+          $ref: '#/components/responses/get-asset-folders'
+        204:
+          description: No asset folders found
+        403:
+          $ref: '#/components/responses/status-403-response'
+    post:
+      description: Create a new asset folder
+      tags:
+        - Asset Folder
+      operationId: CreateAssetFolder
+      responses:
+        201:
+          $ref: '#/components/responses/get-asset-folder'
+        403:
+          $ref: '#/components/responses/status-403-response'
+        422:
+          $ref: '#/components/responses/status-422-response'
+
+  /asset-folders/{asset-folder}:
+    get:
+      description: Get an asset folder
+      tags:
+        - Asset Folder
+      operationId: GetAssetFolder
+      parameters:
+        - in: path
+          name: asset-folder
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          $ref: '#/components/responses/get-asset-folder'
+        403:
+          $ref: '#/components/responses/status-403-response'
+        404:
+          $ref: '#/components/responses/status-404-response'
+    patch:
+      description: Update an asset folder
+      tags:
+        - Asset Folder
+      operationId: UpdateAssetFolder
+      parameters:
+        - in: path
+          name: asset-folder
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          $ref: '#/components/responses/get-asset-folder'
+        403:
+          $ref: '#/components/responses/status-403-response'
+        404:
+          $ref: '#/components/responses/status-404-response'
+        422:
+          $ref: '#/components/responses/status-422-response'
+    delete:
+      description: Delete an asset folder
+      tags:
+        - Asset Folder
+      operationId: DeleteAssetFolder
+      parameters:
+        - in: path
+          name: asset-folder
+          schema:
+            type: integer
+          required: true
+      responses:
+        204:
+          description: Asset folder deleted
+        403:
+          $ref: '#/components/responses/status-403-response'
+        404:
+          $ref: '#/components/responses/status-404-response'
 
   /pages:
     get:
@@ -51,6 +228,26 @@ paths:
         403:
           $ref: '#/components/responses/status-403-response'
 
+  /pages/{page}:
+    get:
+      description: Get a page
+      tags:
+        - Page
+      operationId: GetPage
+      parameters:
+        - in: path
+          name: page
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          $ref: '#/components/responses/get-page'
+        403:
+          $ref: '#/components/responses/status-403-response'
+        404:
+          $ref: '#/components/responses/status-404-response'
+
   /collections:
     get:
       description: Get a list of collections
@@ -64,6 +261,26 @@ paths:
           description: No collections found
         403:
           $ref: '#/components/responses/status-403-response'
+
+  /collections/{collection}:
+    get:
+      description: Get a collection
+      tags:
+        - Collection
+      operationId: GetCollection
+      parameters:
+        - in: path
+          name: collection
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          $ref: '#/components/responses/get-collection'
+        403:
+          $ref: '#/components/responses/status-403-response'
+        404:
+          $ref: '#/components/responses/status-404-response'
 
   /forms:
     get:
@@ -79,6 +296,68 @@ paths:
         403:
           $ref: '#/components/responses/status-403-response'
 
+  /forms/{form}:
+    get:
+      description: Get a form
+      tags:
+        - Form
+      operationId: GetForm
+      parameters:
+        - in: path
+          name: form
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          $ref: '#/components/responses/get-form'
+        403:
+          $ref: '#/components/responses/status-403-response'
+        404:
+          $ref: '#/components/responses/status-404-response'
+
+  /forms/{form}/submissions:
+    get:
+      description: Get the submissions of a form
+      tags:
+        - Form
+      operationId: GetFormSubmissions
+      parameters:
+        - in: path
+          name: form
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          $ref: '#/components/responses/get-form-submissions'
+        204:
+          description: No form submissions found
+        403:
+          $ref: '#/components/responses/status-403-response'
+        404:
+          $ref: '#/components/responses/status-404-response'
+
+  /form-submissions/{submission}:
+    get:
+      description: Get a form submission
+      tags:
+        - Form
+      operationId: GetFormSubmission
+      parameters:
+        - in: path
+          name: submission
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          $ref: '#/components/responses/get-form-submission'
+        403:
+          $ref: '#/components/responses/status-403-response'
+        404:
+          $ref: '#/components/responses/status-404-response'
+
   /emails:
     get:
       description: Get a list of emails
@@ -92,6 +371,26 @@ paths:
           description: No emails found
         403:
           $ref: '#/components/responses/status-403-response'
+
+  /emails/{email}:
+    get:
+      description: Get an email
+      tags:
+        - Email
+      operationId: GetEmail
+      parameters:
+        - in: path
+          name: email
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          $ref: '#/components/responses/get-email'
+        403:
+          $ref: '#/components/responses/status-403-response'
+        404:
+          $ref: '#/components/responses/status-404-response'
 
   /profiles:
     get:
@@ -107,6 +406,44 @@ paths:
         403:
           $ref: '#/components/responses/status-403-response'
 
+  /profiles/{profile}:
+    get:
+      description: Get a profile
+      tags:
+        - Profile
+      operationId: GetProfile
+      parameters:
+        - in: path
+          name: profile
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          $ref: '#/components/responses/get-profile'
+        403:
+          $ref: '#/components/responses/status-403-response'
+        404:
+          $ref: '#/components/responses/status-404-response'
+    delete:
+      description: Delete a profile
+      tags:
+        - Profile
+      operationId: DeleteProfile
+      parameters:
+        - in: path
+          name: profile
+          schema:
+            type: integer
+          required: true
+      responses:
+        204:
+          description: Profile deleted
+        403:
+          $ref: '#/components/responses/status-403-response'
+        404:
+          $ref: '#/components/responses/status-404-response'
+
   /automations:
     get:
       description: Get a list of automations
@@ -120,6 +457,26 @@ paths:
           description: No automations found
         403:
           $ref: '#/components/responses/status-403-response'
+
+  /automations/{automation}:
+    get:
+      description: Get a automation
+      tags:
+        - Automation
+      operationId: GetAutomation
+      parameters:
+        - in: path
+          name: automation
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          $ref: '#/components/responses/get-automation'
+        403:
+          $ref: '#/components/responses/status-403-response'
+        404:
+          $ref: '#/components/responses/status-404-response'
 
   /domains:
     get:
@@ -135,6 +492,26 @@ paths:
         403:
           $ref: '#/components/responses/status-403-response'
 
+  /domains/{domain}:
+    get:
+      description: Get a domain
+      tags:
+        - Domain
+      operationId: GetDomain
+      parameters:
+        - in: path
+          name: domain
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          $ref: '#/components/responses/get-domain'
+        403:
+          $ref: '#/components/responses/status-403-response'
+        404:
+          $ref: '#/components/responses/status-404-response'
+
   /workflows:
     get:
       description: Get a list of workflows
@@ -149,6 +526,26 @@ paths:
         403:
           $ref: '#/components/responses/status-403-response'
 
+  /workflows/{workflow}:
+    get:
+      description: Get a workflow
+      tags:
+        - Workflow
+      operationId: GetWorkflow
+      parameters:
+        - in: path
+          name: workflow
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          $ref: '#/components/responses/get-workflow'
+        403:
+          $ref: '#/components/responses/status-403-response'
+        404:
+          $ref: '#/components/responses/status-404-response'
+
 components:
   responses:
     get-assets:
@@ -162,6 +559,35 @@ components:
                 items:
                   $ref: '#/components/schemas/asset'
 
+    get-asset:
+      description: OK
+      content:
+        application/json:
+          schema:
+            properties:
+              data:
+                $ref: '#/components/schemas/asset'
+
+    get-asset-folders:
+      description: OK
+      content:
+        application/json:
+          schema:
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/asset-folder'
+
+    get-asset-folder:
+      description: OK
+      content:
+        application/json:
+          schema:
+            properties:
+              data:
+                $ref: '#/components/schemas/asset-folder'
+
     get-pages:
       description: OK
       content:
@@ -172,6 +598,15 @@ components:
                 type: array
                 items:
                   $ref: '#/components/schemas/page'
+
+    get-page:
+      description: OK
+      content:
+        application/json:
+          schema:
+            properties:
+              data:
+                $ref: '#/components/schemas/page'
 
     get-collections:
       description: OK
@@ -184,6 +619,15 @@ components:
                 items:
                   $ref: '#/components/schemas/collection'
 
+    get-collection:
+      description: OK
+      content:
+        application/json:
+          schema:
+            properties:
+              data:
+                $ref: '#/components/schemas/collection'
+
     get-forms:
       description: OK
       content:
@@ -194,6 +638,35 @@ components:
                 type: array
                 items:
                   $ref: '#/components/schemas/form'
+
+    get-form:
+      description: OK
+      content:
+        application/json:
+          schema:
+            properties:
+              data:
+                $ref: '#/components/schemas/form'
+
+    get-form-submissions:
+      description: OK
+      content:
+        application/json:
+          schema:
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/form-submission'
+
+    get-form-submission:
+      description: OK
+      content:
+        application/json:
+          schema:
+            properties:
+              data:
+                $ref: '#/components/schemas/form-submission'
 
     get-emails:
       description: OK
@@ -206,6 +679,15 @@ components:
                 items:
                   $ref: '#/components/schemas/email'
 
+    get-email:
+      description: OK
+      content:
+        application/json:
+          schema:
+            properties:
+              data:
+                $ref: '#/components/schemas/email'
+
     get-profiles:
       description: OK
       content:
@@ -216,6 +698,15 @@ components:
                 type: array
                 items:
                   $ref: '#/components/schemas/profile'
+
+    get-profile:
+      description: OK
+      content:
+        application/json:
+          schema:
+            properties:
+              data:
+                $ref: '#/components/schemas/profile'
 
     get-automations:
       description: OK
@@ -228,6 +719,15 @@ components:
                 items:
                   $ref: '#/components/schemas/automation'
 
+    get-automation:
+      description: OK
+      content:
+        application/json:
+          schema:
+            properties:
+              data:
+                $ref: '#/components/schemas/automation'
+
     get-domains:
       description: OK
       content:
@@ -239,6 +739,15 @@ components:
                 items:
                   $ref: '#/components/schemas/domain'
 
+    get-domain:
+      description: OK
+      content:
+        application/json:
+          schema:
+            properties:
+              data:
+                $ref: '#/components/schemas/domain'
+
     get-workflows:
       description: OK
       content:
@@ -249,6 +758,15 @@ components:
                 type: array
                 items:
                   $ref: '#/components/schemas/workflow'
+
+    get-workflow:
+      description: OK
+      content:
+        application/json:
+          schema:
+            properties:
+              data:
+                $ref: '#/components/schemas/workflow'
 
     status-201-response:
       description: Created
@@ -376,10 +894,27 @@ components:
           type: string
           format: 'date-time'
 
+    asset-folder:
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        created_at:
+          type: string
+          format: 'date-time'
+        updated_at:
+          type: string
+          format: 'date-time'
+
     page:
       properties:
         id:
           type: integer
+        name:
+          type: string
+        slug:
+          type: string
         created_at:
           type: string
           format: 'date-time'
@@ -391,6 +926,10 @@ components:
       properties:
         id:
           type: integer
+        name:
+          type: string
+        fields:
+          type: object
         created_at:
           type: string
           format: 'date-time'
@@ -402,6 +941,25 @@ components:
       properties:
         id:
           type: integer
+        name:
+          type: string
+        created_at:
+          type: string
+          format: 'date-time'
+        updated_at:
+          type: string
+          format: 'date-time'
+
+    form-submission:
+      properties:
+        id:
+          type: integer
+        submission_data:
+          type: object
+          format: json
+          example:
+            first_name: John Doe
+            email: john@doe.com
         created_at:
           type: string
           format: 'date-time'
@@ -413,6 +971,10 @@ components:
       properties:
         id:
           type: integer
+        name:
+          type: string
+        slug:
+          type: string
         created_at:
           type: string
           format: 'date-time'
@@ -424,6 +986,45 @@ components:
       properties:
         id:
           type: integer
+        email:
+          type: string
+          format: email
+        first_name:
+          type: string
+          nullable: true
+        last_name:
+          type: string
+          nullable: true
+        address_1:
+          type: string
+          nullable: true
+        address_2:
+          type: string
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        state:
+          type: string
+          nullable: true
+        zip:
+          type: string
+          nullable: true
+        country:
+          type: string
+          nullable: true
+        phone:
+          type: string
+          nullable: true
+        timezone:
+          type: string
+          nullable: true
+        tags:
+          type: object
+          nullable: true
+        custom_fields:
+          type: object
+          nullable: true
         created_at:
           type: string
           format: 'date-time'
@@ -435,6 +1036,11 @@ components:
       properties:
         id:
           type: integer
+        name:
+          type: string
+        description:
+          type: string
+          nullable: true
         created_at:
           type: string
           format: 'date-time'
@@ -446,6 +1052,8 @@ components:
       properties:
         id:
           type: integer
+        domain_name:
+          type: string
         created_at:
           type: string
           format: 'date-time'
@@ -457,6 +1065,15 @@ components:
       properties:
         id:
           type: integer
+        name:
+          type: string
+        description:
+          type: string
+          nullable: true
+        steps:
+          type: object
+        transitions:
+          type: object
         created_at:
           type: string
           format: 'date-time'

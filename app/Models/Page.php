@@ -3,10 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\Traits\BelongsToProject;
+use App\Models\Traits\InteractsWithWorkflows;
 
 class Page extends Model
 {
+    use BelongsToProject;
+    use InteractsWithWorkflows;
+
     /**
      * The table associated with the model.
      *
@@ -22,14 +26,4 @@ class Page extends Model
     protected $fillable = [
 
     ];
-
-    /**
-     * Get the project that belongs to this model.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function project(): BelongsTo
-    {
-        return $this->belongsTo(Project::class);
-    }
 }

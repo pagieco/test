@@ -4,29 +4,25 @@ namespace Tests\Unit\Models;
 
 use Tests\TestCase;
 use App\Models\Collection;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Tests\RefreshCollections;
+use Jenssegers\Mongodb\Relations\HasMany;
+use Jenssegers\Mongodb\Relations\EmbedsMany;
 
 class CollectionTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshCollections;
 
-    /** @test */
-    public function it_belongs_to_a_project()
-    {
-        $this->assertInstanceOf(BelongsTo::class, app(Collection::class)->project());
-    }
+    protected $model = Collection::class;
 
     /** @test */
     public function it_has_many_entries()
     {
-        $this->assertInstanceOf(HasMany::class, app(Collection::class)->entries());
+        $this->assertInstanceOf(HasMany::class, app($this->model)->entries());
     }
 
     /** @test */
-    public function it_has_many_fields()
+    public function it_embeds_many_fields()
     {
-        $this->assertInstanceOf(HasMany::class, app(Collection::class)->fields());
+        $this->assertInstanceOf(EmbedsMany::class, app($this->model)->fields());
     }
 }

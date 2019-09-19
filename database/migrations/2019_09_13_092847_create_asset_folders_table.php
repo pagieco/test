@@ -15,9 +15,14 @@ class CreateAssetFoldersTable extends Migration
     {
         Schema::create('asset_folders', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('project_id');
             $table->string('name');
             $table->string('description')->nullable();
             $table->timestamps();
+
+            $table->foreign('project_id')
+                ->references('id')->on('projects')
+                ->onDelete('cascade');
         });
     }
 

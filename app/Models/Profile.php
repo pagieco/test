@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Traits\BelongsToProject;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Profile extends Model
 {
+    use BelongsToProject;
+
     /**
      * The table associated with the model.
      *
@@ -21,18 +23,30 @@ class Profile extends Model
      * @var array
      */
     protected $fillable = [
-
+        'email',
+        'first_name',
+        'last_name',
+        'address_1',
+        'address_2',
+        'city',
+        'state',
+        'zip',
+        'country',
+        'phone',
+        'timezone',
+        'tags',
+        'custom_fields',
     ];
 
     /**
-     * Get the project that belongs to this model.
+     * The attributes that should be cast to native types.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @var array
      */
-    public function project(): BelongsTo
-    {
-        return $this->belongsTo(Project::class);
-    }
+    protected $casts = [
+        'tags' => 'array',
+        'custom_fields' => 'array',
+    ];
 
     /**
      * Get the events that belong to this profile.

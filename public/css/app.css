@@ -66,6 +66,7 @@ body {
   min-height: 100%;
   padding: 0;
   margin: 0;
+  background-color: var(--grey-light);
 }
 
 *,
@@ -856,7 +857,7 @@ p {
   cursor: pointer;
 }
 
-.navigation__anchor:hover {
+.navigation__anchor:hover, .navigation__anchor:hover .navigation__icon {
   color: var(--blue);
 }
 
@@ -865,6 +866,12 @@ p {
   margin-top: 0.6em;
   margin-bottom: 0.6em;
   line-height: 1em;
+}
+
+.navigation__icon {
+  display: inline-block;
+  width: 2em;
+  color: var(--ink-lightest);
 }
 
 .navigation__section {
@@ -968,6 +975,107 @@ p {
 
 .popover.popover--is-shown {
   display: block;
+}
+
+.resource-list-wrapper {
+  position: relative;
+}
+
+.resource-list {
+  position: relative;
+  z-index: 1;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.resource-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5em 1.5em;
+  border-bottom: 1px solid var(--grey-base);
+}
+
+.resource-list-header .choice__label {
+  margin-left: 1em;
+}
+
+.resource-list-header__sort-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.resource-list-header__sort-label {
+  margin-right: 0.5em;
+}
+
+.resource-list__item-wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.resource-list__item-wrapper + .resource-list__item-wrapper {
+  border-top: 1px solid var(--grey-base);
+}
+
+.resource-list-item {
+  position: relative;
+  cursor: pointer;
+  outline: none;
+}
+
+.resource-list-item:hover {
+  background-color: var(--grey-lightest);
+}
+
+.resource-list-item.resource-list-item--selected {
+  background-color: var(--blue-lightest);
+}
+
+.resource-list-item__link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.resource-list-item__container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-start;
+  min-height: 4em;
+  padding: 1em 1.5em;
+}
+
+.resource-list-item__handle {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4em;
+  min-height: 4.5em;
+  margin: -1em 0 -1.2em -1.2em;
+}
+
+.resource-list-item__media {
+  display: flex;
+  align-self: flex-start;
+  margin-right: 1em;
+}
+
+.resource-list-item__content {
+  flex: 1 1 auto;
+  align-self: center;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .select-input {
@@ -1466,73 +1574,54 @@ p {
 }
 
 .top-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 500;
-  display: flex;
-  width: 100%;
-  height: 4em;
-  background-color: var(--ink-base);
-}
-
-.top-bar .top-bar__logo-container {
-  display: flex;
-  flex: 0 0;
-  align-items: center;
-  min-width: 20em;
-  height: 100%;
-  padding: 0 0.8em 0;
-}
-
-.top-bar .top-bar__contents {
   position: relative;
+  display: flex;
+  height: 4em;
+  background-color: #276749;
+  color: var(--white);
+}
+
+.top-bar__logo-container {
+  display: flex;
+  flex: 0 0 20em;
+  align-items: center;
+  height: 100%;
+  padding: 0 1em;
+  background-color: #2D3748;
+}
+
+.top-bar__contents {
   display: flex;
   flex: 1 1 auto;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   height: 100%;
+  padding: 0 1em;
 }
 
-.top-bar .top-bar__search {
-  width: 100%;
-  max-width: none;
-  padding-left: var(--page-gutter);
-  margin: 0 0 0 calc((100% - var(--max-page-width)) / 2);
+.top-bar__user-menu button {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  background: none;
+  font-size: inherit;
+  border: none;
+  color: inherit;
 }
 
-.top-bar .top-bar__search > * {
-  max-width: 50em;
+.top-bar__user-menu button .top-bar__user-menu__details {
+  margin-left: 1em;
 }
 
-.top-bar .top-bar__search input:not(:focus) {
-  color: var(--white);
-  background: var(--ink-light);
-  border-color: transparent;
+.top-bar__user-menu button .top-bar__user-menu__name {
+  font-weight: bold;
 }
 
-.top-bar .top-bar__search input:not(:focus)::-webkit-input-placeholder {
-  color: var(--white);
-}
-
-.top-bar .top-bar__search input:not(:focus)::-moz-placeholder {
-  color: var(--white);
-}
-
-.top-bar .top-bar__search input:not(:focus):-ms-input-placeholder {
-  color: var(--white);
-}
-
-.top-bar .top-bar__search input:not(:focus)::-ms-input-placeholder {
-  color: var(--white);
-}
-
-.top-bar .top-bar__search input:not(:focus)::placeholder {
-  color: var(--white);
-}
-
-.top-bar .top-bar__search input:focus {
-  box-shadow: 0 0 0 4px var(--ink-light);
+.top-bar__user-menu button .top-bar__user-menu__detail {
+  opacity: 0.8;
 }
 
 .visually-hidden {

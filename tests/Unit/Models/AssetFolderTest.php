@@ -3,7 +3,9 @@
 namespace Tests\Unit\Models;
 
 use Tests\TestCase;
+use App\Models\Asset;
 use App\Models\AssetFolder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -25,22 +27,27 @@ class AssetFolderTest extends TestCase
     }
 
     /** @test */
-    public function it_has_many_children()
-    {
-        $this->assertInstanceOf(HasMany::class, app(AssetFolder::class)->children());
-    }
-
-    /** @test */
-    public function it_belongs_to_a_parent()
-    {
-        $this->assertInstanceOf(BelongsTo::class, app(AssetFolder::class)->parent());
-    }
-
-    /** @test */
     public function it_can_insert_a_new_record()
     {
         $this->assertDatabaseHas('asset_folders', [
             'id' => factory(AssetFolder::class)->create()->id,
         ]);
+    }
+
+    /** @test */
+    public function it_wont_delete_the_related_assets_when_deleting_an_asset_folder()
+    {
+        $folder = factory(AssetFolder::class)->create();
+
+        factory(Asset::class, 5)->create([
+            'asset_folder_id' => $folder->id,
+        ]);
+
+        $this->assertCount(5, $folder->assets);
+        $this->assertEquals(5, DB::table('assets')->count());
+
+        $folder->delete();
+
+        $this->assertEquals(5, DB::table('assets')->count());
     }
 }

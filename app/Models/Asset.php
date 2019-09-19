@@ -8,11 +8,14 @@ use Intervention\Image\Constraint;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Traits\BelongsToProject;
 use Intervention\Image\Image as InterventionImage;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Asset extends Model
 {
+    use BelongsToProject;
+
     /**
      * The table associated with the model.
      *
@@ -61,16 +64,6 @@ class Asset extends Model
     }
 
     /**
-     * Get the project that belongs to this model.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function project(): BelongsTo
-    {
-        return $this->belongsTo(Project::class);
-    }
-
-    /**
      * Get the asset-folder that belongs to this model.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -87,7 +80,7 @@ class Asset extends Model
      */
     public function createThumbnail(): Asset
     {
-        if (! Str::contains($this->mimetype, 'image')) {
+        if (! $this->isImage()) {
             return $this;
         }
 
@@ -98,6 +91,57 @@ class Asset extends Model
         $this->update(['thumb_path' => $filename]);
 
         return $this->refresh();
+    }
+
+    /**
+     * Determine that this asset is an image.
+     *
+     * @return bool
+     */
+    public function isImage(): bool
+    {
+        return Str::contains($this->mimetype, 'image');
+    }
+
+    /**
+     * Get the path to this asset.
+     *
+     * @param  string|null $filename
+     * @return string
+     */
+    public function getPath(string $filename = null): string
+    {
+        if (is_null($filename)) {
+            $filename = sprintf('%s/%s', $this->project->hash, $this->filename);
+        }
+
+        return Storage::disk()->path($filename);
+    }
+
+    /**
+     * Delete this asset.
+     *
+     * @throws \Exception
+     */
+    public function unlink(): void
+    {
+        Storage::disk()->delete($this->path);
+
+        $this->delete();
+    }
+
+    /**
+     * Move the asset to a new folder.
+     *
+     * @param  \App\Models\AssetFolder $folder
+     * @return void
+     */
+    public function moveTo(AssetFolder $folder): void
+    {
+        if ($this->asset_folder_id !== $folder->id) {
+            $this->folder()->associate($folder);
+            $this->save();
+        }
     }
 
     /**
@@ -178,20 +222,5 @@ class Asset extends Model
         return Image::make($this->getPath($this->path))->resize(null, $size, function (Constraint $constraint): void {
             $constraint->aspectRatio();
         });
-    }
-
-    /**
-     * Get the path to this asset.
-     *
-     * @param  string|null $filename
-     * @return string
-     */
-    protected function getPath(string $filename = null): string
-    {
-        if (is_null($filename)) {
-            $filename = sprintf('%s/%s', $this->project->hash, $this->filename);
-        }
-
-        return Storage::disk()->path($filename);
     }
 }

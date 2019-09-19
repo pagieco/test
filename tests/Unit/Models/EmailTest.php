@@ -16,4 +16,12 @@ class EmailTest extends TestCase
     {
         $this->assertInstanceOf(BelongsTo::class, app(Email::class)->project());
     }
+
+    /** @test */
+    public function it_can_insert_a_new_record()
+    {
+        $this->assertDatabaseHas('emails', [
+            'id' => factory(Email::class)->create()->id,
+        ]);
+    }
 }

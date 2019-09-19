@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\Traits\BelongsToProject;
 
 class Domain extends Model
 {
+    use BelongsToProject;
+
     /**
      * The table associated with the model.
      *
@@ -22,14 +24,4 @@ class Domain extends Model
     protected $fillable = [
         'domain_name',
     ];
-
-    /**
-     * Get the project that belongs to this model.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function project(): BelongsTo
-    {
-        return $this->belongsTo(Project::class);
-    }
 }

@@ -4,11 +4,13 @@ namespace App\Models;
 
 use Illuminate\Support\Arr;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\Traits\BelongsToProject;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Role extends Model
 {
+    use BelongsToProject;
+
     /**
      * The table associated with the model.
      *
@@ -24,16 +26,6 @@ class Role extends Model
     protected $fillable = [
         'name', 'description',
     ];
-
-    /**
-     * Get the project that this model belongs to.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function project(): BelongsTo
-    {
-        return $this->belongsTo(Project::class);
-    }
 
     /**
      * Get the permissions that belong to this role.

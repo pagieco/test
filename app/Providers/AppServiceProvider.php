@@ -3,9 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Http\Request;
-use App\Macros\RequestMacros;
+use App\Macros\RequestMixin;
 use App\Models\ModelObservers;
-use App\Macros\TestResposeMacros;
+use App\Macros\TestResposeMixin;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\Testing\TestResponse;
 
@@ -21,6 +21,8 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerApplicationMixins();
+
+        require __DIR__.'/../Support/helpers.php';
     }
 
     /**
@@ -35,8 +37,8 @@ class AppServiceProvider extends ServiceProvider
 
     protected function registerApplicationMixins()
     {
-        TestResponse::mixin(new TestResposeMacros);
-        Request::mixin(new RequestMacros);
+        TestResponse::mixin(new TestResposeMixin);
+        Request::mixin(new RequestMixin);
     }
 
     /**

@@ -14,6 +14,6 @@ class AutomationsResource extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return AutomationResource::collection($this->collection);
     }
 }

@@ -35,7 +35,7 @@ class CreateAssetsTable extends Migration
 
             $table->foreign('asset_folder_id')
                 ->references('id')->on('asset_folders')
-                ->onDelete('cascade');
+                ->onDelete('set null');
         });
     }
 

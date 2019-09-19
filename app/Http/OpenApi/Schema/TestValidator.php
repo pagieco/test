@@ -2,13 +2,10 @@
 
 namespace App\Http\OpenApi\Schema;
 
-use cebe\openapi\Reader;
 use Illuminate\Support\Str;
-use Illuminate\Http\Response;
 use cebe\openapi\spec\Schema;
 use cebe\openapi\spec\OpenApi;
 use cebe\openapi\spec\Operation;
-use cebe\openapi\SpecObjectInterface;
 use PHPUnit\Framework\TestCase as PHPUnit;
 use Illuminate\Foundation\Testing\TestResponse;
 
@@ -27,7 +24,7 @@ class TestValidator
      */
     public function __construct(TestResponse $response)
     {
-        $this->response = $response;
+        $this->response = new Response($response);
     }
 
     /**
@@ -35,63 +32,43 @@ class TestValidator
      *
      * @param  string $operationId
      * @param  int $statusCode
-     * @param  array $override
      * @throws \cebe\openapi\exceptions\TypeErrorException
      * @throws \cebe\openapi\exceptions\UnresolvableReferenceException
+     * @throws \App\Http\OpenApi\Schema\UnreadableFileException
      */
-    public function assertSchema(string $operationId, int $statusCode = 200, array $override = null): void
+    public function assertSchema(string $operationId, int $statusCode = 200): void
     {
+        $operation = $this->getOperation(Reader::read(config('open-api.schema-path')), $operationId);
+
         $response = $this->response;
 
-        $operation = $this->getOperation(
-            $response,
-            $this->openSchemaFile(),
-            $operationId
-        );
+        $response->setOperation($operation);
 
-        if ($statusCode === Response::HTTP_NO_CONTENT
-            && isset($operation->responses[Response::HTTP_NO_CONTENT])
-            && empty($response->getContent())) {
+        if ($response->isNoContentResponse()) {
             $response->assertStatus($statusCode);
 
             return;
         }
 
-        $schema = $this->transformSchema(
-            $this->getSchema($operation, $statusCode)
-        );
+        $schema = $this->getSchema($operation, $statusCode);
 
-        if ($override) {
-            $schema = array_merge($schema, $override);
-        }
+        $response->assertJsonStructure($this->transformSchema($schema));
 
         $response->assertStatus($statusCode);
-        $response->assertJsonStructure($schema);
-    }
-
-    /**
-     * @return \cebe\openapi\spec\OpenApi|\cebe\openapi\SpecObjectInterface
-     * @throws \cebe\openapi\exceptions\TypeErrorException
-     * @throws \cebe\openapi\exceptions\UnresolvableReferenceException
-     */
-    protected function openSchemaFile(): SpecObjectInterface
-    {
-        return Reader::readFromYamlFile(base_path('open-api.yml'));
     }
 
     /**
      * Get the operation from the spec.
      *
-     * @param  \Illuminate\Foundation\Testing\TestResponse $response
      * @param  \cebe\openapi\spec\OpenApi $spec
      * @param  string $operationId
      * @return \cebe\openapi\spec\Operation|null
      */
-    protected function getOperation(TestResponse $response, OpenApi $spec, string $operationId): Operation
+    protected function getOperation(OpenApi $spec, string $operationId): Operation
     {
         $specOperation = null;
 
-        $requestPath = str_replace('api', '', $response->baseResponse->headers->get('x-origin-path'));
+        $requestPath = str_replace('api', '', $this->response->baseResponse->headers->get('x-origin-path'));
 
         foreach ($spec->paths as $path => $definition) {
             foreach ($definition->getOperations() as $method => $operation) {

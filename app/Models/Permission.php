@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Permission extends Model
@@ -38,5 +39,16 @@ class Permission extends Model
     public function roles(): BelongsToMany
     {
         return $this->belongsToMany(Role::class, 'role_permission');
+    }
+
+    /**
+     * Scope the query by the given slug.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string $slug
+     */
+    public function scopeBySlug(Builder $query, string $slug): void
+    {
+        $query->where('slug', $slug);
     }
 }

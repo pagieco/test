@@ -14,6 +14,6 @@ class WorkflowsResource extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return WorkflowResource::collection($this->collection);
     }
 }

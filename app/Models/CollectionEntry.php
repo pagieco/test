@@ -2,17 +2,25 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Jenssegers\Mongodb\Eloquent\Model;
+use Jenssegers\Mongodb\Relations\BelongsTo;
 
 class CollectionEntry extends Model
 {
+
     /**
-     * The table associated with the model.
+     * The connection name for the model.
      *
      * @var string
      */
-    protected $table = 'collection_entries';
+    protected $connection = 'mongodb';
+
+    /**
+     * The collection associated with the model.
+     *
+     * @var string
+     */
+    protected $collection = 'collection_entries';
 
     /**
      * The attributes that are mass assignable.
@@ -20,13 +28,22 @@ class CollectionEntry extends Model
      * @var array
      */
     protected $fillable = [
-
+        'slug', 'name', 'values',
     ];
 
     /**
-     * Get the collection that belongs to this model.
+     * The attributes that should be cast to native types.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @var array
+     */
+    protected $casts = [
+        'values' => 'array',
+    ];
+
+    /**
+     * The collection this entry belongs to.
+     *
+     * @return \Jenssegers\Mongodb\Relations\BelongsTo
      */
     public function collection(): BelongsTo
     {

@@ -16,4 +16,12 @@ class PageTest extends TestCase
     {
         $this->assertInstanceOf(BelongsTo::class, app(Page::class)->project());
     }
+
+    /** @test */
+    public function it_can_insert_a_new_record()
+    {
+        $this->assertDatabaseHas('pages', [
+            'id' => factory(Page::class)->create()->id,
+        ]);
+    }
 }

@@ -14,6 +14,6 @@ class ProfilesResource extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return ProfileResource::collection($this->collection);
     }
 }

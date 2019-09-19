@@ -32,26 +32,26 @@ export default {
     <template v-slot:navigation>
       <Navigation>
         <NavigationSection>
-          <NavigationItem label="Dashboard" :to="{ name: 'dashboard' }" />
+          <NavigationItem icon="home" label="Dashboard" :to="{ name: 'dashboard' }" />
         </NavigationSection>
 
         <NavigationSection title="Content">
-          <NavigationItem label="Assets" :to="{ name: 'assets' }" />
-          <NavigationItem label="Pages" />
-          <NavigationItem label="Collections" />
+          <NavigationItem icon="images" label="Assets" :to="{ name: 'assets' }" />
+          <NavigationItem icon="newspaper" label="Pages" />
+          <NavigationItem icon="database" label="Collections" />
         </NavigationSection>
 
         <NavigationSection title="Engagement">
-          <NavigationItem label="Forms" />
-          <NavigationItem label="Emails" />
-          <NavigationItem label="Profiles" />
-          <NavigationItem label="Automation" />
+          <NavigationItem icon="align-left" label="Forms" />
+          <NavigationItem icon="envelope" label="Emails" />
+          <NavigationItem icon="users" label="Profiles" />
+          <NavigationItem icon="reply-all" label="Automation" />
         </NavigationSection>
 
         <NavigationSection title="Management">
-          <NavigationItem label="Domains" />
-          <NavigationItem label="Workflows" />
-          <NavigationItem label="Settings" />
+          <NavigationItem icon="globe" label="Domains" />
+          <NavigationItem icon="code-branch" label="Workflows" />
+          <NavigationItem icon="cog" label="Settings" />
         </NavigationSection>
       </Navigation>
     </template>
