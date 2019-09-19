@@ -36,8 +36,8 @@ Route::get('/emails/{email}', 'Api\Email\GetEmailController')->name('get-email')
 // Profile routes...
 Route::get('/profiles', 'Api\Profile\GetProfilesController')->name('get-profiles');
 Route::get('/profiles/{profile}', 'Api\Profile\GetProfileController')->name('get-profile');
-Route::get('/profiles/{profile}/events', 'Api\Profile\GetProfileEventsController')->name('get-profile-events');
 Route::delete('/profiles/{profile}', 'Api\Profile\DeleteProfileController')->name('delete-profile');
+Route::get('/profiles/{profile}/events', 'Api\Profile\GetProfileEventsController')->name('get-profile-events');
 Route::get('/profile-events/{event}', 'Api\Profile\GetProfileEventController')->name('get-profile-event');
 
 // Automation routes...

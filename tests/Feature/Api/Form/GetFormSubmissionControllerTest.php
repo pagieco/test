@@ -48,8 +48,6 @@ class GetFormSubmissionControllerTest extends TestCase
             'form_id' => factory(Form::class)->create()->id,
         ]);
 
-        $this->get(route('get-form-submission', $submission->id));
-
         $this->makeRequest($submission->id)->assertSchema('GetFormSubmission', Response::HTTP_NOT_FOUND);
     }
 
@@ -63,8 +61,6 @@ class GetFormSubmissionControllerTest extends TestCase
                 'project_id' => $this->project->id,
             ])->id,
         ]);
-
-        $this->get(route('get-form-submission', $submission->id));
 
         $this->makeRequest($submission->id)->assertSchema('GetFormSubmission', Response::HTTP_OK);
     }

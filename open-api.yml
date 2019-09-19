@@ -444,6 +444,48 @@ paths:
         404:
           $ref: '#/components/responses/status-404-response'
 
+  /profiles/{profile}/events:
+    get:
+      description: Get the events of a profile
+      tags:
+        - Profile
+      operationId: GetProfileEvents
+      parameters:
+        - in: path
+          name: profile
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          $ref: '#/components/responses/get-profile-events'
+        204:
+          description: No profile events found
+        403:
+          $ref: '#/components/responses/status-403-response'
+        404:
+          $ref: '#/components/responses/status-404-response'
+
+  /profile-events/{event}:
+    get:
+      description: Get a profile event
+      tags:
+        - Profile
+      operationId: GetProfileEvent
+      parameters:
+        - in: path
+          name: event
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          $ref: '#/components/responses/get-profile-event'
+        403:
+          $ref: '#/components/responses/status-403-response'
+        404:
+          $ref: '#/components/responses/status-404-response'
+
   /automations:
     get:
       description: Get a list of automations
@@ -707,6 +749,26 @@ components:
             properties:
               data:
                 $ref: '#/components/schemas/profile'
+
+    get-profile-events:
+      description: OK
+      content:
+        application/json:
+          schema:
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/profile-event'
+
+    get-profile-event:
+      description: OK
+      content:
+        application/json:
+          schema:
+            properties:
+              data:
+                $ref: '#/components/schemas/profile-event'
 
     get-automations:
       description: OK
@@ -1025,6 +1087,17 @@ components:
         custom_fields:
           type: object
           nullable: true
+        created_at:
+          type: string
+          format: 'date-time'
+        updated_at:
+          type: string
+          format: 'date-time'
+
+    profile-event:
+      properties:
+        id:
+          type: integer
         created_at:
           type: string
           format: 'date-time'

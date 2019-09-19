@@ -39,15 +39,15 @@ class AssetFolderTest extends TestCase
     {
         $folder = factory(AssetFolder::class)->create();
 
-        factory(Asset::class, 5)->create([
+        factory(Asset::class)->create([
             'asset_folder_id' => $folder->id,
         ]);
 
-        $this->assertCount(5, $folder->assets);
-        $this->assertEquals(5, DB::table('assets')->count());
+        $this->assertCount(1, $folder->assets);
+        $this->assertEquals(1, DB::table('assets')->count());
 
         $folder->delete();
 
-        $this->assertEquals(5, DB::table('assets')->count());
+        $this->assertEquals(1, DB::table('assets')->count());
     }
 }

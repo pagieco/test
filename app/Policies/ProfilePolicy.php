@@ -46,4 +46,30 @@ class ProfilePolicy
         return $user->hasAccess('profile:delete')
             && $user->currentProject()->profiles->contains($profile->id);
     }
+
+    /**
+     * Determine whether the user can list the profile events.
+     *
+     * @param  \App\Models\User $user
+     * @param  \App\Models\Profile $profile
+     * @return bool
+     */
+    public function listEvents(User $user, Profile $profile): bool
+    {
+        return $user->hasAccess('profile:list-events')
+            && $user->currentProject()->profiles->contains($profile->id);
+    }
+
+    /**
+     * Determine whether the user can view a profile event.
+     *
+     * @param  \App\Models\User $user
+     * @param  \App\Models\Profile $profile
+     * @return bool
+     */
+    public function viewEvent(User $user, Profile $profile): bool
+    {
+        return $user->hasAccess('profile:view-event')
+            && $user->currentProject()->profiles->contains($profile->id);
+    }
 }

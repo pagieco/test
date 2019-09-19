@@ -20,7 +20,16 @@ class ProfileEvent extends Model
      * @var array
      */
     protected $fillable = [
+        'event_type', 'data',
+    ];
 
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'data' => 'array',
     ];
 
     /**
