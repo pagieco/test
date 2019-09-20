@@ -142,6 +142,10 @@ return [
 
         'page:list' => ['List pages', 'List the pages.'],
         'page:view' => ['View page', 'View a page.'],
+        'page:create' => ['Create page', 'Create a page.'],
+        'page:update' => ['Update page', 'Update a page.'],
+        'page:delete' => ['Delete page', 'Delete a page.'],
+        'page:publish' => ['Publish page', 'Publish a page.'],
 
         'profile:list' => ['List profiles', 'List the profiles.'],
         'profile:view' => ['View profile', 'View a profile.'],

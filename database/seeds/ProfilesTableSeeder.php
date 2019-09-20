@@ -9,6 +9,7 @@ class ProfilesTableSeeder extends Seeder
      * Run the database seeds.
      *
      * @return void
+     * @throws \ReflectionException
      */
     public function run()
     {
@@ -27,7 +28,7 @@ class ProfilesTableSeeder extends Seeder
                 'timezone' => faker()->timezone,
             ]);
 
-            for ($j = 0; $j < rand(5, 35); $j++) {
+            for ($j = 0; $j < rand(2, 10); $j++) {
                 $profile->events()->create([
                     'event_type' => $values[array_rand($values)],
                 ]);
