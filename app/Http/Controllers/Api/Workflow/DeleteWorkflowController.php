@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Api\Page;
+namespace App\Http\Controllers\Api\Workflow;
 
-use App\Models\Page;
 use App\Http\Response;
+use App\Models\Workflow;
 use App\Http\Controllers\Controller;
 
-class DeletePageController extends Controller
+class DeleteWorkflowController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -19,17 +19,17 @@ class DeletePageController extends Controller
     }
 
     /**
-     * Delete the given page/
+     * Delete the given workflow.
      *
-     * @param  \App\Models\Page $page
+     * @param  \App\Models\Workflow $workflow
      * @return void
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function __invoke(Page $page): void
+    public function __invoke(Workflow $workflow): void
     {
-        $this->authorize('delete', $page);
+        $this->authorize('delete', $workflow);
 
-        $page->delete();
+        $workflow->delete();
 
         abort(Response::HTTP_NO_CONTENT);
     }

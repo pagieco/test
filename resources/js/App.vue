@@ -37,21 +37,21 @@ export default {
 
         <NavigationSection title="Content">
           <NavigationItem icon="images" label="Assets" :to="{ name: 'assets' }" />
-          <NavigationItem icon="newspaper" label="Pages" />
-          <NavigationItem icon="database" label="Collections" />
+          <NavigationItem icon="newspaper" label="Pages" :to="{ name: 'pages' }" />
+          <NavigationItem icon="database" label="Collections" :to="{ name: 'collections' }" />
         </NavigationSection>
 
         <NavigationSection title="Engagement">
-          <NavigationItem icon="align-left" label="Forms" />
-          <NavigationItem icon="envelope" label="Emails" />
-          <NavigationItem icon="users" label="Profiles" />
-          <NavigationItem icon="reply-all" label="Automation" />
+          <NavigationItem icon="align-left" label="Forms" :to="{ name: 'forms' }" />
+          <NavigationItem icon="envelope" label="Emails" :to="{ name: 'emails' }" />
+          <NavigationItem icon="users" label="Profiles" :to="{ name: 'profiles' }" />
+          <NavigationItem icon="reply-all" label="Automation" :to="{ name: 'automations' }" />
         </NavigationSection>
 
         <NavigationSection title="Management">
-          <NavigationItem icon="globe" label="Domains" />
-          <NavigationItem icon="code-branch" label="Workflows" />
-          <NavigationItem icon="cog" label="Settings" />
+          <NavigationItem icon="globe" label="Domains" :to="{ name: 'domains' }" />
+          <NavigationItem icon="code-branch" label="Workflows" :to="{ name: 'workflows' }" />
+          <NavigationItem icon="cog" label="Settings" :to="{ name: 'settings' }" />
         </NavigationSection>
       </Navigation>
     </template>

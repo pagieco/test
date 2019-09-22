@@ -1,15 +1,22 @@
 <script>
 
+import { mapActions, mapGetters } from 'vuex';
 import {
+  Card,
   Page,
-} from '../../components';
+  ResourceList,
+  ResourceListItem,
+} from '../../../focus-ui/src/components';
 
 export default {
   /**
    * The child components.
    */
   components: {
+    Card,
     Page,
+    ResourceList,
+    ResourceListItem,
   },
 
   /**
@@ -18,12 +25,44 @@ export default {
   metaInfo: {
     title: 'Workflows',
   },
+
+  computed: {
+    ...mapGetters({
+      workflows: 'workflow/workflows',
+    }),
+  },
+
+  mounted() {
+    this.initializeComponentState();
+  },
+
+  methods: {
+    ...mapActions({
+      fetchWorkflows: 'workflow/fetchWorkflows',
+    }),
+
+    initializeComponentState() {
+      this.fetchWorkflows();
+    },
+  },
 };
 
 </script>
 
 <template>
   <Page title="Workflows">
-    workflows overview
+
+    <Card>
+      <ResourceList selectable
+                    :resource-name="{ singular: 'workflow', plural: 'workflows' }"
+                    :items="workflows">
+        <template v-slot:default="item">
+          <ResourceListItem v-bind="{ ...item }">
+            {{ item }}
+          </ResourceListItem>
+        </template>
+      </ResourceList>
+    </Card>
+
   </Page>
 </template>

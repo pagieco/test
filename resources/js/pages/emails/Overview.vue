@@ -2,7 +2,7 @@
 
 import {
   Page,
-} from '../../components';
+} from '../../../focus-ui/src/components'
 
 export default {
   /**

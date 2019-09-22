@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "js/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"2fe0c51f7186decfd7c0","1":"63fc5b0ccf5a044dbb4f"}[chunkId] + ""
+/******/ 		return __webpack_require__.p + "js/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"2fe0c51f7186decfd7c0","1":"6b095436698073a9312b","2":"fa30eb635c14295a1b5c","3":"a627aac098b04f56e1e5","4":"19946083a637c78a150e","5":"a58cc0d650a2821eeb10","6":"4cc29c7d0dc5ba32f03b","7":"6ca5b8decf9d46c0e4d0","8":"6dd8fe2c889f80f3d8e4","9":"6a470399ce27e63758a1"}[chunkId] + ""
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -12890,6 +12890,50 @@ var Sizes = {
   computed: {
     classList: function classList() {
       return Object(_utilities__WEBPACK_IMPORTED_MODULE_0__["filterClassList"])(['display-text', ["display-text--".concat(this.size)]]);
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/focus-ui/src/components/empty-state/components/EmptyState.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/focus-ui/src/components/empty-state/components/EmptyState.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _button_components_Button__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../button/components/Button */ "./resources/focus-ui/src/components/button/components/Button.vue");
+/* harmony import */ var _display_text_components_DisplayText__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../display-text/components/DisplayText */ "./resources/focus-ui/src/components/display-text/components/DisplayText.vue");
+/* harmony import */ var _text_container_components_TextContainer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../text-container/components/TextContainer */ "./resources/focus-ui/src/components/text-container/components/TextContainer.vue");
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    Button: _button_components_Button__WEBPACK_IMPORTED_MODULE_0__["default"],
+    DisplayText: _display_text_components_DisplayText__WEBPACK_IMPORTED_MODULE_1__["default"],
+    TextContainer: _text_container_components_TextContainer__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  props: {
+    // Primary action for empty state.
+    action: {
+      type: Object
+    },
+    // Secondary elements to display belong the empty state.
+    footerContent: {
+      type: Object
+    },
+    // The empty state heading.
+    heading: {
+      type: String
+    },
+    // The image to use.
+    image: {
+      type: String,
+      required: true
     }
   }
 });
@@ -38663,6 +38707,75 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/focus-ui/src/components/empty-state/components/EmptyState.vue?vue&type=template&id=990528a2&":
+/*!**********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/focus-ui/src/components/empty-state/components/EmptyState.vue?vue&type=template&id=990528a2& ***!
+  \**********************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "empty-state" }, [
+    _c("div", { staticClass: "empty-state__section" }, [
+      _c("div", { staticClass: "empty-state__details-container" }, [
+        _c(
+          "div",
+          { staticClass: "empty-state__details" },
+          [
+            _vm.heading
+              ? _c(
+                  "TextContainer",
+                  [
+                    _c("DisplayText", [_vm._v(_vm._s(_vm.heading))]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "empty-state__content" },
+                      [_vm._t("default")],
+                      2
+                    )
+                  ],
+                  1
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "empty-state__actions" },
+              [
+                _c("Button", { attrs: { primary: "" } }, [
+                  _vm._v("Create new page")
+                ])
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "empty-state__footer-content" })
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "empty-state__image-container" }, [
+        _c("img", { attrs: { src: _vm.image } })
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/focus-ui/src/components/filters/components/Filters.vue?vue&type=template&id=46a40214&":
 /*!***************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/focus-ui/src/components/filters/components/Filters.vue?vue&type=template&id=46a40214& ***!
@@ -40355,11 +40468,19 @@ var render = function() {
                       }),
                       _vm._v(" "),
                       _c("NavigationItem", {
-                        attrs: { icon: "newspaper", label: "Pages" }
+                        attrs: {
+                          icon: "newspaper",
+                          label: "Pages",
+                          to: { name: "pages" }
+                        }
                       }),
                       _vm._v(" "),
                       _c("NavigationItem", {
-                        attrs: { icon: "database", label: "Collections" }
+                        attrs: {
+                          icon: "database",
+                          label: "Collections",
+                          to: { name: "collections" }
+                        }
                       })
                     ],
                     1
@@ -40370,19 +40491,35 @@ var render = function() {
                     { attrs: { title: "Engagement" } },
                     [
                       _c("NavigationItem", {
-                        attrs: { icon: "align-left", label: "Forms" }
+                        attrs: {
+                          icon: "align-left",
+                          label: "Forms",
+                          to: { name: "forms" }
+                        }
                       }),
                       _vm._v(" "),
                       _c("NavigationItem", {
-                        attrs: { icon: "envelope", label: "Emails" }
+                        attrs: {
+                          icon: "envelope",
+                          label: "Emails",
+                          to: { name: "emails" }
+                        }
                       }),
                       _vm._v(" "),
                       _c("NavigationItem", {
-                        attrs: { icon: "users", label: "Profiles" }
+                        attrs: {
+                          icon: "users",
+                          label: "Profiles",
+                          to: { name: "profiles" }
+                        }
                       }),
                       _vm._v(" "),
                       _c("NavigationItem", {
-                        attrs: { icon: "reply-all", label: "Automation" }
+                        attrs: {
+                          icon: "reply-all",
+                          label: "Automation",
+                          to: { name: "automations" }
+                        }
                       })
                     ],
                     1
@@ -40393,15 +40530,27 @@ var render = function() {
                     { attrs: { title: "Management" } },
                     [
                       _c("NavigationItem", {
-                        attrs: { icon: "globe", label: "Domains" }
+                        attrs: {
+                          icon: "globe",
+                          label: "Domains",
+                          to: { name: "domains" }
+                        }
                       }),
                       _vm._v(" "),
                       _c("NavigationItem", {
-                        attrs: { icon: "code-branch", label: "Workflows" }
+                        attrs: {
+                          icon: "code-branch",
+                          label: "Workflows",
+                          to: { name: "workflows" }
+                        }
                       }),
                       _vm._v(" "),
                       _c("NavigationItem", {
-                        attrs: { icon: "cog", label: "Settings" }
+                        attrs: {
+                          icon: "cog",
+                          label: "Settings",
+                          to: { name: "settings" }
+                        }
                       })
                     ],
                     1
@@ -59426,6 +59575,91 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/focus-ui/src/components/empty-state/components/EmptyState.vue":
+/*!*********************************************************************************!*\
+  !*** ./resources/focus-ui/src/components/empty-state/components/EmptyState.vue ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _EmptyState_vue_vue_type_template_id_990528a2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EmptyState.vue?vue&type=template&id=990528a2& */ "./resources/focus-ui/src/components/empty-state/components/EmptyState.vue?vue&type=template&id=990528a2&");
+/* harmony import */ var _EmptyState_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EmptyState.vue?vue&type=script&lang=js& */ "./resources/focus-ui/src/components/empty-state/components/EmptyState.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _EmptyState_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _EmptyState_vue_vue_type_template_id_990528a2___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _EmptyState_vue_vue_type_template_id_990528a2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/focus-ui/src/components/empty-state/components/EmptyState.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/focus-ui/src/components/empty-state/components/EmptyState.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************!*\
+  !*** ./resources/focus-ui/src/components/empty-state/components/EmptyState.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EmptyState_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./EmptyState.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/focus-ui/src/components/empty-state/components/EmptyState.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EmptyState_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/focus-ui/src/components/empty-state/components/EmptyState.vue?vue&type=template&id=990528a2&":
+/*!****************************************************************************************************************!*\
+  !*** ./resources/focus-ui/src/components/empty-state/components/EmptyState.vue?vue&type=template&id=990528a2& ***!
+  \****************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EmptyState_vue_vue_type_template_id_990528a2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./EmptyState.vue?vue&type=template&id=990528a2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/focus-ui/src/components/empty-state/components/EmptyState.vue?vue&type=template&id=990528a2&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EmptyState_vue_vue_type_template_id_990528a2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EmptyState_vue_vue_type_template_id_990528a2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/focus-ui/src/components/empty-state/index.js":
+/*!****************************************************************!*\
+  !*** ./resources/focus-ui/src/components/empty-state/index.js ***!
+  \****************************************************************/
+/*! exports provided: EmptyState */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_EmptyState_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/EmptyState.vue */ "./resources/focus-ui/src/components/empty-state/components/EmptyState.vue");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "EmptyState", function() { return _components_EmptyState_vue__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/focus-ui/src/components/filters/components/Filters.vue":
 /*!**************************************************************************!*\
   !*** ./resources/focus-ui/src/components/filters/components/Filters.vue ***!
@@ -60019,7 +60253,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!****************************************************!*\
   !*** ./resources/focus-ui/src/components/index.js ***!
   \****************************************************/
-/*! exports provided: Avatar, Badge, BadgeSize, BadgeStatus, Banner, BannerStatus, Button, ButtonGroup, Card, CardSection, Checkbox, Choice, ColorPicker, ConnectedField, DataTable, DataTableCell, DataTableContentType, DisplayText, DisplayTextSizes, DisplayTextTypes, Filters, FooterHelp, Form, FormEncTypes, FormLayout, Frame, Heading, Icon, InputLabel, Link, Layout, AnnotatedLayoutSection, LayoutSection, List, ListItem, Modal, ModalClose, ModalDialog, ModalFooter, ModalHeader, ModalSection, Navigation, NavigationItem, NavigationSection, OptionList, Page, PrimaryPageAction, SecondaryPageActions, Pagination, Popover, PopoverPlacement, ResourceList, ResourceListItem, Select, SkeletonBodyText, SkeletonDisplayText, SkeletonThumbnail, Spinner, Stack, SubHeading, TextContainer, TextField, TextStyle, TextStyleVariation, Thumbnail, Toast, Tooltip, TooltipPlacement, TopBar, TopBarUserMenu, TopBarSearchField, VisuallyHidden */
+/*! exports provided: Avatar, Badge, BadgeSize, BadgeStatus, Banner, BannerStatus, Button, ButtonGroup, Card, CardSection, Checkbox, Choice, ColorPicker, ConnectedField, DataTable, DataTableCell, DataTableContentType, EmptyState, DisplayText, DisplayTextSizes, DisplayTextTypes, Filters, FooterHelp, Form, FormEncTypes, FormLayout, Frame, Heading, Icon, InputLabel, Link, Layout, AnnotatedLayoutSection, LayoutSection, List, ListItem, Modal, ModalClose, ModalDialog, ModalFooter, ModalHeader, ModalSection, Navigation, NavigationItem, NavigationSection, OptionList, Page, PrimaryPageAction, SecondaryPageActions, Pagination, Popover, PopoverPlacement, ResourceList, ResourceListItem, Select, SkeletonBodyText, SkeletonDisplayText, SkeletonThumbnail, Spinner, Stack, SubHeading, TextContainer, TextField, TextStyle, TextStyleVariation, Thumbnail, Toast, Tooltip, TooltipPlacement, TopBar, TopBarUserMenu, TopBarSearchField, VisuallyHidden */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -60069,149 +60303,153 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DataTableContentType", function() { return _data_table__WEBPACK_IMPORTED_MODULE_10__["ContentType"]; });
 
-/* harmony import */ var _display_text__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./display-text */ "./resources/focus-ui/src/components/display-text/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DisplayText", function() { return _display_text__WEBPACK_IMPORTED_MODULE_11__["default"]; });
+/* harmony import */ var _empty_state__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./empty-state */ "./resources/focus-ui/src/components/empty-state/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "EmptyState", function() { return _empty_state__WEBPACK_IMPORTED_MODULE_11__["EmptyState"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DisplayTextSizes", function() { return _display_text__WEBPACK_IMPORTED_MODULE_11__["Sizes"]; });
+/* harmony import */ var _display_text__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./display-text */ "./resources/focus-ui/src/components/display-text/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DisplayText", function() { return _display_text__WEBPACK_IMPORTED_MODULE_12__["default"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DisplayTextTypes", function() { return _display_text__WEBPACK_IMPORTED_MODULE_11__["ElementTypes"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DisplayTextSizes", function() { return _display_text__WEBPACK_IMPORTED_MODULE_12__["Sizes"]; });
 
-/* harmony import */ var _filters__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./filters */ "./resources/focus-ui/src/components/filters/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Filters", function() { return _filters__WEBPACK_IMPORTED_MODULE_12__["default"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DisplayTextTypes", function() { return _display_text__WEBPACK_IMPORTED_MODULE_12__["ElementTypes"]; });
 
-/* harmony import */ var _footer_help__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./footer-help */ "./resources/focus-ui/src/components/footer-help/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "FooterHelp", function() { return _footer_help__WEBPACK_IMPORTED_MODULE_13__["FooterHelp"]; });
+/* harmony import */ var _filters__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./filters */ "./resources/focus-ui/src/components/filters/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Filters", function() { return _filters__WEBPACK_IMPORTED_MODULE_13__["default"]; });
 
-/* harmony import */ var _form__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./form */ "./resources/focus-ui/src/components/form/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Form", function() { return _form__WEBPACK_IMPORTED_MODULE_14__["default"]; });
+/* harmony import */ var _footer_help__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./footer-help */ "./resources/focus-ui/src/components/footer-help/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "FooterHelp", function() { return _footer_help__WEBPACK_IMPORTED_MODULE_14__["FooterHelp"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "FormEncTypes", function() { return _form__WEBPACK_IMPORTED_MODULE_14__["EncTypes"]; });
+/* harmony import */ var _form__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./form */ "./resources/focus-ui/src/components/form/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Form", function() { return _form__WEBPACK_IMPORTED_MODULE_15__["default"]; });
 
-/* harmony import */ var _form_layout__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./form-layout */ "./resources/focus-ui/src/components/form-layout/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "FormLayout", function() { return _form_layout__WEBPACK_IMPORTED_MODULE_15__["FormLayout"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "FormEncTypes", function() { return _form__WEBPACK_IMPORTED_MODULE_15__["EncTypes"]; });
 
-/* harmony import */ var _frame__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./frame */ "./resources/focus-ui/src/components/frame/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Frame", function() { return _frame__WEBPACK_IMPORTED_MODULE_16__["Frame"]; });
+/* harmony import */ var _form_layout__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./form-layout */ "./resources/focus-ui/src/components/form-layout/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "FormLayout", function() { return _form_layout__WEBPACK_IMPORTED_MODULE_16__["FormLayout"]; });
 
-/* harmony import */ var _heading__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./heading */ "./resources/focus-ui/src/components/heading/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Heading", function() { return _heading__WEBPACK_IMPORTED_MODULE_17__["Heading"]; });
+/* harmony import */ var _frame__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./frame */ "./resources/focus-ui/src/components/frame/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Frame", function() { return _frame__WEBPACK_IMPORTED_MODULE_17__["Frame"]; });
 
-/* harmony import */ var _icon__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./icon */ "./resources/focus-ui/src/components/icon/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Icon", function() { return _icon__WEBPACK_IMPORTED_MODULE_18__["Icon"]; });
+/* harmony import */ var _heading__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./heading */ "./resources/focus-ui/src/components/heading/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Heading", function() { return _heading__WEBPACK_IMPORTED_MODULE_18__["Heading"]; });
 
-/* harmony import */ var _input_label__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./input-label */ "./resources/focus-ui/src/components/input-label/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "InputLabel", function() { return _input_label__WEBPACK_IMPORTED_MODULE_19__["InputLabel"]; });
+/* harmony import */ var _icon__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./icon */ "./resources/focus-ui/src/components/icon/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Icon", function() { return _icon__WEBPACK_IMPORTED_MODULE_19__["Icon"]; });
 
-/* harmony import */ var _link__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./link */ "./resources/focus-ui/src/components/link/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Link", function() { return _link__WEBPACK_IMPORTED_MODULE_20__["Link"]; });
+/* harmony import */ var _input_label__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./input-label */ "./resources/focus-ui/src/components/input-label/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "InputLabel", function() { return _input_label__WEBPACK_IMPORTED_MODULE_20__["InputLabel"]; });
 
-/* harmony import */ var _layout__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./layout */ "./resources/focus-ui/src/components/layout/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Layout", function() { return _layout__WEBPACK_IMPORTED_MODULE_21__["default"]; });
+/* harmony import */ var _link__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./link */ "./resources/focus-ui/src/components/link/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Link", function() { return _link__WEBPACK_IMPORTED_MODULE_21__["Link"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "AnnotatedLayoutSection", function() { return _layout__WEBPACK_IMPORTED_MODULE_21__["AnnotatedSection"]; });
+/* harmony import */ var _layout__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./layout */ "./resources/focus-ui/src/components/layout/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Layout", function() { return _layout__WEBPACK_IMPORTED_MODULE_22__["default"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "LayoutSection", function() { return _layout__WEBPACK_IMPORTED_MODULE_21__["Section"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "AnnotatedLayoutSection", function() { return _layout__WEBPACK_IMPORTED_MODULE_22__["AnnotatedSection"]; });
 
-/* harmony import */ var _list__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./list */ "./resources/focus-ui/src/components/list/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "List", function() { return _list__WEBPACK_IMPORTED_MODULE_22__["List"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "LayoutSection", function() { return _layout__WEBPACK_IMPORTED_MODULE_22__["Section"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ListItem", function() { return _list__WEBPACK_IMPORTED_MODULE_22__["ListItem"]; });
+/* harmony import */ var _list__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./list */ "./resources/focus-ui/src/components/list/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "List", function() { return _list__WEBPACK_IMPORTED_MODULE_23__["List"]; });
 
-/* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./modal */ "./resources/focus-ui/src/components/modal/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Modal", function() { return _modal__WEBPACK_IMPORTED_MODULE_23__["default"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ListItem", function() { return _list__WEBPACK_IMPORTED_MODULE_23__["ListItem"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ModalClose", function() { return _modal__WEBPACK_IMPORTED_MODULE_23__["CloseButton"]; });
+/* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./modal */ "./resources/focus-ui/src/components/modal/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Modal", function() { return _modal__WEBPACK_IMPORTED_MODULE_24__["default"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ModalDialog", function() { return _modal__WEBPACK_IMPORTED_MODULE_23__["Dialog"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ModalClose", function() { return _modal__WEBPACK_IMPORTED_MODULE_24__["CloseButton"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ModalFooter", function() { return _modal__WEBPACK_IMPORTED_MODULE_23__["Footer"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ModalDialog", function() { return _modal__WEBPACK_IMPORTED_MODULE_24__["Dialog"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ModalHeader", function() { return _modal__WEBPACK_IMPORTED_MODULE_23__["Header"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ModalFooter", function() { return _modal__WEBPACK_IMPORTED_MODULE_24__["Footer"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ModalSection", function() { return _modal__WEBPACK_IMPORTED_MODULE_23__["Section"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ModalHeader", function() { return _modal__WEBPACK_IMPORTED_MODULE_24__["Header"]; });
 
-/* harmony import */ var _navigation__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./navigation */ "./resources/focus-ui/src/components/navigation/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Navigation", function() { return _navigation__WEBPACK_IMPORTED_MODULE_24__["default"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ModalSection", function() { return _modal__WEBPACK_IMPORTED_MODULE_24__["Section"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NavigationItem", function() { return _navigation__WEBPACK_IMPORTED_MODULE_24__["Item"]; });
+/* harmony import */ var _navigation__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./navigation */ "./resources/focus-ui/src/components/navigation/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Navigation", function() { return _navigation__WEBPACK_IMPORTED_MODULE_25__["default"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NavigationSection", function() { return _navigation__WEBPACK_IMPORTED_MODULE_24__["Section"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NavigationItem", function() { return _navigation__WEBPACK_IMPORTED_MODULE_25__["Item"]; });
 
-/* harmony import */ var _option_list__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./option-list */ "./resources/focus-ui/src/components/option-list/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "OptionList", function() { return _option_list__WEBPACK_IMPORTED_MODULE_25__["default"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NavigationSection", function() { return _navigation__WEBPACK_IMPORTED_MODULE_25__["Section"]; });
 
-/* harmony import */ var _page__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./page */ "./resources/focus-ui/src/components/page/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Page", function() { return _page__WEBPACK_IMPORTED_MODULE_26__["default"]; });
+/* harmony import */ var _option_list__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./option-list */ "./resources/focus-ui/src/components/option-list/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "OptionList", function() { return _option_list__WEBPACK_IMPORTED_MODULE_26__["default"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PrimaryPageAction", function() { return _page__WEBPACK_IMPORTED_MODULE_26__["PrimaryAction"]; });
+/* harmony import */ var _page__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./page */ "./resources/focus-ui/src/components/page/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Page", function() { return _page__WEBPACK_IMPORTED_MODULE_27__["default"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SecondaryPageActions", function() { return _page__WEBPACK_IMPORTED_MODULE_26__["SecondaryActions"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PrimaryPageAction", function() { return _page__WEBPACK_IMPORTED_MODULE_27__["PrimaryAction"]; });
 
-/* harmony import */ var _pagination__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./pagination */ "./resources/focus-ui/src/components/pagination/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Pagination", function() { return _pagination__WEBPACK_IMPORTED_MODULE_27__["Pagination"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SecondaryPageActions", function() { return _page__WEBPACK_IMPORTED_MODULE_27__["SecondaryActions"]; });
 
-/* harmony import */ var _popover__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./popover */ "./resources/focus-ui/src/components/popover/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Popover", function() { return _popover__WEBPACK_IMPORTED_MODULE_28__["default"]; });
+/* harmony import */ var _pagination__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./pagination */ "./resources/focus-ui/src/components/pagination/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Pagination", function() { return _pagination__WEBPACK_IMPORTED_MODULE_28__["Pagination"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PopoverPlacement", function() { return _popover__WEBPACK_IMPORTED_MODULE_28__["Placement"]; });
+/* harmony import */ var _popover__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./popover */ "./resources/focus-ui/src/components/popover/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Popover", function() { return _popover__WEBPACK_IMPORTED_MODULE_29__["default"]; });
 
-/* harmony import */ var _resource_list__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./resource-list */ "./resources/focus-ui/src/components/resource-list/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ResourceList", function() { return _resource_list__WEBPACK_IMPORTED_MODULE_29__["default"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PopoverPlacement", function() { return _popover__WEBPACK_IMPORTED_MODULE_29__["Placement"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ResourceListItem", function() { return _resource_list__WEBPACK_IMPORTED_MODULE_29__["Item"]; });
+/* harmony import */ var _resource_list__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./resource-list */ "./resources/focus-ui/src/components/resource-list/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ResourceList", function() { return _resource_list__WEBPACK_IMPORTED_MODULE_30__["default"]; });
 
-/* harmony import */ var _select__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./select */ "./resources/focus-ui/src/components/select/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Select", function() { return _select__WEBPACK_IMPORTED_MODULE_30__["Select"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ResourceListItem", function() { return _resource_list__WEBPACK_IMPORTED_MODULE_30__["Item"]; });
 
-/* harmony import */ var _skeleton_body_text__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./skeleton-body-text */ "./resources/focus-ui/src/components/skeleton-body-text/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SkeletonBodyText", function() { return _skeleton_body_text__WEBPACK_IMPORTED_MODULE_31__["SkeletonBodyText"]; });
+/* harmony import */ var _select__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./select */ "./resources/focus-ui/src/components/select/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Select", function() { return _select__WEBPACK_IMPORTED_MODULE_31__["Select"]; });
 
-/* harmony import */ var _skeleton_display_text__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./skeleton-display-text */ "./resources/focus-ui/src/components/skeleton-display-text/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SkeletonDisplayText", function() { return _skeleton_display_text__WEBPACK_IMPORTED_MODULE_32__["SkeletonDisplayText"]; });
+/* harmony import */ var _skeleton_body_text__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./skeleton-body-text */ "./resources/focus-ui/src/components/skeleton-body-text/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SkeletonBodyText", function() { return _skeleton_body_text__WEBPACK_IMPORTED_MODULE_32__["SkeletonBodyText"]; });
 
-/* harmony import */ var _skeleton_thumbnail__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./skeleton-thumbnail */ "./resources/focus-ui/src/components/skeleton-thumbnail/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SkeletonThumbnail", function() { return _skeleton_thumbnail__WEBPACK_IMPORTED_MODULE_33__["SkeletonThumbnail"]; });
+/* harmony import */ var _skeleton_display_text__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./skeleton-display-text */ "./resources/focus-ui/src/components/skeleton-display-text/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SkeletonDisplayText", function() { return _skeleton_display_text__WEBPACK_IMPORTED_MODULE_33__["SkeletonDisplayText"]; });
 
-/* harmony import */ var _spinner__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./spinner */ "./resources/focus-ui/src/components/spinner/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Spinner", function() { return _spinner__WEBPACK_IMPORTED_MODULE_34__["Spinner"]; });
+/* harmony import */ var _skeleton_thumbnail__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./skeleton-thumbnail */ "./resources/focus-ui/src/components/skeleton-thumbnail/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SkeletonThumbnail", function() { return _skeleton_thumbnail__WEBPACK_IMPORTED_MODULE_34__["SkeletonThumbnail"]; });
 
-/* harmony import */ var _stack__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./stack */ "./resources/focus-ui/src/components/stack/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Stack", function() { return _stack__WEBPACK_IMPORTED_MODULE_35__["Stack"]; });
+/* harmony import */ var _spinner__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./spinner */ "./resources/focus-ui/src/components/spinner/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Spinner", function() { return _spinner__WEBPACK_IMPORTED_MODULE_35__["Spinner"]; });
 
-/* harmony import */ var _sub_heading__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./sub-heading */ "./resources/focus-ui/src/components/sub-heading/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SubHeading", function() { return _sub_heading__WEBPACK_IMPORTED_MODULE_36__["SubHeading"]; });
+/* harmony import */ var _stack__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./stack */ "./resources/focus-ui/src/components/stack/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Stack", function() { return _stack__WEBPACK_IMPORTED_MODULE_36__["Stack"]; });
 
-/* harmony import */ var _text_container__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./text-container */ "./resources/focus-ui/src/components/text-container/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TextContainer", function() { return _text_container__WEBPACK_IMPORTED_MODULE_37__["TextContainer"]; });
+/* harmony import */ var _sub_heading__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./sub-heading */ "./resources/focus-ui/src/components/sub-heading/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SubHeading", function() { return _sub_heading__WEBPACK_IMPORTED_MODULE_37__["SubHeading"]; });
 
-/* harmony import */ var _text_field__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./text-field */ "./resources/focus-ui/src/components/text-field/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TextField", function() { return _text_field__WEBPACK_IMPORTED_MODULE_38__["TextField"]; });
+/* harmony import */ var _text_container__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./text-container */ "./resources/focus-ui/src/components/text-container/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TextContainer", function() { return _text_container__WEBPACK_IMPORTED_MODULE_38__["TextContainer"]; });
 
-/* harmony import */ var _text_style__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./text-style */ "./resources/focus-ui/src/components/text-style/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TextStyle", function() { return _text_style__WEBPACK_IMPORTED_MODULE_39__["default"]; });
+/* harmony import */ var _text_field__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./text-field */ "./resources/focus-ui/src/components/text-field/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TextField", function() { return _text_field__WEBPACK_IMPORTED_MODULE_39__["TextField"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TextStyleVariation", function() { return _text_style__WEBPACK_IMPORTED_MODULE_39__["Variation"]; });
+/* harmony import */ var _text_style__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./text-style */ "./resources/focus-ui/src/components/text-style/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TextStyle", function() { return _text_style__WEBPACK_IMPORTED_MODULE_40__["default"]; });
 
-/* harmony import */ var _thumbnail__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./thumbnail */ "./resources/focus-ui/src/components/thumbnail/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Thumbnail", function() { return _thumbnail__WEBPACK_IMPORTED_MODULE_40__["Thumbnail"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TextStyleVariation", function() { return _text_style__WEBPACK_IMPORTED_MODULE_40__["Variation"]; });
 
-/* harmony import */ var _toast__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./toast */ "./resources/focus-ui/src/components/toast/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Toast", function() { return _toast__WEBPACK_IMPORTED_MODULE_41__["Toast"]; });
+/* harmony import */ var _thumbnail__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./thumbnail */ "./resources/focus-ui/src/components/thumbnail/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Thumbnail", function() { return _thumbnail__WEBPACK_IMPORTED_MODULE_41__["Thumbnail"]; });
 
-/* harmony import */ var _tooltip__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./tooltip */ "./resources/focus-ui/src/components/tooltip/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Tooltip", function() { return _tooltip__WEBPACK_IMPORTED_MODULE_42__["default"]; });
+/* harmony import */ var _toast__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./toast */ "./resources/focus-ui/src/components/toast/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Toast", function() { return _toast__WEBPACK_IMPORTED_MODULE_42__["Toast"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TooltipPlacement", function() { return _tooltip__WEBPACK_IMPORTED_MODULE_42__["Placement"]; });
+/* harmony import */ var _tooltip__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./tooltip */ "./resources/focus-ui/src/components/tooltip/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Tooltip", function() { return _tooltip__WEBPACK_IMPORTED_MODULE_43__["default"]; });
 
-/* harmony import */ var _top_bar__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./top-bar */ "./resources/focus-ui/src/components/top-bar/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TopBar", function() { return _top_bar__WEBPACK_IMPORTED_MODULE_43__["default"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TooltipPlacement", function() { return _tooltip__WEBPACK_IMPORTED_MODULE_43__["Placement"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TopBarUserMenu", function() { return _top_bar__WEBPACK_IMPORTED_MODULE_43__["UserMenu"]; });
+/* harmony import */ var _top_bar__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./top-bar */ "./resources/focus-ui/src/components/top-bar/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TopBar", function() { return _top_bar__WEBPACK_IMPORTED_MODULE_44__["default"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TopBarSearchField", function() { return _top_bar__WEBPACK_IMPORTED_MODULE_43__["SearchField"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TopBarUserMenu", function() { return _top_bar__WEBPACK_IMPORTED_MODULE_44__["UserMenu"]; });
 
-/* harmony import */ var _visually_hidden__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./visually-hidden */ "./resources/focus-ui/src/components/visually-hidden/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VisuallyHidden", function() { return _visually_hidden__WEBPACK_IMPORTED_MODULE_44__["VisuallyHidden"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TopBarSearchField", function() { return _top_bar__WEBPACK_IMPORTED_MODULE_44__["SearchField"]; });
+
+/* harmony import */ var _visually_hidden__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ./visually-hidden */ "./resources/focus-ui/src/components/visually-hidden/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VisuallyHidden", function() { return _visually_hidden__WEBPACK_IMPORTED_MODULE_45__["VisuallyHidden"]; });
+
 
 
 
@@ -63380,7 +63618,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!*****************************************!*\
   !*** ./resources/focus-ui/src/index.js ***!
   \*****************************************/
-/*! exports provided: Avatar, Badge, BadgeSize, BadgeStatus, Banner, BannerStatus, Button, ButtonGroup, Card, CardSection, Checkbox, Choice, ColorPicker, ConnectedField, DataTable, DataTableCell, DataTableContentType, DisplayText, DisplayTextSizes, DisplayTextTypes, Filters, FooterHelp, Form, FormEncTypes, FormLayout, Frame, Heading, Icon, InputLabel, Link, Layout, AnnotatedLayoutSection, LayoutSection, List, ListItem, Modal, ModalClose, ModalDialog, ModalFooter, ModalHeader, ModalSection, Navigation, NavigationItem, NavigationSection, OptionList, Page, PrimaryPageAction, SecondaryPageActions, Pagination, Popover, PopoverPlacement, ResourceList, ResourceListItem, Select, SkeletonBodyText, SkeletonDisplayText, SkeletonThumbnail, Spinner, Stack, SubHeading, TextContainer, TextField, TextStyle, TextStyleVariation, Thumbnail, Toast, Tooltip, TooltipPlacement, TopBar, TopBarUserMenu, TopBarSearchField, VisuallyHidden */
+/*! exports provided: Avatar, Badge, BadgeSize, BadgeStatus, Banner, BannerStatus, Button, ButtonGroup, Card, CardSection, Checkbox, Choice, ColorPicker, ConnectedField, DataTable, DataTableCell, DataTableContentType, EmptyState, DisplayText, DisplayTextSizes, DisplayTextTypes, Filters, FooterHelp, Form, FormEncTypes, FormLayout, Frame, Heading, Icon, InputLabel, Link, Layout, AnnotatedLayoutSection, LayoutSection, List, ListItem, Modal, ModalClose, ModalDialog, ModalFooter, ModalHeader, ModalSection, Navigation, NavigationItem, NavigationSection, OptionList, Page, PrimaryPageAction, SecondaryPageActions, Pagination, Popover, PopoverPlacement, ResourceList, ResourceListItem, Select, SkeletonBodyText, SkeletonDisplayText, SkeletonThumbnail, Spinner, Stack, SubHeading, TextContainer, TextField, TextStyle, TextStyleVariation, Thumbnail, Toast, Tooltip, TooltipPlacement, TopBar, TopBarUserMenu, TopBarSearchField, VisuallyHidden */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -63423,6 +63661,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DataTableCell", function() { return _components__WEBPACK_IMPORTED_MODULE_2__["DataTableCell"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DataTableContentType", function() { return _components__WEBPACK_IMPORTED_MODULE_2__["DataTableContentType"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "EmptyState", function() { return _components__WEBPACK_IMPORTED_MODULE_2__["EmptyState"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DisplayText", function() { return _components__WEBPACK_IMPORTED_MODULE_2__["DisplayText"]; });
 
@@ -63820,7 +64060,7 @@ __webpack_require__.r(__webpack_exports__);
   name: 'dashboard',
   path: '/',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ../pages/Dashboard.vue */ "./resources/js/pages/Dashboard.vue"));
+    return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ../pages/Dashboard.vue */ "./resources/js/pages/Dashboard.vue"));
   }
 }, // Asset routes...
 {
@@ -63829,62 +64069,63 @@ __webpack_require__.r(__webpack_exports__);
   component: function component() {
     return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ../pages/assets/Overview.vue */ "./resources/js/pages/assets/Overview.vue"));
   }
-} // // Page routes...
-// {
-//   name: 'pages',
-//   path: '/pages',
-//   component: () => import('../pages/pages/Overview.vue'),
-// },
-//
-// // Collection routes...
-// {
-//   name: 'collections',
-//   path: '/collections',
-//   component: () => import('../pages/collections/Overview.vue'),
-// },
-//
-// // Form routes...
-// {
-//   name: 'forms',
-//   path: '/forms',
-//   component: () => import('../pages/forms/Overview.vue'),
-// },
-//
-// // Email routes...
-// {
-//   name: 'emails',
-//   path: '/emails',
-//   component: () => import('../pages/emails/Overview.vue'),
-// },
-//
-// // Profile routes...
-// {
-//   name: 'profiles',
-//   path: '/profiles',
-//   component: () => import('../pages/profiles/Overview.vue'),
-// },
-//
-// // Automation routes..
-// {
-//   name: 'automations',
-//   path: '/automations',
-//   component: () => import('../pages/automations/Overview.vue'),
-// },
-//
-// // Domain routes...
-// {
-//   name: 'domains',
-//   path: '/domains',
-//   component: () => import('../pages/domains/Overview.vue'),
-// },
-//
-// // Workflow routes...
-// {
-//   name: 'workflows',
-//   path: '/workflows',
-//   component: () => import('../pages/workflows/Overview.vue'),
-// },
-]);
+}, // Page routes...
+{
+  name: 'pages',
+  path: '/pages',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ../pages/pages/Overview.vue */ "./resources/js/pages/pages/Overview.vue"));
+  }
+}, // Collection routes...
+{
+  name: 'collections',
+  path: '/collections',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ../pages/collections/Overview.vue */ "./resources/js/pages/collections/Overview.vue"));
+  }
+}, // Form routes...
+{
+  name: 'forms',
+  path: '/forms',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ../pages/forms/Overview.vue */ "./resources/js/pages/forms/Overview.vue"));
+  }
+}, // Email routes...
+{
+  name: 'emails',
+  path: '/emails',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ../pages/emails/Overview.vue */ "./resources/js/pages/emails/Overview.vue"));
+  }
+}, // Profile routes...
+{
+  name: 'profiles',
+  path: '/profiles',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ../pages/profiles/Overview.vue */ "./resources/js/pages/profiles/Overview.vue"));
+  }
+}, // Automation routes..
+{
+  name: 'automations',
+  path: '/automations',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ../pages/automations/Overview.vue */ "./resources/js/pages/automations/Overview.vue"));
+  }
+}, // Domain routes...
+{
+  name: 'domains',
+  path: '/domains',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ../pages/domains/Overview.vue */ "./resources/js/pages/domains/Overview.vue"));
+  }
+}, // Workflow routes...
+{
+  name: 'workflows',
+  path: '/workflows',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ../pages/workflows/Overview.vue */ "./resources/js/pages/workflows/Overview.vue"));
+  }
+}]);
 
 /***/ }),
 
@@ -63914,7 +64155,16 @@ axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common['X-Requeste
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./asset.js": "./resources/js/state/modules/asset.js"
+	"./asset.js": "./resources/js/state/modules/asset.js",
+	"./automation.js": "./resources/js/state/modules/automation.js",
+	"./collection.js": "./resources/js/state/modules/collection.js",
+	"./domain.js": "./resources/js/state/modules/domain.js",
+	"./email.js": "./resources/js/state/modules/email.js",
+	"./form.js": "./resources/js/state/modules/form.js",
+	"./page.js": "./resources/js/state/modules/page.js",
+	"./profile.js": "./resources/js/state/modules/profile.js",
+	"./setting.js": "./resources/js/state/modules/setting.js",
+	"./workflow.js": "./resources/js/state/modules/workflow.js"
 };
 
 
@@ -63988,6 +64238,116 @@ var actions = {
     commit('SORT_ASSETS', direction);
   }
 };
+
+/***/ }),
+
+/***/ "./resources/js/state/modules/automation.js":
+/*!**************************************************!*\
+  !*** ./resources/js/state/modules/automation.js ***!
+  \**************************************************/
+/*! exports provided: state, getters, mutations, actions */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "state", function() { return state; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getters", function() { return getters; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mutations", function() { return mutations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "actions", function() { return actions; });
+/* harmony import */ var _services_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../services/http */ "./resources/js/services/http.js");
+
+var state = {};
+var getters = {};
+var mutations = {};
+var actions = {};
+
+/***/ }),
+
+/***/ "./resources/js/state/modules/collection.js":
+/*!**************************************************!*\
+  !*** ./resources/js/state/modules/collection.js ***!
+  \**************************************************/
+/*! exports provided: state, getters, mutations, actions */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "state", function() { return state; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getters", function() { return getters; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mutations", function() { return mutations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "actions", function() { return actions; });
+/* harmony import */ var _services_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../services/http */ "./resources/js/services/http.js");
+
+var state = {};
+var getters = {};
+var mutations = {};
+var actions = {};
+
+/***/ }),
+
+/***/ "./resources/js/state/modules/domain.js":
+/*!**********************************************!*\
+  !*** ./resources/js/state/modules/domain.js ***!
+  \**********************************************/
+/*! exports provided: state, getters, mutations, actions */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "state", function() { return state; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getters", function() { return getters; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mutations", function() { return mutations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "actions", function() { return actions; });
+/* harmony import */ var _services_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../services/http */ "./resources/js/services/http.js");
+
+var state = {};
+var getters = {};
+var mutations = {};
+var actions = {};
+
+/***/ }),
+
+/***/ "./resources/js/state/modules/email.js":
+/*!*********************************************!*\
+  !*** ./resources/js/state/modules/email.js ***!
+  \*********************************************/
+/*! exports provided: state, getters, mutations, actions */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "state", function() { return state; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getters", function() { return getters; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mutations", function() { return mutations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "actions", function() { return actions; });
+/* harmony import */ var _services_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../services/http */ "./resources/js/services/http.js");
+
+var state = {};
+var getters = {};
+var mutations = {};
+var actions = {};
+
+/***/ }),
+
+/***/ "./resources/js/state/modules/form.js":
+/*!********************************************!*\
+  !*** ./resources/js/state/modules/form.js ***!
+  \********************************************/
+/*! exports provided: state, getters, mutations, actions */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "state", function() { return state; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getters", function() { return getters; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mutations", function() { return mutations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "actions", function() { return actions; });
+/* harmony import */ var _services_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../services/http */ "./resources/js/services/http.js");
+
+var state = {};
+var getters = {};
+var mutations = {};
+var actions = {};
 
 /***/ }),
 
@@ -64067,6 +64427,125 @@ function getNamespace(subtree, path) {
 })();
 
 /* harmony default export */ __webpack_exports__["default"] = (storeData.modules);
+
+/***/ }),
+
+/***/ "./resources/js/state/modules/page.js":
+/*!********************************************!*\
+  !*** ./resources/js/state/modules/page.js ***!
+  \********************************************/
+/*! exports provided: state, getters, mutations, actions */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "state", function() { return state; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getters", function() { return getters; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mutations", function() { return mutations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "actions", function() { return actions; });
+/* harmony import */ var _services_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../services/http */ "./resources/js/services/http.js");
+
+var state = {
+  pages: []
+};
+var getters = {
+  pages: function pages(state) {
+    return state.pages;
+  }
+};
+var mutations = {
+  SET_PAGES: function SET_PAGES(state, pages) {
+    state.pages = pages;
+  }
+};
+var actions = {
+  fetchPages: function fetchPages(_ref) {
+    var commit = _ref.commit;
+    return _services_http__WEBPACK_IMPORTED_MODULE_0__["default"].get('/pages').then(function (_ref2) {
+      var data = _ref2.data;
+      return data;
+    }).then(function (_ref3) {
+      var data = _ref3.data;
+      commit('SET_PAGES', data);
+    });
+  }
+};
+
+/***/ }),
+
+/***/ "./resources/js/state/modules/profile.js":
+/*!***********************************************!*\
+  !*** ./resources/js/state/modules/profile.js ***!
+  \***********************************************/
+/*! exports provided: state, getters, mutations, actions */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "state", function() { return state; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getters", function() { return getters; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mutations", function() { return mutations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "actions", function() { return actions; });
+/* harmony import */ var _services_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../services/http */ "./resources/js/services/http.js");
+
+var state = {};
+var getters = {};
+var mutations = {};
+var actions = {};
+
+/***/ }),
+
+/***/ "./resources/js/state/modules/setting.js":
+/*!***********************************************!*\
+  !*** ./resources/js/state/modules/setting.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ "./resources/js/state/modules/workflow.js":
+/*!************************************************!*\
+  !*** ./resources/js/state/modules/workflow.js ***!
+  \************************************************/
+/*! exports provided: state, getters, mutations, actions */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "state", function() { return state; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getters", function() { return getters; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mutations", function() { return mutations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "actions", function() { return actions; });
+/* harmony import */ var _services_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../services/http */ "./resources/js/services/http.js");
+
+var state = {
+  workflows: []
+};
+var getters = {
+  workflows: function workflows(state) {
+    return state.workflows;
+  }
+};
+var mutations = {
+  SET_WORKFLOWS: function SET_WORKFLOWS(state, workflows) {
+    state.workflows = workflows;
+  }
+};
+var actions = {
+  fetchWorkflows: function fetchWorkflows(_ref) {
+    var commit = _ref.commit;
+    return _services_http__WEBPACK_IMPORTED_MODULE_0__["default"].get('/workflows').then(function (_ref2) {
+      var data = _ref2.data;
+      return data;
+    }).then(function (_ref3) {
+      var data = _ref3.data;
+      commit('SET_WORKFLOWS', data);
+    });
+  }
+};
 
 /***/ }),
 

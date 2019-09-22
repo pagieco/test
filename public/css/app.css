@@ -672,6 +672,30 @@ p {
   letter-spacing: initial;
 }
 
+.empty-state__section {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.empty-state__details-container {
+  position: relative;
+  flex-basis: 50%;
+}
+
+.empty-state__actions {
+  margin-top: 2em;
+}
+
+.empty-state__image-container {
+  flex-basis: 50%;
+}
+
+.empty-state__image-container img {
+  width: 125%;
+  margin-left: -25%;
+}
+
 .form-group {
   display: flex;
   flex-wrap: wrap;

@@ -19,7 +19,6 @@ Route::delete('/asset-folders/{assetFolder}', 'Api\AssetFolder\DeleteAssetFolder
 Route::get('/pages', 'Api\Page\GetPagesController')->name('get-pages');
 Route::post('/pages', 'Api\Page\CreatePageController')->name('create-page');
 Route::get('/pages/{page}', 'Api\Page\GetPageController')->name('get-page');
-Route::put('/pages/{page}', 'Api\Page\PublishPageController')->name('publish-page');
 Route::patch('/pages/{page}', 'Api\Page\UpdatePageController')->name('update-page');
 Route::delete('/pages/{page}', 'Api\Page\DeletePageController')->name('delete-page');
 
@@ -54,4 +53,6 @@ Route::get('/domains/{domain}', 'Api\Domain\GetDomainController')->name('get-dom
 
 // Workflow routes...
 Route::get('/workflows', 'Api\Workflow\GetWorkflowsController')->name('get-workflows');
+Route::post('/workflows', 'Api\Workflow\CreateWorkflowController')->name('create-workflows');
 Route::get('/workflows/{workflow}', 'Api\Workflow\GetWorkflowController')->name('get-workflow');
+Route::delete('/workflows/{workflow}', 'Api\Workflow\DeleteWorkflowController')->name('delete-workflow');
