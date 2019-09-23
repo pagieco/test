@@ -22,6 +22,6 @@ class Email extends Model
      * @var array
      */
     protected $fillable = [
-
+        'name',
     ];
 }

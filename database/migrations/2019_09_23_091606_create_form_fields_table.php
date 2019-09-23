@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEmailsTable extends Migration
+class CreateFormFieldsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,17 @@ class CreateEmailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('emails', function (Blueprint $table) {
+        Schema::create('form_fields', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('project_id');
-            $table->string('name');
-            $table->mediumText('dom')->nullable();
+            $table->unsignedBigInteger('form_id');
+            $table->string('display_name');
+            $table->string('slug');
+            $table->json('validations')->nullable();
+            $table->string('type');
             $table->timestamps();
 
-            $table->foreign('project_id')
-                ->references('id')->on('projects')
+            $table->foreign('form_id')
+                ->references('id')->on('forms')
                 ->onDelete('cascade');
         });
     }
@@ -33,6 +35,6 @@ class CreateEmailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('emails');
+        Schema::dropIfExists('form_fields');
     }
 }

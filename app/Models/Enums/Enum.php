@@ -29,6 +29,19 @@ abstract class Enum
     }
 
     /**
+     * Get a random enum value.
+     *
+     * @return mixed
+     * @throws \ReflectionException
+     */
+    public static function randomValue()
+    {
+        $values = self::getValues();
+
+        return $values[array_rand($values)];
+    }
+
+    /**
      * Get all of the constants of the class.
      *
      * @return array

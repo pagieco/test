@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Api\Page;
+namespace App\Http\Controllers\Api\Email;
 
-use App\Models\Page;
+use App\Models\Email;
 use App\Http\Response;
 use App\Http\Controllers\Controller;
 
-class DeletePageController extends Controller
+class DeleteEmailController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -19,17 +19,17 @@ class DeletePageController extends Controller
     }
 
     /**
-     * Delete the given page.
+     * Delete the given email.
      *
-     * @param  \App\Models\Page $page
+     * @param  \App\Models\Email $email
      * @return void
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function __invoke(Page $page): void
+    public function __invoke(Email $email): void
     {
-        $this->authorize('delete', $page);
+        $this->authorize('delete', $email);
 
-        $page->delete();
+        $email->delete();
 
         abort(Response::HTTP_NO_CONTENT);
     }

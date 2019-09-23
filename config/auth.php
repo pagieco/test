@@ -134,9 +134,13 @@ return [
 
         'email:list' => ['List emails', 'List the emails.'],
         'email:view' => ['View email', 'View an email.'],
+        'email:create' => ['Create email', 'Create a email.'],
+        'email:update' => ['Update email', 'Update a email.'],
+        'email:delete' => ['Delete email', 'Delete a email.'],
 
         'form:list' => ['List forms', 'List the forms.'],
         'form:view' => ['View form', 'View a form.'],
+        'form:create' => ['Create form', 'Create a form.'],
         'form:list-submissions' => ['List form submissions', 'List the form submissions.'],
         'form:view-submission' => ['View form submission', 'View a form submission.'],
 

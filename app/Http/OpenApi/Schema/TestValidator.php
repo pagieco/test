@@ -162,6 +162,15 @@ class TestValidator
 
         foreach ($schemaPathParts as $key => $part) {
             if (Str::startsWith($part, '{') && Str::endsWith($part, '}')) {
+                if (! isset($requestPathParts[$key])) {
+                    dd($requestPathParts, $key);
+                    throw new \Exception('$requestPathParts');
+                }
+
+                if (! isset($requestPathParts[$key])) {
+                    throw new \Exception('$requestPathParts');
+                }
+
                 $schemaPathParts[$key] = $requestPathParts[$key];
             }
         }

@@ -12,6 +12,7 @@ servers:
   - url: https://pagie.co/api
 
 tags:
+  - name: User
   - name: Asset
   - name: Asset Folder
   - name: Page
@@ -24,8 +25,47 @@ tags:
   - name: Workflow
 
 paths:
+  /current-user:
+    get:
+      summary: Get the current user
+      description: Get the current user
+      tags:
+        - User
+      operationId: GetCurrentUser
+      responses:
+        200:
+          $ref: '#/components/responses/get-current-user'
+    patch:
+      summary: Update the current user
+      description: Update the current user
+      tags:
+        - User
+      operationId: UpdateCurrentUser
+      requestBody:
+        $ref: '#/components/requestBodies/update-current-user'
+      responses:
+        200:
+          $ref: '#/components/responses/get-current-user'
+        422:
+          $ref: '#/components/responses/status-422-response'
+  /current-user/profile-picture:
+    put:
+      summary: Upload a profile picture
+      description: Upload a profile picture
+      tags:
+        - User
+      operationId: UploadProfilePicture
+      requestBody:
+        $ref: '#/components/requestBodies/upload-profile-picture'
+      responses:
+        201:
+          $ref: '#/components/responses/status-201-response'
+        422:
+          $ref: '#/components/responses/status-422-response'
+
   /assets:
     get:
+      summary: Get a list of assets
       description: Get a list of assets
       tags:
         - Asset
@@ -38,10 +78,13 @@ paths:
         403:
           $ref: '#/components/responses/status-403-response'
     post:
+      summary: Upload a new asset
       description: Upload a new asset
       tags:
         - Asset
       operationId: UploadAsset
+      requestBody:
+        $ref: '#/components/requestBodies/upload-asset'
       responses:
         201:
           $ref: '#/components/responses/get-asset'
@@ -52,6 +95,7 @@ paths:
 
   /assets/{asset}:
     get:
+      summary: Get an asset
       description: Get an asset
       tags:
         - Asset
@@ -70,6 +114,7 @@ paths:
         404:
           $ref: '#/components/responses/status-404-response'
     patch:
+      summary: Update an asset
       description: Update an asset
       tags:
         - Asset
@@ -80,6 +125,8 @@ paths:
           schema:
             type: integer
           required: true
+      requestBody:
+        $ref: '#/components/requestBodies/update-asset'
       responses:
         200:
           $ref: '#/components/responses/get-asset'
@@ -90,6 +137,7 @@ paths:
         422:
           $ref: '#/components/responses/status-422-response'
     delete:
+      summary: Delete an asset
       description: Delete an asset
       tags:
         - Asset
@@ -110,6 +158,7 @@ paths:
 
   /assets/{asset}/move:
     put:
+      summary: Move an asset
       description: Move an asset
       tags:
         - Asset
@@ -120,6 +169,8 @@ paths:
           schema:
             type: integer
           required: true
+      requestBody:
+        $ref: '#/components/requestBodies/move-asset'
       responses:
         201:
           $ref: '#/components/responses/status-201-response'
@@ -132,6 +183,7 @@ paths:
 
   /asset-folders:
     get:
+      summary: Get a list of asset folders
       description: Get a list of asset folders
       tags:
         - Asset Folder
@@ -144,10 +196,13 @@ paths:
         403:
           $ref: '#/components/responses/status-403-response'
     post:
+      summary: Create a new asset folder
       description: Create a new asset folder
       tags:
         - Asset Folder
       operationId: CreateAssetFolder
+      requestBody:
+        $ref: '#/components/requestBodies/create-asset-folder'
       responses:
         201:
           $ref: '#/components/responses/get-asset-folder'
@@ -158,6 +213,7 @@ paths:
 
   /asset-folders/{asset-folder}:
     get:
+      summary: Get an asset folder
       description: Get an asset folder
       tags:
         - Asset Folder
@@ -176,6 +232,7 @@ paths:
         404:
           $ref: '#/components/responses/status-404-response'
     patch:
+      summary: Update an asset folder
       description: Update an asset folder
       tags:
         - Asset Folder
@@ -186,6 +243,8 @@ paths:
           schema:
             type: integer
           required: true
+      requestBody:
+        $ref: '#/components/requestBodies/update-asset-folder'
       responses:
         200:
           $ref: '#/components/responses/get-asset-folder'
@@ -196,6 +255,7 @@ paths:
         422:
           $ref: '#/components/responses/status-422-response'
     delete:
+      summary: Delete an asset folder
       description: Delete an asset folder
       tags:
         - Asset Folder
@@ -216,6 +276,7 @@ paths:
 
   /pages:
     get:
+      summary: Get a list of pages
       description: Get a list of pages
       tags:
         - Page
@@ -228,10 +289,13 @@ paths:
         403:
           $ref: '#/components/responses/status-403-response'
     post:
+      summary: Create a new page
       description: Create a new page
       tags:
         - Page
       operationId: CreatePage
+      requestBody:
+        $ref: '#/components/requestBodies/create-page'
       responses:
         201:
           $ref: '#/components/responses/get-page'
@@ -242,6 +306,7 @@ paths:
 
   /pages/{page}:
     get:
+      summary: Get a page
       description: Get a page
       tags:
         - Page
@@ -260,6 +325,7 @@ paths:
         404:
           $ref: '#/components/responses/status-404-response'
     patch:
+      summary: Update a page
       description: Update a page
       tags:
         - Page
@@ -270,6 +336,8 @@ paths:
           schema:
             type: integer
           required: true
+      requestBody:
+        $ref: '#/components/requestBodies/update-page'
       responses:
         200:
           $ref: '#/components/responses/get-page'
@@ -280,6 +348,7 @@ paths:
         422:
           $ref: '#/components/responses/status-422-response'
     delete:
+      summary: Delete a page
       description: Delete a page
       tags:
         - Page
@@ -300,6 +369,7 @@ paths:
 
   /collections:
     get:
+      summary: Get a list of collections
       description: Get a list of collections
       tags:
         - Collection
@@ -314,6 +384,7 @@ paths:
 
   /collections/{collection}:
     get:
+      summary: Get a collection
       description: Get a collection
       tags:
         - Collection
@@ -334,6 +405,7 @@ paths:
 
   /forms:
     get:
+      summary: Get a list of forms
       description: Get a list of forms
       tags:
         - Form
@@ -345,9 +417,25 @@ paths:
           description: No forms found
         403:
           $ref: '#/components/responses/status-403-response'
+    post:
+      summary: Create a new form
+      description: Create a new form
+      tags:
+        - Form
+      operationId: CreateForm
+      requestBody:
+        $ref: '#/components/requestBodies/create-form'
+      responses:
+        201:
+          $ref: '#/components/responses/get-form'
+        403:
+          $ref: '#/components/responses/status-403-response'
+        422:
+          $ref: '#/components/responses/status-422-response'
 
   /forms/{form}:
     get:
+      summary: Get a form
       description: Get a form
       tags:
         - Form
@@ -368,6 +456,7 @@ paths:
 
   /forms/{form}/submissions:
     get:
+      summary: Get the submissions of a form
       description: Get the submissions of a form
       tags:
         - Form
@@ -390,6 +479,7 @@ paths:
 
   /form-submissions/{submission}:
     get:
+      summary: Get a form submission
       description: Get a form submission
       tags:
         - Form
@@ -410,6 +500,7 @@ paths:
 
   /emails:
     get:
+      summary: Get a list of emails
       description: Get a list of emails
       tags:
         - Email
@@ -421,9 +512,25 @@ paths:
           description: No emails found
         403:
           $ref: '#/components/responses/status-403-response'
+    post:
+      summary: Create a new email
+      description: Create a new email
+      tags:
+        - Email
+      operationId: CreateEmail
+      requestBody:
+        $ref: '#/components/requestBodies/create-email'
+      responses:
+        201:
+          $ref: '#/components/responses/get-email'
+        403:
+          $ref: '#/components/responses/status-403-response'
+        422:
+          $ref: '#/components/responses/status-422-response'
 
   /emails/{email}:
     get:
+      summary: Get an email
       description: Get an email
       tags:
         - Email
@@ -441,9 +548,52 @@ paths:
           $ref: '#/components/responses/status-403-response'
         404:
           $ref: '#/components/responses/status-404-response'
+    patch:
+      summary: Update an email
+      description: Update an email
+      tags:
+        - Email
+      operationId: UpdateEmail
+      parameters:
+        - in: path
+          name: email
+          schema:
+            type: integer
+          required: true
+      requestBody:
+        $ref: '#/components/requestBodies/update-email'
+      responses:
+        200:
+          $ref: '#/components/responses/get-email'
+        403:
+          $ref: '#/components/responses/status-403-response'
+        404:
+          $ref: '#/components/responses/status-404-response'
+        422:
+          $ref: '#/components/responses/status-422-response'
+    delete:
+      summary: Delete an email
+      description: Delete an email
+      tags:
+        - Email
+      operationId: DeleteEmail
+      parameters:
+        - in: path
+          name: email
+          schema:
+            type: integer
+          required: true
+      responses:
+        204:
+          description: Email deleted
+        403:
+          $ref: '#/components/responses/status-403-response'
+        404:
+          $ref: '#/components/responses/status-404-response'
 
   /profiles:
     get:
+      summary: Get a list of profiles
       description: Get a list of profiles
       tags:
         - Profile
@@ -458,6 +608,7 @@ paths:
 
   /profiles/{profile}:
     get:
+      summary: Get a profile
       description: Get a profile
       tags:
         - Profile
@@ -476,6 +627,7 @@ paths:
         404:
           $ref: '#/components/responses/status-404-response'
     delete:
+      summary: Delete a profile
       description: Delete a profile
       tags:
         - Profile
@@ -496,6 +648,7 @@ paths:
 
   /profiles/{profile}/events:
     get:
+      summary: Get the events of a profile
       description: Get the events of a profile
       tags:
         - Profile
@@ -518,6 +671,7 @@ paths:
 
   /profile-events/{event}:
     get:
+      summary: Get a profile event
       description: Get a profile event
       tags:
         - Profile
@@ -538,6 +692,7 @@ paths:
 
   /automations:
     get:
+      summary: Get a list of automations
       description: Get a list of automations
       tags:
         - Automation
@@ -552,7 +707,8 @@ paths:
 
   /automations/{automation}:
     get:
-      description: Get a automation
+      summary: Get an automation
+      description: Get an automation
       tags:
         - Automation
       operationId: GetAutomation
@@ -572,6 +728,7 @@ paths:
 
   /domains:
     get:
+      summary: Get a list of domains
       description: Get a list of domains
       tags:
         - Domain
@@ -586,6 +743,7 @@ paths:
 
   /domains/{domain}:
     get:
+      summary: Get a domain
       description: Get a domain
       tags:
         - Domain
@@ -606,6 +764,7 @@ paths:
 
   /workflows:
     get:
+      summary: Get a list of workflows
       description: Get a list of workflows
       tags:
         - Workflow
@@ -620,6 +779,7 @@ paths:
 
   /workflows/{workflow}:
     get:
+      summary: Get a workflow
       description: Get a workflow
       tags:
         - Workflow
@@ -638,8 +798,175 @@ paths:
         404:
           $ref: '#/components/responses/status-404-response'
 
+security:
+  - cookieAuth: []
+
 components:
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: pagieco_session
+
+  requestBodies:
+    update-current-user:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              email:
+                type: string
+                format: email
+              password:
+                type: string
+              password_confirmation:
+                type: string
+
+    upload-profile-picture:
+      required: true
+      content:
+        multipart/form-data:
+          schema:
+            type: object
+            properties:
+              file:
+                type: string
+                format: binary
+
+    upload-asset:
+      required: true
+      content:
+        multipart/form-data:
+          schema:
+            type: object
+            properties:
+              asset:
+                type: string
+                format: binary
+
+    update-asset:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              filename:
+                type: string
+
+    move-asset:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              folder_id:
+                type: integer
+
+    create-asset-folder:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              description:
+                type: string
+
+    update-asset-folder:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              description:
+                type: string
+
+    create-page:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              slug:
+                type: string
+
+    create-email:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+
+    update-page:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              slug:
+                type: string
+
+    update-email:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+
+    create-form:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              fields:
+                type: object
+                properties:
+                  display_name:
+                    type: string
+                  slug:
+                    type: string
+                  validations:
+                    type: object
+                  type:
+                    type: string
+
   responses:
+    get-current-user:
+      description: OK
+      content:
+        application/json:
+          schema:
+            properties:
+              data:
+                $ref: '#/components/schemas/user'
+
     get-assets:
       description: OK
       content:
@@ -971,6 +1298,24 @@ components:
                 type: object
 
   schemas:
+    user:
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        current_project_id:
+          type: integer
+        created_at:
+          type: string
+          format: 'date-time'
+        updated_at:
+          type: string
+          format: 'date-time'
+
     asset:
       properties:
         id:

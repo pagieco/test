@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Http\UploadedFile;
 use App\Models\Traits\HasPermissions;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Traits\InteractsWithProjects;
@@ -22,7 +23,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'picture',
     ];
 
     /**
@@ -42,4 +43,13 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function uploadProfilePicture(UploadedFile $file)
+    {
+        $filename = sprintf('%s.%s', $this->id, $file->getClientOriginalExtension());
+
+        $path = $file->storeAs(null, $filename);
+
+        return $path;
+    }
 }

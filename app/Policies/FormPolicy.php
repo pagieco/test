@@ -4,7 +4,6 @@ namespace App\Policies;
 
 use App\Models\User;
 use App\Models\Form;
-use App\Models\FormSubmission;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class FormPolicy
@@ -33,6 +32,17 @@ class FormPolicy
     {
         return $user->hasAccess('form:view')
             && $user->currentProject()->forms->contains($form->id);
+    }
+
+    /**
+     * Determine whether the user can create a new form.
+     *
+     * @param  \App\Models\User $user
+     * @return bool
+     */
+    public function create(User $user): bool
+    {
+        return $user->hasAccess('form:create');
     }
 
     /**

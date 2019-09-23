@@ -131,4 +131,20 @@ class FormPolicyTest extends PolicyTestCase
 
         $this->assertFalse((new FormPolicy)->listSubmissions($user, $submission->form));
     }
+
+    /** @test */
+    public function it_returns_false_when_the_user_has_no_permission_to_create_a_new_form()
+    {
+        $user = $this->login();
+
+        $this->assertFalse((new FormPolicy)->create($user));
+    }
+
+    /** @test */
+    public function it_returns_true_when_the_user_has_permission_to_create_a_new_form()
+    {
+        $user = tap($this->login())->forceAccess($this->role, 'form:create');
+
+        $this->assertTrue((new FormPolicy)->create($user));
+    }
 }

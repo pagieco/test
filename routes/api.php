@@ -1,5 +1,10 @@
 <?php
 
+// User routes...
+Route::get('/current-user', 'Api\User\GetCurrentUserController')->name('get-current-user');
+Route::patch('/current-user', 'Api\User\UpdateCurrentUserController')->name('update-current-user');
+Route::put('/current-user/profile-picture', 'Api\User\UploadProfilePictureController')->name('upload-profile-picture');
+
 // Asset routes...
 Route::get('/assets', 'Api\Asset\GetAssetsController')->name('get-assets');
 Route::get('/assets/{asset}', 'Api\Asset\GetAssetController')->name('get-asset');
@@ -28,13 +33,17 @@ Route::get('/collections/{collection}', 'Api\Collection\GetCollectionController'
 
 // Form routes...
 Route::get('/forms', 'Api\Form\GetFormsController')->name('get-forms');
+Route::post('/forms', 'Api\Form\CreateFormController')->name('create-form');
 Route::get('/forms/{form}', 'Api\Form\GetFormController')->name('get-form');
 Route::get('/forms/{form}/submissions', 'Api\Form\GetFormSubmissionsController')->name('get-form-submissions');
 Route::get('/form-submissions/{submission}', 'Api\Form\GetFormSubmissionController')->name('get-form-submission');
 
 // Email routes...
 Route::get('/emails', 'Api\Email\GetEmailsController')->name('get-emails');
+Route::post('/emails', 'Api\Email\CreateEmailController')->name('create-email');
 Route::get('/emails/{email}', 'Api\Email\GetEmailController')->name('get-email');
+Route::patch('/emails/{email}', 'Api\Email\UpdateEmailController')->name('update-email');
+Route::delete('/emails/{email}', 'Api\Email\DeleteEmailController')->name('delete-email');
 
 // Profile routes...
 Route::get('/profiles', 'Api\Profile\GetProfilesController')->name('get-profiles');
