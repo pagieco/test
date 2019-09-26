@@ -25,7 +25,7 @@ $factory->define(Asset::class, function (Faker $faker) {
     return [
         'hash' => Str::random(),
         'project_id' => $project->id,
-        'asset_folder_id' => factory(AssetFolder::class)->create(),
+        'asset_folder_id' => factory(AssetFolder::class)->create()->local_id,
         'filename' => $filename,
         'extension' => $extension,
         'mimetype' => $faker->mimeType,

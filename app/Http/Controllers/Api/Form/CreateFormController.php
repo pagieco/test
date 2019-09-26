@@ -70,6 +70,7 @@ class CreateFormController extends Controller
         $field = new FormField($attributes);
 
         $field->form()->associate($form);
+        $field->project()->associate($form->project);
 
         return tap($field)->save();
     }

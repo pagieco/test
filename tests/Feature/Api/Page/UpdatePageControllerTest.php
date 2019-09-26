@@ -178,6 +178,6 @@ class UpdatePageControllerTest extends TestCase
      */
     protected function makeRequest($id = null, array $data = []): TestResponse
     {
-        return $this->patch(route('update-page', $id ?? faker()->randomNumber()), $data);
+        return $this->patch(route('update-page', $id ?? faker()->numberBetween(1)), $data);
     }
 }

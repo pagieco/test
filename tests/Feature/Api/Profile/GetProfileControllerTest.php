@@ -31,7 +31,7 @@ class GetProfileControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($profile->id)->assertSchema('GetProfile', Response::HTTP_FORBIDDEN);
+        $this->makeRequest($profile->external_id)->assertSchema('GetProfile', Response::HTTP_FORBIDDEN);
     }
 
     /** @test */
@@ -41,7 +41,7 @@ class GetProfileControllerTest extends TestCase
 
         $profile = factory(Profile::class)->create();
 
-        $this->makeRequest($profile->id)->assertSchema('GetProfile', Response::HTTP_NOT_FOUND);
+        $this->makeRequest($profile->external_id)->assertSchema('GetProfile', Response::HTTP_NOT_FOUND);
     }
 
     /** @test */
@@ -53,7 +53,7 @@ class GetProfileControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($profile->id)->assertSchema('GetProfile', Response::HTTP_OK);
+        $this->makeRequest($profile->external_id)->assertSchema('GetProfile', Response::HTTP_OK);
     }
 
     /**
@@ -64,6 +64,6 @@ class GetProfileControllerTest extends TestCase
      */
     protected function makeRequest($id = null): TestResponse
     {
-        return $this->get(route('get-profile', $id ?? faker()->randomNumber()));
+        return $this->get(route('get-profile', $id ?? faker()->numberBetween(1)));
     }
 }

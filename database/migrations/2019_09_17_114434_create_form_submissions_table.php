@@ -16,11 +16,16 @@ class CreateFormSubmissionsTable extends Migration
         Schema::create('form_submissions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('form_id');
+            $table->unsignedBigInteger('project_id');
             $table->json('submission_data');
             $table->timestamps();
 
             $table->foreign('form_id')
                 ->references('id')->on('forms')
+                ->onDelete('cascade');
+
+            $table->foreign('project_id')
+                ->references('id')->on('projects')
                 ->onDelete('cascade');
         });
     }

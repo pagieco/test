@@ -31,7 +31,7 @@ class DeleteProfileControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($profile->id)->assertSchema('DeleteProfile', Response::HTTP_FORBIDDEN);
+        $this->makeRequest($profile->external_id)->assertSchema('DeleteProfile', Response::HTTP_FORBIDDEN);
     }
 
     /** @test */
@@ -41,7 +41,7 @@ class DeleteProfileControllerTest extends TestCase
 
         $profile = factory(Profile::class)->create();
 
-        $this->makeRequest($profile->id)->assertSchema('DeleteProfile', Response::HTTP_NOT_FOUND);
+        $this->makeRequest($profile->external_id)->assertSchema('DeleteProfile', Response::HTTP_NOT_FOUND);
     }
 
     /** @test */
@@ -53,7 +53,7 @@ class DeleteProfileControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($profile->id)->assertSchema('DeleteProfile', Response::HTTP_NO_CONTENT);
+        $this->makeRequest($profile->external_id)->assertSchema('DeleteProfile', Response::HTTP_NO_CONTENT);
     }
 
     /**
@@ -64,6 +64,6 @@ class DeleteProfileControllerTest extends TestCase
      */
     protected function makeRequest($id = null): TestResponse
     {
-        return $this->delete(route('delete-profile', $id ?? faker()->randomNumber()));
+        return $this->delete(route('delete-profile', $id ?? faker()->numberBetween(1)));
     }
 }

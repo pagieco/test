@@ -31,6 +31,23 @@ class CollectionPolicy
     public function view(User $user, Collection $collection): bool
     {
         return $user->hasAccess('collection:view')
-            && $collection->project_id === $user->current_project_id;
+            && $user->currentProject()->collections->contains($collection->id);
+    }
+
+    /**
+     * Determine whether the user can create a new collection.
+     *
+     * @param  \App\Models\User $user
+     * @return bool
+     */
+    public function create(User $user): bool
+    {
+        return $user->hasAccess('collection:create');
+    }
+
+    public function createEntry(User $user, Collection $collection): bool
+    {
+        return $user->hasAccess('collection:create-entry')
+            && $user->currentProject()->collections->contains($collection->id);
     }
 }

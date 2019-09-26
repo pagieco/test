@@ -128,9 +128,12 @@ return [
 
         'collection:list' => ['List collections', 'List the collections.'],
         'collection:view' => ['View collection', 'View a collection.'],
+        'collection:create' => ['Create collection', 'Create a collection.'],
+        'collection:create-entry' => ['Create collection entry', 'Create a collection entry.'],
 
         'domain:list' => ['List domains', 'List the domains.'],
         'domain:view' => ['View domain', 'View a domain.'],
+        'domain:update' => ['Update domain', 'Update a domain.'],
 
         'email:list' => ['List emails', 'List the emails.'],
         'email:view' => ['View email', 'View an email.'],

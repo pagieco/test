@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\ProfileEvent;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use App\Models\Enums\ProfileEventType;
 
 class ProfilesTableSeeder extends Seeder
@@ -14,25 +16,29 @@ class ProfilesTableSeeder extends Seeder
     public function run()
     {
         $project = ProjectsTableSeeder::getWildcatsProject();
-        $values = ProfileEventType::getValues();
 
-        for ($i = 0; $i < 5000; $i++) {
-            $profile = $project->profiles()->create([
-                'email' => faker()->safeEmail,
-                'first_name' => faker()->firstName,
-                'last_name' => faker()->lastName,
-                'city' => faker()->city,
-                'zip' => faker()->postcode,
-                'country' => faker()->country,
-                'phone' => faker()->phoneNumber,
-                'timezone' => faker()->timezone,
-            ]);
-
-            for ($j = 0; $j < rand(2, 10); $j++) {
-                $profile->events()->create([
-                    'event_type' => $values[array_rand($values)],
+        for ($i = 0; $i < 250; $i++) {
+            DB::transaction(function () use ($project) {
+                $profile = $project->profiles()->create([
+                    'email' => faker()->safeEmail,
+                    'first_name' => faker()->firstName,
+                    'last_name' => faker()->lastName,
+                    'city' => faker()->city,
+                    'zip' => faker()->postcode,
+                    'country' => faker()->country,
+                    'phone' => faker()->phoneNumber,
+                    'timezone' => faker()->timezone,
                 ]);
-            }
+
+                for ($j = 0; $j < rand(2, 10); $j++) {
+                    $event = new ProfileEvent([
+                        'event_type' => ProfileEventType::randomValue(),
+                    ]);
+                    $event->project()->associate($project);
+                    $event->profile()->associate($profile);
+                    $event->save();
+                }
+            });
         }
     }
 }

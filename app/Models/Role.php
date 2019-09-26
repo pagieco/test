@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Support\Arr;
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\BelongsToProject;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 

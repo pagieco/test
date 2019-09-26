@@ -64,4 +64,36 @@ class DomainPolicyTest extends PolicyTestCase
 
         $this->assertTrue((new DomainPolicy)->view($user, $domain));
     }
+
+    /** @test */
+    public function it_returns_false_when_the_user_has_no_permission_to_update_a_domain()
+    {
+        $user = $this->login();
+
+        $domain = factory(Domain::class)->create();
+
+        $this->assertFalse((new DomainPolicy)->update($user, $domain));
+    }
+
+    /** @test */
+    public function it_returns_false_when_the_user_has_permission_to_update_a_domain_but_the_domain_is_not_from_the_current_project()
+    {
+        $user = tap($this->login())->forceAccess($this->role, 'domain_update');
+
+        $domain = factory(Domain::class)->create();
+
+        $this->assertFalse((new DomainPolicy)->update($user, $domain));
+    }
+
+    /** @test */
+    public function it_returns_true_when_the_user_has_permission_to_update_the_domain()
+    {
+        $user = tap($this->login())->forceAccess($this->role, 'domain_update');
+
+        $domain = factory(Domain::class)->create([
+            'project_id' => $this->project->id,
+        ]);
+
+        $this->assertFalse((new DomainPolicy)->update($user, $domain));
+    }
 }

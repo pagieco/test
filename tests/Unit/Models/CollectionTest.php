@@ -4,13 +4,12 @@ namespace Tests\Unit\Models;
 
 use Tests\TestCase;
 use App\Models\Collection;
-use Tests\RefreshCollections;
-use Jenssegers\Mongodb\Relations\HasMany;
-use Jenssegers\Mongodb\Relations\EmbedsMany;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class CollectionTest extends TestCase
 {
-    use RefreshCollections;
+    use RefreshDatabase;
 
     protected $model = Collection::class;
 
@@ -21,8 +20,8 @@ class CollectionTest extends TestCase
     }
 
     /** @test */
-    public function it_embeds_many_fields()
+    public function it_has_many_fields()
     {
-        $this->assertInstanceOf(EmbedsMany::class, app($this->model)->fields());
+        $this->assertInstanceOf(HasMany::class, app($this->model)->fields());
     }
 }

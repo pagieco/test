@@ -31,7 +31,7 @@ class GetAssetFolderControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($assetFolder->id)->assertSchema('GetAssetFolder', Response::HTTP_FORBIDDEN);
+        $this->makeRequest($assetFolder->external_id)->assertSchema('GetAssetFolder', Response::HTTP_FORBIDDEN);
     }
 
     /** @test */
@@ -41,7 +41,7 @@ class GetAssetFolderControllerTest extends TestCase
 
         $assetFolder = factory(AssetFolder::class)->create();
 
-        $this->makeRequest($assetFolder->id)->assertSchema('GetAssetFolder', Response::HTTP_NOT_FOUND);
+        $this->makeRequest($assetFolder->external_id)->assertSchema('GetAssetFolder', Response::HTTP_NOT_FOUND);
     }
 
     /** @test */
@@ -53,7 +53,7 @@ class GetAssetFolderControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($assetFolder->id)->assertSchema('GetAssetFolder', Response::HTTP_OK);
+        $this->makeRequest($assetFolder->external_id)->assertSchema('GetAssetFolder', Response::HTTP_OK);
     }
 
     /**
@@ -64,6 +64,6 @@ class GetAssetFolderControllerTest extends TestCase
      */
     protected function makeRequest($id = null): TestResponse
     {
-        return $this->get(route('get-asset-folder', $id ?? faker()->randomNumber()));
+        return $this->get(route('get-asset-folder', $id ?? faker()->numberBetween(1)));
     }
 }

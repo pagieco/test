@@ -2,25 +2,19 @@
 
 namespace App\Models;
 
-use Jenssegers\Mongodb\Eloquent\Model;
-use Jenssegers\Mongodb\Relations\BelongsTo;
+use App\Models\Traits\BelongsToProject;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class CollectionEntry extends Model
 {
+    use BelongsToProject;
 
     /**
-     * The connection name for the model.
+     * The table associated with the model.
      *
      * @var string
      */
-    protected $connection = 'mongodb';
-
-    /**
-     * The collection associated with the model.
-     *
-     * @var string
-     */
-    protected $collection = 'collection_entries';
+    protected $table = 'collection_entries';
 
     /**
      * The attributes that are mass assignable.
@@ -43,7 +37,7 @@ class CollectionEntry extends Model
     /**
      * The collection this entry belongs to.
      *
-     * @return \Jenssegers\Mongodb\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function collection(): BelongsTo
     {

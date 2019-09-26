@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\BelongsToProject;
+use App\Models\Traits\HasExternalShardId;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Profile extends Model
 {
     use BelongsToProject;
+    use HasExternalShardId;
 
     /**
      * The table associated with the model.
@@ -16,6 +17,13 @@ class Profile extends Model
      * @var string
      */
     protected $table = 'profiles';
+
+    /**
+     * The primary key for the model.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'local_id';
 
     /**
      * The attributes that are mass assignable.
@@ -55,6 +63,6 @@ class Profile extends Model
      */
     public function events(): HasMany
     {
-        return $this->hasMany(ProfileEvent::class);
+        return $this->hasMany(ProfileEvent::class, 'profile_id', 'local_id');
     }
 }

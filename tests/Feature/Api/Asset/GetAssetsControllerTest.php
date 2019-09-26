@@ -5,6 +5,7 @@ namespace Tests\Feature\Api\Asset;
 use Tests\TestCase;
 use App\Models\Asset;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Tests\Feature\AuthenticatedRoute;
 use Illuminate\Foundation\Testing\TestResponse;
 use Illuminate\Foundation\Testing\RefreshDatabase;

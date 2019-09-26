@@ -6,6 +6,7 @@ use App\Models\Asset;
 use App\Http\Response;
 use App\Models\AssetFolder;
 use Illuminate\Http\Request;
+use App\Services\IdGenerator;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MoveAssetRequest;
 
@@ -45,7 +46,9 @@ class MoveAssetController extends Controller
      */
     protected function authorizeForFolder(Request $request): AssetFolder
     {
-        $folder = AssetFolder::findOrFail($request->get('folder_id'));
+        $folder = AssetFolder::findOrFail(
+            IdGenerator::decode($request->get('folder_id'))['local']
+        );
 
         $this->authorize('view', $folder);
 

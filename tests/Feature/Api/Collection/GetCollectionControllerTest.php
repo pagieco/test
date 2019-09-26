@@ -5,7 +5,6 @@ namespace Tests\Feature\Api\Collection;
 use Tests\TestCase;
 use App\Http\Response;
 use App\Models\Collection;
-use Tests\RefreshCollections;
 use Tests\Feature\AuthenticatedRoute;
 use Illuminate\Foundation\Testing\TestResponse;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -13,7 +12,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class GetCollectionControllerTest extends TestCase
 {
     use RefreshDatabase;
-    use RefreshCollections;
     use AuthenticatedRoute;
 
     /** @test */
@@ -66,6 +64,6 @@ class GetCollectionControllerTest extends TestCase
      */
     protected function makeRequest($id = null): TestResponse
     {
-        return $this->get(route('get-collection', $id ?? faker()->randomNumber()));
+        return $this->get(route('get-collection', $id ?? faker()->numberBetween(1)));
     }
 }

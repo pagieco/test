@@ -31,7 +31,7 @@ class UpdateAssetControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($asset->id)->assertSchema('UpdateAsset', Response::HTTP_FORBIDDEN);
+        $this->makeRequest($asset->external_id)->assertSchema('UpdateAsset', Response::HTTP_FORBIDDEN);
     }
 
     /** @test */
@@ -41,7 +41,7 @@ class UpdateAssetControllerTest extends TestCase
 
         $asset = factory(Asset::class)->create();
 
-        $this->makeRequest($asset->id)->assertSchema('UpdateAsset', Response::HTTP_NOT_FOUND);
+        $this->makeRequest($asset->external_id)->assertSchema('UpdateAsset', Response::HTTP_NOT_FOUND);
     }
 
     /** @test */
@@ -53,7 +53,7 @@ class UpdateAssetControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($asset->id, [
+        $this->makeRequest($asset->external_id, [
             'filename' => '',
         ])->assertSchema('UpdateAsset', Response::HTTP_UNPROCESSABLE_ENTITY);
     }
@@ -67,7 +67,7 @@ class UpdateAssetControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $response = $this->makeRequest($asset->id, [
+        $response = $this->makeRequest($asset->external_id, [
             'filename' => faker()->domainWord,
         ]);
 
@@ -83,6 +83,6 @@ class UpdateAssetControllerTest extends TestCase
      */
     protected function makeRequest($id = null, array $data = []): TestResponse
     {
-        return $this->patch(route('update-asset', $id ?? faker()->randomNumber()), $data);
+        return $this->patch(route('update-asset', $id ?? faker()->numberBetween(1)), $data);
     }
 }

@@ -8,10 +8,11 @@ use Faker\Generator as Faker;
 use App\Models\Enums\ProfileEventType;
 
 $factory->define(ProfileEvent::class, function (Faker $faker) {
-    $events = ProfileEventType::getValues();
+    $profile = factory(Profile::class)->create();
 
     return [
-        'profile_id' => factory(Profile::class)->create()->id,
-        'event_type' => array_rand($events),
+        'profile_id' => $profile->local_id,
+        'project_id' => $profile->project_id,
+        'event_type' => ProfileEventType::randomValue(),
     ];
 });

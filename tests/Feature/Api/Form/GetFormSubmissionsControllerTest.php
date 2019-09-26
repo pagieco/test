@@ -68,6 +68,7 @@ class GetFormSubmissionsControllerTest extends TestCase
 
         factory(FormSubmission::class)->create([
             'form_id' => $form->id,
+            'project_id' => $form->project_id,
         ]);
 
         factory(FormSubmission::class)->create();
@@ -86,6 +87,7 @@ class GetFormSubmissionsControllerTest extends TestCase
 
         factory(FormSubmission::class)->create([
             'form_id' => $form->id,
+            'project_id' => $form->project_id,
         ]);
 
         $this->makeRequest($form->id)->assertSchema('GetFormSubmissions', Response::HTTP_OK);
@@ -99,6 +101,6 @@ class GetFormSubmissionsControllerTest extends TestCase
      */
     protected function makeRequest($id = null): TestResponse
     {
-        return $this->get(route('get-form-submissions', $id ?? faker()->randomNumber()));
+        return $this->get(route('get-form-submissions', $id ?? faker()->numberBetween(1)));
     }
 }

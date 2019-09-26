@@ -2,17 +2,28 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Traits\BelongsToProject;
+use App\Models\Traits\HasExternalShardId;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ProfileEvent extends Model
 {
+    use BelongsToProject;
+    use HasExternalShardId;
+
     /**
      * The table associated with the model.
      *
      * @var string
      */
     protected $table = 'profile_events';
+
+    /**
+     * The primary key for the model.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'local_id';
 
     /**
      * The attributes that are mass assignable.
@@ -39,6 +50,6 @@ class ProfileEvent extends Model
      */
     public function profile(): BelongsTo
     {
-        return $this->belongsTo(Profile::class);
+        return $this->belongsTo(Profile::class, 'profile_id', 'local_id');
     }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\BelongsToProject;
 use Symfony\Component\Workflow\Transition;
 use Symfony\Component\Workflow\DefinitionBuilder;
@@ -58,7 +57,12 @@ class Workflow extends Model
      */
     public function createStep($name): Model
     {
-        return $this->steps()->create(['name' => $name]);
+        $step = new WorkflowStep(['name' => $name]);
+
+        $step->project()->associate($this->project);
+        $step->workflow()->associate($this);
+
+        return tap($step)->save();
     }
 
     /**
@@ -73,6 +77,7 @@ class Workflow extends Model
         $transition = new WorkflowTransition;
 
         $transition->workflow()->associate($this);
+        $transition->project()->associate($this->project);
         $transition->from()->associate($from);
         $transition->to()->associate($to);
 

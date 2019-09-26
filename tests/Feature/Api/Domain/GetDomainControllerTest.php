@@ -64,6 +64,6 @@ class GetDomainControllerTest extends TestCase
      */
     protected function makeRequest($id = null): TestResponse
     {
-        return $this->get(route('get-domain', $id ?? faker()->randomNumber()));
+        return $this->get(route('get-domain', $id ?? faker()->numberBetween(1)));
     }
 }

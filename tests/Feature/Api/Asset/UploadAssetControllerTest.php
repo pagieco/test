@@ -58,7 +58,7 @@ class UploadAssetControllerTest extends TestCase
         $response->assertSchema('UploadAsset', Response::HTTP_CREATED);
 
         $this->assertDatabaseHas('assets', [
-            'id' => $response->json('data.id'),
+            'external_id' => $response->json('data.id'),
         ]);
 
         Storage::assertExists($response->json('data.path'));
@@ -79,7 +79,7 @@ class UploadAssetControllerTest extends TestCase
 
         $data = [
             'asset' => UploadedFile::fake()->image('avatar.jpeg'),
-            'folder_id' => $folder->id,
+            'folder_id' => $folder->external_id,
         ];
 
         $response = $this->makeRequest($data);
@@ -87,7 +87,7 @@ class UploadAssetControllerTest extends TestCase
         $response->assertSchema('UploadAsset', Response::HTTP_CREATED);
 
         $this->assertDatabaseHas('assets', [
-            'id' => $response->json('data.id'),
+            'external_id' => $response->json('data.id'),
             'asset_folder_id' => $folder->id,
         ]);
 

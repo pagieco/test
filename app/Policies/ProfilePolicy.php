@@ -31,7 +31,7 @@ class ProfilePolicy
     public function view(User $user, Profile $profile): bool
     {
         return $user->hasAccess('profile:view')
-            && $user->currentProject()->profiles->contains($profile->id);
+            && $user->currentProject()->profiles->contains($profile->local_id);
     }
 
     /**
@@ -44,7 +44,7 @@ class ProfilePolicy
     public function delete(User $user, Profile $profile): bool
     {
         return $user->hasAccess('profile:delete')
-            && $user->currentProject()->profiles->contains($profile->id);
+            && $user->currentProject()->profiles->contains($profile->local_id);
     }
 
     /**
@@ -57,7 +57,7 @@ class ProfilePolicy
     public function listEvents(User $user, Profile $profile): bool
     {
         return $user->hasAccess('profile:list-events')
-            && $user->currentProject()->profiles->contains($profile->id);
+            && $user->currentProject()->profiles->contains($profile->local_id);
     }
 
     /**
@@ -70,6 +70,6 @@ class ProfilePolicy
     public function viewEvent(User $user, Profile $profile): bool
     {
         return $user->hasAccess('profile:view-event')
-            && $user->currentProject()->profiles->contains($profile->id);
+            && $user->currentProject()->profiles->contains($profile->local_id);
     }
 }

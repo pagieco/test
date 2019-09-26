@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 // User routes...
 Route::get('/current-user', 'Api\User\GetCurrentUserController')->name('get-current-user');
 Route::patch('/current-user', 'Api\User\UpdateCurrentUserController')->name('update-current-user');
@@ -29,7 +31,9 @@ Route::delete('/pages/{page}', 'Api\Page\DeletePageController')->name('delete-pa
 
 // Collection routes...
 Route::get('/collections', 'Api\Collection\GetCollectionsController')->name('get-collections');
+Route::post('/collections', 'Api\Collection\CreateCollectionController')->name('create-collection');
 Route::get('/collections/{collection}', 'Api\Collection\GetCollectionController')->name('get-collection');
+Route::post('/collections/{collection}', 'Api\Collection\CreateCollectionEntryController')->name('create-collection-entry');
 
 // Form routes...
 Route::get('/forms', 'Api\Form\GetFormsController')->name('get-forms');
@@ -59,6 +63,7 @@ Route::get('/automations/{automation}', 'Api\Automation\GetAutomationController'
 // Domain routes...
 Route::get('/domains', 'Api\Domain\GetDomainsController')->name('get-domains');
 Route::get('/domains/{domain}', 'Api\Domain\GetDomainController')->name('get-domain');
+Route::patch('/domains/{domain}', 'Api\Domain\UpdateDomainController')->name('update-domain');
 
 // Workflow routes...
 Route::get('/workflows', 'Api\Workflow\GetWorkflowsController')->name('get-workflows');

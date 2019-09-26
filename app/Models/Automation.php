@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\BelongsToProject;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 

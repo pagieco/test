@@ -31,7 +31,7 @@ class AssetPolicy
     public function view(User $user, Asset $asset): bool
     {
         return $user->hasAccess('asset:view')
-            && $user->currentProject()->assets->contains($asset->id);
+            && $user->currentProject()->assets->contains($asset->local_id);
     }
 
     /**
@@ -55,7 +55,7 @@ class AssetPolicy
     public function update(User $user, Asset $asset): bool
     {
         return $user->hasAccess('asset:update')
-            && $user->currentProject()->assets->contains($asset->id);
+            && $user->currentProject()->assets->contains($asset->local_id);
     }
 
     /**
@@ -68,7 +68,7 @@ class AssetPolicy
     public function move(User $user, Asset $asset): bool
     {
         return $user->hasAccess('asset:move')
-            && $user->currentProject()->assets->contains($asset->id);
+            && $user->currentProject()->assets->contains($asset->local_id);
     }
 
     /**
@@ -81,6 +81,6 @@ class AssetPolicy
     public function delete(User $user, Asset $asset): bool
     {
         return $user->hasAccess('asset:delete')
-            && $user->currentProject()->assets->contains($asset->id);
+            && $user->currentProject()->assets->contains($asset->local_id);
     }
 }

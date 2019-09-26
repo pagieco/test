@@ -64,6 +64,6 @@ class GetAutomationControllerTest extends TestCase
      */
     protected function makeRequest($id = null): TestResponse
     {
-        return $this->get(route('get-automation', $id ?? faker()->randomNumber()));
+        return $this->get(route('get-automation', $id ?? faker()->numberBetween(1)));
     }
 }

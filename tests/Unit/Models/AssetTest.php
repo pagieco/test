@@ -31,7 +31,7 @@ class AssetTest extends TestCase
     public function it_can_insert_a_new_record()
     {
         $this->assertDatabaseHas('assets', [
-            'id' => factory(Asset::class)->create()->id,
+            'local_id' => factory(Asset::class)->create()->local_id,
         ]);
     }
 
@@ -167,7 +167,7 @@ class AssetTest extends TestCase
         $folder2 = factory(AssetFolder::class)->create();
 
         $asset = factory(Asset::class)->create([
-            'asset_folder_id' => $folder1->id,
+            'asset_folder_id' => $folder1->local_id,
         ]);
 
         $this->assertCount(1, $folder1->assets);
@@ -176,8 +176,8 @@ class AssetTest extends TestCase
         $asset->moveTo($folder2);
 
         $this->assertDatabaseHas('assets', [
-            'id' => $asset->id,
-            'asset_folder_id' => $folder2->id,
+            'local_id' => $asset->local_id,
+            'asset_folder_id' => $folder2->local_id,
         ]);
     }
 }

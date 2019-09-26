@@ -31,7 +31,7 @@ class UpdateAssetFolderControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($folder->id)->assertSchema('UpdateAssetFolder', Response::HTTP_FORBIDDEN);
+        $this->makeRequest($folder->external_id)->assertSchema('UpdateAssetFolder', Response::HTTP_FORBIDDEN);
     }
 
     /** @test */
@@ -41,7 +41,7 @@ class UpdateAssetFolderControllerTest extends TestCase
 
         $folder = factory(AssetFolder::class)->create();
 
-        $this->makeRequest($folder->id)->assertSchema('UpdateAssetFolder', Response::HTTP_NOT_FOUND);
+        $this->makeRequest($folder->external_id)->assertSchema('UpdateAssetFolder', Response::HTTP_NOT_FOUND);
     }
 
     /** @test */
@@ -53,7 +53,7 @@ class UpdateAssetFolderControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($folder->id, [
+        $this->makeRequest($folder->external_id, [
             'name' => '',
         ])->assertSchema('UpdateAssetFolder', Response::HTTP_UNPROCESSABLE_ENTITY);
     }
@@ -67,7 +67,7 @@ class UpdateAssetFolderControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($folder->id, [
+        $this->makeRequest($folder->external_id, [
             'name' => 'a',
         ])->assertSchema('UpdateAssetFolder', Response::HTTP_UNPROCESSABLE_ENTITY);
     }
@@ -81,7 +81,7 @@ class UpdateAssetFolderControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($folder->id, [
+        $this->makeRequest($folder->external_id, [
             'name' => str_repeat('a', 251),
         ])->assertSchema('UpdateAssetFolder', Response::HTTP_UNPROCESSABLE_ENTITY);
     }
@@ -95,7 +95,7 @@ class UpdateAssetFolderControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($folder->id, [
+        $this->makeRequest($folder->external_id, [
             'description' => '',
         ])->assertSchema('UpdateAssetFolder', Response::HTTP_UNPROCESSABLE_ENTITY);
     }
@@ -109,7 +109,7 @@ class UpdateAssetFolderControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($folder->id, [
+        $this->makeRequest($folder->external_id, [
             'description' => 'a',
         ])->assertSchema('UpdateAssetFolder', Response::HTTP_UNPROCESSABLE_ENTITY);
     }
@@ -123,7 +123,7 @@ class UpdateAssetFolderControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($folder->id, [
+        $this->makeRequest($folder->external_id, [
             'description' => str_repeat('a', 251),
         ])->assertSchema('UpdateAssetFolder', Response::HTTP_UNPROCESSABLE_ENTITY);
     }
@@ -137,7 +137,7 @@ class UpdateAssetFolderControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($folder->id, [
+        $this->makeRequest($folder->external_id, [
             'description' => 'My test description',
         ])->assertSchema('UpdateAssetFolder', Response::HTTP_OK);
     }
@@ -151,6 +151,6 @@ class UpdateAssetFolderControllerTest extends TestCase
      */
     protected function makeRequest($id = null, array $data = []): TestResponse
     {
-        return $this->patch(route('update-asset-folder', $id ?? faker()->randomNumber()), $data);
+        return $this->patch(route('update-asset-folder', $id ?? faker()->numberBetween(1)), $data);
     }
 }

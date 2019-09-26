@@ -14,7 +14,8 @@ class CreateAssetFoldersTable extends Migration
     public function up()
     {
         Schema::create('asset_folders', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('local_id');
+            $table->unsignedBigInteger('external_id')->unique()->index()->nullable();
             $table->unsignedBigInteger('project_id');
             $table->string('name');
             $table->string('description')->nullable();

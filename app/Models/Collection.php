@@ -2,28 +2,19 @@
 
 namespace App\Models;
 
-use Jenssegers\Mongodb\Eloquent\Model;
 use App\Models\Traits\BelongsToProject;
-use Jenssegers\Mongodb\Relations\HasMany;
-use Jenssegers\Mongodb\Relations\EmbedsMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Collection extends Model
 {
     use BelongsToProject;
 
     /**
-     * The connection name for the model.
+     * The table associated with the model.
      *
      * @var string
      */
-    protected $connection = 'mongodb';
-
-    /**
-     * The collection associated with the model.
-     *
-     * @var string
-     */
-    protected $collection = 'collections';
+    protected $table = 'collections';
 
     /**
      * The attributes that are mass assignable.
@@ -31,13 +22,13 @@ class Collection extends Model
      * @var array
      */
     protected $fillable = [
-
+        'name', 'slug',
     ];
 
     /**
      * Get the entries that belong to this collection.
      *
-     * @return \Jenssegers\Mongodb\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function entries(): HasMany
     {
@@ -47,10 +38,10 @@ class Collection extends Model
     /**
      * Get the fields that belong to this collection.
      *
-     * @return \Jenssegers\Mongodb\Relations\EmbedsMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function fields(): EmbedsMany
+    public function fields(): HasMany
     {
-        return $this->embedsMany(CollectionField::class);
+        return $this->hasMany(CollectionField::class)->orderBy('sort_order');
     }
 }

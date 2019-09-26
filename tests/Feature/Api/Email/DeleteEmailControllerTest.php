@@ -64,6 +64,6 @@ class DeleteEmailControllerTest extends TestCase
      */
     protected function makeRequest($id = null): TestResponse
     {
-        return $this->delete(route('delete-email', $id ?? faker()->randomNumber()));
+        return $this->delete(route('delete-email', $id ?? faker()->numberBetween(1)));
     }
 }

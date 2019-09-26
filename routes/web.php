@@ -11,8 +11,9 @@
 |
 */
 
-Route::view('/', 'welcome');
-
 Auth::routes();
 
 Route::get('/app/{resource?}', 'AppController')->where('resource', '(.*)');
+
+// Catch-all resource routing.
+Route::get('{any?}', 'FrontendController')->where('any', '(.*)');

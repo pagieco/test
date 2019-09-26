@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\BelongsToProject;
+use App\Models\Traits\HasExternalShardId;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class AssetFolder extends Model
 {
     use BelongsToProject;
+    use HasExternalShardId;
 
     /**
      * The table associated with the model.
@@ -16,6 +17,13 @@ class AssetFolder extends Model
      * @var string
      */
     protected $table = 'asset_folders';
+
+    /**
+     * The primary key for the model.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'local_id';
 
     /**
      * The attributes that are mass assignable.
@@ -33,6 +41,6 @@ class AssetFolder extends Model
      */
     public function assets(): HasMany
     {
-        return $this->hasMany(Asset::class);
+        return $this->hasMany(Asset::class, 'local_id');
     }
 }

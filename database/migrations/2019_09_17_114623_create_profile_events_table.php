@@ -14,14 +14,20 @@ class CreateProfileEventsTable extends Migration
     public function up()
     {
         Schema::create('profile_events', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('local_id');
+            $table->unsignedBigInteger('external_id')->unique()->index()->nullable();
             $table->unsignedBigInteger('profile_id');
+            $table->unsignedBigInteger('project_id');
             $table->string('event_type');
             $table->json('data')->nullable();
             $table->timestamps();
 
             $table->foreign('profile_id')
-                ->references('id')->on('profiles')
+                ->references('local_id')->on('profiles')
+                ->onDelete('cascade');
+
+            $table->foreign('project_id')
+                ->references('id')->on('projects')
                 ->onDelete('cascade');
         });
     }

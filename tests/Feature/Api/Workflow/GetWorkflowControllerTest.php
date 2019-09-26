@@ -64,6 +64,6 @@ class GetWorkflowControllerTest extends TestCase
      */
     protected function makeRequest($id = null): TestResponse
     {
-        return $this->get(route('get-workflow', $id ?? faker()->randomNumber()));
+        return $this->get(route('get-workflow', $id ?? faker()->numberBetween(1)));
     }
 }

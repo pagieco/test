@@ -64,6 +64,6 @@ class GetPageControllerTest extends TestCase
      */
     protected function makeRequest($id = null): TestResponse
     {
-        return $this->get(route('get-page', $id ?? faker()->randomNumber()));
+        return $this->get(route('get-page', $id ?? faker()->numberBetween(1)));
     }
 }

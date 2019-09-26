@@ -14,6 +14,6 @@ class ProfileEventsResource extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return ProfileEventResource::collection($this->collection);
     }
 }

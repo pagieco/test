@@ -7,14 +7,15 @@ use Illuminate\Http\UploadedFile;
 use Intervention\Image\Constraint;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\BelongsToProject;
+use App\Models\Traits\HasExternalShardId;
 use Intervention\Image\Image as InterventionImage;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Asset extends Model
 {
     use BelongsToProject;
+    use HasExternalShardId;
 
     /**
      * The table associated with the model.
@@ -22,6 +23,13 @@ class Asset extends Model
      * @var string
      */
     protected $table = 'assets';
+
+    /**
+     * The primary key for the model.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'local_id';
 
     /**
      * The attributes that are mass assignable.
@@ -48,6 +56,7 @@ class Asset extends Model
      */
     protected $casts = [
         'extra_attributes' => 'array',
+        'external_id' => 'int',
     ];
 
     /**

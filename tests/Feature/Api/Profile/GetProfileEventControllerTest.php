@@ -33,10 +33,11 @@ class GetProfileEventControllerTest extends TestCase
         ]);
 
         $event = factory(ProfileEvent::class)->create([
-            'profile_id' => $profile->id,
+            'profile_id' => $profile->local_id,
+            'project_id' => $profile->project_id,
         ]);
 
-        $this->makeRequest($event->id)->assertSchema('GetProfileEvent', Response::HTTP_FORBIDDEN);
+        $this->makeRequest($event->external_id)->assertSchema('GetProfileEvent', Response::HTTP_FORBIDDEN);
     }
 
     /** @test */
@@ -45,10 +46,10 @@ class GetProfileEventControllerTest extends TestCase
         $this->login()->forceAccess($this->role, 'profile:view-event');
 
         $event = factory(ProfileEvent::class)->create([
-            'profile_id' => factory(Profile::class)->create()->id,
+            'profile_id' => factory(Profile::class)->create()->local_id,
         ]);
 
-        $this->makeRequest($event->id)->assertSchema('GetProfileEvent', Response::HTTP_NOT_FOUND);
+        $this->makeRequest($event->external_id)->assertSchema('GetProfileEvent', Response::HTTP_NOT_FOUND);
     }
 
     /** @test */
@@ -57,12 +58,13 @@ class GetProfileEventControllerTest extends TestCase
         $this->login()->forceAccess($this->role, 'profile:view-event');
 
         $event = factory(ProfileEvent::class)->create([
+            'project_id' => $this->project->id,
             'profile_id' => factory(Profile::class)->create([
                 'project_id' => $this->project->id,
-            ])->id,
+            ])->local_id,
         ]);
 
-        $this->makeRequest($event->id)->assertSchema('GetProfileEvent', Response::HTTP_OK);
+        $this->makeRequest($event->external_id)->assertSchema('GetProfileEvent', Response::HTTP_OK);
     }
 
     /**
@@ -73,6 +75,6 @@ class GetProfileEventControllerTest extends TestCase
      */
     protected function makeRequest($id = null): TestResponse
     {
-        return $this->get(route('get-profile-event', $id ?? faker()->randomNumber()));
+        return $this->get(route('get-profile-event', $id ?? faker()->numberBetween(1)));
     }
 }

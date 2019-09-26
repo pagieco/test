@@ -16,6 +16,7 @@ class CreateFormFieldsTable extends Migration
         Schema::create('form_fields', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('form_id');
+            $table->unsignedBigInteger('project_id');
             $table->string('display_name');
             $table->string('slug');
             $table->json('validations')->nullable();
@@ -24,6 +25,10 @@ class CreateFormFieldsTable extends Migration
 
             $table->foreign('form_id')
                 ->references('id')->on('forms')
+                ->onDelete('cascade');
+
+            $table->foreign('project_id')
+                ->references('id')->on('projects')
                 ->onDelete('cascade');
         });
     }

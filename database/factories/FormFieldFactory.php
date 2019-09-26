@@ -11,8 +11,11 @@ use App\Models\Enums\FormFieldType;
 $factory->define(FormField::class, function (Faker $faker) {
     $name = $faker->domainWord;
 
+    $form = factory(Form::class)->create();
+
     return [
-        'form_id' => factory(Form::class)->create()->id,
+        'form_id' => $form->id,
+        'project_id' => $form->project_id,
         'display_name' => $name,
         'slug' => Str::slug($name),
         'validations' => [],

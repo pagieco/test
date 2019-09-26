@@ -34,6 +34,7 @@ class GetFormSubmissionControllerTest extends TestCase
 
         $submission = factory(FormSubmission::class)->create([
             'form_id' => $form->id,
+            'project_id' => $this->project->id,
         ]);
 
         $this->makeRequest($submission->id)->assertSchema('GetFormSubmission', Response::HTTP_FORBIDDEN);
@@ -46,6 +47,7 @@ class GetFormSubmissionControllerTest extends TestCase
 
         $submission = factory(FormSubmission::class)->create([
             'form_id' => factory(Form::class)->create()->id,
+            'project_id' => $this->project->id,
         ]);
 
         $this->makeRequest($submission->id)->assertSchema('GetFormSubmission', Response::HTTP_NOT_FOUND);
@@ -57,6 +59,7 @@ class GetFormSubmissionControllerTest extends TestCase
         $this->login()->forceAccess($this->role, 'form:view-submission');
 
         $submission = factory(FormSubmission::class)->create([
+            'project_id' => $this->project->id,
             'form_id' => factory(Form::class)->create([
                 'project_id' => $this->project->id,
             ])->id,
@@ -73,6 +76,6 @@ class GetFormSubmissionControllerTest extends TestCase
      */
     protected function makeRequest($id = null): TestResponse
     {
-        return $this->get(route('get-form-submission', $id ?? faker()->randomNumber()));
+        return $this->get(route('get-form-submission', $id ?? faker()->numberBetween(1)));
     }
 }

@@ -64,6 +64,6 @@ class DeletePageControllerTest extends TestCase
      */
     protected function makeRequest($id = null): TestResponse
     {
-        return $this->delete(route('delete-page', $id ?? faker()->randomNumber()));
+        return $this->delete(route('delete-page', $id ?? faker()->numberBetween(1)));
     }
 }

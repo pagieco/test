@@ -31,7 +31,7 @@ class DeleteAssetControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($asset->id)->assertSchema('DeleteAsset', Response::HTTP_FORBIDDEN);
+        $this->makeRequest($asset->external_id)->assertSchema('DeleteAsset', Response::HTTP_FORBIDDEN);
     }
 
     /** @test */
@@ -41,7 +41,7 @@ class DeleteAssetControllerTest extends TestCase
 
         $asset = factory(Asset::class)->create();
 
-        $this->makeRequest($asset->id)->assertSchema('DeleteAsset', Response::HTTP_NOT_FOUND);
+        $this->makeRequest($asset->external_id)->assertSchema('DeleteAsset', Response::HTTP_NOT_FOUND);
     }
 
     /** @test */
@@ -53,7 +53,7 @@ class DeleteAssetControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($asset->id)->assertSchema('DeleteAsset', Response::HTTP_NO_CONTENT);
+        $this->makeRequest($asset->external_id)->assertSchema('DeleteAsset', Response::HTTP_NO_CONTENT);
     }
 
     /**
@@ -64,6 +64,6 @@ class DeleteAssetControllerTest extends TestCase
      */
     protected function makeRequest($id = null): TestResponse
     {
-        return $this->delete(route('delete-asset', $id ?? faker()->randomNumber()));
+        return $this->delete(route('delete-asset', $id ?? faker()->numberBetween(1)));
     }
 }

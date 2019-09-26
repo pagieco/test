@@ -14,6 +14,12 @@ class ProfileEventResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->external_id,
+            'data' => $this->data,
+            'event_type' => $this->event_type,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+        ];
     }
 }

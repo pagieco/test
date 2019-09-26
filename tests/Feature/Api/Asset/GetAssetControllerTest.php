@@ -31,7 +31,7 @@ class GetAssetControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($asset->id)->assertSchema('GetAsset', Response::HTTP_FORBIDDEN);
+        $this->makeRequest($asset->external_id)->assertSchema('GetAsset', Response::HTTP_FORBIDDEN);
     }
 
     /** @test */
@@ -41,7 +41,7 @@ class GetAssetControllerTest extends TestCase
 
         $asset = factory(Asset::class)->create();
 
-        $this->makeRequest($asset->id)->assertSchema('GetAsset', Response::HTTP_NOT_FOUND);
+        $this->makeRequest($asset->external_id)->assertSchema('GetAsset', Response::HTTP_NOT_FOUND);
     }
 
     /** @test */
@@ -53,7 +53,7 @@ class GetAssetControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($asset->id)->assertSchema('GetAsset', Response::HTTP_OK);
+        $this->makeRequest($asset->external_id)->assertSchema('GetAsset', Response::HTTP_OK);
     }
 
     /**
@@ -64,6 +64,6 @@ class GetAssetControllerTest extends TestCase
      */
     protected function makeRequest($id = null): TestResponse
     {
-        return $this->get(route('get-asset', $id ?? faker()->randomNumber()));
+        return $this->get(route('get-asset', $id ?? faker()->numberBetween(1)));
     }
 }

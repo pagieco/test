@@ -37,7 +37,7 @@ class MoveAssetControllerTest extends TestCase
             'asset_folder_id' => $folder1->id,
         ]);
 
-        $this->makeRequest($asset->id)->assertSchema('MoveAsset', Response::HTTP_UNPROCESSABLE_ENTITY);
+        $this->makeRequest($asset->external_id)->assertSchema('MoveAsset', Response::HTTP_UNPROCESSABLE_ENTITY);
     }
 
     /** @test */
@@ -55,11 +55,11 @@ class MoveAssetControllerTest extends TestCase
 
         $asset = factory(Asset::class)->create([
             'project_id' => $this->project->id,
-            'asset_folder_id' => $folder1->id,
+            'asset_folder_id' => $folder1->local_id,
         ]);
 
-        $this->makeRequest($asset->id, [
-            'folder_id' => $folder2->id,
+        $this->makeRequest($asset->external_id, [
+            'folder_id' => $folder2->external_id,
         ])->assertSchema('MoveAsset', Response::HTTP_FORBIDDEN);
     }
 
@@ -78,11 +78,11 @@ class MoveAssetControllerTest extends TestCase
 
         $asset = factory(Asset::class)->create([
             'project_id' => $this->project->id,
-            'asset_folder_id' => $folder1->id,
+            'asset_folder_id' => $folder1->local_id,
         ]);
 
-        $this->makeRequest($asset->id, [
-            'folder_id' => $folder2->id,
+        $this->makeRequest($asset->external_id, [
+            'folder_id' => $folder2->external_id,
         ])->assertSchema('MoveAsset', Response::HTTP_FORBIDDEN);
     }
 
@@ -144,11 +144,11 @@ class MoveAssetControllerTest extends TestCase
 
         $asset = factory(Asset::class)->create([
             'project_id' => $this->project->id,
-            'asset_folder_id' => $folder1->id,
+            'asset_folder_id' => $folder1->local_id,
         ]);
 
-        $this->makeRequest($asset->id, [
-            'folder_id' => $folder2->id,
+        $this->makeRequest($asset->external_id, [
+            'folder_id' => $folder2->external_id,
         ])->assertSchema('MoveAsset', Response::HTTP_CREATED);
     }
 
@@ -161,6 +161,6 @@ class MoveAssetControllerTest extends TestCase
      */
     protected function makeRequest($id = null, array $data = []): TestResponse
     {
-        return $this->put(route('move-asset', $id ?? faker()->randomNumber()), $data);
+        return $this->put(route('move-asset', $id ?? faker()->numberBetween(1)), $data);
     }
 }

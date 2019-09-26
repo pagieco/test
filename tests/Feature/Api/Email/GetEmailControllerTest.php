@@ -64,6 +64,6 @@ class GetEmailControllerTest extends TestCase
      */
     protected function makeRequest($id = null): TestResponse
     {
-        return $this->get(route('get-email', $id ?? faker()->randomNumber()));
+        return $this->get(route('get-email', $id ?? faker()->numberBetween(1)));
     }
 }

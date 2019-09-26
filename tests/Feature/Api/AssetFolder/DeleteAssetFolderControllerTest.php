@@ -31,7 +31,7 @@ class DeleteAssetFolderControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($assetFolder->id)->assertSchema('DeleteAssetFolder', Response::HTTP_FORBIDDEN);
+        $this->makeRequest($assetFolder->external_id)->assertSchema('DeleteAssetFolder', Response::HTTP_FORBIDDEN);
     }
 
     /** @test */
@@ -41,7 +41,7 @@ class DeleteAssetFolderControllerTest extends TestCase
 
         $assetFolder = factory(AssetFolder::class)->create();
 
-        $this->makeRequest($assetFolder->id)->assertSchema('DeleteAssetFolder', Response::HTTP_NOT_FOUND);
+        $this->makeRequest($assetFolder->external_id)->assertSchema('DeleteAssetFolder', Response::HTTP_NOT_FOUND);
     }
 
     /** @test */
@@ -53,7 +53,7 @@ class DeleteAssetFolderControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($assetFolder->id)->assertSchema('DeleteAssetFolder', Response::HTTP_NO_CONTENT);
+        $this->makeRequest($assetFolder->external_id)->assertSchema('DeleteAssetFolder', Response::HTTP_NO_CONTENT);
     }
 
     /**
@@ -64,6 +64,6 @@ class DeleteAssetFolderControllerTest extends TestCase
      */
     protected function makeRequest($id = null): TestResponse
     {
-        return $this->delete(route('delete-asset-folder', $id ?? faker()->randomNumber()));
+        return $this->delete(route('delete-asset-folder', $id ?? faker()->numberBetween(1)));
     }
 }

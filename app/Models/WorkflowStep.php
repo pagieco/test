@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Traits\BelongsToProject;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class WorkflowStep extends Model
 {
+    use BelongsToProject;
+
     /**
      * The table associated with the model.
      *

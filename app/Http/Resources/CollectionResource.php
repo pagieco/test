@@ -15,7 +15,7 @@ class CollectionResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->_id,
+            'id' => $this->id,
             'name' => $this->name,
             'fields' => [],
             'created_at' => $this->created_at,

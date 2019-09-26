@@ -2,24 +2,19 @@
 
 namespace App\Models;
 
-use Jenssegers\Mongodb\Eloquent\Model;
-use Jenssegers\Mongodb\Relations\BelongsTo;
+use App\Models\Traits\BelongsToProject;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class CollectionField extends Model
 {
-    /**
-     * The connection name for the model.
-     *
-     * @var string
-     */
-    protected $connection = 'mongodb';
+    use BelongsToProject;
 
     /**
-     * The collection associated with the model.
+     * The table associated with the model.
      *
      * @var string
      */
-    protected $collection = 'collection_fields';
+    protected $table = 'collection_fields';
 
     /**
      * The attributes that are mass assignable.
@@ -27,7 +22,7 @@ class CollectionField extends Model
      * @var array
      */
     protected $fillable = [
-        'type', 'name', 'slug', 'helptext', 'is_required',
+        'type', 'slug', 'display_name', 'validations',
     ];
 
     /**
@@ -36,13 +31,13 @@ class CollectionField extends Model
      * @var array
      */
     protected $casts = [
-        'is_required' => 'boolean',
+        'validations' => 'array',
     ];
 
     /**
      * The collection this entry belongs to.
      *
-     * @return \Jenssegers\Mongodb\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function collection(): BelongsTo
     {

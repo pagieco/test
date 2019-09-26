@@ -381,6 +381,21 @@ paths:
           description: No collections found
         403:
           $ref: '#/components/responses/status-403-response'
+    post:
+      summary: Create a new collection
+      description: Create a new collection
+      tags:
+        - Collection
+      operationId: CreateCollection
+      requestBody:
+        $ref: '#/components/requestBodies/create-collection'
+      responses:
+        201:
+          $ref: '#/components/responses/get-collection'
+        403:
+          $ref: '#/components/responses/status-403-response'
+        422:
+          $ref: '#/components/responses/status-422-response'
 
   /collections/{collection}:
     get:
@@ -402,6 +417,25 @@ paths:
           $ref: '#/components/responses/status-403-response'
         404:
           $ref: '#/components/responses/status-404-response'
+    post:
+      summary: Create a new collection entry
+      description: Create a new collection entry
+      tags:
+        - Collection
+      operationId: CreateCollectionEntry
+      parameters:
+        - in: path
+          name: collection
+          schema:
+            type: integer
+          required: true
+      responses:
+        403:
+          $ref: '#/components/responses/status-403-response'
+        404:
+          $ref: '#/components/responses/status-404-response'
+        422:
+          $ref: '#/components/responses/status-422-response'
 
   /forms:
     get:
@@ -754,6 +788,8 @@ paths:
           schema:
             type: integer
           required: true
+      requestBody:
+        $ref: '#/components/requestBodies/update-domain'
       responses:
         200:
           $ref: '#/components/responses/get-domain'
@@ -761,6 +797,27 @@ paths:
           $ref: '#/components/responses/status-403-response'
         404:
           $ref: '#/components/responses/status-404-response'
+    patch:
+      summary: Update a domain
+      description: Update a domain
+      tags:
+        - Domain
+      operationId: UpdateDomain
+      parameters:
+        - in: path
+          name: domain
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          $ref: '#/components/responses/get-domain'
+        403:
+          $ref: '#/components/responses/status-403-response'
+        404:
+          $ref: '#/components/responses/status-404-response'
+        422:
+          $ref: '#/components/responses/status-422-response'
 
   /workflows:
     get:
@@ -936,7 +993,38 @@ components:
               name:
                 type: string
 
+    update-domain:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              domain_name:
+                type: string
+
     create-form:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              fields:
+                type: object
+                properties:
+                  display_name:
+                    type: string
+                  slug:
+                    type: string
+                  validations:
+                    type: object
+                  type:
+                    type: string
+
+    create-collection:
       required: true
       content:
         application/x-www-form-urlencoded:

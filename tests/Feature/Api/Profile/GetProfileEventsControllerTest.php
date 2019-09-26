@@ -32,7 +32,7 @@ class GetProfileEventsControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($profile->id)->assertSchema('GetProfileEvents', Response::HTTP_FORBIDDEN);
+        $this->makeRequest($profile->external_id)->assertSchema('GetProfileEvents', Response::HTTP_FORBIDDEN);
     }
 
     /** @test */
@@ -42,7 +42,7 @@ class GetProfileEventsControllerTest extends TestCase
 
         $profile = factory(Profile::class)->create();
 
-        $this->makeRequest($profile->id)->assertSchema('GetProfileEvents', Response::HTTP_NOT_FOUND);
+        $this->makeRequest($profile->external_id)->assertSchema('GetProfileEvents', Response::HTTP_NOT_FOUND);
     }
 
     /** @test */
@@ -54,7 +54,7 @@ class GetProfileEventsControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($profile->id)->assertSchema('GetProfileEvents', Response::HTTP_NO_CONTENT);
+        $this->makeRequest($profile->external_id)->assertSchema('GetProfileEvents', Response::HTTP_NO_CONTENT);
     }
 
     /** @test */
@@ -67,12 +67,13 @@ class GetProfileEventsControllerTest extends TestCase
         ]);
 
         factory(ProfileEvent::class)->create([
-            'profile_id' => $profile->id,
+            'profile_id' => $profile->local_id,
+            'project_id' => $profile->project_id,
         ]);
 
         factory(ProfileEvent::class)->create();
 
-        $this->assertCount(1, $this->makeRequest($profile->id)->json('data'));
+        $this->assertCount(1, $this->makeRequest($profile->external_id)->json('data'));
     }
 
     /** @test */
@@ -85,10 +86,11 @@ class GetProfileEventsControllerTest extends TestCase
         ]);
 
         factory(ProfileEvent::class)->create([
-            'profile_id' => $profile->id,
+            'profile_id' => $profile->local_id,
+            'project_id' => $profile->project_id,
         ]);
 
-        $this->makeRequest($profile->id)->assertSchema('GetProfileEvents',  Response::HTTP_OK);
+        $this->makeRequest($profile->external_id)->assertSchema('GetProfileEvents',  Response::HTTP_OK);
     }
 
     /**
@@ -99,6 +101,6 @@ class GetProfileEventsControllerTest extends TestCase
      */
     protected function makeRequest($id = null): TestResponse
     {
-        return $this->get(route('get-profile-events', $id ?? faker()->randomNumber()));
+        return $this->get(route('get-profile-events', $id ?? faker()->numberBetween(1)));
     }
 }

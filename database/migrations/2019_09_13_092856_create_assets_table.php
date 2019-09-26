@@ -14,7 +14,8 @@ class CreateAssetsTable extends Migration
     public function up()
     {
         Schema::create('assets', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('local_id');
+            $table->unsignedBigInteger('external_id')->unique()->index()->nullable();
             $table->unsignedBigInteger('project_id');
             $table->unsignedBigInteger('asset_folder_id')->nullable();
             $table->string('hash');
@@ -34,7 +35,7 @@ class CreateAssetsTable extends Migration
                 ->onDelete('cascade');
 
             $table->foreign('asset_folder_id')
-                ->references('id')->on('asset_folders')
+                ->references('local_id')->on('asset_folders')
                 ->onDelete('set null');
         });
     }

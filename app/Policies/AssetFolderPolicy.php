@@ -31,7 +31,7 @@ class AssetFolderPolicy
     public function view(User $user, AssetFolder $assetFolder): bool
     {
         return $user->hasAccess('asset-folder:view')
-            && $user->currentProject()->assetFolders->contains($assetFolder->id);
+            && $user->currentProject()->assetFolders->contains($assetFolder->local_id);
     }
 
     /**
@@ -55,7 +55,7 @@ class AssetFolderPolicy
     public function update(User $user, AssetFolder $assetFolder): bool
     {
         return $user->hasAccess('asset-folder:update')
-            && $user->currentProject()->assetFolders->contains($assetFolder->id);
+            && $user->currentProject()->assetFolders->contains($assetFolder->local_id);
     }
 
     /**
@@ -68,6 +68,6 @@ class AssetFolderPolicy
     public function delete(User $user, AssetFolder $assetFolder): bool
     {
         return $user->hasAccess('asset-folder:delete')
-            && $user->currentProject()->assetFolders->contains($assetFolder->id);
+            && $user->currentProject()->assetFolders->contains($assetFolder->local_id);
     }
 }
