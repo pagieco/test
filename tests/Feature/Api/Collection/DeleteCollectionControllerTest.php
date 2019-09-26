@@ -9,7 +9,7 @@ use Tests\Feature\AuthenticatedRoute;
 use Illuminate\Foundation\Testing\TestResponse;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class GetCollectionControllerTest extends TestCase
+class DeleteCollectionControllerTest extends TestCase
 {
     use RefreshDatabase;
     use AuthenticatedRoute;
@@ -19,7 +19,7 @@ class GetCollectionControllerTest extends TestCase
     {
         $this->login();
 
-        $this->makeRequest()->assertSchema('GetCollection', Response::HTTP_NOT_FOUND);
+        $this->makeRequest()->assertSchema('DeleteCollection', Response::HTTP_NOT_FOUND);
     }
 
     /** @test */
@@ -31,7 +31,7 @@ class GetCollectionControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($collection->external_id)->assertSchema('GetCollection', Response::HTTP_FORBIDDEN);
+        $this->makeRequest($collection->external_id)->assertSchema('DeleteCollection', Response::HTTP_FORBIDDEN);
     }
 
     /** @test */
@@ -41,19 +41,19 @@ class GetCollectionControllerTest extends TestCase
 
         $collection = factory(Collection::class)->create();
 
-        $this->makeRequest($collection->external_id)->assertSchema('GetCollection', Response::HTTP_NOT_FOUND);
+        $this->makeRequest($collection->external_id)->assertSchema('DeleteCollection', Response::HTTP_NOT_FOUND);
     }
 
     /** @test */
-    public function it_successfully_executes_the_get_collection_route()
+    public function it_can_successfully_execute_the_delete_collection_route()
     {
-        $this->login()->forceAccess($this->role, 'collection:view');
+        $this->login()->forceAccess($this->role, 'collection:delete');
 
         $collection = factory(Collection::class)->create([
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($collection->external_id)->assertSchema('GetCollection', Response::HTTP_OK);
+        $this->makeRequest($collection->external_id)->assertSchema('DeleteCollection', Response::HTTP_NO_CONTENT);
     }
 
     /**
@@ -64,6 +64,6 @@ class GetCollectionControllerTest extends TestCase
      */
     protected function makeRequest($id = null): TestResponse
     {
-        return $this->get(route('get-collection', $id ?? faker()->numberBetween(1)));
+        return $this->delete(route('delete-collection', $id ?? faker()->numberBetween(1)));
     }
 }

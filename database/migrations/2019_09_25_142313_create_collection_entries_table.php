@@ -14,14 +14,17 @@ class CreateCollectionEntriesTable extends Migration
     public function up()
     {
         Schema::create('collection_entries', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('local_id');
+            $table->unsignedBigInteger('external_id')->unique()->index()->nullable();
             $table->unsignedBigInteger('collection_id');
             $table->unsignedBigInteger('project_id');
+            $table->string('name');
+            $table->string('slug');
             $table->json('entry_data');
             $table->timestamps();
 
             $table->foreign('collection_id')
-                ->references('id')->on('collections')
+                ->references('local_id')->on('collections')
                 ->onDelete('cascade');
 
             $table->foreign('project_id')

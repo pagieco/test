@@ -65,9 +65,7 @@ class CreateCollectionEntryController extends Controller
      */
     protected function createEntry(Request $request, Collection $collection): CollectionEntry
     {
-        $entry = new CollectionEntry([
-            'entry_data' => $request->get('fields'),
-        ]);
+        $entry = new CollectionEntry($request->only('name', 'slug', 'entry_data'));
 
         $entry->collection()->associate($collection);
         $entry->project()->associate($collection->project);

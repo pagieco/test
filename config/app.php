@@ -167,6 +167,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Wnx\LaravelStats\StatsServiceProvider::class,
 
         /*
          * Application Service Providers...

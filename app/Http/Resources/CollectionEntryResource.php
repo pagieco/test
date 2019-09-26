@@ -14,6 +14,13 @@ class CollectionEntryResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->external_id,
+            'name' => $this->name,
+            'slug' => $this->slug,
+            'entry_data' => $this->entry_data,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+        ];
     }
 }

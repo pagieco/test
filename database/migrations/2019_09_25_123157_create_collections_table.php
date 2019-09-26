@@ -14,7 +14,8 @@ class CreateCollectionsTable extends Migration
     public function up()
     {
         Schema::create('collections', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('local_id');
+            $table->unsignedBigInteger('external_id')->unique()->index()->nullable();
             $table->unsignedBigInteger('project_id');
             $table->string('name');
             $table->string('slug');

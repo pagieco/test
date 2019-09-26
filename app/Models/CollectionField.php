@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use App\Models\Traits\BelongsToProject;
+use App\Models\Traits\HasExternalShardId;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class CollectionField extends Model
 {
     use BelongsToProject;
+    use HasExternalShardId;
 
     /**
      * The table associated with the model.
@@ -15,6 +17,13 @@ class CollectionField extends Model
      * @var string
      */
     protected $table = 'collection_fields';
+
+    /**
+     * The primary key for the model.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'local_id';
 
     /**
      * The attributes that are mass assignable.
@@ -41,6 +50,6 @@ class CollectionField extends Model
      */
     public function collection(): BelongsTo
     {
-        return $this->belongsTo(Collection::class);
+        return $this->belongsTo(Collection::class, 'collection_id');
     }
 }

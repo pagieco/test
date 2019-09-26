@@ -129,6 +129,7 @@ return [
         'collection:list' => ['List collections', 'List the collections.'],
         'collection:view' => ['View collection', 'View a collection.'],
         'collection:create' => ['Create collection', 'Create a collection.'],
+        'collection:delete' => ['Delete collection', 'Delete a collection.'],
         'collection:create-entry' => ['Create collection entry', 'Create a collection entry.'],
 
         'domain:list' => ['List domains', 'List the domains.'],

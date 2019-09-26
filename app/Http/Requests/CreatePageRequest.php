@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\UniqueInProject;
 use Illuminate\Validation\Rule;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Foundation\Http\FormRequest;

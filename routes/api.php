@@ -32,6 +32,7 @@ Route::delete('/pages/{page}', 'Api\Page\DeletePageController')->name('delete-pa
 // Collection routes...
 Route::get('/collections', 'Api\Collection\GetCollectionsController')->name('get-collections');
 Route::post('/collections', 'Api\Collection\CreateCollectionController')->name('create-collection');
+Route::delete('/collections/{collection}', 'Api\Collection\DeleteCollectionController')->name('delete-collection');
 Route::get('/collections/{collection}', 'Api\Collection\GetCollectionController')->name('get-collection');
 Route::post('/collections/{collection}', 'Api\Collection\CreateCollectionEntryController')->name('create-collection-entry');
 

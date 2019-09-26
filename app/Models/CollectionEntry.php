@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use App\Models\Traits\BelongsToProject;
+use App\Models\Traits\HasExternalShardId;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class CollectionEntry extends Model
 {
     use BelongsToProject;
+    use HasExternalShardId;
 
     /**
      * The table associated with the model.
@@ -17,12 +19,19 @@ class CollectionEntry extends Model
     protected $table = 'collection_entries';
 
     /**
+     * The primary key for the model.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'local_id';
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'slug', 'name', 'values',
+        'slug', 'name', 'entry_data',
     ];
 
     /**
@@ -31,7 +40,7 @@ class CollectionEntry extends Model
      * @var array
      */
     protected $casts = [
-        'values' => 'array',
+        'entry_data' => 'array',
     ];
 
     /**
@@ -41,6 +50,6 @@ class CollectionEntry extends Model
      */
     public function collection(): BelongsTo
     {
-        return $this->belongsTo(Collection::class);
+        return $this->belongsTo(Collection::class, 'collection_id');
     }
 }

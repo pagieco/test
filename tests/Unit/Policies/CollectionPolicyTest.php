@@ -66,4 +66,68 @@ class CollectionPolicyTest extends PolicyTestCase
 
         $this->assertTrue((new CollectionPolicy)->view($user, $collection));
     }
+
+    /** @test */
+    public function it_returns_false_when_the_user_has_no_permission_the_delete_a_collection()
+    {
+        $user = $this->login();
+
+        $collection = factory(Collection::class)->create();
+
+        $this->assertFalse((new CollectionPolicy)->delete($user, $collection));
+    }
+
+    /** @test */
+    public function it_returns_false_when_the_user_has_permission_to_delete_a_collection_but_the_collection_is_not_part_of_the_current_project()
+    {
+        $user = tap($this->login())->forceAccess($this->role, 'collection:delete');
+
+        $collection = factory(Collection::class)->create();
+
+        $this->assertFalse((new CollectionPolicy)->delete($user, $collection));
+    }
+
+    /** @test */
+    public function it_returns_true_when_the_use_has_permission_to_delete_a_collection()
+    {
+        $user = tap($this->login())->forceAccess($this->role, 'collection:delete');
+
+        $collection = factory(Collection::class)->create([
+            'project_id' => $this->project->id,
+        ]);
+
+        $this->assertTrue((new CollectionPolicy)->delete($user, $collection));
+    }
+
+    /** @test */
+    public function it_returns_false_when_the_user_has_no_permission_to_create_a_new_collection_entry()
+    {
+        $user = $this->login();
+
+        $collection = factory(Collection::class)->create();
+
+        $this->assertFalse((new CollectionPolicy)->createEntry($user, $collection));
+    }
+
+    /** @test */
+    public function it_returns_false_when_the_user_has_permission_to_create_a_new_collection_entry_but_the_collection_is_not_part_of_the_current_project()
+    {
+        $user = tap($this->login())->forceAccess($this->role, 'collection:create-entry');
+
+        $collection = factory(Collection::class)->create();
+
+        $this->assertFalse((new CollectionPolicy)->createEntry($user, $collection));
+    }
+
+    /** @test */
+    public function it_returns_true_when_the_user_has_permission_to_create_a_new_collection()
+    {
+        $user = tap($this->login())->forceAccess($this->role, 'collection:create-entry');
+
+        $collection = factory(Collection::class)->create([
+            'project_id' => $this->project->id,
+        ]);
+
+        $this->assertTrue((new CollectionPolicy)->createEntry($user, $collection));
+    }
 }

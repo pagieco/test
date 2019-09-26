@@ -14,7 +14,8 @@ class CreateCollectionFieldsTable extends Migration
     public function up()
     {
         Schema::create('collection_fields', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('local_id');
+            $table->unsignedBigInteger('external_id')->unique()->index()->nullable();
             $table->unsignedBigInteger('collection_id');
             $table->unsignedBigInteger('project_id');
             $table->string('display_name');
@@ -24,7 +25,7 @@ class CreateCollectionFieldsTable extends Migration
             $table->timestamps();
 
             $table->foreign('collection_id')
-                ->references('id')->on('collections')
+                ->references('local_id')->on('collections')
                 ->onDelete('cascade');
 
             $table->foreign('project_id')

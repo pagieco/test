@@ -31,7 +31,7 @@ class CollectionPolicy
     public function view(User $user, Collection $collection): bool
     {
         return $user->hasAccess('collection:view')
-            && $user->currentProject()->collections->contains($collection->id);
+            && $user->currentProject()->collections->contains($collection->local_id);
     }
 
     /**
@@ -45,9 +45,29 @@ class CollectionPolicy
         return $user->hasAccess('collection:create');
     }
 
+    /**
+     * Determine whether the user can delete the collection.
+     *
+     * @param  \App\Models\User $user
+     * @param  \App\Models\Collection $collection
+     * @return bool
+     */
+    public function delete(User $user, Collection $collection): bool
+    {
+        return $user->hasAccess('collection:delete')
+            && $user->currentProject()->collections->contains($collection->local_id);
+    }
+
+    /**
+     * Determine whether the user can create a new collection entry.
+     *
+     * @param  \App\Models\User $user
+     * @param  \App\Models\Collection $collection
+     * @return bool
+     */
     public function createEntry(User $user, Collection $collection): bool
     {
         return $user->hasAccess('collection:create-entry')
-            && $user->currentProject()->collections->contains($collection->id);
+            && $user->currentProject()->collections->contains($collection->local_id);
     }
 }

@@ -417,6 +417,25 @@ paths:
           $ref: '#/components/responses/status-403-response'
         404:
           $ref: '#/components/responses/status-404-response'
+    delete:
+      summary: Delete a collection
+      description: Delete a collection
+      tags:
+        - Collection
+      operationId: DeleteCollection
+      parameters:
+        - in: path
+          name: collection
+          schema:
+            type: integer
+          required: true
+      responses:
+        204:
+          description: Collection deleted
+        403:
+          $ref: '#/components/responses/status-403-response'
+        404:
+          $ref: '#/components/responses/status-404-response'
     post:
       summary: Create a new collection entry
       description: Create a new collection entry
@@ -430,6 +449,8 @@ paths:
             type: integer
           required: true
       responses:
+        201:
+          $ref: '#/components/responses/get-collection-entry'
         403:
           $ref: '#/components/responses/status-403-response'
         404:
@@ -788,8 +809,6 @@ paths:
           schema:
             type: integer
           required: true
-      requestBody:
-        $ref: '#/components/requestBodies/update-domain'
       responses:
         200:
           $ref: '#/components/responses/get-domain'
@@ -809,6 +828,8 @@ paths:
           schema:
             type: integer
           required: true
+      requestBody:
+        $ref: '#/components/requestBodies/update-domain'
       responses:
         200:
           $ref: '#/components/responses/get-domain'
@@ -1134,6 +1155,15 @@ components:
             properties:
               data:
                 $ref: '#/components/schemas/collection'
+
+    get-collection-entry:
+      description: OK
+      content:
+        application/json:
+          schema:
+            properties:
+              data:
+                $ref: '#/components/schemas/collection-entry'
 
     get-forms:
       description: OK
@@ -1474,6 +1504,23 @@ components:
         name:
           type: string
         fields:
+          type: object
+        created_at:
+          type: string
+          format: 'date-time'
+        updated_at:
+          type: string
+          format: 'date-time'
+
+    collection-entry:
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        slug:
+          type: string
+        entry_data:
           type: object
         created_at:
           type: string

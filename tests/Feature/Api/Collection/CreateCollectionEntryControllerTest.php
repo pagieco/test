@@ -5,6 +5,7 @@ namespace Tests\Feature\Api\Collection;
 use Tests\TestCase;
 use App\Http\Response;
 use App\Models\Collection;
+use App\Models\CollectionEntry;
 use Tests\Feature\AuthenticatedRoute;
 use Illuminate\Foundation\Testing\TestResponse;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -31,8 +32,10 @@ class CreateCollectionEntryControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($collection->id, [
-            'fields' => [
+        $this->makeRequest($collection->external_id, [
+            'name' => faker()->name,
+            'slug' => '/',
+            'entry_data' => [
                 'name' => 'value',
             ],
         ])->assertSchema('CreateCollectionEntry', Response::HTTP_FORBIDDEN);
@@ -45,7 +48,7 @@ class CreateCollectionEntryControllerTest extends TestCase
 
         $collection = factory(Collection::class)->create();
 
-        $this->makeRequest($collection->id)->assertSchema('CreateCollectionEntry', Response::HTTP_NOT_FOUND);
+        $this->makeRequest($collection->external_id)->assertSchema('CreateCollectionEntry', Response::HTTP_NOT_FOUND);
     }
 
     /** @test */
@@ -57,7 +60,120 @@ class CreateCollectionEntryControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($collection->id)->assertSchema('CreateCollectionEntry', Response::HTTP_UNPROCESSABLE_ENTITY);
+        $this->makeRequest($collection->external_id)->assertSchema('CreateCollectionEntry', Response::HTTP_UNPROCESSABLE_ENTITY);
+    }
+
+    /** @test */
+    public function it_throws_a_422_exception_when_the_name_is_missing_when_creating_a_new_entry()
+    {
+        $this->login()->forceAccess($this->role, 'collection:create-entry');
+
+        $collection = factory(Collection::class)->create([
+            'project_id' => $this->project->id,
+        ]);
+
+        $this->makeRequest($collection->external_id, [
+            'name' => null,
+            'slug' => 'test-slug',
+            'entry_data' => [
+                'test' => 'value',
+            ],
+        ])->assertSchema('CreateCollectionEntry', Response::HTTP_UNPROCESSABLE_ENTITY);
+    }
+
+    /** @test */
+    public function it_throws_a_422_exception_when_the_name_is_too_short_when_creating_a_new_entry()
+    {
+        $this->login()->forceAccess($this->role, 'collection:create-entry');
+
+        $collection = factory(Collection::class)->create([
+            'project_id' => $this->project->id,
+        ]);
+
+        $this->makeRequest($collection->external_id, [
+            'name' => 'a',
+            'slug' => 'test-slug',
+            'entry_data' => [
+                'test' => 'value',
+            ],
+        ])->assertSchema('CreateCollectionEntry', Response::HTTP_UNPROCESSABLE_ENTITY);
+    }
+
+    /** @test */
+    public function it_throws_a_422_exception_when_the_name_is_too_long_when_creating_a_new_entry()
+    {
+        $this->login()->forceAccess($this->role, 'collection:create-entry');
+
+        $collection = factory(Collection::class)->create([
+            'project_id' => $this->project->id,
+        ]);
+
+        $this->makeRequest($collection->external_id, [
+            'name' => str_repeat('a', 101),
+            'slug' => 'test-slug',
+            'entry_data' => [
+                'test' => 'value',
+            ],
+        ])->assertSchema('CreateCollectionEntry', Response::HTTP_UNPROCESSABLE_ENTITY);
+    }
+
+    /** @test */
+    public function it_throws_a_422_exception_when_the_slug_is_missing_when_creating_a_new_entry()
+    {
+        $this->login()->forceAccess($this->role, 'collection:create-entry');
+
+        $collection = factory(Collection::class)->create([
+            'project_id' => $this->project->id,
+        ]);
+
+        $this->makeRequest($collection->external_id, [
+            'name' => faker()->name,
+            'slug' => null,
+            'entry_data' => [
+                'test' => 'value',
+            ],
+        ])->assertSchema('CreateCollectionEntry', Response::HTTP_UNPROCESSABLE_ENTITY);
+    }
+
+    /** @test */
+    public function it_throws_a_422_exception_when_the_slug_is_too_long_when_creating_a_new_entry()
+    {
+        $this->login()->forceAccess($this->role, 'collection:create-entry');
+
+        $collection = factory(Collection::class)->create([
+            'project_id' => $this->project->id,
+        ]);
+
+        $this->makeRequest($collection->external_id, [
+            'name' => faker()->name,
+            'slug' => str_repeat('a', 251),
+            'entry_data' => [
+                'test' => 'value',
+            ],
+        ])->assertSchema('CreateCollectionEntry', Response::HTTP_UNPROCESSABLE_ENTITY);
+    }
+
+    /** @test */
+    public function it_throws_a_422_exception_when_the_slug_already_exists_in_the_same_collection_when_creating_a_new_entry()
+    {
+        $this->login()->forceAccess($this->role, 'collection:create-entry');
+
+        $collection = factory(Collection::class)->create([
+            'project_id' => $this->project->id,
+        ]);
+
+        factory(CollectionEntry::class)->create([
+            'collection_id' => $collection->local_id,
+            'slug' => 'test-slug',
+        ]);
+
+        $this->makeRequest($collection->external_id, [
+            'name' => faker()->name,
+            'slug' => 'test-slug',
+            'entry_data' => [
+                'test' => 'value',
+            ],
+        ])->assertSchema('CreateCollectionEntry', Response::HTTP_UNPROCESSABLE_ENTITY);
     }
 
     /** @test */
@@ -69,17 +185,13 @@ class CreateCollectionEntryControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        dd($this->makeRequest($collection->id, [
-            'fields' => [
+        $this->makeRequest($collection->external_id, [
+            'name' => faker()->name,
+            'slug' => faker()->slug,
+            'entry_data' => [
                 'name' => 'value',
             ],
-        ])->json());
-
-        $this->makeRequest($collection->id, [
-            'fields' => [
-                'name' => 'value',
-            ],
-        ])->assertSchema('CreateCollectionEntry', Response::HTTP_UNPROCESSABLE_ENTITY);
+        ])->assertSchema('CreateCollectionEntry', Response::HTTP_CREATED);
     }
 
     /**

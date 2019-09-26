@@ -3,10 +3,12 @@
          backupStaticAttributes="false"
          bootstrap="vendor/autoload.php"
          colors="true"
+         cacheResult="true"
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
          processIsolation="false"
+         orderBy="defects"
          stopOnFailure="true">
     <testsuites>
         <testsuite name="Unit">
@@ -17,6 +19,9 @@
             <directory suffix="Test.php">./tests/Feature</directory>
         </testsuite>
     </testsuites>
+    <listeners>
+        <listener class="JohnKary\PHPUnit\Listener\SpeedTrapListener" />
+    </listeners>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">./app</directory>
