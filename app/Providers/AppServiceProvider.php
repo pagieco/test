@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use Illuminate\Http\Request;
 use App\Macros\RequestMixin;
+use Illuminate\Http\Request;
 use App\Models\ModelObservers;
 use App\Macros\TestResposeMixin;
 use Illuminate\Support\ServiceProvider;

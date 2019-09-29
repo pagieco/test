@@ -16,7 +16,13 @@ class ProjectObserver
      */
     public function creating(Project $project): void
     {
-        $project->setAttribute('hash', Str::uuid());
+        if (! $project->getAttribute('hash')) {
+            $project->setAttribute('hash', Str::uuid());
+        }
+
+        if (! $project->getAttribute('api_token')) {
+            $project->setAttribute('api_token', strtolower());
+        }
     }
 
     /**

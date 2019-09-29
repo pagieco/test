@@ -46,4 +46,17 @@ class DomainPolicy
         return $user->hasAccess('domain:update')
             && $user->currentProject()->domains->contains($domain->id);
     }
+
+    /**
+     * Determine whether the user can delete the domain.
+     *
+     * @param  \App\Models\User $user
+     * @param  \App\Models\Domain $domain
+     * @return bool
+     */
+    public function delete(User $user, Domain $domain): bool
+    {
+        return $user->hasAccess('domain:delete')
+            && $user->currentProject()->domains->contains($domain->id);
+    }
 }

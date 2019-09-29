@@ -130,4 +130,36 @@ class CollectionPolicyTest extends PolicyTestCase
 
         $this->assertTrue((new CollectionPolicy)->createEntry($user, $collection));
     }
+
+    /** @test */
+    public function it_returns_false_when_the_user_has_no_permission_to_delete_the_collection_entry()
+    {
+        $user = $this->login();
+
+        $collection = factory(Collection::class)->create();
+
+        $this->assertFalse((new CollectionPolicy)->deleteEntry($user, $collection));
+    }
+
+    /** @test */
+    public function it_returns_false_when_the_user_has_permission_to_delete_a_collection_entry_but_the_collection_entry_is_not_part_of_the_current_project()
+    {
+        $user = tap($this->login())->forceAccess($this->role, 'collection:delete-entry');
+
+        $collection = factory(Collection::class)->create();
+
+        $this->assertFalse((new CollectionPolicy)->deleteEntry($user, $collection));
+    }
+
+    /** @test */
+    public function it_returns_true_when_the_user_has_permission_to_delete_a_collection_entry()
+    {
+        $user = tap($this->login())->forceAccess($this->role, 'collection:delete-entry');
+
+        $collection = factory(Collection::class)->create([
+            'project_id' => $this->project->id,
+        ]);
+
+        $this->assertTrue((new CollectionPolicy)->deleteEntry($user, $collection));
+    }
 }

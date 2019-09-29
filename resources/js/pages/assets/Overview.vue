@@ -55,6 +55,7 @@ export default {
           :resource-name="{ singular: 'asset', plural: 'assets' }">
         <template v-slot:default="item">
           <ResourceListItem v-bind="{ ...item }">
+            <img :src="item.thumb_path" alt="">
             <TextStyle variation="strong">{{ item.filename }}</TextStyle>
           </ResourceListItem>
         </template>

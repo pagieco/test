@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "js/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"2fe0c51f7186decfd7c0","1":"6b095436698073a9312b","2":"fa30eb635c14295a1b5c","3":"a627aac098b04f56e1e5","4":"19946083a637c78a150e","5":"a58cc0d650a2821eeb10","6":"4cc29c7d0dc5ba32f03b","7":"6ca5b8decf9d46c0e4d0","8":"6dd8fe2c889f80f3d8e4","9":"6a470399ce27e63758a1"}[chunkId] + ""
+/******/ 		return __webpack_require__.p + "js/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"b7275a45308cab5fdbb9","1":"6b095436698073a9312b","2":"fa30eb635c14295a1b5c","3":"a627aac098b04f56e1e5","4":"19946083a637c78a150e","5":"a58cc0d650a2821eeb10","6":"4cc29c7d0dc5ba32f03b","7":"6ca5b8decf9d46c0e4d0","8":"6dd8fe2c889f80f3d8e4","9":"6a470399ce27e63758a1"}[chunkId] + ""
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -15223,6 +15223,9 @@ __webpack_require__.r(__webpack_exports__);
       required: true
     },
     detail: {
+      type: String
+    },
+    avatarSrc: {
       type: String
     }
   }
@@ -40350,7 +40353,7 @@ var render = function() {
     _c(
       "button",
       [
-        _c("Avatar", { attrs: { name: _vm.name } }),
+        _c("Avatar", { attrs: { name: _vm.name, src: _vm.avatarSrc } }),
         _vm._v(" "),
         _c("span", { staticClass: "top-bar__user-menu__details" }, [
           _c("p", { staticClass: "top-bar__user-menu__name" }, [
@@ -40426,6 +40429,7 @@ var render = function() {
                 attrs: {
                   "user-menu": {
                     name: _vm.appConfig.user.name,
+                    avatarSrc: _vm.appConfig.user.picture,
                     detail: _vm.appConfig.project.name
                   }
                 }

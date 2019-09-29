@@ -2,8 +2,8 @@
 
 namespace Tests;
 
-use App\Models\User;
 use App\Models\Role;
+use App\Models\User;
 use App\Models\Project;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Database\Eloquent\Model;

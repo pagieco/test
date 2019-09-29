@@ -16,7 +16,7 @@ class ProjectObserverTest extends TestCase
     {
         $project = factory(Project::class)->create();
 
-        $this->assertInstanceOf(Uuid::class, $project->hash);
+        $this->assertTrue(Uuid::isValid($project->hash));
     }
 
     /** @test */

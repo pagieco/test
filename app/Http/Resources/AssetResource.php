@@ -20,6 +20,7 @@ class AssetResource extends JsonResource
             'hash_path' => $this->hash_path,
             'filename' => $this->filename,
             'original_filename' => $this->original_filename,
+            'caption' => $this->caption,
             'description' => $this->description,
             'extension' => $this->extension,
             'mimetype' => $this->mimetype,
@@ -27,6 +28,8 @@ class AssetResource extends JsonResource
             'extra_attributes' => $this->extra_attributes,
             'path' => $this->path,
             'thumb_path' => $this->thumb_path,
+            'url' => asset($this->path),
+            'thumb_url' => asset($this->thumb_path),
             'updated_at' => $this->updated_at,
             'created_at' => $this->created_at,
         ];

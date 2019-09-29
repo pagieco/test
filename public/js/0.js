@@ -96,6 +96,8 @@ var render = function() {
                         false
                       ),
                       [
+                        _c("img", { attrs: { src: item.thumb_path, alt: "" } }),
+                        _vm._v(" "),
                         _c("TextStyle", { attrs: { variation: "strong" } }, [
                           _vm._v(_vm._s(item.filename))
                         ])

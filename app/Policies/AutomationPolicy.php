@@ -33,4 +33,17 @@ class AutomationPolicy
         return $user->hasAccess('automation:view')
             && $user->currentProject()->automations->contains($automation->id);
     }
+
+    /**
+     * Determine whether the user can delete the automation.
+     *
+     * @param  \App\Models\User $user
+     * @param  \App\Models\Automation $automation
+     * @return bool
+     */
+    public function delete(User $user, Automation $automation): bool
+    {
+        return $user->hasAccess('automation:delete')
+            && $user->currentProject()->automations->contains($automation->id);
+    }
 }

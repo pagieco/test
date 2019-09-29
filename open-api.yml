@@ -458,6 +458,27 @@ paths:
         422:
           $ref: '#/components/responses/status-422-response'
 
+  /collection-entries/{entry}:
+    delete:
+      summary: Delete a collection entry
+      description: Delete a collection entry
+      tags:
+        - Collection
+      operationId: DeleteCollectionEntry
+      parameters:
+        - in: path
+          name: entry
+          schema:
+            type: integer
+          required: true
+      responses:
+        204:
+          description: Deleted the collection entry
+        403:
+          $ref: '#/components/responses/status-403-response'
+        404:
+          $ref: '#/components/responses/status-404-response'
+
   /forms:
     get:
       summary: Get a list of forms
@@ -780,6 +801,25 @@ paths:
           $ref: '#/components/responses/status-403-response'
         404:
           $ref: '#/components/responses/status-404-response'
+    delete:
+      summary: Delete an automation
+      description: Delete an automation
+      tags:
+        - Automation
+      operationId: DeleteAutomation
+      parameters:
+        - in: path
+          name: automation
+          schema:
+            type: integer
+          required: true
+      responses:
+        204:
+          description: Automation successfully deleted
+        403:
+          $ref: '#/components/responses/status-403-response'
+        404:
+          $ref: '#/components/responses/status-404-response'
 
   /domains:
     get:
@@ -839,6 +879,27 @@ paths:
           $ref: '#/components/responses/status-404-response'
         422:
           $ref: '#/components/responses/status-422-response'
+    delete:
+      summary: Delete a domain
+      description: Delete a domain
+      tags:
+        - Domain
+      operationId: DeleteDomain
+      parameters:
+        - in: path
+          name: domain
+          schema:
+            type: integer
+          required: true
+      responses:
+        204:
+          description: Domain successfully deleted
+        400:
+          $ref: '#/components/responses/status-400-response'
+        403:
+          $ref: '#/components/responses/status-403-response'
+        404:
+          $ref: '#/components/responses/status-404-response'
 
   /workflows:
     get:
@@ -1446,6 +1507,8 @@ components:
           type: string
         original_filename:
           type: string
+        caption:
+          type: string
         description:
           type: string
         extension:
@@ -1460,6 +1523,11 @@ components:
         path:
           type: string
         thumb_path:
+          type: string
+          nullable: true
+        url:
+          type: string
+        thumb_url:
           type: string
           nullable: true
         created_at:

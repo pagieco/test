@@ -90,7 +90,7 @@ class GetProfileEventsControllerTest extends TestCase
             'project_id' => $profile->project_id,
         ]);
 
-        $this->makeRequest($profile->external_id)->assertSchema('GetProfileEvents',  Response::HTTP_OK);
+        $this->makeRequest($profile->external_id)->assertSchema('GetProfileEvents', Response::HTTP_OK);
     }
 
     /**

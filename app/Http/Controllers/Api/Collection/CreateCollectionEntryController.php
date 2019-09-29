@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api\Collection;
 
 use App\Models\Collection;
 use Illuminate\Http\Request;
-use App\Models\CollectionField;
 use App\Models\CollectionEntry;
+use App\Models\CollectionField;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CollectionEntryResource;
 use App\Http\Requests\CreateCollectionEntryRequest;

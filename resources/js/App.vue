@@ -25,6 +25,7 @@ export default {
     <template v-slot:top-bar>
       <TopBar :user-menu="{
         name: appConfig.user.name,
+        avatarSrc: appConfig.user.picture,
         detail: appConfig.project.name,
       }" />
     </template>

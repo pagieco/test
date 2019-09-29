@@ -8,7 +8,6 @@
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
          processIsolation="false"
-         orderBy="defects"
          stopOnFailure="true">
     <testsuites>
         <testsuite name="Unit">

@@ -35,6 +35,7 @@ Route::post('/collections', 'Api\Collection\CreateCollectionController')->name('
 Route::delete('/collections/{collection}', 'Api\Collection\DeleteCollectionController')->name('delete-collection');
 Route::get('/collections/{collection}', 'Api\Collection\GetCollectionController')->name('get-collection');
 Route::post('/collections/{collection}', 'Api\Collection\CreateCollectionEntryController')->name('create-collection-entry');
+Route::delete('/collection-entries/{entry}', 'Api\Collection\DeleteCollectionEntryController')->name('delete-collection-entry');
 
 // Form routes...
 Route::get('/forms', 'Api\Form\GetFormsController')->name('get-forms');
@@ -53,6 +54,7 @@ Route::delete('/emails/{email}', 'Api\Email\DeleteEmailController')->name('delet
 // Profile routes...
 Route::get('/profiles', 'Api\Profile\GetProfilesController')->name('get-profiles');
 Route::get('/profiles/{profile}', 'Api\Profile\GetProfileController')->name('get-profile');
+Route::post('/profiles/{profile}', 'Api\Profile\TrackProfileEventController')->name('track-profile-event');
 Route::delete('/profiles/{profile}', 'Api\Profile\DeleteProfileController')->name('delete-profile');
 Route::get('/profiles/{profile}/events', 'Api\Profile\GetProfileEventsController')->name('get-profile-events');
 Route::get('/profile-events/{event}', 'Api\Profile\GetProfileEventController')->name('get-profile-event');
@@ -60,11 +62,13 @@ Route::get('/profile-events/{event}', 'Api\Profile\GetProfileEventController')->
 // Automation routes...
 Route::get('/automations', 'Api\Automation\GetAutomationsController')->name('get-automations');
 Route::get('/automations/{automation}', 'Api\Automation\GetAutomationController')->name('get-automation');
+Route::delete('/automations/{automation}', 'Api\Automation\DeleteAutomationController')->name('delete-automation');
 
 // Domain routes...
 Route::get('/domains', 'Api\Domain\GetDomainsController')->name('get-domains');
 Route::get('/domains/{domain}', 'Api\Domain\GetDomainController')->name('get-domain');
 Route::patch('/domains/{domain}', 'Api\Domain\UpdateDomainController')->name('update-domain');
+Route::delete('/domains/{domain}', 'Api\Domain\DeleteDomainController')->name('delete-domain');
 
 // Workflow routes...
 Route::get('/workflows', 'Api\Workflow\GetWorkflowsController')->name('get-workflows');

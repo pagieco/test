@@ -23,7 +23,9 @@ class Project extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'hash',
+        'name',
+        'hash', // Used for e.g. folders paths etc
+        'api_token',
     ];
 
     /**

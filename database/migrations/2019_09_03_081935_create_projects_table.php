@@ -18,6 +18,7 @@ class CreateProjectsTable extends Migration
             $table->unsignedBigInteger('user_id')->index();
             $table->string('name');
             $table->string('hash');
+            $table->string('api_token');
             $table->timestamps();
 
             $table->foreign('user_id')

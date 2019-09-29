@@ -21,6 +21,7 @@ class CreateAssetsTable extends Migration
             $table->string('hash');
             $table->string('filename');
             $table->string('original_filename');
+            $table->text('caption')->nullable();
             $table->text('description')->nullable();
             $table->string('extension');
             $table->string('mimetype');

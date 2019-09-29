@@ -6,8 +6,8 @@ use Illuminate\Support\Str;
 use Illuminate\Http\UploadedFile;
 use Intervention\Image\Constraint;
 use Intervention\Image\Facades\Image;
-use Illuminate\Support\Facades\Storage;
 use App\Models\Traits\BelongsToProject;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Traits\HasExternalShardId;
 use Intervention\Image\Image as InterventionImage;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -40,6 +40,7 @@ class Asset extends Model
         'hash',
         'filename',
         'original_filename',
+        'caption',
         'description',
         'extension',
         'mimetype',

@@ -32,7 +32,7 @@ class GetCollectionsController extends Controller
         $this->authorize('list', Collection::class);
 
         $collections = Collection::query()
-            ->where('project_id',  $request->user()->current_project_id)
+            ->where('project_id', $request->user()->current_project_id)
             ->get();
 
         abort_if($collections->isEmpty(), Response::HTTP_NO_CONTENT);

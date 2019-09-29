@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Http\Request;
+use App\Http\Resources\UserResource;
 
 class AppController extends Controller
 {
@@ -30,7 +31,7 @@ class AppController extends Controller
                 'app' => [
                     'title' => config('app.name'),
                 ],
-                'user' => $request->user(),
+                'user' => (new UserResource($request->user()))->toArray($request),
                 'project' => $request->user()->currentProject,
             ],
         ]);

@@ -64,4 +64,36 @@ class AutomationPolicyTest extends PolicyTestCase
 
         $this->assertTrue((new AutomationPolicy)->view($user, $automation));
     }
+
+    /** @test */
+    public function it_returns_false_when_the_user_has_no_permission_to_delete_an_automation()
+    {
+        $user = $this->login();
+
+        $automation = factory(Automation::class)->create();
+
+        $this->assertFalse((new AutomationPolicy)->delete($user, $automation));
+    }
+
+    /** @test */
+    public function it_returns_false_when_the_user_has_permission_to_delete_an_automation_but_the_automation_is_not_part_of_the_current_project()
+    {
+        $user = tap($this->login())->forceAccess($this->role, 'automation:delete');
+
+        $automation = factory(Automation::class)->create();
+
+        $this->assertFalse((new AutomationPolicy)->delete($user, $automation));
+    }
+
+    /** @test */
+    public function it_returns_true_when_the_user_has_permission_to_delete_an_automation()
+    {
+        $user = tap($this->login())->forceAccess($this->role, 'automation:delete');
+
+        $automation = factory(Automation::class)->create([
+            'project_id' => $this->project->id,
+        ]);
+
+        $this->assertTrue((new AutomationPolicy)->delete($user, $automation));
+    }
 }

@@ -3,8 +3,8 @@
 namespace Tests\Feature\Api\Automation;
 
 use Tests\TestCase;
-use App\Models\Automation;
 use App\Http\Response;
+use App\Models\Automation;
 use Tests\Feature\AuthenticatedRoute;
 use Illuminate\Foundation\Testing\TestResponse;
 use Illuminate\Foundation\Testing\RefreshDatabase;

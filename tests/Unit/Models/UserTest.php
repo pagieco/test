@@ -5,6 +5,8 @@ namespace Tests\Unit\Models;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Project;
+use App\Models\AuthenticationLog;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -23,6 +25,12 @@ class UserTest extends TestCase
     public function it_belongs_to_many_team_projects()
     {
         $this->assertInstanceOf(BelongsToMany::class, app(User::class)->teamProjects());
+    }
+
+    /** @test */
+    public function it_has_many_authentications()
+    {
+        $this->assertInstanceOf(HasMany::class, app(User::class)->authentications());
     }
 
     /** @test */
@@ -83,5 +91,66 @@ class UserTest extends TestCase
         $user->switchToProject($project);
 
         $this->assertEquals($project->id, $user->current_project_id);
+    }
+
+    /** @test */
+    public function it_returns_the_correct_email_hash_attribute()
+    {
+        $user = factory(User::class)->create();
+
+        $this->assertEquals(32, strlen($user->email_hash));
+        $this->assertTrue(ctype_xdigit($user->email_hash));
+    }
+
+    /** @test */
+    public function it_fetches_the_gravatar()
+    {
+        Storage::fake();
+
+        $user = factory(User::class)->create([
+            'email' => 'matt@mullenweg.com',
+        ]);
+
+        $user->fetchGravatar();
+
+        Storage::assertExists(sprintf('profile-pictures/%s.jpeg', $user->email_hash));
+    }
+
+    /** @test */
+    public function it_can_get_the_last_login_at_attribute()
+    {
+        $log = factory(AuthenticationLog::class)->create();
+
+        $this->assertNotNull($log->user->lastLoginAt());
+    }
+
+    /** @test */
+    public function it_can_get_the_last_login_ip_attribute()
+    {
+        $log = factory(AuthenticationLog::class)->create();
+
+        $this->assertNotNull($log->user->lastLoginIp());
+    }
+
+    /** @test */
+    public function it_can_get_the_previous_login_at_attribute()
+    {
+        $log1 = factory(AuthenticationLog::class)->create();
+        $log2 = factory(AuthenticationLog::class)->create([
+            'user_id' => $log1->user->id,
+        ]);
+
+        $this->assertNotNull($log2->user->previousLoginAt());
+    }
+
+    /** @test */
+    public function it_can_get_the_previous_login_ip_attribute()
+    {
+        $log1 = factory(AuthenticationLog::class)->create();
+        $log2 = factory(AuthenticationLog::class)->create([
+            'user_id' => $log1->user->id,
+        ]);
+
+        $this->assertNotNull($log2->user->previousLoginIp());
     }
 }

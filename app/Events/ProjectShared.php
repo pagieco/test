@@ -5,7 +5,6 @@ namespace App\Events;
 use App\Models\User;
 use App\Models\Project;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 

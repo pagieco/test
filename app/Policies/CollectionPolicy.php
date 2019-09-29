@@ -70,4 +70,17 @@ class CollectionPolicy
         return $user->hasAccess('collection:create-entry')
             && $user->currentProject()->collections->contains($collection->local_id);
     }
+
+    /**
+     * Determine whether the user can delete the given entry.
+     *
+     * @param  \App\Models\User $user
+     * @param  \App\Models\Collection $collection
+     * @return bool
+     */
+    public function deleteEntry(User $user, Collection $collection): bool
+    {
+        return $user->hasAccess('collection:delete-entry')
+            && $user->currentProject()->collections->contains($collection->local_id);
+    }
 }

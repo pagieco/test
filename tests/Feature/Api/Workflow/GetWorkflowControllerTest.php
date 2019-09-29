@@ -3,8 +3,8 @@
 namespace Tests\Feature\Api\Workflow;
 
 use Tests\TestCase;
-use App\Models\Workflow;
 use App\Http\Response;
+use App\Models\Workflow;
 use Tests\Feature\AuthenticatedRoute;
 use Illuminate\Foundation\Testing\TestResponse;
 use Illuminate\Foundation\Testing\RefreshDatabase;

@@ -3,8 +3,8 @@
 namespace Tests\Feature\Api\Profile;
 
 use Tests\TestCase;
-use App\Models\Profile;
 use App\Http\Response;
+use App\Models\Profile;
 use Tests\Feature\AuthenticatedRoute;
 use Illuminate\Foundation\Testing\TestResponse;
 use Illuminate\Foundation\Testing\RefreshDatabase;

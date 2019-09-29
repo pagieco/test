@@ -125,16 +125,19 @@ return [
 
         'automation:list' => ['List automations', 'List the automations.'],
         'automation:view' => ['View automation', 'View an automation.'],
+        'automation:delete' => ['Delete automation', 'Delete an automation.'],
 
         'collection:list' => ['List collections', 'List the collections.'],
         'collection:view' => ['View collection', 'View a collection.'],
         'collection:create' => ['Create collection', 'Create a collection.'],
         'collection:delete' => ['Delete collection', 'Delete a collection.'],
         'collection:create-entry' => ['Create collection entry', 'Create a collection entry.'],
+        'collection:delete-entry' => ['Delete collection entry', 'Delete a collection entry.'],
 
         'domain:list' => ['List domains', 'List the domains.'],
         'domain:view' => ['View domain', 'View a domain.'],
         'domain:update' => ['Update domain', 'Update a domain.'],
+        'domain:delete' => ['Delete domain', 'Delete a domain.'],
 
         'email:list' => ['List emails', 'List the emails.'],
         'email:view' => ['View email', 'View an email.'],
