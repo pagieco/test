@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Str;
 use App\Events\ProjectShared;
 use App\Events\ProjectUnshared;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -146,6 +147,16 @@ class Project extends Model
     public function workflows(): HasMany
     {
         return $this->hasMany(Workflow::class);
+    }
+
+    /**
+     * Generate an api token for this project.
+     *
+     * @return string
+     */
+    public function generateApiToken(): string
+    {
+        return strtolower(Str::random(60));
     }
 
     /**

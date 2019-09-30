@@ -10,7 +10,6 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _focus_ui_src_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../focus-ui/src/components */ "./resources/focus-ui/src/components/index.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -18,31 +17,21 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
-
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    Page: _focus_ui_src_components__WEBPACK_IMPORTED_MODULE_1__["Page"],
-    Card: _focus_ui_src_components__WEBPACK_IMPORTED_MODULE_1__["Card"],
-    TextStyle: _focus_ui_src_components__WEBPACK_IMPORTED_MODULE_1__["TextStyle"],
-    ResourceList: _focus_ui_src_components__WEBPACK_IMPORTED_MODULE_1__["ResourceList"],
-    ResourceListItem: _focus_ui_src_components__WEBPACK_IMPORTED_MODULE_1__["ResourceListItem"]
-  },
-  mounted: function mounted() {
-    this.initializeComponentState();
-  },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
+    folders: 'asset/folders',
     assets: 'asset/assets'
   })),
+  mounted: function mounted() {
+    this.init();
+  },
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])({
-    fetchAssets: 'asset/fetchAssets',
-    sortAssets: 'asset/sortAssets'
+    fetchFolders: 'asset/fetchFolders',
+    fetchAssets: 'asset/fetchAssets'
   }), {
-    initializeComponentState: function initializeComponentState() {
+    init: function init() {
+      this.fetchFolders();
       this.fetchAssets();
-    },
-    onSort: function onSort(_ref) {
-      var direction = _ref.direction;
-      this.sortAssets(direction);
     }
   })
 });
@@ -64,59 +53,86 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "Page",
-    { attrs: { title: "Assets", "full-width": "" } },
-    [
-      _c(
-        "Card",
-        [
-          _c("ResourceList", {
-            attrs: {
-              selectable: "",
-              items: _vm.assets,
-              "sort-options": [
-                { label: "Newest update", direction: "desc" },
-                { label: "Oldest update", direction: "asc" }
-              ],
-              "resource-name": { singular: "asset", plural: "assets" }
-            },
-            on: { sort: _vm.onSort },
-            scopedSlots: _vm._u([
-              {
-                key: "default",
-                fn: function(item) {
-                  return [
-                    _c(
-                      "ResourceListItem",
-                      _vm._b(
-                        {},
-                        "ResourceListItem",
-                        Object.assign({}, item),
-                        false
-                      ),
-                      [
-                        _c("img", { attrs: { src: item.thumb_path, alt: "" } }),
-                        _vm._v(" "),
-                        _c("TextStyle", { attrs: { variation: "strong" } }, [
-                          _vm._v(_vm._s(item.filename))
-                        ])
-                      ],
-                      1
-                    )
-                  ]
-                }
-              }
+  return _c("div", { staticClass: "flex h-full" }, [
+    _c("div", { staticClass: "flex-shrink-0 w-64" }, [
+      _c("div", { staticClass: "py-8" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "ul",
+          { staticClass: "mt-3" },
+          _vm._l(_vm.folders, function(folder) {
+            return _c("li", { key: folder.id }, [
+              _c(
+                "a",
+                {
+                  staticClass: "py-2 px-4 block hover:bg-gray-100",
+                  attrs: { href: "#" }
+                },
+                [
+                  _vm._v(
+                    "\n            " + _vm._s(folder.name) + "\n          "
+                  )
+                ]
+              )
             ])
-          })
-        ],
-        1
-      )
-    ],
-    1
-  )
+          }),
+          0
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "flex-grow flex p-8 bg-gray-100" }, [
+      _c("div", { staticClass: "w-full" }, [
+        _c(
+          "div",
+          { staticClass: "flex flex-wrap" },
+          _vm._l(_vm.assets, function(asset) {
+            return _c(
+              "div",
+              {
+                key: asset.id,
+                staticClass: "w-1/6 border bg-white mb-4 mr-4 rounded"
+              },
+              [_c("img", { attrs: { src: asset.thumb_url, alt: "" } })]
+            )
+          }),
+          0
+        )
+      ])
+    ])
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "flex justify-between items-center px-8" },
+      [
+        _c(
+          "h4",
+          {
+            staticClass:
+              "text-xs text-gray-700 uppercase font-bold tracking-widest"
+          },
+          [_vm._v("Folders")]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass:
+              "appearance-none bg-green-500 text-white px-4 py-1 rounded text-xs"
+          },
+          [_vm._v("Add")]
+        )
+      ]
+    )
+  }
+]
 render._withStripped = true
 
 

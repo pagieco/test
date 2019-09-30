@@ -16,6 +16,7 @@
 
   <title>{{ config('app.name', 'Laravel') }}</title>
 
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap" />
   <link rel="stylesheet" href="{{ mix('css/app.css') }}" />
 
   <script>
@@ -23,7 +24,7 @@
   </script>
 
 </head>
-<body class="font-sans text-gray-800 antialiased text-sm bg-gray-200">
+<body class="font-body font-sans text-sm">
 
   <div id="app">
     <noscript>

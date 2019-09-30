@@ -5,6 +5,7 @@ namespace App\Models\Observers;
 use App\Support\Haiku;
 use App\Models\Project;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 class ProjectObserver
 {
@@ -21,7 +22,7 @@ class ProjectObserver
         }
 
         if (! $project->getAttribute('api_token')) {
-            $project->setAttribute('api_token', strtolower());
+            $project->setAttribute('api_token', $project->generateApiToken());
         }
     }
 

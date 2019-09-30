@@ -67,4 +67,11 @@ export default [
     path: '/workflows',
     component: () => import('../pages/workflows/Overview.vue'),
   },
+
+  // settings routes...
+  {
+    name: 'settings',
+    path: '/settings',
+    component: () => import('../pages/settings/Overview.vue'),
+  },
 ];
