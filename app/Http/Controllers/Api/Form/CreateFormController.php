@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\FormResource;
 use App\Http\Requests\CreateFormRequest;
+use Illuminate\Validation\ValidationException;
 
 class CreateFormController extends Controller
 {
@@ -27,12 +28,25 @@ class CreateFormController extends Controller
      * @param  \App\Http\Requests\CreateFormRequest $request
      * @return \App\Http\Resources\FormResource
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function __invoke(CreateFormRequest $request): FormResource
     {
         $this->authorize('create', Form::class);
 
         $form = $this->createForm($request);
+
+        if (! $identifier = $request->getProfileIdentifier()) {
+            throw ValidationException::withMessages([
+                'profile-identifier' => 'A profile identifier field is required.',
+            ]);
+        }
+
+        if (count(array_filter(data_get($request->fields, '*.is_profile_identifier'))) > 1) {
+            throw ValidationException::withMessages([
+                'profile-identifier' => 'Only one profile identifier field can be present per form.',
+            ]);
+        }
 
         foreach ($request->fields as $field) {
             $this->createFormField($form, $field);

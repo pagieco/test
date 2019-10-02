@@ -32,7 +32,7 @@ class UpdateCurrentUserRequest extends FormRequest
     {
         return [
             'name' => 'filled|min:3|max:250',
-            'email' => 'filled|email|unique:users',
+            'email' => 'filled|email:rfc,dns|unique:users',
             'password' => [
                 'min:6',
                 'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\X])(?=.*[!$#%]).*$/',

@@ -18,6 +18,5 @@ class TrackProfileEventController extends Controller
 
     public function __invoke()
     {
-
     }
 }

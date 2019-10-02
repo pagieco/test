@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Api\Domain;
 
-use App\Models\Domain;
 use App\Http\Response;
+use App\Models\Domain;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 

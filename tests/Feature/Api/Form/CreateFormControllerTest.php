@@ -284,6 +284,74 @@ class CreateFormControllerTest extends TestCase
     }
 
     /** @test */
+    public function it_throws_a_422_exception_when_no_profile_identifiers_are_present_when_creating_a_new_form()
+    {
+        $this->login()->forceAccess($this->role, 'form:create');
+
+        $response = $this->makeRequest([
+            'name' => faker()->name,
+            'fields' => [
+                'test-field' => [
+                    'slug' => 'my-field',
+                    'display_name' => 'My Field',
+                    'type' => FormFieldType::Email,
+                    'is_profile_identifier' => false,
+                    'validations' => [
+                        FormFieldValidation::Required => true,
+                    ],
+                ],
+                'other-field' => [
+                    'slug' => 'my-field',
+                    'display_name' => 'My Field',
+                    'type' => FormFieldType::Email,
+                    'is_profile_identifier' => false,
+                    'validations' => [
+                        FormFieldValidation::Required => true,
+                    ],
+                ],
+            ],
+        ]);
+
+        $response->assertSchema('CreateForm', Response::HTTP_UNPROCESSABLE_ENTITY);
+
+        $this->assertEquals($response->json('errors')['profile-identifier'][0], 'A profile identifier field is required.');
+    }
+
+    /** @test */
+    public function it_throws_a_422_exception_when_more_then_one_profile_identifiers_are_present_when_creating_a_new_form()
+    {
+        $this->login()->forceAccess($this->role, 'form:create');
+
+        $response = $this->makeRequest([
+            'name' => faker()->name,
+            'fields' => [
+                'test-field' => [
+                    'slug' => 'my-field',
+                    'display_name' => 'My Field',
+                    'type' => FormFieldType::Email,
+                    'is_profile_identifier' => true,
+                    'validations' => [
+                        FormFieldValidation::Required => true,
+                    ],
+                ],
+                'other-field' => [
+                    'slug' => 'my-field',
+                    'display_name' => 'My Field',
+                    'type' => FormFieldType::Email,
+                    'is_profile_identifier' => true,
+                    'validations' => [
+                        FormFieldValidation::Required => true,
+                    ],
+                ],
+            ],
+        ]);
+
+        $response->assertSchema('CreateForm', Response::HTTP_UNPROCESSABLE_ENTITY);
+
+        $this->assertEquals($response->json('errors')['profile-identifier'][0], 'Only one profile identifier field can be present per form.');
+    }
+
+    /** @test */
     public function it_successfully_executes_the_create_form_route()
     {
         $this->login()->forceAccess($this->role, 'form:create');
@@ -294,7 +362,16 @@ class CreateFormControllerTest extends TestCase
                 'test-field' => [
                     'slug' => 'my-field',
                     'display_name' => 'My Field',
-                    'type' => FormFieldType::PlainText,
+                    'type' => FormFieldType::Email,
+                    'is_profile_identifier' => true,
+                    'validations' => [
+                        FormFieldValidation::Required => true,
+                    ],
+                ],
+                'other-field' => [
+                    'slug' => 'my-field',
+                    'display_name' => 'My Field',
+                    'type' => FormFieldType::Email,
                     'validations' => [
                         FormFieldValidation::Required => true,
                     ],

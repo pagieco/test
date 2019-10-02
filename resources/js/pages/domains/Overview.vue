@@ -1,5 +1,19 @@
+<script>
+
+import { Page } from '../../components';
+
+export default {
+  components: { Page },
+
+  metaInfo: {
+    title: 'Domains',
+  },
+};
+
+</script>
+
 <template>
-  <div>
-    domains overview
-  </div>
+  <Page title="Domains">
+    Domains overview
+  </Page>
 </template>

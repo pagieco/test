@@ -16,19 +16,16 @@ class CreateFormFieldsTable extends Migration
         Schema::create('form_fields', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('form_id');
-            $table->unsignedBigInteger('project_id');
+            $table->unsignedBigInteger('project_id')->index();
             $table->string('display_name');
             $table->string('slug');
             $table->json('validations')->nullable();
             $table->string('type');
+            $table->boolean('is_profile_identifier')->default(false);
             $table->timestamps();
 
             $table->foreign('form_id')
                 ->references('id')->on('forms')
-                ->onDelete('cascade');
-
-            $table->foreign('project_id')
-                ->references('id')->on('projects')
                 ->onDelete('cascade');
         });
     }

@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Project extends Model
+class Project extends \Illuminate\Database\Eloquent\Model
 {
     /**
      * The table associated with the model.
@@ -150,16 +150,6 @@ class Project extends Model
     }
 
     /**
-     * Generate an api token for this project.
-     *
-     * @return string
-     */
-    public function generateApiToken(): string
-    {
-        return strtolower(Str::random(60));
-    }
-
-    /**
      * Share the project with the given user.
      *
      * @param  \App\Models\User $user
@@ -184,5 +174,15 @@ class Project extends Model
         $this->collaborators()->detach($user);
 
         ProjectUnshared::dispatch($this, $user);
+    }
+
+    /**
+     * Generate an api token for this project.
+     *
+     * @return string
+     */
+    public static function generateApiToken(): string
+    {
+        return strtolower(Str::random(60));
     }
 }

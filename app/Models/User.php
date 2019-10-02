@@ -19,8 +19,6 @@ class User extends Authenticatable implements MustVerifyEmail
     use InteractsWithProjects;
     use TrackAuthenticationLog;
 
-    protected $with = ['projects'];
-
     /**
      * The attributes that are mass assignable.
      *

@@ -17,7 +17,7 @@ class CreateCollectionEntriesTable extends Migration
             $table->bigIncrements('local_id');
             $table->unsignedBigInteger('external_id')->unique()->index()->nullable();
             $table->unsignedBigInteger('collection_id');
-            $table->unsignedBigInteger('project_id');
+            $table->unsignedBigInteger('project_id')->index();
             $table->string('name');
             $table->string('slug');
             $table->json('entry_data');
@@ -25,10 +25,6 @@ class CreateCollectionEntriesTable extends Migration
 
             $table->foreign('collection_id')
                 ->references('local_id')->on('collections')
-                ->onDelete('cascade');
-
-            $table->foreign('project_id')
-                ->references('id')->on('projects')
                 ->onDelete('cascade');
         });
     }

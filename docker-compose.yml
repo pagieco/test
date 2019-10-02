@@ -1,27 +1,13 @@
 version: '3.5'
 
 services:
-  mongodb:
-    container_name: service.framework-test.mongodb
-    image: mongo:latest
-    restart: always
-    environment:
-      - MONGO_DATA_DIR=/data/db
-      - MONGO_LOG_DIR=/dev/null
-    volumes:
-      - mongodb-volume:/data/db
-    ports:
-      - 34086:27017
-    networks:
-      - service-overlay
-
   mysql:
     container_name: service.framework-test.mysql
     image: mysql:8.0
     command: --default-authentication-plugin=mysql_native_password
     working_dir: /app
     volumes:
-      - mysql-volume:/app
+      - ./storage/data/mysql:/app
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=service-framework-test
@@ -66,10 +52,3 @@ networks:
   service-overlay:
     external:
       name: service-overlay
-
-volumes:
-  mongodb-volume:
-    driver: local
-
-  mysql-volume:
-    driver: local

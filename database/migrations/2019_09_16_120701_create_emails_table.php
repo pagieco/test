@@ -15,14 +15,10 @@ class CreateEmailsTable extends Migration
     {
         Schema::create('emails', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('project_id');
+            $table->unsignedBigInteger('project_id')->index();
             $table->string('name');
             $table->mediumText('dom')->nullable();
             $table->timestamps();
-
-            $table->foreign('project_id')
-                ->references('id')->on('projects')
-                ->onDelete('cascade');
         });
     }
 

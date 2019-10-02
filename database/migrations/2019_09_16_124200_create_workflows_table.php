@@ -15,14 +15,10 @@ class CreateWorkflowsTable extends Migration
     {
         Schema::create('workflows', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('project_id');
+            $table->unsignedBigInteger('project_id')->index();
             $table->string('name');
             $table->text('description')->nullable();
             $table->timestamps();
-
-            $table->foreign('project_id')
-                ->references('id')->on('projects')
-                ->onDelete('cascade');
         });
     }
 

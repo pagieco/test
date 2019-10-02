@@ -19,6 +19,7 @@ class UserResource extends JsonResource
             'name' => $this->name,
             'email' => $this->email,
             'current_project_id' => $this->current_project_id,
+            'projects' => new UserProjectsRelationshipResource($this->projects),
             'picture' => asset($this->picture),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

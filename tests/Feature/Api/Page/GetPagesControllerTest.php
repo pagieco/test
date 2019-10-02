@@ -15,14 +15,6 @@ class GetPagesControllerTest extends TestCase
     use AuthenticatedRoute;
 
     /** @test */
-    public function it_returns_an_empty_response_when_no_pages_where_found()
-    {
-        $this->login()->forceAccess($this->role, 'page:list');
-
-        $this->makeRequest()->assertSchema('GetPages', Response::HTTP_NO_CONTENT);
-    }
-
-    /** @test */
     public function it_doesnt_include_pages_from_other_projects()
     {
         $this->login()->forceAccess($this->role, 'page:list');
@@ -33,7 +25,7 @@ class GetPagesControllerTest extends TestCase
 
         factory(Page::class)->create();
 
-        $this->assertCount(1, $this->makeRequest()->json('data'));
+        $this->assertCount(2, $this->makeRequest()->json('data'));
     }
 
     /** @test */

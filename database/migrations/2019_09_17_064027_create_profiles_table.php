@@ -16,7 +16,7 @@ class CreateProfilesTable extends Migration
         Schema::create('profiles', function (Blueprint $table) {
             $table->bigIncrements('local_id');
             $table->unsignedBigInteger('external_id')->unique()->index()->nullable();
-            $table->unsignedBigInteger('project_id');
+            $table->unsignedBigInteger('project_id')->index();
             $table->uuid('profile_id')->index();
             $table->string('email');
             $table->string('first_name')->nullable();
@@ -31,11 +31,8 @@ class CreateProfilesTable extends Migration
             $table->string('timezone')->nullable();
             $table->json('tags')->nullable();
             $table->json('custom_fields')->nullable();
+            $table->timestamp('consented_at')->nullable();
             $table->timestamps();
-
-            $table->foreign('project_id')
-                ->references('id')->on('projects')
-                ->onDelete('cascade');
         });
     }
 
@@ -46,6 +43,6 @@ class CreateProfilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('profiles');
+        Schema::connection('shared')->dropIfExists('profiles');
     }
 }

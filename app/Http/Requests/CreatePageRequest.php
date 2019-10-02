@@ -26,6 +26,7 @@ class CreatePageRequest extends FormRequest
     public function rules()
     {
         return [
+            'domain_id' => 'required',
             'name' => ['required', 'min:3', 'max:250', $this->unique('name')],
             'slug' => ['required', 'max:250', $this->unique('slug')],
         ];

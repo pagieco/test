@@ -18,10 +18,16 @@ class PageTest extends TestCase
     }
 
     /** @test */
+    public function it_belongs_to_a_domain()
+    {
+        $this->assertInstanceOf(BelongsTo::class, app(Page::class)->domain());
+    }
+
+    /** @test */
     public function it_can_insert_a_new_record()
     {
         $this->assertDatabaseHas('pages', [
-            'id' => factory(Page::class)->create()->id,
+            'local_id' => factory(Page::class)->create()->local_id,
         ]);
     }
 }

@@ -2,8 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Http\Request;
+use App\Models\Enums\ProfileEventType;
 use App\Models\Traits\BelongsToProject;
 use App\Models\Traits\HasExternalShardId;
+use Illuminate\Database\Eloquent\Builder;
+use App\Exceptions\InvalidProfileTypeException;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Profile extends Model
@@ -44,6 +48,16 @@ class Profile extends Model
         'timezone',
         'tags',
         'custom_fields',
+        'consented_at',
+    ];
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'consented_at',
     ];
 
     /**
@@ -64,5 +78,104 @@ class Profile extends Model
     public function events(): HasMany
     {
         return $this->hasMany(ProfileEvent::class, 'profile_id', 'local_id');
+    }
+
+    /**
+     * Get the has-consented attribute.
+     *
+     * @return bool
+     */
+    public function getHasConsentedAttribute(): bool
+    {
+        return $this->consented_at !== null;
+    }
+
+    /**
+     * @param  string $type
+     * @param  array $data
+     * @return \App\Models\ProfileEvent
+     * @throws \App\Exceptions\InvalidProfileTypeException
+     * @throws \ReflectionException
+     */
+    public function recordEvent(string $type, array $data): ProfileEvent
+    {
+        if (! in_array($type, ProfileEventType::getValues())) {
+            throw new InvalidProfileTypeException('Invalid profile type: '.$type);
+        }
+
+        $event = new ProfileEvent([
+            'event_type' => $type,
+            'data' => array_filter($data),
+        ]);
+
+        $event->profile()->associate($this);
+        $event->project()->associate($this->project);
+
+        return tap($event)->save();
+    }
+
+    /**
+     * Determine if the previous event equals the given event
+     *
+     * @param  string $eventType
+     * @param  array $eventData
+     * @return bool
+     */
+    public function hasEqualPreviousEvent(string $eventType, array $eventData = []): bool
+    {
+        $event = $this->events->last();
+
+        $hasEvent = $event !== null && $event->event_type === $eventType;
+
+        if (! $hasEvent) {
+            return false;
+        }
+
+        if ($event->data === null) {
+            return $hasEvent;
+        }
+
+        return empty(array_diff($eventData, $event->data));
+    }
+
+    /**
+     * Scope the query by email.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder $builder
+     * @param  string $email
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public static function scopeByEmail($builder, string $email)
+    {
+        return $builder->where('email', $email);
+    }
+
+    /**
+     * Scope the query by profile id.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder $builder
+     * @param  string $profileId
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public static function scopeByProfileId(Builder $builder, string $profileId)
+    {
+        return $builder->where('profile_id', $profileId);
+    }
+
+    public static function identify(Request $request, Project $project): ?Profile
+    {
+        if ($request->has('email')) {
+            return $project->profiles()->byEmail($request->get('email'))->first();
+        }
+
+        if ($request->has('profile_id')) {
+            return $project->profiles()->byProfileId($request->get('profile_id'))->first();
+        }
+
+        if ($request->hasCookie('profile_id')) {
+            return $project->profiles()->byProfileId($request->cookie('profile_id'))->first();
+        }
+
+        return null;
     }
 }

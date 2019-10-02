@@ -13,6 +13,7 @@ servers:
 
 tags:
   - name: User
+  - name: Project
   - name: Asset
   - name: Asset Folder
   - name: Page
@@ -62,6 +63,50 @@ paths:
           $ref: '#/components/responses/status-201-response'
         422:
           $ref: '#/components/responses/status-422-response'
+
+  /projects/{project}:
+    patch:
+      summary: Update a project
+      description: Update a project
+      tags:
+        - Project
+      operationId: UpdateProject
+      parameters:
+        - in: path
+          name: project
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          $ref: '#/components/responses/get-project'
+        403:
+          $ref: '#/components/responses/status-403-response'
+        404:
+          $ref: '#/components/responses/status-404-response'
+        422:
+          $ref: '#/components/responses/status-422-response'
+
+  /projects/{project}/switch:
+    post:
+      summary: Switch the user to another project
+      description: Switch the user to another project
+      tags:
+        - Project
+      operationId: SwitchToProject
+      parameters:
+        - in: path
+          name: project
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          $ref: '#/components/responses/status-200-response'
+        403:
+          $ref: '#/components/responses/status-403-response'
+        404:
+          $ref: '#/components/responses/status-404-response'
 
   /assets:
     get:
@@ -529,6 +574,29 @@ paths:
           $ref: '#/components/responses/status-403-response'
         404:
           $ref: '#/components/responses/status-404-response'
+    post:
+      summary: Handle a form submit
+      description: Handle a form submit
+      tags:
+        - Form
+      operationId: SubmitForm
+      parameters:
+        - in: path
+          name: form
+          schema:
+            type: integer
+          required: true
+      responses:
+        201:
+          $ref: '#/components/responses/get-form-submission'
+        400:
+          $ref: '#/components/responses/status-400-response'
+        404:
+          $ref: '#/components/responses/status-404-response'
+        406:
+          $ref: '#/components/responses/status-406-response'
+        422:
+          $ref: '#/components/responses/status-422-response'
 
   /forms/{form}/submissions:
     get:
@@ -702,6 +770,27 @@ paths:
           $ref: '#/components/responses/status-403-response'
         404:
           $ref: '#/components/responses/status-404-response'
+    patch:
+      summary: Update a profile
+      description: Update a profile
+      tags:
+        - Profile
+      operationId: UpdateProfile
+      parameters:
+        - in: path
+          name: profile
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          $ref: '#/components/responses/get-profile'
+        403:
+          $ref: '#/components/responses/status-403-response'
+        404:
+          $ref: '#/components/responses/status-404-response'
+        422:
+          $ref: '#/components/responses/status-422-response'
     delete:
       summary: Delete a profile
       description: Delete a profile
@@ -1326,6 +1415,26 @@ components:
               data:
                 $ref: '#/components/schemas/profile-event'
 
+    get-projects:
+      description: OK
+      content:
+        application/json:
+          schema:
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/project'
+
+    get-project:
+      description: OK
+      content:
+        application/json:
+          schema:
+            properties:
+              data:
+                $ref: '#/components/schemas/project'
+
     get-automations:
       description: OK
       content:
@@ -1385,6 +1494,17 @@ components:
             properties:
               data:
                 $ref: '#/components/schemas/workflow'
+
+    status-200-response:
+      description: OK
+      content:
+        application/json:
+          schema:
+            properties:
+              message:
+                type: string
+                example:
+                  OK
 
     status-201-response:
       description: Created
@@ -1702,6 +1822,20 @@ components:
         updated_at:
           type: string
           format: 'date-time'
+
+    project:
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        created_at:
+          type: string
+          format: 'date-time'
+        updated_at:
+          type: string
+          format: 'date-time'
+
 
     automation:
       properties:

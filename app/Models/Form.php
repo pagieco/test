@@ -57,6 +57,19 @@ class Form extends Model
     }
 
     /**
+     * Get the profile identification field.
+     *
+     * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Relations\HasMany|object|null
+     */
+    public function getProfileIdentifierField()
+    {
+        return $this->fields()
+            ->where('is_profile_identifier', true)
+            ->where('type', 'email')
+            ->first();
+    }
+
+    /**
      * Subscribe to the form notifications.
      *
      * @param  \App\Models\User $user

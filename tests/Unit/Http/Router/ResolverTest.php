@@ -68,6 +68,7 @@ class ResolverTest extends TestCase
 
         $page = factory(Page::class)->create([
             'project_id' => $domain->project_id,
+            'domain_id' => $domain->id,
         ]);
 
         $request = Request::create('https://test-domain.com/'.$page->slug);

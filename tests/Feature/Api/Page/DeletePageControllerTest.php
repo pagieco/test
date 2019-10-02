@@ -31,7 +31,7 @@ class DeletePageControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($page->id)->assertSchema('DeletePage', Response::HTTP_FORBIDDEN);
+        $this->makeRequest($page->external_id)->assertSchema('DeletePage', Response::HTTP_FORBIDDEN);
     }
 
     /** @test */
@@ -41,7 +41,7 @@ class DeletePageControllerTest extends TestCase
 
         $page = factory(Page::class)->create();
 
-        $this->makeRequest($page->id)->assertSchema('DeletePage', Response::HTTP_NOT_FOUND);
+        $this->makeRequest($page->external_id)->assertSchema('DeletePage', Response::HTTP_NOT_FOUND);
     }
 
     /** @test */
@@ -53,7 +53,7 @@ class DeletePageControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($page->id)->assertSchema('DeletePage', Response::HTTP_NO_CONTENT);
+        $this->makeRequest($page->external_id)->assertSchema('DeletePage', Response::HTTP_NO_CONTENT);
     }
 
     /**

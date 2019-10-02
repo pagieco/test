@@ -5,7 +5,6 @@ namespace Tests\Feature\Api\Collections;
 use Tests\TestCase;
 use App\Http\Response;
 use App\Models\Collection;
-use Tests\RefreshCollections;
 use Tests\Feature\AuthenticatedRoute;
 use Illuminate\Foundation\Testing\TestResponse;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -13,7 +12,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class GetCollectionsControllerTest extends TestCase
 {
     use RefreshDatabase;
-    use RefreshCollections;
     use AuthenticatedRoute;
 
     /** @test */

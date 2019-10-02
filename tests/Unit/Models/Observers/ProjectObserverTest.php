@@ -26,4 +26,12 @@ class ProjectObserverTest extends TestCase
 
         $this->assertCount(1, $project->domains);
     }
+
+    /** @test */
+    public function it_creates_a_new_homepage_when_the_created_event_is_triggered()
+    {
+        $project = factory(Project::class)->create();
+
+        $this->assertCount(1, $project->domains->first()->pages);
+    }
 }

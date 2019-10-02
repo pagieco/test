@@ -14,6 +14,13 @@
 </head>
 <body>
 
+  @isset($profile)
+  <pre>profile: {{ $profile->profile_id }}</pre>
+  @endif
+
+    <a href="/test">Test page</a>
+    <a href="/">Homepage</a>
+
   {!! $resource->dom !!}
 
 </body>

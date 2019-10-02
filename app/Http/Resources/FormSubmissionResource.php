@@ -16,6 +16,7 @@ class FormSubmissionResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'profile' => new FormSubmissionProfileRelationshipResource($this->profile),
             'submission_data' => $this->submission_data,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

@@ -79,7 +79,7 @@ class ProfilePolicyTest extends PolicyTestCase
     /** @test */
     public function it_returns_false_when_the_user_has_permission_to_delete_a_profile_but_the_profile_is_not_from_the_current_project()
     {
-        $user = tap($this->login())->forceAccess($this->role, 'profile:Delete');
+        $user = tap($this->login())->forceAccess($this->role, 'profile:delete');
 
         $profile = factory(Profile::class)->create();
 
@@ -89,13 +89,45 @@ class ProfilePolicyTest extends PolicyTestCase
     /** @test */
     public function it_returns_true_when_the_user_has_permission_to_delete_the_profile()
     {
-        $user = tap($this->login())->forceAccess($this->role, 'profile:Delete');
+        $user = tap($this->login())->forceAccess($this->role, 'profile:delete');
 
         $profile = factory(Profile::class)->create([
             'project_id' => $this->project->id,
         ]);
 
-        $this->assertFalse((new ProfilePolicy)->delete($user, $profile));
+        $this->assertTrue((new ProfilePolicy)->delete($user, $profile));
+    }
+
+    /** @test */
+    public function it_returns_false_when_the_user_has_no_permission_to_update_a_profile()
+    {
+        $user = $this->login();
+
+        $profile = factory(Profile::class)->create();
+
+        $this->assertFalse((new ProfilePolicy)->update($user, $profile));
+    }
+
+    /** @test */
+    public function it_returns_false_when_the_user_has_permission_to_update_a_profile_but_the_profile_is_not_from_the_current_project()
+    {
+        $user = tap($this->login())->forceAccess($this->role, 'profile:update');
+
+        $profile = factory(Profile::class)->create();
+
+        $this->assertFalse((new ProfilePolicy)->update($user, $profile));
+    }
+
+    /** @test */
+    public function it_returns_true_when_the_user_has_permission_to_update_the_profile()
+    {
+        $user = tap($this->login())->forceAccess($this->role, 'profile:update');
+
+        $profile = factory(Profile::class)->create([
+            'project_id' => $this->project->id,
+        ]);
+
+        $this->assertTrue((new ProfilePolicy)->update($user, $profile));
     }
 
     /** @test */

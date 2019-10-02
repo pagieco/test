@@ -1,5 +1,19 @@
+<script>
+
+import { Page } from '../../components';
+
+export default {
+  components: { Page },
+
+  metaInfo: {
+    title: 'Emails',
+  },
+};
+
+</script>
+
 <template>
-  <div>
-    emails overview
-  </div>
+  <Page title="Emails">
+    Emails overview
+  </Page>
 </template>

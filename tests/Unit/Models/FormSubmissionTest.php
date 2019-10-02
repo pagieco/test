@@ -18,6 +18,12 @@ class FormSubmissionTest extends TestCase
     }
 
     /** @test */
+    public function it_belongs_to_a_profile()
+    {
+        $this->assertInstanceOf(BelongsTo::class, app(FormSubmission::class)->profile());
+    }
+
+    /** @test */
     public function it_can_insert_a_new_record()
     {
         $this->assertDatabaseHas('form_submissions', [

@@ -16,14 +16,10 @@ class CreateAssetFoldersTable extends Migration
         Schema::create('asset_folders', function (Blueprint $table) {
             $table->bigIncrements('local_id');
             $table->unsignedBigInteger('external_id')->unique()->index()->nullable();
-            $table->unsignedBigInteger('project_id');
+            $table->unsignedBigInteger('project_id')->index();
             $table->string('name');
             $table->string('description')->nullable();
             $table->timestamps();
-
-            $table->foreign('project_id')
-                ->references('id')->on('projects')
-                ->onDelete('cascade');
         });
     }
 
@@ -34,6 +30,6 @@ class CreateAssetFoldersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('asset_folders');
+        Schema::connection('shared')->dropIfExists('asset_folders');
     }
 }

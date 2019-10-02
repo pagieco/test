@@ -16,7 +16,7 @@ class CreateProfileEventsTable extends Migration
         Schema::create('profile_events', function (Blueprint $table) {
             $table->bigIncrements('local_id');
             $table->unsignedBigInteger('external_id')->unique()->index()->nullable();
-            $table->unsignedBigInteger('profile_id');
+            $table->unsignedBigInteger('profile_id')->index();
             $table->unsignedBigInteger('project_id');
             $table->string('event_type');
             $table->json('data')->nullable();
@@ -24,10 +24,6 @@ class CreateProfileEventsTable extends Migration
 
             $table->foreign('profile_id')
                 ->references('local_id')->on('profiles')
-                ->onDelete('cascade');
-
-            $table->foreign('project_id')
-                ->references('id')->on('projects')
                 ->onDelete('cascade');
         });
     }

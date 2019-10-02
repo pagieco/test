@@ -16,7 +16,8 @@ class CreateFormSubmissionsTable extends Migration
         Schema::create('form_submissions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('form_id');
-            $table->unsignedBigInteger('project_id');
+            $table->unsignedBigInteger('profile_id')->nullable();
+            $table->unsignedBigInteger('project_id')->index();
             $table->json('submission_data');
             $table->timestamps();
 
@@ -24,8 +25,8 @@ class CreateFormSubmissionsTable extends Migration
                 ->references('id')->on('forms')
                 ->onDelete('cascade');
 
-            $table->foreign('project_id')
-                ->references('id')->on('projects')
+            $table->foreign('profile_id')
+                ->references('local_id')->on('profiles')
                 ->onDelete('cascade');
         });
     }

@@ -24,7 +24,7 @@
   </script>
 
 </head>
-<body class="font-body font-sans text-sm">
+<body class="font-body font-sans text-sm text-gray-900">
 
   <div id="app">
     <noscript>

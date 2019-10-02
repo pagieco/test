@@ -22,7 +22,11 @@ class FormField extends Model
      * @var array
      */
     protected $fillable = [
-        'type', 'slug', 'display_name', 'validations',
+        'type',
+        'slug',
+        'display_name',
+        'validations',
+        'is_profile_identifier',
     ];
 
     /**
@@ -31,7 +35,8 @@ class FormField extends Model
      * @var array
      */
     protected $casts = [
-        'validations' => 'array',
+        'validations' => 'json',
+        'is_profile_identifier' => 'bool',
     ];
 
     /**

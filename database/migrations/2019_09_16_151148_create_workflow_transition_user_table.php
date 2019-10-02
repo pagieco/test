@@ -15,14 +15,10 @@ class CreateWorkflowTransitionUserTable extends Migration
     {
         Schema::create('workflow_transition_user', function (Blueprint $table) {
             $table->unsignedBigInteger('workflow_transition_id');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->index();
 
             $table->foreign('workflow_transition_id')
                 ->references('id')->on('workflow_transitions')
-                ->onDelete('cascade');
-
-            $table->foreign('user_id')
-                ->references('id')->on('users')
                 ->onDelete('cascade');
         });
     }

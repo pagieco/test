@@ -160,9 +160,13 @@ return [
 
         'profile:list' => ['List profiles', 'List the profiles.'],
         'profile:view' => ['View profile', 'View a profile.'],
+        'profile:update' => ['Update profile', 'Update a profile.'],
         'profile:delete' => ['Delete profile', 'Delete a profile.'],
         'profile:list-events' => ['List profile events', 'List the profile events.'],
         'profile:view-event' => ['View profile event', 'View the profile event.'],
+
+        'project:switch' => ['Switch project', 'Switch to another project.'],
+        'project:update' => ['Update project', 'Update a project.'],
 
         'workflow:list' => ['List workflows', 'List the workflows.'],
         'workflow:view' => ['View workflow', 'View a workflow.'],

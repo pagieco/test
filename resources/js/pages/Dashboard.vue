@@ -1,5 +1,19 @@
+<script>
+
+import { Page } from '../components';
+
+export default {
+  components: { Page },
+
+  metaInfo: {
+    title: 'Dashboard',
+  },
+};
+
+</script>
+
 <template>
-  <div>
-    dashboard
-  </div>
+  <Page title="Dashboard">
+    Dashboard overview
+  </Page>
 </template>

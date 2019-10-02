@@ -1,12 +1,37 @@
 <script>
 
 import { mapGetters, mapActions } from 'vuex';
+import {
+  Page,
+} from '../../components';
+import AssetList from './components/AssetList.vue';
+import FolderList from './components/FolderList.vue';
 
 export default {
+  components: {
+    Page,
+    AssetList,
+    FolderList,
+  },
+
+  metaInfo: {
+    title: 'Assets',
+  },
+
+  watch: {
+    $route: 'init',
+  },
+
+  data() {
+    return {
+      loading: false,
+    };
+  },
+
   computed: {
     ...mapGetters({
-      folders: 'asset/folders',
       assets: 'asset/assets',
+      folders: 'asset/folders',
     }),
   },
 
@@ -16,13 +41,22 @@ export default {
 
   methods: {
     ...mapActions({
-      fetchFolders: 'asset/fetchFolders',
       fetchAssets: 'asset/fetchAssets',
+      fetchFolders: 'asset/fetchFolders',
     }),
 
     init() {
-      this.fetchFolders();
-      this.fetchAssets();
+      this.$store.dispatch('asset/clearAssets');
+      this.$store.dispatch('asset/clearFolders');
+
+      this.loading = true;
+
+      Promise.all([
+        this.$store.dispatch('asset/fetchFolders'),
+        this.$store.dispatch('asset/fetchAssets'),
+      ]).then(() => {
+        this.loading = false;
+      });
     },
   },
 };
@@ -30,34 +64,15 @@ export default {
 </script>
 
 <template>
-  <div class="flex h-full">
+  <Page title="Assets">
 
-    <div class="flex-shrink-0 w-64">
-      <div class="py-8">
-        <div class="flex justify-between items-center px-8">
-          <h4 class="text-xs text-gray-700 uppercase font-bold tracking-widest">Folders</h4>
-          <button class="appearance-none bg-green-500 text-white px-4 py-1 rounded text-xs">Add</button>
-        </div>
+    <template v-slot:navigation>
+      <span v-if="loading">loading...</span>
+      <FolderList :folders="folders" />
+    </template>
 
-        <ul class="mt-3">
-          <li v-for="folder in folders" :key="folder.id">
-            <a class="py-2 px-4 block hover:bg-gray-100" href="#">
-              {{ folder.name }}
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
+    <span v-if="loading">loading...</span>
+    <AssetList :assets="assets" v-if="!loading" />
 
-    <div class="flex-grow flex p-8 bg-gray-100">
-      <div class="w-full">
-        <div class="flex flex-wrap">
-          <div v-for="asset in assets" :key="asset.id" class="w-1/6 border bg-white mb-4 mr-4 rounded">
-            <img :src="asset.thumb_url" alt="">
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
+  </Page>
 </template>

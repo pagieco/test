@@ -124,4 +124,12 @@ class ProjectTest extends TestCase
                 && $event->user->id === $user->id;
         });
     }
+
+    /** @test */
+    public function it_can_generate_a_new_api_token()
+    {
+        $token = Project::generateApiToken();
+
+        $this->assertEquals(60, strlen($token));
+    }
 }

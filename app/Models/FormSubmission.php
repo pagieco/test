@@ -43,4 +43,14 @@ class FormSubmission extends Model
     {
         return $this->belongsTo(Form::class);
     }
+
+    /**
+     * Get the profile that belongs to this submission.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function profile(): BelongsTo
+    {
+        return $this->belongsTo(Profile::class, 'profile_id', 'local_id');
+    }
 }

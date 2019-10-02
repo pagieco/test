@@ -26,20 +26,33 @@ export const mutations = {
 };
 
 export const actions = {
+  clearFolders({ commit }) {
+    commit('SET_ASSET_FOLDERS', []);
+  },
+
+  clearAssets({ commit }) {
+    commit('SET_ASSETS', []);
+  },
+
   fetchFolders({ commit }) {
     return http.get('/asset-folders')
-      .then(({ data }) => data)
-      .then(({ data }) => {
-        commit('SET_ASSET_FOLDERS', data);
+      .then(({ status, data }) => {
+        if (status === 204) {
+          commit('SET_ASSET_FOLDERS', []);
+        } else {
+          commit('SET_ASSET_FOLDERS', data.data);
+        }
       });
   },
 
   fetchAssets({ commit }) {
-    console.log('yes');
     return http.get('/assets')
-      .then(({ data }) => data)
-      .then(({ data }) => {
-        commit('SET_ASSETS', data);
+      .then(({ status, data }) => {
+        if (status === 204) {
+          commit('SET_ASSETS', []);
+        } else {
+          commit('SET_ASSETS', data.data);
+        }
       });
   },
 };

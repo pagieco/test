@@ -7,6 +7,10 @@ Route::get('/current-user', 'Api\User\GetCurrentUserController')->name('get-curr
 Route::patch('/current-user', 'Api\User\UpdateCurrentUserController')->name('update-current-user');
 Route::put('/current-user/profile-picture', 'Api\User\UploadProfilePictureController')->name('upload-profile-picture');
 
+// Project routes...
+Route::patch('/projects/{project}', 'Api\Project\UpdateProjectController')->name('update-project');
+Route::post('/projects/{project}/switch', 'Api\Project\SwitchToProjectController')->name('switch-to-project');
+
 // Asset routes...
 Route::get('/assets', 'Api\Asset\GetAssetsController')->name('get-assets');
 Route::get('/assets/{asset}', 'Api\Asset\GetAssetController')->name('get-asset');
@@ -41,6 +45,7 @@ Route::delete('/collection-entries/{entry}', 'Api\Collection\DeleteCollectionEnt
 Route::get('/forms', 'Api\Form\GetFormsController')->name('get-forms');
 Route::post('/forms', 'Api\Form\CreateFormController')->name('create-form');
 Route::get('/forms/{form}', 'Api\Form\GetFormController')->name('get-form');
+Route::post('/forms/{form}', 'Api\Form\SubmitFormController')->name('submit-form');
 Route::get('/forms/{form}/submissions', 'Api\Form\GetFormSubmissionsController')->name('get-form-submissions');
 Route::get('/form-submissions/{submission}', 'Api\Form\GetFormSubmissionController')->name('get-form-submission');
 
@@ -54,6 +59,7 @@ Route::delete('/emails/{email}', 'Api\Email\DeleteEmailController')->name('delet
 // Profile routes...
 Route::get('/profiles', 'Api\Profile\GetProfilesController')->name('get-profiles');
 Route::get('/profiles/{profile}', 'Api\Profile\GetProfileController')->name('get-profile');
+Route::patch('/profiles/{profile}', 'Api\Profile\UpdateProfileController')->name('update-profile');
 Route::post('/profiles/{profile}', 'Api\Profile\TrackProfileEventController')->name('track-profile-event');
 Route::delete('/profiles/{profile}', 'Api\Profile\DeleteProfileController')->name('delete-profile');
 Route::get('/profiles/{profile}/events', 'Api\Profile\GetProfileEventsController')->name('get-profile-events');

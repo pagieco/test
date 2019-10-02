@@ -3,14 +3,12 @@
 namespace Tests\Unit\Policies;
 
 use App\Models\Collection;
-use Tests\RefreshCollections;
 use App\Policies\CollectionPolicy;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CollectionPolicyTest extends PolicyTestCase
 {
     use RefreshDatabase;
-    use RefreshCollections;
 
     /**
      * The policy implementation.

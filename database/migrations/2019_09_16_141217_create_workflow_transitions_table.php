@@ -16,17 +16,13 @@ class CreateWorkflowTransitionsTable extends Migration
         Schema::create('workflow_transitions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('workflow_id');
-            $table->unsignedBigInteger('project_id');
+            $table->unsignedBigInteger('project_id')->index();
             $table->unsignedBigInteger('from_id');
             $table->unsignedBigInteger('to_id');
             $table->timestamps();
 
             $table->foreign('workflow_id')
                 ->references('id')->on('workflows')
-                ->onDelete('cascade');
-
-            $table->foreign('project_id')
-                ->references('id')->on('projects')
                 ->onDelete('cascade');
 
             $table->foreign('from_id')

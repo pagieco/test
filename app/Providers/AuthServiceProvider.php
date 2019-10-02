@@ -23,6 +23,7 @@ class AuthServiceProvider extends ServiceProvider
         Models\Form::class => Policies\FormPolicy::class,
         Models\Page::class => Policies\PagePolicy::class,
         Models\Profile::class => Policies\ProfilePolicy::class,
+        Models\Project::class => Policies\ProjectPolicy::class,
         Models\Workflow::class => Policies\WorkflowPolicy::class,
     ];
 

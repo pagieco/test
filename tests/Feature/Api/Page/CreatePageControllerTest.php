@@ -19,7 +19,10 @@ class CreatePageControllerTest extends TestCase
     {
         $this->login();
 
+        $domain = $this->project->domains->first();
+
         $this->makeRequest([
+            'domain_id' => $domain->id,
             'name' => 'Test page',
             'slug' => '/test-slug',
         ])->assertSchema('CreatePage', Response::HTTP_FORBIDDEN);
@@ -116,7 +119,10 @@ class CreatePageControllerTest extends TestCase
     {
         $this->login()->forceAccess($this->role, 'page:create');
 
+        $domain = $this->project->domains->first();
+
         $this->makeRequest([
+            'domain_id' => $domain->id,
             'name' => 'Test Page',
             'slug' => '/test-slug',
         ])->assertSchema('CreatePage', Response::HTTP_CREATED);

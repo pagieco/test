@@ -41,4 +41,18 @@ class CreateFormRequest extends FormRequest
             ],
         ];
     }
+
+    /**
+     * Get a profile identifier field if available.
+     *
+     * @return false|array
+     */
+    public function getProfileIdentifier()
+    {
+        return current(array_filter($this->fields, function ($element) {
+            return isset($element['is_profile_identifier'])
+                && $element['is_profile_identifier'] === true
+                && $element['type'] === FormFieldType::Email;
+        }));
+    }
 }

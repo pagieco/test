@@ -39,6 +39,8 @@ abstract class TestCase extends BaseTestCase
 
         $project = factory(Project::class)->create();
 
+        $project->shareWith($user);
+
         $this->user = $user;
         $this->project = $project;
 

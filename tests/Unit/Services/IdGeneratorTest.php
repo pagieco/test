@@ -13,8 +13,6 @@ class IdGeneratorTest extends TestCase
         $shardId = pow(2, 23) - 9;
         $localId = pow(2, 40) - 1;
 
-        dd(pow(2, 23) - 9);
-
         $this->assertEquals(9223363240761753599, IdGenerator::encode($shardId, $localId));
     }
 

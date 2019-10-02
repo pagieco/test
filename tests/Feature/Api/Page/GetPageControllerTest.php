@@ -31,7 +31,7 @@ class GetPageControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($page->id)->assertSchema('GetPage', Response::HTTP_FORBIDDEN);
+        $this->makeRequest($page->external_id)->assertSchema('GetPage', Response::HTTP_FORBIDDEN);
     }
 
     /** @test */
@@ -41,7 +41,7 @@ class GetPageControllerTest extends TestCase
 
         $page = factory(Page::class)->create();
 
-        $this->makeRequest($page->id)->assertSchema('GetPage', Response::HTTP_NOT_FOUND);
+        $this->makeRequest($page->external_id)->assertSchema('GetPage', Response::HTTP_NOT_FOUND);
     }
 
     /** @test */
@@ -53,7 +53,7 @@ class GetPageControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($page->id)->assertSchema('GetPage', Response::HTTP_OK);
+        $this->makeRequest($page->external_id)->assertSchema('GetPage', Response::HTTP_OK);
     }
 
     /**

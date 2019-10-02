@@ -31,7 +31,7 @@ class UpdatePageControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($page->id)->assertSchema('UpdatePage', Response::HTTP_FORBIDDEN);
+        $this->makeRequest($page->external_id)->assertSchema('UpdatePage', Response::HTTP_FORBIDDEN);
     }
 
     /** @test */
@@ -41,7 +41,7 @@ class UpdatePageControllerTest extends TestCase
 
         $page = factory(Page::class)->create();
 
-        $this->makeRequest($page->id)->assertSchema('UpdatePage', Response::HTTP_NOT_FOUND);
+        $this->makeRequest($page->external_id)->assertSchema('UpdatePage', Response::HTTP_NOT_FOUND);
     }
 
     /** @test */
@@ -53,7 +53,7 @@ class UpdatePageControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($page->id, [
+        $this->makeRequest($page->external_id, [
             'name' => '',
         ])->assertSchema('UpdatePage', Response::HTTP_UNPROCESSABLE_ENTITY);
     }
@@ -67,7 +67,7 @@ class UpdatePageControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($page->id, [
+        $this->makeRequest($page->external_id, [
             'name' => 'a',
         ])->assertSchema('UpdatePage', Response::HTTP_UNPROCESSABLE_ENTITY);
     }
@@ -81,7 +81,7 @@ class UpdatePageControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($page->id, [
+        $this->makeRequest($page->external_id, [
             'name' => str_repeat('a', 251),
         ])->assertSchema('UpdatePage', Response::HTTP_UNPROCESSABLE_ENTITY);
     }
@@ -101,7 +101,7 @@ class UpdatePageControllerTest extends TestCase
             'name' => 'Old Name',
         ]);
 
-        $this->makeRequest($page->id, [
+        $this->makeRequest($page->external_id, [
             'name' => 'Test Name',
         ])->assertSchema('UpdatePage', Response::HTTP_UNPROCESSABLE_ENTITY);
     }
@@ -115,7 +115,7 @@ class UpdatePageControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($page->id, [
+        $this->makeRequest($page->external_id, [
             'slug' => '',
         ])->assertSchema('UpdatePage', Response::HTTP_UNPROCESSABLE_ENTITY);
     }
@@ -129,7 +129,7 @@ class UpdatePageControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($page->id, [
+        $this->makeRequest($page->external_id, [
             'slug' => str_repeat('a', 251),
         ])->assertSchema('UpdatePage', Response::HTTP_UNPROCESSABLE_ENTITY);
     }
@@ -149,7 +149,7 @@ class UpdatePageControllerTest extends TestCase
             'name' => '/old-slug',
         ]);
 
-        $this->makeRequest($page->id, [
+        $this->makeRequest($page->external_id, [
             'slug' => '/test-slug',
         ])->assertSchema('UpdatePage', Response::HTTP_UNPROCESSABLE_ENTITY);
     }
@@ -163,7 +163,7 @@ class UpdatePageControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($page->id, [
+        $this->makeRequest($page->external_id, [
             'name' => 'Test Name',
             'slug' => 'test-slug',
         ])->assertSchema('UpdatePage', Response::HTTP_OK);

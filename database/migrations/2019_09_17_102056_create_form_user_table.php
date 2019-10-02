@@ -15,14 +15,10 @@ class CreateFormUserTable extends Migration
     {
         Schema::create('form_user', function (Blueprint $table) {
             $table->unsignedBigInteger('form_id');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->index();
 
             $table->foreign('form_id')
                 ->references('id')->on('forms')
-                ->onDelete('cascade');
-
-            $table->foreign('user_id')
-                ->references('id')->on('users')
                 ->onDelete('cascade');
         });
     }

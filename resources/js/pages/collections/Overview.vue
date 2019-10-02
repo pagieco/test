@@ -1,5 +1,19 @@
+<script>
+
+import { Page } from '../../components';
+
+export default {
+  components: { Page },
+
+  metaInfo: {
+    title: 'Collections',
+  },
+};
+
+</script>
+
 <template>
-  <div>
+  <Page title="Collections">
     collections overview
-  </div>
+  </Page>
 </template>

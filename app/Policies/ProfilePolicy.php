@@ -35,6 +35,19 @@ class ProfilePolicy
     }
 
     /**
+     * Determine whether the user can update the profile.
+     *
+     * @param  \App\Models\User $user
+     * @param  \App\Models\Profile $profile
+     * @return bool
+     */
+    public function update(User $user, Profile $profile): bool
+    {
+        return $user->hasAccess('profile:update')
+            && $user->currentProject()->profiles->contains($profile->local_id);
+    }
+
+    /**
      * Determine whether the user can delete the profile.
      *
      * @param  \App\Models\User $user

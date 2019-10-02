@@ -16,7 +16,7 @@ class CreateAssetsTable extends Migration
         Schema::create('assets', function (Blueprint $table) {
             $table->bigIncrements('local_id');
             $table->unsignedBigInteger('external_id')->unique()->index()->nullable();
-            $table->unsignedBigInteger('project_id');
+            $table->unsignedBigInteger('project_id')->index();
             $table->unsignedBigInteger('asset_folder_id')->nullable();
             $table->string('hash');
             $table->string('filename');
@@ -30,10 +30,6 @@ class CreateAssetsTable extends Migration
             $table->string('path');
             $table->string('thumb_path')->nullable();
             $table->timestamps();
-
-            $table->foreign('project_id')
-                ->references('id')->on('projects')
-                ->onDelete('cascade');
 
             $table->foreign('asset_folder_id')
                 ->references('local_id')->on('asset_folders')

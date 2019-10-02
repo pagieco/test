@@ -5,7 +5,7 @@ use Illuminate\Database\Seeder;
 
 class ProjectsTableSeeder extends Seeder
 {
-    protected static $id = 1;
+    protected static $id = 2;
 
     /**
      * Run the database seeds.
@@ -20,7 +20,16 @@ class ProjectsTableSeeder extends Seeder
             'user_id' => UsersTableSeeder::getDemoUser()->id,
         ]);
 
+        $project->domains()->first()->update([
+            'domain_name' => 'demo.pagie.local',
+        ]);
+
         static::$id = $project->id;
+    }
+
+    public static function getPersonalProject()
+    {
+        return Project::findOrFail(1);
     }
 
     public static function getWildcatsProject()

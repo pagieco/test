@@ -11,13 +11,13 @@ use Illuminate\Contracts\Support\Responsable;
 
 class Resolver
 {
+    public $request;
+
+    public $domain;
+
     protected $resolvers = [
         PageResolver::class,
     ];
-
-    protected $request;
-
-    protected $domain;
 
     /**
      * Create a new resolver instance.

@@ -31,7 +31,7 @@ class PagePolicy
     public function view(User $user, Page $page): bool
     {
         return $user->hasAccess('page:view')
-            && $user->currentProject()->pages->contains($page->id);
+            && $user->currentProject()->pages->contains($page->local_id);
     }
 
     /**
@@ -55,7 +55,7 @@ class PagePolicy
     public function update(User $user, Page $page): bool
     {
         return $user->hasAccess('page:update')
-            && $user->currentProject()->pages->contains($page->id);
+            && $user->currentProject()->pages->contains($page->local_id);
     }
 
     /**
@@ -68,7 +68,7 @@ class PagePolicy
     public function delete(User $user, Page $page): bool
     {
         return $user->hasAccess('page:delete')
-            && $user->currentProject()->pages->contains($page->id);
+            && $user->currentProject()->pages->contains($page->local_id);
     }
 
     /**
@@ -81,6 +81,6 @@ class PagePolicy
     public function publish(User $user, Page $page): bool
     {
         return $user->hasAccess('page:publish')
-            && $user->currentProject()->pages->contains($page->id);
+            && $user->currentProject()->pages->contains($page->local_id);
     }
 }

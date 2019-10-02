@@ -5,6 +5,8 @@ namespace Tests\Unit\Models;
 use Tests\TestCase;
 use App\Models\Form;
 use App\Models\User;
+use App\Models\FormField;
+use App\Models\Enums\FormFieldType;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -44,6 +46,21 @@ class FormTest extends TestCase
         $this->assertDatabaseHas('forms', [
             'id' => factory(Form::class)->create()->id,
         ]);
+    }
+
+    /** @test */
+    public function it_can_get_the_profile_identifier_field()
+    {
+        $form = factory(Form::class)->create();
+
+        $field = factory(FormField::class)->create([
+            'type' => FormFieldType::Email,
+            'form_id' => $form->id,
+            'is_profile_identifier' => true,
+        ]);
+
+        $this->assertInstanceOf(FormField::class, $form->getProfileIdentifierField());
+        $this->assertEquals($form->getProfileIdentifierField()->id, $field->id);
     }
 
     /** @test */
