@@ -26,7 +26,7 @@ export default {
       </div>
 
       <div class="flex-grow bg-gray-100">
-        <div :class="!hasNavigation ? `max-w-4xl mx-auto` : ''">
+        <div :class="!hasNavigation ? `max-w-5xl mx-auto` : ''">
           <div class="m-8">
             <h1 class="text-2xl mb-8">{{ title }}</h1>
 

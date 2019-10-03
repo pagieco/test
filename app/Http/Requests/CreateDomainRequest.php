@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateDomainRequest extends FormRequest
+class CreateDomainRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,7 +28,7 @@ class UpdateDomainRequest extends FormRequest
             'gtm' => 'filled',
             'google_site_verification_id' => 'filled',
             'facebook_pixel_id' => 'filled',
-            'timezone' => 'timezone',
+            'timezone' => 'required|timezone',
         ];
     }
 }

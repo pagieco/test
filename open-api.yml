@@ -924,6 +924,19 @@ paths:
           description: No domains found
         403:
           $ref: '#/components/responses/status-403-response'
+    post:
+      summary: Create a new domain
+      description: Create a new domain
+      tags:
+        - Domain
+      operationId: CreateDomain
+      responses:
+        201:
+          $ref: '#/components/responses/get-domain'
+        403:
+          $ref: '#/components/responses/status-403-response'
+        422:
+          $ref: '#/components/responses/status-422-response'
 
   /domains/{domain}:
     get:

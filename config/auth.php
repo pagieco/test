@@ -136,6 +136,7 @@ return [
 
         'domain:list' => ['List domains', 'List the domains.'],
         'domain:view' => ['View domain', 'View a domain.'],
+        'domain:create' => ['Create domain', 'Create a domain.'],
         'domain:update' => ['Update domain', 'Update a domain.'],
         'domain:delete' => ['Delete domain', 'Delete a domain.'],
 

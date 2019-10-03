@@ -23,6 +23,10 @@ class Domain extends Model
      */
     protected $fillable = [
         'domain_name',
+        'gtm',
+        'google_site_verification_id',
+        'facebook_pixel_id',
+        'timezone',
     ];
 
     /**

@@ -34,6 +34,22 @@ class DomainPolicyTest extends PolicyTestCase
     }
 
     /** @test */
+    public function it_returns_false_when_the_user_has_no_permission_to_create_a_new_domain()
+    {
+        $this->login();
+
+        $this->assertFalse((new DomainPolicy)->create($this->user));
+    }
+
+    /** @test */
+    public function it_returns_true_when_the_user_has_permission_to_create_a_new_domain()
+    {
+        $user = tap($this->login())->forceAccess($this->role, 'domain:create');
+
+        $this->assertTrue((new DomainPolicy)->create($user));
+    }
+
+    /** @test */
     public function it_returns_false_when_the_user_has_no_permission_to_view_a_domain()
     {
         $user = $this->login();

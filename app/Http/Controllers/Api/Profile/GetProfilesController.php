@@ -31,7 +31,10 @@ class GetProfilesController extends Controller
     {
         $this->authorize('list', Profile::class);
 
-        $profiles = $request->user()->currentProject()->profiles;
+        $profiles = $request->user()->currentProject()
+            ->profiles()
+            ->orderByDesc('local_id')
+            ->paginate(50);
 
         abort_if($profiles->isEmpty(), Response::HTTP_NO_CONTENT);
 

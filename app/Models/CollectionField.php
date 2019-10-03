@@ -31,7 +31,7 @@ class CollectionField extends Model
      * @var array
      */
     protected $fillable = [
-        'type', 'slug', 'display_name', 'validations',
+        'type', 'slug', 'display_name', 'sort_order', 'validations',
     ];
 
     /**

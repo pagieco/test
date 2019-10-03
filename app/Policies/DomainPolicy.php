@@ -35,6 +35,17 @@ class DomainPolicy
     }
 
     /**
+     * Determine whether the user can create a new domain.
+     *
+     * @param  \App\Models\User $user
+     * @return bool
+     */
+    public function create(User $user): bool
+    {
+        return $user->hasAccess('domain:create');
+    }
+
+    /**
      * Determine whether the user can update the domain.
      *
      * @param  \App\Models\User $user

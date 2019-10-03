@@ -31,9 +31,12 @@ class UpdateDomainControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($domain->id, [
+        $response = $this->makeRequest($domain->id, [
             'domain_name' => faker()->domainName,
-        ])->assertSchema('UpdateDomain', Response::HTTP_FORBIDDEN);
+            'timezone' => faker()->timezone,
+        ]);
+
+        $response->assertSchema('UpdateDomain', Response::HTTP_FORBIDDEN);
     }
 
     /** @test */
@@ -43,7 +46,9 @@ class UpdateDomainControllerTest extends TestCase
 
         $domain = factory(Domain::class)->create();
 
-        $this->makeRequest($domain->id)->assertSchema('UpdateDomain', Response::HTTP_NOT_FOUND);
+        $response = $this->makeRequest($domain->id);
+
+        $response->assertSchema('UpdateDomain', Response::HTTP_NOT_FOUND);
     }
 
     /** @test */
@@ -55,7 +60,9 @@ class UpdateDomainControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($domain->id)->assertSchema('UpdateDomain', Response::HTTP_UNPROCESSABLE_ENTITY);
+        $response = $this->makeRequest($domain->id);
+
+        $response->assertSchema('UpdateDomain', Response::HTTP_UNPROCESSABLE_ENTITY);
     }
 
     /** @test */
@@ -71,9 +78,79 @@ class UpdateDomainControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($domain->id, [
+        $response = $this->makeRequest($domain->id, [
             'domain_name' => 'test-domain.com',
-        ])->assertSchema('UpdateDomain', Response::HTTP_UNPROCESSABLE_ENTITY);
+        ]);
+
+        $response->assertSchema('UpdateDomain', Response::HTTP_UNPROCESSABLE_ENTITY);
+    }
+
+    /** @test */
+    public function it_throws_a_422_exception_when_the_gtm_is_posted_but_is_empty_when_updating_a_domain()
+    {
+        $this->login()->forceAccess($this->role, 'domain:update');
+
+        $domain = factory(Domain::class)->create([
+            'project_id' => $this->project->id,
+        ]);
+
+        $response = $this->makeRequest($domain->id, [
+            'domain_name' => 'test-domain.com',
+            'gtm' => '',
+        ]);
+
+        $response->assertSchema('UpdateDomain', Response::HTTP_UNPROCESSABLE_ENTITY);
+    }
+
+    /** @test */
+    public function it_throws_a_422_exception_when_the_google_site_verification_id_is_posted_but_is_empty_when_updating_a_domain()
+    {
+        $this->login()->forceAccess($this->role, 'domain:update');
+
+        $domain = factory(Domain::class)->create([
+            'project_id' => $this->project->id,
+        ]);
+
+        $response = $this->makeRequest($domain->id, [
+            'domain_name' => 'test-domain.com',
+            'google_site_verification_id' => '',
+        ]);
+
+        $response->assertSchema('UpdateDomain', Response::HTTP_UNPROCESSABLE_ENTITY);
+    }
+
+    /** @test */
+    public function it_throws_a_422_exception_when_the_facebook_pixel_id_is_posted_but_is_empty_when_updating_a_domain()
+    {
+        $this->login()->forceAccess($this->role, 'domain:update');
+
+        $domain = factory(Domain::class)->create([
+            'project_id' => $this->project->id,
+        ]);
+
+        $response = $this->makeRequest($domain->id, [
+            'domain_name' => 'test-domain.com',
+            'facebook_pixel_id' => '',
+        ]);
+
+        $response->assertSchema('UpdateDomain', Response::HTTP_UNPROCESSABLE_ENTITY);
+    }
+
+    /** @test */
+    public function it_throws_a_422_exception_when_the_timezone_is_invalid_when_updating_a_domain()
+    {
+        $this->login()->forceAccess($this->role, 'domain:update');
+
+        $domain = factory(Domain::class)->create([
+            'project_id' => $this->project->id,
+        ]);
+
+        $response = $this->makeRequest($domain->id, [
+            'domain_name' => 'test-domain.com',
+            'timezone' => 'fake/timezone',
+        ]);
+
+        $response->assertSchema('UpdateDomain', Response::HTTP_UNPROCESSABLE_ENTITY);
     }
 
     /** @test */
@@ -85,9 +162,11 @@ class UpdateDomainControllerTest extends TestCase
             'project_id' => $this->project->id,
         ]);
 
-        $this->makeRequest($domain->id, [
+        $response = $this->makeRequest($domain->id, [
             'domain_name' => 'test-domain.com',
-        ])->assertSchema('UpdateDomain', Response::HTTP_OK);
+        ]);
+
+        $response->assertSchema('UpdateDomain', Response::HTTP_OK);
     }
 
     /**

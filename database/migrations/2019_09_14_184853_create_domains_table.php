@@ -17,6 +17,10 @@ class CreateDomainsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('project_id');
             $table->string('domain_name');
+            $table->string('gtm')->nullable();
+            $table->string('google_site_verification_id')->nullable();
+            $table->string('facebook_pixel_id')->nullable();
+            $table->string('timezone');
             $table->timestamps();
 
             $table->foreign('project_id')

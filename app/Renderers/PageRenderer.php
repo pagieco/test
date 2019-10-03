@@ -15,6 +15,7 @@ class PageRenderer extends ResourceRenderer implements Renderable
     {
         return view('render-targets/page-resource', [
             'resource' => $this->resourceInstance,
+            'domain' => $this->resourceInstance->domain,
         ]);
     }
 }

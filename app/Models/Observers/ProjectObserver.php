@@ -50,6 +50,7 @@ class ProjectObserver
 
         return $project->domains()->create([
             'domain_name' => $subdomain,
+            'timezone' => 'UTC',
         ]);
     }
 

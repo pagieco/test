@@ -19,7 +19,7 @@ export default {
   },
 
   watch: {
-    $route: 'init',
+    $route: 'initComponent',
   },
 
   data() {
@@ -36,7 +36,7 @@ export default {
   },
 
   mounted() {
-    this.init();
+    this.initComponent();
   },
 
   methods: {
@@ -45,10 +45,7 @@ export default {
       fetchFolders: 'asset/fetchFolders',
     }),
 
-    init() {
-      this.$store.dispatch('asset/clearAssets');
-      this.$store.dispatch('asset/clearFolders');
-
+    initComponent() {
       this.loading = true;
 
       Promise.all([

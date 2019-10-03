@@ -20,6 +20,7 @@ class CreateCollectionFieldsTable extends Migration
             $table->unsignedBigInteger('project_id')->index();
             $table->string('display_name');
             $table->string('slug');
+            $table->unsignedSmallInteger('sort_order')->default(0);
             $table->json('validations')->nullable();
             $table->string('type');
             $table->timestamps();

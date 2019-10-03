@@ -7,6 +7,12 @@ export {
   CardSection,
 } from './card';
 
+export {
+  default as DataTable,
+  Cell as DataTableCell,
+  ContentType as DataTableContentType,
+} from './data-table';
+
 export { Page } from './page';
 
 export { TopBar } from './top-bar';

@@ -77,7 +77,8 @@ class Profile extends Model
      */
     public function events(): HasMany
     {
-        return $this->hasMany(ProfileEvent::class, 'profile_id', 'local_id');
+        return $this->hasMany(ProfileEvent::class, 'profile_id', 'local_id')
+                    ->orderBy('created_at');
     }
 
     /**

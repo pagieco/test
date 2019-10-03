@@ -18,7 +18,7 @@ class CreateProfilesTable extends Migration
             $table->unsignedBigInteger('external_id')->unique()->index()->nullable();
             $table->unsignedBigInteger('project_id')->index();
             $table->uuid('profile_id')->index();
-            $table->string('email');
+            $table->string('email')->index();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('address_1')->nullable();

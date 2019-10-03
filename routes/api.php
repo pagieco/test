@@ -72,6 +72,7 @@ Route::delete('/automations/{automation}', 'Api\Automation\DeleteAutomationContr
 
 // Domain routes...
 Route::get('/domains', 'Api\Domain\GetDomainsController')->name('get-domains');
+Route::post('/domains', 'Api\Domain\CreateDomainController')->name('create-domain');
 Route::get('/domains/{domain}', 'Api\Domain\GetDomainController')->name('get-domain');
 Route::patch('/domains/{domain}', 'Api\Domain\UpdateDomainController')->name('update-domain');
 Route::delete('/domains/{domain}', 'Api\Domain\DeleteDomainController')->name('delete-domain');

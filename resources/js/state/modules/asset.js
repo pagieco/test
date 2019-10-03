@@ -26,15 +26,9 @@ export const mutations = {
 };
 
 export const actions = {
-  clearFolders({ commit }) {
-    commit('SET_ASSET_FOLDERS', []);
-  },
-
-  clearAssets({ commit }) {
-    commit('SET_ASSETS', []);
-  },
-
   fetchFolders({ commit }) {
+    commit('SET_ASSET_FOLDERS', []);
+
     return http.get('/asset-folders')
       .then(({ status, data }) => {
         if (status === 204) {
@@ -46,6 +40,8 @@ export const actions = {
   },
 
   fetchAssets({ commit }) {
+    commit('SET_ASSETS', []);
+
     return http.get('/assets')
       .then(({ status, data }) => {
         if (status === 204) {

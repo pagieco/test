@@ -33,7 +33,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     title: 'Assets'
   },
   watch: {
-    $route: 'init'
+    $route: 'initComponent'
   },
   data: function data() {
     return {
@@ -45,17 +45,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     folders: 'asset/folders'
   })),
   mounted: function mounted() {
-    this.init();
+    this.initComponent();
   },
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])({
     fetchAssets: 'asset/fetchAssets',
     fetchFolders: 'asset/fetchFolders'
   }), {
-    init: function init() {
+    initComponent: function initComponent() {
       var _this = this;
 
-      this.$store.dispatch('asset/clearAssets');
-      this.$store.dispatch('asset/clearFolders');
       this.loading = true;
       Promise.all([this.$store.dispatch('asset/fetchFolders'), this.$store.dispatch('asset/fetchAssets')]).then(function () {
         _this.loading = false;
