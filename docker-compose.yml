@@ -1,6 +1,15 @@
 version: '3.5'
 
 services:
+  consul:
+    container_name: service.framework-test.consul
+    image: consul:latest
+    ports:
+      - 8400:8400
+      - 8500:8500
+      - 8600:8600/udp
+    command: "agent -server -bind 0.0.0.0 -client 0.0.0.0 -bootstrap-expect=1 -ui"
+
   mysql:
     container_name: service.framework-test.mysql
     image: mysql:8.0
