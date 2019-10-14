@@ -16,10 +16,9 @@ class ProfileEventResource extends JsonResource
     {
         return [
             'id' => $this->external_id,
-            'data' => $this->data,
             'event_type' => $this->event_type,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'data' => $this->data,
+            'occurred_at' => $this->occurred_at,
         ];
     }
 }

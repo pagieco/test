@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d4caed8e84c6d70bb745f48124bcdd6d",
+    "content-hash": "7395c39d23fd7b06ce918a7a83dded9f",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -610,75 +610,6 @@
             "time": "2018-09-29T18:48:56+00:00"
         },
         {
-            "name": "jenssegers/mongodb",
-            "version": "v3.6.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/jenssegers/laravel-mongodb.git",
-                "reference": "069b233b703c5ea763f036859bb36cb6293e1a26"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/jenssegers/laravel-mongodb/zipball/069b233b703c5ea763f036859bb36cb6293e1a26",
-                "reference": "069b233b703c5ea763f036859bb36cb6293e1a26",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/container": "^5.8|^6.0",
-                "illuminate/database": "^5.8|^6.0",
-                "illuminate/events": "^5.8|^6.0",
-                "illuminate/support": "^5.8|^6.0",
-                "mongodb/mongodb": "^1.4"
-            },
-            "require-dev": {
-                "doctrine/dbal": "^2.5",
-                "mockery/mockery": "^1.0",
-                "orchestra/testbench": "^3.1|^4.0",
-                "phpunit/phpunit": "^6.0|^7.0|^8.0",
-                "satooshi/php-coveralls": "^2.0"
-            },
-            "suggest": {
-                "jenssegers/mongodb-sentry": "Add Sentry support to Laravel-MongoDB",
-                "jenssegers/mongodb-session": "Add MongoDB session support to Laravel-MongoDB"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Jenssegers\\Mongodb\\MongodbServiceProvider",
-                        "Jenssegers\\Mongodb\\MongodbQueueServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Jenssegers\\Mongodb": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jens Segers",
-                    "homepage": "https://jenssegers.com"
-                }
-            ],
-            "description": "A MongoDB based Eloquent model and Query builder for Laravel (Moloquent)",
-            "homepage": "https://github.com/jenssegers/laravel-mongodb",
-            "keywords": [
-                "database",
-                "eloquent",
-                "laravel",
-                "model",
-                "moloquent",
-                "mongo",
-                "mongodb"
-            ],
-            "time": "2019-09-08T08:20:21+00:00"
-        },
-        {
             "name": "laravel/framework",
             "version": "v6.0.3",
             "source": {
@@ -969,66 +900,6 @@
                 "storage"
             ],
             "time": "2019-08-24T11:17:19+00:00"
-        },
-        {
-            "name": "mongodb/mongodb",
-            "version": "1.4.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mongodb/mongo-php-library.git",
-                "reference": "18fca8cc8d0c2cc07f76605760d20632bb3dab96"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mongodb/mongo-php-library/zipball/18fca8cc8d0c2cc07f76605760d20632bb3dab96",
-                "reference": "18fca8cc8d0c2cc07f76605760d20632bb3dab96",
-                "shasum": ""
-            },
-            "require": {
-                "ext-hash": "*",
-                "ext-json": "*",
-                "ext-mongodb": "^1.5.0",
-                "php": ">=5.5"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.8.36 || ^6.4"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "MongoDB\\": "src/"
-                },
-                "files": [
-                    "src/functions.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "Jeremy Mikola",
-                    "email": "jmikola@gmail.com"
-                },
-                {
-                    "name": "Derick Rethans",
-                    "email": "github@derickrethans.nl"
-                },
-                {
-                    "name": "Katherine Walker",
-                    "email": "katherine.walker@mongodb.com"
-                }
-            ],
-            "description": "MongoDB driver library",
-            "homepage": "https://jira.mongodb.org/browse/PHPLIB",
-            "keywords": [
-                "database",
-                "driver",
-                "mongodb",
-                "persistence"
-            ],
-            "time": "2019-07-02T18:04:14+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -1774,6 +1645,119 @@
                 "uuid"
             ],
             "time": "2018-07-19T23:38:55+00:00"
+        },
+        {
+            "name": "spatie/laravel-json-api-paginate",
+            "version": "1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-json-api-paginate.git",
+                "reference": "137fbc98d8f3aee9507168c9a73fc575530970bd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-json-api-paginate/zipball/137fbc98d8f3aee9507168c9a73fc575530970bd",
+                "reference": "137fbc98d8f3aee9507168c9a73fc575530970bd",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.8.0|^6.0",
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "orchestra/testbench": "~3.8.0|^4.0",
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\JsonApiPaginate\\JsonApiPaginateServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\JsonApiPaginate\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A paginator that plays nice with the JSON API spec",
+            "homepage": "https://github.com/spatie/laravel-json-api-paginate",
+            "keywords": [
+                "laravel-json-api-paginate",
+                "spatie"
+            ],
+            "time": "2019-09-04T11:35:38+00:00"
+        },
+        {
+            "name": "spatie/laravel-query-builder",
+            "version": "2.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-query-builder.git",
+                "reference": "197d42f7d93d67183ca60c5c011e8c5c48b6cd56"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-query-builder/zipball/197d42f7d93d67183ca60c5c011e8c5c48b6cd56",
+                "reference": "197d42f7d93d67183ca60c5c011e8c5c48b6cd56",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "~5.6.34|~5.7.0|~5.8.0|^6.0",
+                "illuminate/http": "~5.6.34|~5.7.0|~5.8.0|^6.0",
+                "illuminate/support": "~5.6.34|~5.7.0|~5.8.0|^6.0",
+                "php": "^7.1"
+            },
+            "require-dev": {
+                "ext-json": "*",
+                "orchestra/testbench": "~3.6.0|~3.7.0|~3.8.0|^4.0",
+                "phpunit/phpunit": "^7.0|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\QueryBuilder\\QueryBuilderServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\QueryBuilder\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alex Vanderbist",
+                    "email": "alex@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Easily build Eloquent queries from API requests",
+            "homepage": "https://github.com/spatie/laravel-query-builder",
+            "keywords": [
+                "laravel-query-builder",
+                "spatie"
+            ],
+            "time": "2019-10-03T09:25:23+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -4368,6 +4352,75 @@
             "time": "2016-01-20T08:20:44+00:00"
         },
         {
+            "name": "jenssegers/mongodb",
+            "version": "v3.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jenssegers/laravel-mongodb.git",
+                "reference": "069b233b703c5ea763f036859bb36cb6293e1a26"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jenssegers/laravel-mongodb/zipball/069b233b703c5ea763f036859bb36cb6293e1a26",
+                "reference": "069b233b703c5ea763f036859bb36cb6293e1a26",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/container": "^5.8|^6.0",
+                "illuminate/database": "^5.8|^6.0",
+                "illuminate/events": "^5.8|^6.0",
+                "illuminate/support": "^5.8|^6.0",
+                "mongodb/mongodb": "^1.4"
+            },
+            "require-dev": {
+                "doctrine/dbal": "^2.5",
+                "mockery/mockery": "^1.0",
+                "orchestra/testbench": "^3.1|^4.0",
+                "phpunit/phpunit": "^6.0|^7.0|^8.0",
+                "satooshi/php-coveralls": "^2.0"
+            },
+            "suggest": {
+                "jenssegers/mongodb-sentry": "Add Sentry support to Laravel-MongoDB",
+                "jenssegers/mongodb-session": "Add MongoDB session support to Laravel-MongoDB"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Jenssegers\\Mongodb\\MongodbServiceProvider",
+                        "Jenssegers\\Mongodb\\MongodbQueueServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Jenssegers\\Mongodb": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jens Segers",
+                    "homepage": "https://jenssegers.com"
+                }
+            ],
+            "description": "A MongoDB based Eloquent model and Query builder for Laravel (Moloquent)",
+            "homepage": "https://github.com/jenssegers/laravel-mongodb",
+            "keywords": [
+                "database",
+                "eloquent",
+                "laravel",
+                "model",
+                "moloquent",
+                "mongo",
+                "mongodb"
+            ],
+            "time": "2019-09-08T08:20:21+00:00"
+        },
+        {
             "name": "johnkary/phpunit-speedtrap",
             "version": "v3.1.0",
             "source": {
@@ -4601,6 +4654,66 @@
                 "testing"
             ],
             "time": "2019-08-07T15:01:07+00:00"
+        },
+        {
+            "name": "mongodb/mongodb",
+            "version": "1.4.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mongodb/mongo-php-library.git",
+                "reference": "18fca8cc8d0c2cc07f76605760d20632bb3dab96"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mongodb/mongo-php-library/zipball/18fca8cc8d0c2cc07f76605760d20632bb3dab96",
+                "reference": "18fca8cc8d0c2cc07f76605760d20632bb3dab96",
+                "shasum": ""
+            },
+            "require": {
+                "ext-hash": "*",
+                "ext-json": "*",
+                "ext-mongodb": "^1.5.0",
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.36 || ^6.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MongoDB\\": "src/"
+                },
+                "files": [
+                    "src/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Mikola",
+                    "email": "jmikola@gmail.com"
+                },
+                {
+                    "name": "Derick Rethans",
+                    "email": "github@derickrethans.nl"
+                },
+                {
+                    "name": "Katherine Walker",
+                    "email": "katherine.walker@mongodb.com"
+                }
+            ],
+            "description": "MongoDB driver library",
+            "homepage": "https://jira.mongodb.org/browse/PHPLIB",
+            "keywords": [
+                "database",
+                "driver",
+                "mongodb",
+                "persistence"
+            ],
+            "time": "2019-07-02T18:04:14+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -6847,6 +6960,58 @@
                 "watcher"
             ],
             "time": "2018-02-18T08:28:25+00:00"
+        },
+        {
+            "name": "zordius/lightncandy",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zordius/lightncandy.git",
+                "reference": "2d8a8a2e8c9d6a6cee46f435eafe06c53efe31a2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zordius/lightncandy/zipball/2d8a8a2e8c9d6a6cee46f435eafe06c53efe31a2",
+                "reference": "2d8a8a2e8c9d6a6cee46f435eafe06c53efe31a2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.2.5-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "LightnCandy\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Zordius Chen",
+                    "email": "zordius@gmail.com"
+                }
+            ],
+            "description": "An extremely fast PHP implementation of handlebars ( http://handlebarsjs.com/ ) and mustache ( http://mustache.github.io/ ).",
+            "homepage": "https://github.com/zordius/lightncandy",
+            "keywords": [
+                "handlebars",
+                "logicless",
+                "mustache",
+                "php",
+                "template"
+            ],
+            "time": "2019-10-14T02:51:44+00:00"
         }
     ],
     "aliases": [],

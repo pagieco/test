@@ -32,7 +32,8 @@ class CreateProfilesTable extends Migration
             $table->json('tags')->nullable();
             $table->json('custom_fields')->nullable();
             $table->timestamp('consented_at')->nullable();
-            $table->timestamps();
+            $table->timestamp('first_seen_at');
+            $table->timestamp('last_seen_at')->nullable();
         });
     }
 

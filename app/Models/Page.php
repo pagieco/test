@@ -36,7 +36,16 @@ class Page extends Model implements Responsable
      * @var array
      */
     protected $fillable = [
-        'name', 'slug',
+        'name', 'slug', 'published_at',
+    ];
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'published_at',
     ];
 
     /**
@@ -55,7 +64,7 @@ class Page extends Model implements Responsable
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\View\View
      */
-    public function toResponse($request): View
+    public function toResponse($request)
     {
         return (new PageRenderer($request))->fromResourceInstance($this)->render();
     }

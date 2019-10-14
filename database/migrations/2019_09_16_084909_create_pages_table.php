@@ -22,6 +22,7 @@ class CreatePagesTable extends Migration
             $table->string('slug');
             $table->mediumText('dom')->nullable();
             $table->string('current_workflow_state')->nullable();
+            $table->timestamp('published_at')->nullable();
             $table->timestamps();
         });
     }

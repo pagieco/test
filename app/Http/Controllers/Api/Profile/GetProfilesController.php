@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProfilesResource;
+use App\Models\Repositories\ProfileRepository;
 
 class GetProfilesController extends Controller
 {
@@ -31,10 +32,7 @@ class GetProfilesController extends Controller
     {
         $this->authorize('list', Profile::class);
 
-        $profiles = $request->user()->currentProject()
-            ->profiles()
-            ->orderByDesc('local_id')
-            ->paginate(50);
+        $profiles = app(ProfileRepository::class)->all();
 
         abort_if($profiles->isEmpty(), Response::HTTP_NO_CONTENT);
 

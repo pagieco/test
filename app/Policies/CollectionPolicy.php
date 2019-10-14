@@ -35,6 +35,19 @@ class CollectionPolicy
     }
 
     /**
+     * Determine whether the user can update the collection.
+     *
+     * @param  \App\Models\User $user
+     * @param  \App\Models\Collection $collection
+     * @return bool
+     */
+    public function update(User $user, Collection $collection): bool
+    {
+        return $user->hasAccess('collection:update')
+            && $user->currentProject()->collections->contains($collection->local_id);
+    }
+
+    /**
      * Determine whether the user can create a new collection.
      *
      * @param  \App\Models\User $user

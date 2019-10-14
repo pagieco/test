@@ -30,8 +30,10 @@ class ProfileResource extends JsonResource
             'timezone' => $this->timezone,
             'tags' => $this->tags,
             'custom_fields' => $this->custom_fields,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'has_consented' => $this->has_consented,
+            'consented_at' => $this->consented_at,
+            'first_seen_at' => $this->first_seen_at,
+            'last_seen_at' => $this->last_seen_at,
         ];
     }
 }

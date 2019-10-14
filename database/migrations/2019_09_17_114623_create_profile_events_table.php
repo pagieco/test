@@ -20,7 +20,7 @@ class CreateProfileEventsTable extends Migration
             $table->unsignedBigInteger('project_id');
             $table->string('event_type');
             $table->json('data')->nullable();
-            $table->timestamps();
+            $table->timestamp('occurred_at');
 
             $table->foreign('profile_id')
                 ->references('local_id')->on('profiles')

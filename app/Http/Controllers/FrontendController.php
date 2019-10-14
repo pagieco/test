@@ -7,8 +7,9 @@ use App\Models\ProfileEvent;
 use Illuminate\Http\Request;
 use App\Http\Router\Resolver;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Contracts\Support\Responsable;
 
-class FrontendController
+class FrontendController extends Controller
 {
     const HALF_YEAR_IN_MINUTES = 60 * 24 * 365 / 2;
 
@@ -18,9 +19,11 @@ class FrontendController
 
         $resolver->resolveDomain();
 
-        return $resolver->resolveResource()
-            ->toResponse($request)
-            ->with($this->prepareResponseData($resolver));
+        $resource = $resolver->resolveResource();
+
+        $contents = $resource->toResponse($request)->with($this->prepareResponseData($resolver));
+
+        return response($contents->render())->withHeaders($this->prepareResponseHeaders($resource));
     }
 
     protected function prepareResponseData(Resolver $resolver): array
@@ -34,6 +37,17 @@ class FrontendController
         }
 
         return $data;
+    }
+
+    protected function prepareResponseHeaders(Responsable $resource)
+    {
+        $headers = [];
+
+        if ($resource->published_at) {
+            $headers['Last-Modified'] = $resource->published_at->toRfc7231String();
+        }
+
+        return $headers;
     }
 
     protected function identifyProfile(Resolver $resolver): ?Profile

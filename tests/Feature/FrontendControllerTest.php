@@ -32,7 +32,7 @@ class FrontendControllerTest extends TestCase
     }
 
     /** @test */
-    public function it_can_successfully_exeute_the_frontend_controller()
+    public function it_can_successfully_execute_the_frontend_controller()
     {
         $domainName = parse_url(config('app.domain'), PHP_URL_HOST);
 

@@ -46,6 +46,19 @@ class FormPolicy
     }
 
     /**
+     * Determine whether the user can delete the form.
+     *
+     * @param  \App\Models\User $user
+     * @param  \App\Models\Form $form
+     * @return bool
+     */
+    public function delete(User $user, Form $form): bool
+    {
+        return $user->hasAccess('form:delete')
+            && $user->currentProject()->forms->contains($form->id);
+    }
+
+    /**
      * Determine whether the user can list the form submissions.
      *
      * @param  \App\Models\User $user

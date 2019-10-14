@@ -131,6 +131,7 @@ return [
         'collection:view' => ['View collection', 'View a collection.'],
         'collection:create' => ['Create collection', 'Create a collection.'],
         'collection:delete' => ['Delete collection', 'Delete a collection.'],
+        'collection:update' => ['Update collection', 'Update a collection.'],
         'collection:create-entry' => ['Create collection entry', 'Create a collection entry.'],
         'collection:delete-entry' => ['Delete collection entry', 'Delete a collection entry.'],
 
@@ -149,6 +150,7 @@ return [
         'form:list' => ['List forms', 'List the forms.'],
         'form:view' => ['View form', 'View a form.'],
         'form:create' => ['Create form', 'Create a form.'],
+        'form:delete' => ['Delete form', 'Delete a form.'],
         'form:list-submissions' => ['List form submissions', 'List the form submissions.'],
         'form:view-submission' => ['View form submission', 'View a form submission.'],
 

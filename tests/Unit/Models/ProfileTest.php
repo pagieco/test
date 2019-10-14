@@ -29,6 +29,18 @@ class ProfileTest extends TestCase
     }
 
     /** @test */
+    public function it_can_give_consent()
+    {
+        $profile = factory(Profile::class)->create();
+
+        $this->assertFalse($profile->has_consented);
+
+        $profile->giveConsent();
+
+        $this->assertTrue($profile->has_consented);
+    }
+
+    /** @test */
     public function it_can_record_a_new_profile_event()
     {
         $profile = factory(Profile::class)->create();

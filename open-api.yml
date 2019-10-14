@@ -462,6 +462,27 @@ paths:
           $ref: '#/components/responses/status-403-response'
         404:
           $ref: '#/components/responses/status-404-response'
+    patch:
+      summary: Update a collection
+      description: Update a collection
+      tags:
+        - Collection
+      operationId: UpdateCollection
+      parameters:
+        - in: path
+          name: collection
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          $ref: '#/components/responses/get-collection'
+        403:
+          $ref: '#/components/responses/status-403-response'
+        404:
+          $ref: '#/components/responses/status-404-response'
+        422:
+          $ref: '#/components/responses/status-422-response'
     delete:
       summary: Delete a collection
       description: Delete a collection
@@ -570,6 +591,25 @@ paths:
       responses:
         200:
           $ref: '#/components/responses/get-form'
+        403:
+          $ref: '#/components/responses/status-403-response'
+        404:
+          $ref: '#/components/responses/status-404-response'
+    delete:
+      summary: Delete a form
+      description: Delete a form
+      tags:
+        - Form
+      operationId: DeleteForm
+      parameters:
+        - in: path
+          name: form
+          schema:
+            type: integer
+          required: true
+      responses:
+        204:
+          description: Form deleted
         403:
           $ref: '#/components/responses/status-403-response'
         404:
@@ -810,6 +850,29 @@ paths:
           $ref: '#/components/responses/status-403-response'
         404:
           $ref: '#/components/responses/status-404-response'
+
+  /profiles/{profile}/confirm-consent:
+    get:
+      summary: Confirm a profile consent
+      description: Confirm a profile consent
+      tags:
+        - Profile
+      operationId: ConfirmProfile
+      parameters:
+        - in: path
+          name: profile
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          $ref: '#/components/responses/status-200-response'
+        208:
+          $ref: '#/components/responses/status-208-response'
+        404:
+          $ref: '#/components/responses/status-404-response'
+        406:
+          $ref: '#/components/responses/status-406-response'
 
   /profiles/{profile}/events:
     get:
@@ -1530,6 +1593,17 @@ components:
                 example:
                   Created
 
+    status-208-response:
+      description: Already Reported
+      content:
+        application/json:
+          schema:
+            properties:
+              message:
+                type: string
+                example:
+                  Already Reported
+
     status-302-response:
       description: Found
       content:
@@ -1818,10 +1892,15 @@ components:
         custom_fields:
           type: object
           nullable: true
-        created_at:
+        has_consented:
+          type: boolean
+        consented_at:
           type: string
           format: 'date-time'
-        updated_at:
+        first_seen_at:
+          type: string
+          format: 'date-time'
+        last_seen_at:
           type: string
           format: 'date-time'
 
@@ -1829,10 +1908,11 @@ components:
       properties:
         id:
           type: integer
-        created_at:
+        event_type:
           type: string
-          format: 'date-time'
-        updated_at:
+        data:
+          type: object
+        occurred_at:
           type: string
           format: 'date-time'
 
@@ -1871,6 +1951,17 @@ components:
         id:
           type: integer
         domain_name:
+          type: string
+        gtm:
+          type: string
+          nullable: true
+        google_site_verification_id:
+          type: string
+          nullable: true
+        facebook_pixel_id:
+          type: string
+          nullable: true
+        timezone:
           type: string
         created_at:
           type: string

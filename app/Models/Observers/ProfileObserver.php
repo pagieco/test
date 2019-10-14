@@ -15,8 +15,15 @@ class ProfileObserver
      */
     public function creating(Profile $profile): void
     {
+        $profile->first_seen_at = now();
+
         if (! $profile->profile_id) {
             $profile->setAttribute('profile_id', Str::uuid());
         }
+    }
+
+    public function created(Profile $profile): void
+    {
+        $profile->sendConsentConfirmationEmail();
     }
 }

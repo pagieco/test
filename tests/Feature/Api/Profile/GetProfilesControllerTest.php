@@ -56,13 +56,47 @@ class GetProfilesControllerTest extends TestCase
         $this->makeRequest()->assertSchema('GetProfiles', Response::HTTP_OK);
     }
 
+    /** @test */
+    public function it_returns_a_paginatable_response()
+    {
+        $this->login()->forceAccess($this->role, 'profile:list');
+
+        factory(Profile::class)->create([
+            'project_id' => $this->project->id,
+        ]);
+
+        $this->assertNotNull($this->makeRequest()->json('data'));
+        $this->assertNotNull($this->makeRequest()->json('links'));
+        $this->assertNotNull($this->makeRequest()->json('meta'));
+    }
+
+    /** @test */
+    public function it_returns_a_sortable_response()
+    {
+        $this->login()->forceAccess($this->role, 'profile:list');
+
+        $profile1 = factory(Profile::class)->create([
+            'project_id' => $this->project->id,
+        ]);
+
+        $profile2 = factory(Profile::class)->create([
+            'project_id' => $this->project->id,
+        ]);
+
+        $response = $this->makeRequest(['sort' => '-id']);
+
+        $this->assertEquals($profile2->external_id, $response->json('data.0.id'));
+        $this->assertEquals($profile1->external_id, $response->json('data.1.id'));
+    }
+
     /**
      * Prepare the authenticated route request.
      *
+     * @param  array $parameters
      * @return \Illuminate\Foundation\Testing\TestResponse
      */
-    protected function makeRequest(): TestResponse
+    protected function makeRequest(array $parameters = []): TestResponse
     {
-        return $this->get(route('get-profiles'));
+        return $this->get(route('get-profiles', $parameters));
     }
 }

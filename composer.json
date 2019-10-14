@@ -9,12 +9,14 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
+        "ext-curl": "*",
         "fideloper/proxy": "^4.0",
         "intervention/image": "^2.5",
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
-        "symfony/workflow": "^4.3",
-        "ext-curl": "*"
+        "spatie/laravel-json-api-paginate": "^1.6",
+        "spatie/laravel-query-builder": "^2.2",
+        "symfony/workflow": "^4.3"
     },
     "require-dev": {
         "ext-fileinfo": "*",

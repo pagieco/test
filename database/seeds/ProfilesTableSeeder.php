@@ -17,7 +17,7 @@ class ProfilesTableSeeder extends Seeder
     {
         $project = ProjectsTableSeeder::getWildcatsProject();
 
-        for ($i = 0; $i < 100000; $i++) {
+        for ($i = 0; $i < 100; $i++) {
             DB::transaction(function () use ($project) {
                 $profile = $project->profiles()->create([
                     'email' => faker()->email,

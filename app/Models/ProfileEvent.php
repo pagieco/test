@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Http\Request;
 use App\Models\Enums\ProfileEventType;
 use App\Models\Traits\BelongsToProject;
 use App\Models\Traits\HasExternalShardId;
@@ -12,6 +11,13 @@ class ProfileEvent extends Model
 {
     use BelongsToProject;
     use HasExternalShardId;
+
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
 
     /**
      * The table associated with the model.
@@ -33,7 +39,7 @@ class ProfileEvent extends Model
      * @var array
      */
     protected $fillable = [
-        'event_type', 'data',
+        'event_type', 'data', 'occurred_at',
     ];
 
     /**
@@ -43,6 +49,15 @@ class ProfileEvent extends Model
      */
     protected $casts = [
         'data' => 'array',
+    ];
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'occurred_at',
     ];
 
     /**

@@ -101,14 +101,14 @@ class SubmitFormControllerTest extends TestCase
             'form_id' => $form->id,
             'type' => FormFieldType::Email,
             'is_profile_identifier' => true,
-            'validations' => [FormFieldValidation::Required],
+            'validations' => [FormFieldValidation::Email],
         ]);
 
         $route = URL::temporarySignedRoute('submit-form', now()->addMinute(), $form);
 
         $response = $this->post($route, [
             'fields' => [
-                'test-field' => 'value',
+                'test-field' => faker()->email,
             ],
         ]);
 

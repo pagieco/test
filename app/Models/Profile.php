@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Http\Request;
+use App\Mail\ProfileConsentMail;
+use Illuminate\Support\Facades\Mail;
 use App\Models\Enums\ProfileEventType;
 use App\Models\Traits\BelongsToProject;
 use App\Models\Traits\HasExternalShardId;
@@ -14,6 +16,13 @@ class Profile extends Model
 {
     use BelongsToProject;
     use HasExternalShardId;
+
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
 
     /**
      * The table associated with the model.
@@ -58,6 +67,8 @@ class Profile extends Model
      */
     protected $dates = [
         'consented_at',
+        'first_seen_at',
+        'last_seen_at',
     ];
 
     /**
@@ -77,8 +88,7 @@ class Profile extends Model
      */
     public function events(): HasMany
     {
-        return $this->hasMany(ProfileEvent::class, 'profile_id', 'local_id')
-                    ->orderBy('created_at');
+        return $this->hasMany(ProfileEvent::class, 'profile_id', 'local_id')->orderBy('occurred_at');
     }
 
     /**
@@ -92,6 +102,28 @@ class Profile extends Model
     }
 
     /**
+     * Give consent.
+     *
+     * @return void
+     */
+    public function giveConsent(): void
+    {
+        $this->consented_at = now();
+
+        $this->save();
+    }
+
+    /**
+     * Send the profile consent confirmation email.
+     *
+     * @return void
+     */
+    public function sendConsentConfirmationEmail(): void
+    {
+        Mail::to($this->email)->queue(new ProfileConsentMail($this));
+    }
+
+    /**
      * @param  string $type
      * @param  array $data
      * @return \App\Models\ProfileEvent
@@ -101,7 +133,7 @@ class Profile extends Model
     public function recordEvent(string $type, array $data): ProfileEvent
     {
         if (! in_array($type, ProfileEventType::getValues())) {
-            throw new InvalidProfileTypeException('Invalid profile type: '.$type);
+            throw new InvalidProfileTypeException('Invalid profile type: ' . $type);
         }
 
         $event = new ProfileEvent([

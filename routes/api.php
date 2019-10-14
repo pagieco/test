@@ -36,6 +36,7 @@ Route::delete('/pages/{page}', 'Api\Page\DeletePageController')->name('delete-pa
 // Collection routes...
 Route::get('/collections', 'Api\Collection\GetCollectionsController')->name('get-collections');
 Route::post('/collections', 'Api\Collection\CreateCollectionController')->name('create-collection');
+Route::patch('/collections/{collection}', 'Api\Collection\UpdateCollectionController')->name('update-collection');
 Route::delete('/collections/{collection}', 'Api\Collection\DeleteCollectionController')->name('delete-collection');
 Route::get('/collections/{collection}', 'Api\Collection\GetCollectionController')->name('get-collection');
 Route::post('/collections/{collection}', 'Api\Collection\CreateCollectionEntryController')->name('create-collection-entry');
@@ -46,6 +47,7 @@ Route::get('/forms', 'Api\Form\GetFormsController')->name('get-forms');
 Route::post('/forms', 'Api\Form\CreateFormController')->name('create-form');
 Route::get('/forms/{form}', 'Api\Form\GetFormController')->name('get-form');
 Route::post('/forms/{form}', 'Api\Form\SubmitFormController')->name('submit-form');
+Route::delete('/forms/{form}', 'Api\Form\DeleteFormController')->name('delete-form');
 Route::get('/forms/{form}/submissions', 'Api\Form\GetFormSubmissionsController')->name('get-form-submissions');
 Route::get('/form-submissions/{submission}', 'Api\Form\GetFormSubmissionController')->name('get-form-submission');
 
@@ -59,6 +61,7 @@ Route::delete('/emails/{email}', 'Api\Email\DeleteEmailController')->name('delet
 // Profile routes...
 Route::get('/profiles', 'Api\Profile\GetProfilesController')->name('get-profiles');
 Route::get('/profiles/{profile}', 'Api\Profile\GetProfileController')->name('get-profile');
+Route::get('/profiles/{profile}/confirm-consent', 'Api\Profile\ConfirmProfileConsentController')->name('confirm-profile-consent');
 Route::patch('/profiles/{profile}', 'Api\Profile\UpdateProfileController')->name('update-profile');
 Route::post('/profiles/{profile}', 'Api\Profile\TrackProfileEventController')->name('track-profile-event');
 Route::delete('/profiles/{profile}', 'Api\Profile\DeleteProfileController')->name('delete-profile');

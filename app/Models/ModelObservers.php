@@ -7,6 +7,7 @@ use App\Models\Observers\UserObserver;
 use App\Models\Observers\AssetObserver;
 use App\Models\Observers\ProfileObserver;
 use App\Models\Observers\ProjectObserver;
+use App\Models\Observers\ProfileEventObserver;
 use App\Models\Observers\FormSubmissionObserver;
 
 trait ModelObservers
@@ -21,6 +22,7 @@ trait ModelObservers
         FormSubmission::class => FormSubmissionObserver::class,
         Page::class => PageObserver::class,
         Profile::class => ProfileObserver::class,
+        ProfileEvent::class => ProfileEventObserver::class,
         Project::class => ProjectObserver::class,
         User::class => UserObserver::class,
     ];

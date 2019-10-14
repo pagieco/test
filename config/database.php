@@ -61,6 +61,16 @@ return [
             'options' => extension_loaded('pdo_mysql') ? array_filter([
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
+            'read' => [
+                'host' => [
+                    env('DB_READ_HOST', '127.0.0.1'),
+                ],
+            ],
+            'write' => [
+                'host' => [
+                    env('DB_WRITE_HOST', '127.0.0.1'),
+                ],
+            ],
         ],
 
     ],

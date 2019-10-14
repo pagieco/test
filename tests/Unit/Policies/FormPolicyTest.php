@@ -67,6 +67,38 @@ class FormPolicyTest extends PolicyTestCase
     }
 
     /** @test */
+    public function it_returns_false_when_the_user_has_no_permission_to_delete_a_form()
+    {
+        $user = $this->login();
+
+        $form = factory(Form::class)->create();
+
+        $this->assertFalse((new FormPolicy)->delete($user, $form));
+    }
+
+    /** @test */
+    public function it_returns_false_when_the_user_has_permission_to_delete_a_form_but_the_form_is_not_from_the_current_project()
+    {
+        $user = tap($this->login())->forceAccess($this->role, 'form:delete');
+
+        $form = factory(Form::class)->create();
+
+        $this->assertFalse((new FormPolicy)->delete($user, $form));
+    }
+
+    /** @test */
+    public function it_returns_true_when_the_user_has_permission_to_delete_a_form()
+    {
+        $user = tap($this->login())->forceAccess($this->role, 'form:delete');
+
+        $form = factory(Form::class)->create([
+            'project_id' => $this->project->id,
+        ]);
+
+        $this->assertTrue((new FormPolicy)->delete($user, $form));
+    }
+
+    /** @test */
     public function it_returns_false_when_the_user_has_no_permission_to_view_the_form_submissions()
     {
         $user = $this->login();
