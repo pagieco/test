@@ -1,19 +1,5 @@
 {
   "services": [
-    {
-      "id": "mysql-0001",
-      "name": "mysql",
-      "address": "127.0.0.1",
-      "tags": ["mysql"],
-      "port": 3306
-    },
 
-    {
-      "id": "mysql-0002",
-      "name": "mysql",
-      "address": "127.0.0.2",
-      "tags": ["mysql"],
-      "port": 3307
-    }
   ]
 }

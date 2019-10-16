@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\View\View;
+use App\Dom;
+use App\Stylesheet;
 use App\Renderers\PageRenderer;
 use App\Models\Traits\BelongsToProject;
 use App\Models\Traits\HasExternalShardId;
@@ -56,6 +57,11 @@ class Page extends Model implements Responsable
     public function domain(): BelongsTo
     {
         return $this->belongsTo(Domain::class);
+    }
+
+    public function publish($dom, $css)
+    {
+        $document = Dom::createDocument($dom);
     }
 
     /**

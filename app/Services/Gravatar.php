@@ -48,9 +48,9 @@ class Gravatar
         $base = 'https://www.gravatar.com/avatar/' . $hash;
 
         return $base . '?' . http_build_query([
-            's' => 100,
-            'd' => 404,
-            'r' => 'r',
+            's' => 100, // size in pixels [ 1 - 2048 ]
+            'd' => 404, // imageset [ 404 | mp | identicon | monsterid | wavatar ]
+            'r' => 'r', // rating [ g | pg | r | x ]
         ]);
     }
 }

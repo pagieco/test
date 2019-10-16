@@ -10,18 +10,18 @@ class IdGeneratorTest extends TestCase
     /** @test */
     public function it_correctly_encodes_an_id()
     {
-        $shardId = pow(2, 23) - 9;
-        $localId = pow(2, 40) - 1;
+        $shardId = pow(2, IdGenerator::$shardBits) - 1;
+        $localId = pow(2, IdGenerator::$localBits) - 1;
 
-        $this->assertEquals(9223363240761753599, IdGenerator::encode($shardId, $localId));
+        $this->assertEquals(9223372036854775807, IdGenerator::encode($shardId, $localId));
     }
 
     /** @test */
     public function it_correctly_decodes_an_id()
     {
-        $id = IdGenerator::decode(9223363240761753599);
+        $id = IdGenerator::decode(9223372036854775807);
 
-        $this->assertEquals(8388599, $id['shard']);
+        $this->assertEquals(8388607, $id['shard']);
         $this->assertEquals(1099511627775, $id['local']);
     }
 

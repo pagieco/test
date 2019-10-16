@@ -35,10 +35,13 @@ class AppServiceProvider extends ServiceProvider
         $this->registerModelObservers();
     }
 
+    /**
+     * @throws \ReflectionException
+     */
     protected function registerApplicationMixins()
     {
-        TestResponse::mixin(new TestResposeMixin);
         Request::mixin(new RequestMixin);
+        TestResponse::mixin(new TestResposeMixin);
     }
 
     /**

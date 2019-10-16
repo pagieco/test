@@ -29,7 +29,7 @@ class PurgeAuthenticationLogsCommandTest extends TestCase
     public function it_will_purge_records_older_than_60_days()
     {
         factory(AuthenticationLog::class)->create([
-            'logged_in_at' => now()->subDays(61)
+            'logged_in_at' => now()->subDays(65)
         ]);
 
         $this->assertCount(1, AuthenticationLog::all());

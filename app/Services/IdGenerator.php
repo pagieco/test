@@ -4,28 +4,19 @@ namespace App\Services;
 
 class IdGenerator
 {
-    /**
-     * Encode the 64 bits ID (24 bits shard ID and 40 bits local ID).
-     *
-     * @param  int $shard
-     * @param  int $local
-     * @return int
-     */
+    public static $shardBits = 23;
+
+    public static $localBits = 40;
+
     public static function encode(int $shard, int $local): int
     {
-        return ($shard << 40) | $local;
+        return ($shard << static::$localBits) | $local;
     }
 
-    /**
-     * Decode the 64 bits id.
-     *
-     * @param  int $id
-     * @return array
-     */
     public static function decode(int $id): array
     {
-        $shard = ($id >> 40) & 0xFFFFFF;
-        $local = ($id) & 0xFFFFFFFFFF;
+        $shard = ($id >> static::$localBits) & pow(2, static::$shardBits) - 1;
+        $local = ($id) & pow(2, static::$localBits) - 1;
 
         return compact('shard', 'local');
     }

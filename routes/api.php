@@ -30,6 +30,7 @@ Route::delete('/asset-folders/{assetFolder}', 'Api\AssetFolder\DeleteAssetFolder
 Route::get('/pages', 'Api\Page\GetPagesController')->name('get-pages');
 Route::post('/pages', 'Api\Page\CreatePageController')->name('create-page');
 Route::get('/pages/{page}', 'Api\Page\GetPageController')->name('get-page');
+Route::post('/pages/{page}/publish', 'Api\Page\PublishPageController')->name('publish-page');
 Route::patch('/pages/{page}', 'Api\Page\UpdatePageController')->name('update-page');
 Route::delete('/pages/{page}', 'Api\Page\DeletePageController')->name('delete-page');
 
