@@ -1,0 +1,30 @@
+{
+  "variables": {
+
+  },
+  "builders": [{
+
+  }],
+  "provisioners": [{
+    "type": "shell",
+    "inline": ["mkdir -p /tmp/terraform-consul/modules"]
+  }, {
+    "type": "file",
+    "source": "{{template_dir}}/../../modules/",
+    "destination": "/tmp/terraform-consul/modules"
+  }, {
+    "type": "shell",
+    "inline": [
+      "sudo mkdir -p /opt/gruntwork",
+      "git clone --branch v0.0.3 https://github.com/gruntwork-io/bash-commons.git /tmp/bash-commons",
+      "sudo cp -r /tmp/bash-commons/modules/bash-commons/src /opt/gruntwork/bash-commons"
+    ]
+  }, {
+    "type": "shell",
+    "inline": [
+      "/tmp/terraform-consul/modules/install-consul/install-consul --version {{user `consul_version`}}",
+      "/tmp/terraform-consul/modules/install-dnsmasq/install-dnsmasq"
+    ],
+    "pause_before": "30s"
+  }]
+}

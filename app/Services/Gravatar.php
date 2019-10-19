@@ -25,7 +25,7 @@ class Gravatar
         $this->curl = $curl;
     }
 
-    /**\
+    /**
      * @param  string $hash
      * @return string|null
      * @throws \Throwable

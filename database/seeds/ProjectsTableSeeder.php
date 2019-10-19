@@ -24,6 +24,10 @@ class ProjectsTableSeeder extends Seeder
             'domain_name' => 'demo.pagie.local',
         ]);
 
+        $homepage = $project->domains()->first()->pages->first();
+
+        $homepage->update(['dom' => file_get_contents(database_path('seeds/seed-resources/pages/homepage.html'))]);
+
         static::$id = $project->id;
     }
 

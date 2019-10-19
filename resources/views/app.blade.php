@@ -17,7 +17,6 @@
   <title>{{ config('app.name', 'Laravel') }}</title>
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap" />
-  <link rel="stylesheet" href="{{ mix('css/app.css') }}" />
 
   <script>
     var appConfig = {!! json_encode($appConfig) !!};

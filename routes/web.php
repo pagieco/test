@@ -13,6 +13,7 @@
 
 Auth::routes();
 
+Route::get('/app/page-designer/{page}', 'App\PageDesignerController');
 Route::get('/app/{resource?}', 'AppController')->where('resource', '(.*)');
 
 // Catch-all resource routing.

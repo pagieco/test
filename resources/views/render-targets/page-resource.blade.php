@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-  <meta name="generator" content="https://pagie.co" />
+  <meta name="generator" content="{{ config('app.name') }}" />
 
   @if ($domain->google_site_verification_id)
   <meta name="google-site-verification" content="{{ $domain->google_site_verification_id }}" />
@@ -43,6 +43,8 @@
   {{-- End Facebook Pixel Code --}}
   @endif
 
+  <link rel="stylesheet" href="{{ mix('css/frontend.css') }}">
+
 </head>
 <body>
 
@@ -54,14 +56,9 @@
   {{-- End Google Tag Manager (noscript) --}}
   @endif
 
-  @isset($profile)
-  <pre>profile: {{ $profile->profile_id }}</pre>
-  @endif
-
-  <a href="/test">Test page</a>
-  <a href="/">Homepage</a>
-
   {!! $resource->dom !!}
+
+  <script src="{{ mix('js/frontend.js') }}"></script>
 
 </body>
 </html>

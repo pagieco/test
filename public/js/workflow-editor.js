@@ -81,54 +81,30 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/modules/app/js/index.js":
-/*!*******************************************!*\
-  !*** ./resources/modules/app/js/index.js ***!
-  \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-
-
-/***/ }),
-
-/***/ "./resources/modules/frontend/sass/index.scss":
-/*!****************************************************!*\
-  !*** ./resources/modules/frontend/sass/index.scss ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/modules/page-editor/sass/index.scss":
+/***/ "./resources/modules/workflow-editor/js/index.js":
 /*!*******************************************************!*\
-  !*** ./resources/modules/page-editor/sass/index.scss ***!
+  !*** ./resources/modules/workflow-editor/js/index.js ***!
   \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+
 
 /***/ }),
 
-/***/ 0:
-/*!**********************************************************************************************************************************************!*\
-  !*** multi ./resources/modules/app/js/index.js ./resources/modules/frontend/sass/index.scss ./resources/modules/page-editor/sass/index.scss ***!
-  \**********************************************************************************************************************************************/
+/***/ 3:
+/*!*************************************************************!*\
+  !*** multi ./resources/modules/workflow-editor/js/index.js ***!
+  \*************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/jelle/Sites-2020/pagie/framework-test/resources/modules/app/js/index.js */"./resources/modules/app/js/index.js");
-__webpack_require__(/*! /Users/jelle/Sites-2020/pagie/framework-test/resources/modules/frontend/sass/index.scss */"./resources/modules/frontend/sass/index.scss");
-module.exports = __webpack_require__(/*! /Users/jelle/Sites-2020/pagie/framework-test/resources/modules/page-editor/sass/index.scss */"./resources/modules/page-editor/sass/index.scss");
+module.exports = __webpack_require__(/*! /Users/jelle/Sites-2020/pagie/framework-test/resources/modules/workflow-editor/js/index.js */"./resources/modules/workflow-editor/js/index.js");
 
 
 /***/ })

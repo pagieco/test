@@ -1,0 +1,51 @@
+- block:
+    - name: Check for installed Python2 (in opt/bin)
+      raw: "[ -f /opt/bin/python2 ] && echo 'installed' || echo 'missing'"
+      register: py2_check
+
+    - meta: end_play
+      when: py2_check.stdout_lines[0] == "installed"
+
+- name: Check for downloaded ActivePython package
+  raw: "[ -f {{ap_python2_package_file_name}} ] && echo 'present' || echo 'missing'"
+  register: package_check
+
+- name: Download ActivePython
+  raw: wget {{ap_python2_package_download_url}}
+  when: package_check.stdout_lines[0] == "missing"
+
+- name: Check for unzipped ActivePython package folder
+  raw: "[ -d {{ap_python2_package_name}} ] && echo 'present' || echo 'missing'"
+  register: package_folder_check
+
+- name: Unzip ActivePython
+  raw: tar -xvf {{ap_python2_package_file_name}}
+  when: package_folder_check.stdout_lines[0] == "missing"
+
+- name: Create the resulting directory for ActivePython
+  become: true
+  raw: 'mkdir -p /opt/bin/active_python'
+
+- name: Install ActivePython
+  become: true
+  raw: 'cd {{ap_python2_package_name}} && ./install.sh -I /opt/bin/active_python'
+
+- name: Link easy_install
+  become: true
+  raw: ln -sf /opt/bin/active_python/bin/easy_install /opt/bin/easy_install
+
+- name: Link pip
+  become: true
+  raw: ln -sf /opt/bin/active_python/bin/pip /opt/bin/pip
+
+- name: Link python
+  become: true
+  raw: ln -sf /opt/bin/active_python/bin/python /opt/bin/python
+
+- name: Link python2
+  become: true
+  raw: ln -sf /opt/bin/active_python/bin/python /opt/bin/python2
+
+- name: Link virtualenv
+  become: true
+  raw: ln -sf /opt/bin/active_python/bin/virtualenv /opt/bin/virtualenv

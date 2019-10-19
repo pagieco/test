@@ -1,4 +1,8 @@
 {
-    "/js/app.js": "/js/app.js?id=08df68c0ce2d6daceb9c",
-    "/css/app.css": "/css/app.css?id=02bec3285415f9e8c57f"
+    "/js/app.js": "/js/app.js?id=59729d8580d541e2b615",
+    "/css/frontend.css": "/css/frontend.css?id=ed67a19c6bcb98813410",
+    "/css/page-editor.css": "/css/page-editor.css?id=d41d8cd98f00b204e980",
+    "/js/frontend.js": "/js/frontend.js?id=6512f1adb36d6ef4a54a",
+    "/js/page-editor.js": "/js/page-editor.js?id=f180d78e6c3cdd735f8d",
+    "/js/workflow-editor.js": "/js/workflow-editor.js?id=fad92de5a3bb7b115035"
 }

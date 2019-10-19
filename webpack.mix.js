@@ -1,27 +1,23 @@
 const mix = require('laravel-mix');
 const tailwindcss = require('tailwindcss');
+const fs = require('fs');
 
-/*
- |--------------------------------------------------------------------------
- | Mix Asset Management
- |--------------------------------------------------------------------------
- |
- | Mix provides a clean, fluent API for defining some Webpack build steps
- | for your Laravel application. By default, we are compiling the Sass
- | file for the application as well as bundling up all the JS files.
- |
- */
+fs.readdirSync('resources/modules')
+  .forEach((dir) => {
+    if (fs.existsSync(`resources/modules/${dir}/js/index.js`)) {
+      mix.js(`resources/modules/${dir}/js/index.js`, `public/js/${dir}.js`);
+    }
 
-mix
-  .js('resources/js/app.js', 'public/js')
-  .sass('resources/sass/app.scss', 'public/css')
-  .options({
-    processCssUrls: false,
-    postCss: [
-      tailwindcss('./tailwind.config.js'),
-    ],
-  })
-  .webpackConfig({
-    output: { chunkFilename: 'js/[name].js?id=[chunkhash]' },
-  })
-  .version();
+    if (fs.existsSync(`resources/modules/${dir}/sass/index.scss`)) {
+      mix.sass(`resources/modules/${dir}/sass/index.scss`, `public/css/${dir}.css`);
+    }
+  });
+
+mix.options({
+  processCssUrls: false,
+  postCss: [
+    tailwindcss('./tailwind.config.js'),
+  ],
+}).webpackConfig({
+  output: { chunkFilename: 'js/[name].js?id=[chunkhash]' },
+}).version();
