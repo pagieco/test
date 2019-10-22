@@ -8,6 +8,7 @@ Route::patch('/current-user', 'Api\User\UpdateCurrentUserController')->name('upd
 Route::put('/current-user/profile-picture', 'Api\User\UploadProfilePictureController')->name('upload-profile-picture');
 
 // Project routes...
+Route::get('/projects/{project}', 'Api\Project\GetProjectController')->name('get-project');
 Route::patch('/projects/{project}', 'Api\Project\UpdateProjectController')->name('update-project');
 Route::post('/projects/{project}/switch', 'Api\Project\SwitchToProjectController')->name('switch-to-project');
 
@@ -41,6 +42,8 @@ Route::patch('/collections/{collection}', 'Api\Collection\UpdateCollectionContro
 Route::delete('/collections/{collection}', 'Api\Collection\DeleteCollectionController')->name('delete-collection');
 Route::get('/collections/{collection}', 'Api\Collection\GetCollectionController')->name('get-collection');
 Route::post('/collections/{collection}', 'Api\Collection\CreateCollectionEntryController')->name('create-collection-entry');
+Route::get('/collections/{collection}/entries', 'Api\Collection\GetCollectionEntriesController')->name('get-collection-entries');
+Route::patch('/collection-entries/{entry}', 'Api\Collection\UpdateCollectionEntryController')->name('update-collection-entry');
 Route::delete('/collection-entries/{entry}', 'Api\Collection\DeleteCollectionEntryController')->name('delete-collection-entry');
 
 // Form routes...

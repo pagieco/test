@@ -10,11 +10,11 @@ export default {
 
   methods: {
     hasStyleValue(prop) {
-      return !! this.getStyleProp(prop);
+      return !!this.getStyleProp(prop);
     },
 
     getStyleProp(prop) {
-      return this.styleRule(this.selectionSet, (prop));
+      return this.styleRule(this.selectionSet, prop);
     },
 
     resetStyleValue(prop, toValue = 'auto') {

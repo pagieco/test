@@ -80,3 +80,48 @@ export function createNodeId(len = 20) {
 
   return Array.from(arr, dec => (`0${dec.toString(16)}`).substr(-2)).join('');
 }
+
+function getTextContents(node) {
+  let textContent = '';
+
+  for (let i = 0; i < node.childNodes.length; i++) {
+    const currNode = node.childNodes[i];
+
+    if (currNode.nodeName === '#text') {
+      textContent = currNode.nodeValue.trim();
+      break;
+    }
+  }
+
+  return textContent;
+}
+
+function getNodeAttributes(attributes) {
+  const skipAttributes = [
+    'data-id', 'class',
+  ];
+
+  return Array.from(attributes)
+    .filter(attr => !skipAttributes.includes(attr.name))
+    .reduce((obj, param) => {
+      obj[param.name] = param.value;
+
+      return obj;
+    }, {});
+}
+
+export function serialize(rootNode) {
+  const tree = {
+    uuid: getNodeId(rootNode),
+    nodeType: rootNode.nodeName,
+    textContent: getTextContents(rootNode),
+    nodeAttributes: getNodeAttributes(rootNode.attributes),
+    children: [],
+  };
+
+  const childNodes = rootNode.querySelectorAll(`:scope > ${getDomNodeSelector()}`);
+
+  tree.children = [...childNodes].map(child => serialize(child));
+
+  return tree;
+}

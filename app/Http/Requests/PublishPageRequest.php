@@ -13,7 +13,7 @@ class PublishPageRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return auth()->check();
     }
 
     /**
@@ -24,7 +24,8 @@ class PublishPageRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'dom' => 'required|array',
+            'css' => 'required|array',
         ];
     }
 }

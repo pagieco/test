@@ -27,5 +27,12 @@ class AssetObserver
     public function created(Asset $asset): void
     {
         CreateAssetThumbnail::dispatch($asset);
+
+        $asset->project->incrementUsedStorageWith($asset->filesize);
+    }
+
+    public function deleted(Asset $asset)
+    {
+        $asset->project->decrementUsedStorageBy($asset->filesize);
     }
 }

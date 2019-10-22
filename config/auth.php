@@ -134,6 +134,8 @@ return [
         'collection:update' => ['Update collection', 'Update a collection.'],
         'collection:create-entry' => ['Create collection entry', 'Create a collection entry.'],
         'collection:delete-entry' => ['Delete collection entry', 'Delete a collection entry.'],
+        'collection:list-entries' => ['List collection entries', 'List the collection entries.'],
+        'collection:update-entry' => ['Update collection entry', 'Update a collection entry.'],
 
         'domain:list' => ['List domains', 'List the domains.'],
         'domain:view' => ['View domain', 'View a domain.'],
@@ -168,6 +170,7 @@ return [
         'profile:list-events' => ['List profile events', 'List the profile events.'],
         'profile:view-event' => ['View profile event', 'View the profile event.'],
 
+        'project:view' => ['View project', 'View a project.'],
         'project:switch' => ['Switch project', 'Switch to another project.'],
         'project:update' => ['Update project', 'Update a project.'],
 

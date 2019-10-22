@@ -28,8 +28,8 @@ class UpdateCollectionRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'min:3|max:100',
-            'slug' => 'min:3|max:100|alpha_dash',
+            'name' => 'filled|min:3|max:100',
+            'slug' => 'filled|min:3|max:100|alpha_dash',
             'description' => 'max:250',
             'fields' => 'filled|array',
             'fields.*.slug' => 'min:3|max:100|alpha_dash',

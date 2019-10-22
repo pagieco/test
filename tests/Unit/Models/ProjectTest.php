@@ -132,4 +132,26 @@ class ProjectTest extends TestCase
 
         $this->assertEquals(60, strlen($token));
     }
+
+    /** @test */
+    public function it_can_increment_used_storage()
+    {
+        $project = factory(Project::class)->create();
+
+        $project->incrementUsedStorageWith(100);
+
+        $this->assertEquals(100, $project->used_storage);
+    }
+
+    /** @test */
+    public function it_can_decrement_used_storage()
+    {
+        $project = factory(Project::class)->create([
+            'used_storage' => 250,
+        ]);
+
+        $project->decrementUsedStorageBy(100);
+
+        $this->assertEquals(150, $project->used_storage);
+    }
 }

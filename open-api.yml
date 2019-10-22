@@ -65,6 +65,25 @@ paths:
           $ref: '#/components/responses/status-422-response'
 
   /projects/{project}:
+    get:
+      summary: Get a project
+      description: Get a project
+      tags:
+        - Project
+      operationId: GetProject
+      parameters:
+        - in: path
+          name: project
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          $ref: '#/components/responses/get-project'
+        403:
+          $ref: '#/components/responses/status-403-response'
+        404:
+          $ref: '#/components/responses/status-404-response'
     patch:
       summary: Update a project
       description: Update a project
@@ -412,6 +431,27 @@ paths:
         404:
           $ref: '#/components/responses/status-404-response'
 
+  /pages/{pages}/publish:
+    post:
+      summary: Publish a page
+      description: Publish a page
+      tags:
+        - Page
+      operationId: PublishPage
+      parameters:
+        - in: path
+          name: page
+          schema:
+            type: integer
+          required: true
+      responses:
+        403:
+          $ref: '#/components/responses/status-403-response'
+        404:
+          $ref: '#/components/responses/status-404-response'
+        422:
+          $ref: '#/components/responses/status-422-response'
+
   /collections:
     get:
       summary: Get a list of collections
@@ -524,6 +564,29 @@ paths:
         422:
           $ref: '#/components/responses/status-422-response'
 
+  /collections/{collection}/entries:
+    get:
+      summary: Get the entries of a collection
+      description: Get the entries of a collection
+      tags:
+        - Form
+      operationId: GetCollectionEntries
+      parameters:
+        - in: path
+          name: collection
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          $ref: '#/components/responses/get-collection-entries'
+        204:
+          description: No collection entries found
+        403:
+          $ref: '#/components/responses/status-403-response'
+        404:
+          $ref: '#/components/responses/status-404-response'
+
   /collection-entries/{entry}:
     delete:
       summary: Delete a collection entry
@@ -544,6 +607,27 @@ paths:
           $ref: '#/components/responses/status-403-response'
         404:
           $ref: '#/components/responses/status-404-response'
+    patch:
+      summary: Update a collection entry
+      description: Update a collection entry
+      tags:
+        - Collection
+      operationId: UpdateCollectionEntry
+      parameters:
+        - in: path
+          name: entry
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          $ref: '#/components/responses/get-collection-entry'
+        403:
+          $ref: '#/components/responses/status-403-response'
+        404:
+          $ref: '#/components/responses/status-404-response'
+        422:
+          $ref: '#/components/responses/status-422-response'
 
   /forms:
     get:
@@ -1381,6 +1465,17 @@ components:
             properties:
               data:
                 $ref: '#/components/schemas/collection'
+
+    get-collection-entries:
+      description: OK
+      content:
+        application/json:
+          schema:
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/collection-entry'
 
     get-collection-entry:
       description: OK

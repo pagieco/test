@@ -4,8 +4,14 @@
   <meta charset="UTF-8">
   <title>Page Designer</title>
 
-  <link rel="stylesheet" href="{{ mix('css/frontend.css') }}" class="editor-asset">
+  <link rel="stylesheet" href="{{ mix('css/frontend.css') }}" id="page-css" class="editor-asset">
   <link rel="stylesheet" href="{{ mix('css/page-editor.css') }}">
+
+  <script type="text/json" id="editor/dom/styles">
+    {
+
+    }
+  </script>
 
 </head>
 <body>

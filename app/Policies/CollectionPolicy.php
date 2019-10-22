@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\User;
 use App\Models\Collection;
+use App\Models\CollectionEntry;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CollectionPolicy
@@ -95,5 +96,31 @@ class CollectionPolicy
     {
         return $user->hasAccess('collection:delete-entry')
             && $user->currentProject()->collections->contains($collection->local_id);
+    }
+
+    /**
+     * Determine whether the user can list entries from the given collection.
+     *
+     * @param  \App\Models\User $user
+     * @param  \App\Models\Collection $collection
+     * @return bool
+     */
+    public function listEntries(User $user, Collection $collection): bool
+    {
+        return $user->hasAccess('collection:list-entries')
+            && $user->currentProject()->collections->contains($collection->local_id);
+    }
+
+    /**
+     * Determine whether the user can update the given entry.
+     *
+     * @param  \App\Models\User $user
+     * @param  \App\Models\CollectionEntry $entry
+     * @return bool
+     */
+    public function updateEntry(User $user, CollectionEntry $entry): bool
+    {
+        return $user->hasAccess('collection:update-entry')
+            && $user->currentProject()->collections->contains($entry->collection_id);
     }
 }

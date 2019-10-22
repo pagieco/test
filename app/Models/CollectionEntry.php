@@ -50,6 +50,6 @@ class CollectionEntry extends Model
      */
     public function collection(): BelongsTo
     {
-        return $this->belongsTo(Collection::class, 'collection_id');
+        return $this->belongsTo(Collection::class, 'collection_id', 'local_id');
     }
 }

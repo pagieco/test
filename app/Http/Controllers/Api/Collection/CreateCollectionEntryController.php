@@ -49,11 +49,11 @@ class CreateCollectionEntryController extends Controller
      */
     protected function createValidatorData(Collection $collection): array
     {
-        return (array) $collection->fields->mapWithKeys(function (CollectionField $field): array {
-            $key = sprintf('fields.%s', $field->slug);
+        return $collection->fields->mapWithKeys(function (CollectionField $field): array {
+            $key = sprintf('entry_data.%s', $field->slug);
 
             return [$key => $field->validations];
-        });
+        })->toArray();
     }
 
     /**

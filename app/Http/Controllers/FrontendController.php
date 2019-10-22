@@ -13,17 +13,38 @@ class FrontendController extends Controller
 {
     const HALF_YEAR_IN_MINUTES = 60 * 24 * 365 / 2;
 
+    /**
+     * @var \App\Models\Page
+     */
+    protected $resource;
+
     public function __invoke(Request $request)
     {
         $resolver = new Resolver($request);
 
         $resolver->resolveDomain();
 
-        $resource = $resolver->resolveResource();
+        $this->resource = $resolver->resolveResource();
 
-        $contents = $resource->toResponse($request)->with($this->prepareResponseData($resolver));
+        return $this->respondWith(
+            $this->getContents($resolver)
+        );
+    }
 
-        return response($contents->render())->withHeaders($this->prepareResponseHeaders($resource));
+    protected function getContents($resolver)
+    {
+        $resource = $this->resource;
+
+        $responseData = $this->prepareResponseData($resolver);
+
+        return $resource->toResponse(request())->with($responseData);
+    }
+
+    protected function respondWith($contents)
+    {
+        $headers = $this->prepareResponseHeaders($this->resource);
+
+        return response($contents->render())->withHeaders($headers);
     }
 
     protected function prepareResponseData(Resolver $resolver): array

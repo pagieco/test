@@ -19,6 +19,7 @@ class CreateProjectsTable extends Migration
             $table->string('name');
             $table->string('hash');
             $table->string('api_token', 60);
+            $table->integer('used_storage')->default(0);
             $table->timestamps();
 
             $table->foreign('user_id')

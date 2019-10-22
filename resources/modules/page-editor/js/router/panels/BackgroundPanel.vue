@@ -1,5 +1,17 @@
+<script>
+
+import UnitInput from '../../components/inputs/UnitInput.vue';
+
+export default {
+  components: { UnitInput },
+};
+
+</script>
+
 <template>
   <div>
-    background panel
+
+    <UnitInput id="min-height" style-prop="min-height" />
+
   </div>
 </template>

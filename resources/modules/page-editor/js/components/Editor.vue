@@ -1,8 +1,11 @@
 <script>
 
+import Header from './Header.vue';
 import { wrapPageIntoIframe } from '../iframe';
 
 export default {
+  components: { Header },
+
   data() {
     return {
       loading: false,
@@ -26,7 +29,10 @@ export default {
 
 <template>
   <div>
+    <Header />
+
     <div class="canvas-container"></div>
+
     <div class="property-editor">
       <RouterView :key="$route.fullPath" />
     </div>

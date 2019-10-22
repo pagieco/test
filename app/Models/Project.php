@@ -27,7 +27,31 @@ class Project extends \Illuminate\Database\Eloquent\Model
         'name',
         'hash', // Used for e.g. folders paths etc
         'api_token',
+        'used_storage',
     ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'used_storage' => 'int',
+    ];
+
+    public function incrementUsedStorageWith(int $bytes)
+    {
+        $this->used_storage += $bytes;
+
+        $this->save();
+    }
+
+    public function decrementUsedStorageBy(int $bytes)
+    {
+        $this->used_storage -= $bytes;
+
+        $this->save();
+    }
 
     /**
      * Get all the assets that belong to this project.
@@ -106,7 +130,7 @@ class Project extends \Illuminate\Database\Eloquent\Model
      */
     public function owner(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     /**

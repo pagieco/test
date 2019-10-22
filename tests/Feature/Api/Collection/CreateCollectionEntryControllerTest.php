@@ -6,7 +6,9 @@ use Tests\TestCase;
 use App\Http\Response;
 use App\Models\Collection;
 use App\Models\CollectionEntry;
+use App\Models\CollectionField;
 use Tests\Feature\AuthenticatedRoute;
+use App\Models\Enums\CollectionFieldType;
 use Illuminate\Foundation\Testing\TestResponse;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -183,6 +185,17 @@ class CreateCollectionEntryControllerTest extends TestCase
 
         $collection = factory(Collection::class)->create([
             'project_id' => $this->project->id,
+        ]);
+
+        factory(CollectionField::class)->create([
+            'project_id' => $this->project->id,
+            'collection_id' => $collection->local_id,
+            'display_name' => 'Name',
+            'slug' => 'name',
+            'type' => CollectionFieldType::PlainText,
+            'validations' => [
+                'required',
+            ]
         ]);
 
         $this->makeRequest($collection->external_id, [

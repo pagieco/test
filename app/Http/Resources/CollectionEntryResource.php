@@ -15,7 +15,7 @@ class CollectionEntryResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->external_id,
+            'id' => (int) $this->external_id,
             'name' => $this->name,
             'slug' => $this->slug,
             'entry_data' => $this->entry_data,

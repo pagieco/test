@@ -17,8 +17,8 @@ class ProfileRepository
     public function all(): LengthAwarePaginator
     {
         return QueryBuilder::for(Profile::class)
-            ->where('project_id', request()->user()->current_project_id)
-            ->defaultSort('last_seen_at')
+            ->where('project_id', auth()->user()->current_project_id)
+            ->defaultSort('-last_seen_at')
             ->allowedSorts([
                 'email',
                 'last_seen_at',

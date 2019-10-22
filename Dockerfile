@@ -1,6 +1,7 @@
 FROM php:7.3-fpm
 
 COPY ./container-startup.sh /usr/local/bin/start
+COPY ./.service-resources/dev/php/php.ini /etc/php/7.3/fpm/conf.d/99-overrides.ini
 
 RUN apt-get update
 RUN apt-get install -y \

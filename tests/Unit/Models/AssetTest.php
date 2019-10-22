@@ -140,6 +140,24 @@ class AssetTest extends TestCase
     }
 
     /** @test */
+    public function it_will_increment_the_projects_used_bytes_when_uploading_an_asset()
+    {
+        Storage::fake();
+
+        $project = factory(Project::class)->create();
+
+        $this->assertEquals(0, $project->used_storage);
+
+        $uploadFile = UploadedFile::fake()->image('test.jpeg');
+
+        $asset = Asset::upload($uploadFile, $project);
+
+        Storage::disk()->assertExists($asset->path);
+
+        $this->assertEquals($uploadFile->getSize(), $project->used_storage);
+    }
+
+    /** @test */
     public function it_can_get_the_content_hash_of_an_asset()
     {
         Storage::fake();

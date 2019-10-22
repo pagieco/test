@@ -41,7 +41,7 @@ class Collection extends Model
      */
     public function entries(): HasMany
     {
-        return $this->hasMany(CollectionEntry::class);
+        return $this->hasMany(CollectionEntry::class, 'collection_id');
     }
 
     /**

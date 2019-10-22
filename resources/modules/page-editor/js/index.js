@@ -4,6 +4,8 @@ import store from './state/store';
 import Editor from './components/Editor.vue';
 import { collectDomNodes, getDomNodeSelector } from './dom';
 
+require('./directives');
+
 // eslint-disable-next-line no-new
 new Vue({
   el: '#editor-wrapper',

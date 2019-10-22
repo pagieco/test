@@ -18,7 +18,7 @@ class PublishPageController extends Controller
     {
         $this->authorize('publish', $page);
 
-        $page->publish($request->only('dom', 'css'));
+        $page->publish($request->dom, $request->css);
 
         return new PageResource($page);
     }

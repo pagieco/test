@@ -12,5 +12,6 @@ $factory->define(Project::class, function (Faker $faker) {
         'hash' => $faker->uuid,
         'api_token' => (new Project)->generateApiToken(),
         'user_id' => factory(User::class)->create(),
+        'used_storage' => 0,
     ];
 });

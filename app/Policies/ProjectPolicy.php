@@ -10,6 +10,12 @@ class ProjectPolicy
 {
     use HandlesAuthorization;
 
+    public function view(User $user, Project $project): bool
+    {
+        return $user->hasAccess('project:view')
+            && $user->canAccessProject($project);
+    }
+
     /**
      * Determine whether the user can switch to the project.
      *

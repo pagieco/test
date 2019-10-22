@@ -12,4 +12,5 @@ final class CollectionFieldType extends Enum
     const DateTime = 'date-time';
     const Switch = 'switch';
     const Option = 'option';
+    const Image = 'image';
 }

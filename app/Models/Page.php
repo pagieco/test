@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Dom;
 use App\Stylesheet;
 use App\Renderers\PageRenderer;
+use App\Compilers\Dom\DomCompiler;
 use App\Models\Traits\BelongsToProject;
 use App\Models\Traits\HasExternalShardId;
 use App\Models\Traits\InteractsWithWorkflows;
@@ -61,7 +62,9 @@ class Page extends Model implements Responsable
 
     public function publish($dom, $css)
     {
-        $document = Dom::createDocument($dom);
+        $this->dom = (new DomCompiler)->compile($dom);
+
+        $this->save();
     }
 
     /**
