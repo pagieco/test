@@ -445,6 +445,8 @@ paths:
             type: integer
           required: true
       responses:
+        200:
+          $ref: '#/components/responses/get-page'
         403:
           $ref: '#/components/responses/status-403-response'
         404:

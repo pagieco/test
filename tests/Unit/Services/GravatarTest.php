@@ -4,8 +4,8 @@ namespace Tests\Unit\Services;
 
 use finfo;
 use Tests\TestCase;
-use App\Models\User;
 use App\Services\Gravatar;
+use App\Domains\User\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class GravatarTest extends TestCase

@@ -2,11 +2,11 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\Form;
-use App\Models\FormField;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
-use App\Models\Enums\FormFieldType;
+use App\Domains\Form\Models\Form;
+use App\Domains\Form\Models\FormField;
+use App\Domains\Form\Enums\FormFieldType;
 
 $factory->define(FormField::class, function (Faker $faker) {
     $name = $faker->domainWord;

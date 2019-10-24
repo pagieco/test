@@ -1,10 +1,10 @@
 <?php
 
-use App\Models\Collection;
 use Illuminate\Database\Seeder;
-use App\Models\CollectionField;
-use App\Models\CollectionEntry;
-use App\Models\Enums\CollectionFieldType;
+use App\Domains\Collection\Models\Collection;
+use App\Domains\Collection\Models\CollectionField;
+use App\Domains\Collection\Models\CollectionEntry;
+use App\Domains\Collection\Enums\CollectionFieldType;
 
 class CollectionsTableSeeder extends Seeder
 {
@@ -68,7 +68,7 @@ class CollectionsTableSeeder extends Seeder
 
         $entries = [];
 
-        for ($i = 0; $i < 2500; $i++) {
+        for ($i = 0; $i < 50; $i++) {
             $entries[] = [
                 'name' => 'Hello World '.$i,
                 'slug' => 'hello-world-'.$i,
@@ -134,7 +134,7 @@ class CollectionsTableSeeder extends Seeder
 
         $entries = [];
 
-        for ($i = 0; $i < 2500; $i++) {
+        for ($i = 0; $i < 50; $i++) {
             $entries[] = [
                 'name' => 'Author '.$i,
                 'slug' => 'author-'.$i,

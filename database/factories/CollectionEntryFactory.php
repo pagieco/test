@@ -2,9 +2,9 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\Collection;
 use Faker\Generator as Faker;
-use App\Models\CollectionEntry;
+use App\Domains\Collection\Models\Collection;
+use App\Domains\Collection\Models\CollectionEntry;
 
 $factory->define(CollectionEntry::class, function (Faker $faker) {
     $collection = factory(Collection::class)->create();

@@ -3,8 +3,8 @@
 namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
-use App\Console\Commands\PurgeAuthenticationLogsCommand;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Domains\Auth\Console\Commands\PurgeAuthenticationLogsCommand;
 
 class Kernel extends ConsoleKernel
 {

@@ -2,12 +2,12 @@
 
 namespace App\Http\Router;
 
-use App\Models\Domain;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Http\Router\Resolvers\PageResolver;
-use App\Http\Router\Resolvers\DomainResolver;
+use App\Domains\Domain\Models\Domain;
 use Illuminate\Contracts\Support\Responsable;
+use App\Domains\Page\Http\Router\Resolvers\PageResolver;
+use App\Domains\Domain\Http\Router\Resolvers\DomainResolver;
 
 class Resolver
 {
@@ -33,7 +33,7 @@ class Resolver
     /**
      * Resolve for the current domain.
      *
-     * @return \App\Models\Domain|null
+     * @return \App\Domains\Domain\Models\Domain|null
      */
     public function resolveDomain(): ?Domain
     {

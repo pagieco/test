@@ -461,3 +461,19 @@ label {
   margin-bottom: 5px;
   font-weight: bold;
 }
+
+.highlighter {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  pointer-events: none;
+}
+
+.highlighter__element {
+  position: absolute;
+  pointer-events: none;
+  border: 1px solid blue;
+  border-radius: 2px;
+}

@@ -1,9 +1,9 @@
 <?php
 
-use App\Models\ProfileEvent;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use App\Models\Enums\ProfileEventType;
+use App\Domains\Profile\Models\ProfileEvent;
+use App\Domains\Profile\Enums\ProfileEventType;
 
 class ProfilesTableSeeder extends Seeder
 {

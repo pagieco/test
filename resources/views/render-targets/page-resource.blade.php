@@ -43,7 +43,8 @@
   {{-- End Facebook Pixel Code --}}
   @endif
 
-  <link rel="stylesheet" href="{{ mix('css/frontend.css') }}">
+  <link rel="stylesheet" href="{{ mix('css/frontend.css') }}" />
+  <link rel="stylesheet" href="{{ $project->css_file }}" />
 
 </head>
 <body>

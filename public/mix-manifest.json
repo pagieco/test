@@ -1,8 +1,10 @@
 {
-    "/js/app.js": "/js/app.js?id=59729d8580d541e2b615",
-    "/css/frontend.css": "/css/frontend.css?id=ed67a19c6bcb98813410",
-    "/css/page-editor.css": "/css/page-editor.css?id=d41d8cd98f00b204e980",
-    "/js/frontend.js": "/js/frontend.js?id=6512f1adb36d6ef4a54a",
-    "/js/page-editor.js": "/js/page-editor.js?id=87cb1ca6cf30e0a92593",
-    "/js/workflow-editor.js": "/js/workflow-editor.js?id=fad92de5a3bb7b115035"
+    "/js/_page-editor.js": "/js/_page-editor.js?id=b839182226dc657a8857",
+    "/css/_page-editor.css": "/css/_page-editor.css?id=c724dcb6e06c9fdc70af",
+    "/css/frontend.css": "/css/frontend.css?id=1eb0225c09c6d85358c8",
+    "/css/page-editor.css": "/css/page-editor.css?id=392e4a687091e3798bf6",
+    "/js/app.js": "/js/app.js?id=7e1a8df813ec81f6c78a",
+    "/js/frontend.js": "/js/frontend.js?id=7f929b9ccf7d57ca81a9",
+    "/js/page-editor.js": "/js/page-editor.js?id=0313e8749b8a286353e2",
+    "/js/workflow-editor.js": "/js/workflow-editor.js?id=39a23ae11257b6dec06d"
 }

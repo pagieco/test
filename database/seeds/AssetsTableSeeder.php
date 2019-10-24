@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\Asset;
 use Illuminate\Database\Seeder;
 use Illuminate\Http\UploadedFile;
+use App\Domains\Asset\Models\Asset;
 use Symfony\Component\Finder\Finder;
 
 class AssetsTableSeeder extends Seeder

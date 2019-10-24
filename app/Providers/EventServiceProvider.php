@@ -4,11 +4,11 @@ namespace App\Providers;
 
 use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\Logout;
-use App\Listeners\FetchUsersGravatar;
-use App\Listeners\LogSuccessfulLogin;
-use App\Listeners\LogSuccessfulLogout;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Events\OtherDeviceLogout;
+use App\Domains\Auth\Listeners\LogSuccessfulLogin;
+use App\Domains\User\Listeners\FetchUsersGravatar;
+use App\Domains\Auth\Listeners\LogSuccessfulLogout;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 

@@ -6,12 +6,14 @@ use Illuminate\Contracts\Support\Responsable;
 
 abstract class ResourceRenderer
 {
-    protected $resourceInstance;
+    protected $resource;
 
-    public function fromResourceInstance(Responsable $responsableResource)
+    public static function fromResource(Responsable $responsableResource)
     {
-        $this->resourceInstance = $responsableResource;
+        $instance = new static;
 
-        return $this;
+        $instance->resource = $responsableResource;
+
+        return $instance;
     }
 }

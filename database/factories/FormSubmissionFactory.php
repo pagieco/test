@@ -2,10 +2,10 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\Form;
-use App\Models\Profile;
 use Faker\Generator as Faker;
-use App\Models\FormSubmission;
+use App\Domains\Form\Models\Form;
+use App\Domains\Profile\Models\Profile;
+use App\Domains\Form\Models\FormSubmission;
 
 $factory->define(FormSubmission::class, function (Faker $faker) {
     $form = factory(Form::class)->create();

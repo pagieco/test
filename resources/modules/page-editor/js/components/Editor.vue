@@ -1,26 +1,57 @@
 <script>
 
-import Header from './Header.vue';
-import { wrapPageIntoIframe } from '../iframe';
+import Vue from 'vue';
+import Toolbar from './Toolbar.vue';
+import { collectDomNodes } from '../dom';
+import LocalEditor from './LocalEditor.vue';
+import SidebarLeft from './SidebarLeft.vue';
+import SidebarRight from './SidebarRight.vue';
+import { getIframeDocument, replaceIframePlaceholder, wrapPageIntoIframe } from '../iframe';
+
+const StoreActions = [
+  'asset/fetchAssets',
+  'page/fetchPages',
+];
 
 export default {
-  components: { Header },
-
-  data() {
-    return {
-      loading: false,
-    };
+  components: {
+    Toolbar,
+    SidebarLeft,
+    SidebarRight,
   },
 
-  mounted() {
-    this.loading = true;
+  async mounted() {
+    replaceIframePlaceholder(this.$refs.iframePlaceholder);
 
-    this.moveIframeIntoCanvasContainer();
+    const iframe = await wrapPageIntoIframe();
+
+    this.createLocalVueInstance(iframe);
+
+    Promise.all(StoreActions.map(action => this.$store.dispatch(action)))
+      .then(() => {
+        this.removeLoadingOverlay();
+      });
   },
 
   methods: {
-    moveIframeIntoCanvasContainer() {
-      wrapPageIntoIframe('.canvas-container');
+    async createLocalVueInstance(iframe) {
+      const iframeDocument = getIframeDocument(iframe);
+
+      // eslint-disable-next-line no-new
+      new Vue({
+        el: iframeDocument.body.querySelector('#local-app'),
+        store: this.$store,
+        components: { LocalEditor },
+        template: '<LocalEditor />',
+        created() {
+          this.$store.dispatch('dom/collectNodes', collectDomNodes());
+        },
+      });
+    },
+
+    removeLoadingOverlay() {
+      document.getElementById('loading-overlay')
+        .remove();
     },
   },
 };
@@ -28,13 +59,19 @@ export default {
 </script>
 
 <template>
-  <div>
-    <Header />
+  <div id="editor">
 
-    <div class="canvas-container"></div>
+    <Toolbar/>
 
-    <div class="property-editor">
-      <RouterView :key="$route.fullPath" />
+    <div class="canvas-wrapper">
+      <SidebarLeft />
+
+      <div ref="iframePlaceholder">
+        <!-- ... -->
+      </div>
+
+      <SidebarRight />
     </div>
+
   </div>
 </template>

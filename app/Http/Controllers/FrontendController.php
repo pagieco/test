@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Profile;
-use App\Models\ProfileEvent;
 use Illuminate\Http\Request;
 use App\Http\Router\Resolver;
 use Illuminate\Support\Facades\Cookie;
+use App\Domains\Profile\Models\Profile;
+use App\Domains\Profile\Models\ProfileEvent;
 use Illuminate\Contracts\Support\Responsable;
 
 class FrontendController extends Controller
@@ -14,7 +14,7 @@ class FrontendController extends Controller
     const HALF_YEAR_IN_MINUTES = 60 * 24 * 365 / 2;
 
     /**
-     * @var \App\Models\Page
+     * @var \App\Domains\Page\Models\Page
      */
     protected $resource;
 

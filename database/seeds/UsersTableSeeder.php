@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\User;
 use Illuminate\Database\Seeder;
+use App\Domains\User\Models\User;
 
 class UsersTableSeeder extends Seeder
 {
@@ -33,7 +33,7 @@ class UsersTableSeeder extends Seeder
     /**
      * Get an instance to the demo user.
      *
-     * @return \App\Models\User
+     * @return \App\Domains\User\Models\User
      */
     public static function getDemoUser(): User
     {

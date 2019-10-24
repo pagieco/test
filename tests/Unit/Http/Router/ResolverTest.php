@@ -3,10 +3,10 @@
 namespace Tests\Unit\Http\Router;
 
 use Tests\TestCase;
-use App\Models\Page;
-use App\Models\Domain;
 use Illuminate\Http\Request;
 use App\Http\Router\Resolver;
+use App\Domains\Page\Models\Page;
+use App\Domains\Domain\Models\Domain;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;

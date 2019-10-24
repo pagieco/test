@@ -2,10 +2,10 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\Project;
-use App\Models\Collection;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
+use App\Domains\Project\Models\Project;
+use App\Domains\Collection\Models\Collection;
 
 $factory->define(Collection::class, function (Faker $faker) {
     $name = $faker->domainWord;

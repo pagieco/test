@@ -2,9 +2,9 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\User;
 use Faker\Generator as Faker;
-use App\Models\AuthenticationLog;
+use App\Domains\User\Models\User;
+use App\Domains\Auth\Models\AuthenticationLog;
 
 $factory->define(AuthenticationLog::class, function (Faker $faker) {
     return [

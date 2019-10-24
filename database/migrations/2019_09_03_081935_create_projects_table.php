@@ -19,6 +19,8 @@ class CreateProjectsTable extends Migration
             $table->string('name');
             $table->string('hash');
             $table->string('api_token', 60);
+            $table->mediumText('css_rules')->nullable();
+            $table->mediumText('css_file')->nullable();
             $table->integer('used_storage')->default(0);
             $table->timestamps();
 

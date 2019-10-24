@@ -2,8 +2,28 @@
 
 namespace App\Providers;
 
-use App\Models;
-use App\Policies;
+use App\Domains\Form\Models\Form;
+use App\Domains\Page\Models\Page;
+use App\Domains\Asset\Models\Asset;
+use App\Domains\Email\Models\Email;
+use App\Domains\Domain\Models\Domain;
+use App\Domains\Profile\Models\Profile;
+use App\Domains\Project\Models\Project;
+use App\Domains\Asset\Models\AssetFolder;
+use App\Domains\Form\Policies\FormPolicy;
+use App\Domains\Page\Policies\PagePolicy;
+use App\Domains\Workflow\Models\Workflow;
+use App\Domains\Asset\Policies\AssetPolicy;
+use App\Domains\Email\Policies\EmailPolicy;
+use App\Domains\Automation\Models\Automation;
+use App\Domains\Collection\Models\Collection;
+use App\Domains\Domain\Policies\DomainPolicy;
+use App\Domains\Profile\Policies\ProfilePolicy;
+use App\Domains\Project\Policies\ProjectPolicy;
+use App\Domains\Asset\Policies\AssetFolderPolicy;
+use App\Domains\Workflow\Policies\WorkflowPolicy;
+use App\Domains\Automation\Policies\AutomationPolicy;
+use App\Domains\Collection\Policies\CollectionPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -14,17 +34,17 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        Models\Asset::class => Policies\AssetPolicy::class,
-        Models\AssetFolder::class => Policies\AssetFolderPolicy::class,
-        Models\Automation::class => Policies\AutomationPolicy::class,
-        Models\Collection::class => Policies\CollectionPolicy::class,
-        Models\Domain::class => Policies\DomainPolicy::class,
-        Models\Email::class => Policies\EmailPolicy::class,
-        Models\Form::class => Policies\FormPolicy::class,
-        Models\Page::class => Policies\PagePolicy::class,
-        Models\Profile::class => Policies\ProfilePolicy::class,
-        Models\Project::class => Policies\ProjectPolicy::class,
-        Models\Workflow::class => Policies\WorkflowPolicy::class,
+        Asset::class => AssetPolicy::class,
+        AssetFolder::class => AssetFolderPolicy::class,
+        Automation::class => AutomationPolicy::class,
+        Collection::class => CollectionPolicy::class,
+        Domain::class => DomainPolicy::class,
+        Email::class => EmailPolicy::class,
+        Form::class => FormPolicy::class,
+        Page::class => PagePolicy::class,
+        Profile::class => ProfilePolicy::class,
+        Project::class => ProjectPolicy::class,
+        Workflow::class => WorkflowPolicy::class,
     ];
 
     /**

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\View\View;
 use Illuminate\Http\Request;
-use App\Http\Resources\UserResource;
+use App\Domains\User\Http\Resources\UserResource;
 
 class AppController extends Controller
 {

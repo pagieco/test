@@ -2,13 +2,13 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\Asset;
-use App\Models\Project;
-use App\Models\AssetFolder;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 use Illuminate\Http\UploadedFile;
+use App\Domains\Asset\Models\Asset;
+use App\Domains\Project\Models\Project;
 use Illuminate\Support\Facades\Storage;
+use App\Domains\Asset\Models\AssetFolder;
 
 $factory->define(Asset::class, function (Faker $faker) {
     Storage::fake();

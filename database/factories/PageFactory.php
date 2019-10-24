@@ -2,10 +2,10 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\Page;
-use App\Models\Domain;
-use App\Models\Project;
 use Faker\Generator as Faker;
+use App\Domains\Page\Models\Page;
+use App\Domains\Domain\Models\Domain;
+use App\Domains\Project\Models\Project;
 
 $factory->define(Page::class, function (Faker $faker) {
     $project = factory(Project::class)->create();

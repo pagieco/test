@@ -2,10 +2,10 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\Profile;
-use App\Models\ProfileEvent;
 use Faker\Generator as Faker;
-use App\Models\Enums\ProfileEventType;
+use App\Domains\Profile\Models\Profile;
+use App\Domains\Profile\Models\ProfileEvent;
+use App\Domains\Profile\Enums\ProfileEventType;
 
 $factory->define(ProfileEvent::class, function (Faker $faker) {
     $profile = factory(Profile::class)->create();

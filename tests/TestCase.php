@@ -2,10 +2,10 @@
 
 namespace Tests;
 
-use App\Models\Role;
-use App\Models\User;
-use App\Models\Project;
+use App\Domains\Auth\Models\Role;
+use App\Domains\User\Models\User;
 use Illuminate\Support\Facades\Event;
+use App\Domains\Project\Models\Project;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
@@ -19,7 +19,7 @@ abstract class TestCase extends BaseTestCase
     /**
      * The user's admin role.
      *
-     * @var null|\App\Models\Role
+     * @var null|\App\Domains\Auth\Models\Role
      */
     protected $role = null;
 

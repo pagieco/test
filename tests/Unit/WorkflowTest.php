@@ -3,11 +3,11 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
-use App\Models\Page;
-use App\Models\Workflow;
+use App\Domains\Page\Models\Page;
+use App\Domains\Workflow\Models\Workflow;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Notifications\WorkflowTransitionNotification;
+use App\Domains\Workflow\Notifications\WorkflowTransitionNotification;
 
 class WorkflowTest extends TestCase
 {
@@ -20,7 +20,7 @@ class WorkflowTest extends TestCase
 
         $this->login();
 
-        /** @var \App\Models\Workflow $workflow */
+        /** @var \App\Domains\Workflow\Models\Workflow $workflow */
         $workflow = factory(Workflow::class)->create();
 
         $draft = $workflow->createStep('Draft');

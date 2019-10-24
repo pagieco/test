@@ -2,13 +2,20 @@
 
 namespace App\Models;
 
-use App\Models\Observers\PageObserver;
-use App\Models\Observers\UserObserver;
-use App\Models\Observers\AssetObserver;
-use App\Models\Observers\ProfileObserver;
-use App\Models\Observers\ProjectObserver;
-use App\Models\Observers\ProfileEventObserver;
-use App\Models\Observers\FormSubmissionObserver;
+use App\Domains\Page\Models\Page;
+use App\Domains\User\Models\User;
+use App\Domains\Asset\Models\Asset;
+use App\Domains\Profile\Models\Profile;
+use App\Domains\Project\Models\Project;
+use App\Domains\Form\Models\FormSubmission;
+use App\Domains\Page\Observers\PageObserver;
+use App\Domains\Profile\Models\ProfileEvent;
+use App\Domains\User\Observers\UserObserver;
+use App\Domains\Asset\Observers\AssetObserver;
+use App\Domains\Profile\Observers\ProfileObserver;
+use App\Domains\Project\Observers\ProjectObserver;
+use App\Domains\Form\Observers\FormSubmissionObserver;
+use App\Domains\Profile\Observers\ProfileEventObserver;
 
 trait ModelObservers
 {
