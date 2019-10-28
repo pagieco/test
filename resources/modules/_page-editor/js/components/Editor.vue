@@ -1,33 +1,57 @@
 <script>
 
-import Header from './Header.vue';
-import { wrapPageIntoIframe } from '../iframe';
+import Vue from 'vue';
+import Toolbar from './Toolbar.vue';
+import { collectDomNodes } from '../dom';
+import LocalEditor from './LocalEditor.vue';
+import SidebarLeft from './SidebarLeft.vue';
+import SidebarRight from './SidebarRight.vue';
+import { getIframeDocument, replaceIframePlaceholder, wrapPageIntoIframe } from '../iframe';
+
+const StoreActions = [
+  'asset/fetchAssets',
+  'page/fetchPages',
+];
 
 export default {
-  components: { Header },
-
-  data() {
-    return {
-      loading: false,
-    };
+  components: {
+    Toolbar,
+    SidebarLeft,
+    SidebarRight,
   },
 
-  mounted() {
-    this.loading = true;
+  async mounted() {
+    replaceIframePlaceholder(this.$refs.iframePlaceholder);
 
-    this.moveIframeIntoCanvasContainer();
+    const iframe = await wrapPageIntoIframe();
+
+    this.createLocalVueInstance(iframe);
+
+    Promise.all(StoreActions.map(action => this.$store.dispatch(action)))
+      .then(() => {
+        this.removeLoadingOverlay();
+      });
   },
 
   methods: {
-    moveIframeIntoCanvasContainer() {
-      wrapPageIntoIframe('.canvas-container').then(() => {
-        Promise.all([
-          this.$store.dispatch('asset/fetchAssets'),
-          this.$store.dispatch('page/fetchPages'),
-        ]).then(() => {
-          this.loading = false;
-        });
+    async createLocalVueInstance(iframe) {
+      const iframeDocument = getIframeDocument(iframe);
+
+      // eslint-disable-next-line no-new
+      new Vue({
+        el: iframeDocument.body.querySelector('#local-app'),
+        store: this.$store,
+        components: { LocalEditor },
+        template: '<LocalEditor />',
+        created() {
+          this.$store.dispatch('dom/collectNodes', collectDomNodes());
+        },
       });
+    },
+
+    removeLoadingOverlay() {
+      document.getElementById('loading-overlay')
+        .remove();
     },
   },
 };
@@ -36,18 +60,18 @@ export default {
 
 <template>
   <div id="editor">
-    <div id="loading-overlay" v-show="loading">
-      loading...
-    </div>
 
-    <Header />
+    <Toolbar/>
 
-    <div id="canvas">
-      <div class="canvas-container"></div>
+    <div class="canvas-wrapper">
+      <SidebarLeft />
 
-      <div class="property-editor">
-        <RouterView :key="$route.fullPath" />
+      <div ref="iframePlaceholder">
+        <!-- ... -->
       </div>
+
+      <SidebarRight />
     </div>
+
   </div>
 </template>

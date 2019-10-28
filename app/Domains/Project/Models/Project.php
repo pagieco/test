@@ -53,6 +53,7 @@ class Project extends Model
      */
     protected $casts = [
         'used_storage' => 'int',
+        'css_rules' => 'json',
     ];
 
     public function incrementUsedStorageWith(int $bytes)

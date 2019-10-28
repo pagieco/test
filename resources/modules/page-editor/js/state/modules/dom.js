@@ -18,6 +18,6 @@ export const mutations = {
 
 export const actions = {
   collectNodes({ commit }, collectedNodes) {
-    commit('DOM_NODES_REPLACE', [...collectedNodes].map(n => new DomNode(n)));
+    commit('DOM_NODES_REPLACE', [...collectedNodes].map((n, i) => new DomNode(n, i)));
   },
 };

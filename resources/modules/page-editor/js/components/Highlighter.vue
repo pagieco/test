@@ -11,8 +11,8 @@ export default {
   },
 
   methods: {
-    getPosition(nodeId) {
-      return getNodePosition(nodeId);
+    getPosition(index) {
+      return getNodePosition(index);
     },
   },
 };
@@ -23,9 +23,9 @@ export default {
 
   <div class="highlighter">
     <div class="highlighter__element"
-         v-for="nodeId in selectionSet"
-         :style="getPosition(nodeId)"
-         :key="nodeId">
+         v-for="index in selectionSet"
+         :style="getPosition(index)"
+         :key="index">
     </div>
   </div>
 

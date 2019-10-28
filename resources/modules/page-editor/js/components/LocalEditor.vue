@@ -1,17 +1,26 @@
 <script>
 
 import Highlighter from './Highlighter.vue';
-import ContextMenu from './ContextMenu.vue';
+import InlineEditor from './InlineEditor.vue';
 
 export default {
-  components: { Highlighter, ContextMenu },
+  components: {
+    Highlighter,
+    InlineEditor,
+  },
+
+  computed: {
+    inlineEditorEnabled() {
+      return this.$store.getters['editingMode/enabled'];
+    },
+  },
 };
 
 </script>
 
 <template>
-  <div id="local-editor">
-    <Highlighter />
-    <ContextMenu />
+  <div class="skip-collection">
+    <Highlighter/>
+    <InlineEditor v-show="inlineEditorEnabled"/>
   </div>
 </template>

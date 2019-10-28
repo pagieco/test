@@ -1,21 +1,25 @@
 <script>
 
-import { mapGetters } from 'vuex';
-import { getIframeDocument } from '../iframe';
 import { serialize } from '../dom';
+import http from '../services/http';
+import { getConfig } from '../config';
+import { getIframeDocument } from '../iframe';
 
 export default {
-  computed: {
-    ...mapGetters({
-      pages: 'page/pages',
-    }),
-  },
-
   methods: {
     publish() {
-      const root = getIframeDocument().querySelector('body');
+      http.post(`/pages/${getConfig('pageId')}/publish`, {
+        dom: serialize(getIframeDocument().body),
+        css: this.$store.getters['style/rules'],
+      });
+    },
 
-      console.log(serialize(root));
+    openPage() {
+      // ...
+    },
+
+    togglePreviewMode() {
+      // ...
     },
   },
 };
@@ -23,15 +27,23 @@ export default {
 </script>
 
 <template>
-  <div class="toolbar">
-    <button @click="publish">Publish</button>
+  <div id="toolbar">
 
-    <label>
-      Page:
-      <select>
-        <option v-for="page in pages" :key="page.id" :value="page.id">{{ page.name }}</option>
-      </select>
-    </label>
+    <div>
+      <button @click="togglePreviewMode">Preview Page</button>
+    </div>
+
+    <div>
+      <button>Desktop</button>
+      <button>Tablet</button>
+      <button>Mobile Landscape</button>
+      <button>Mobile Portrait</button>
+    </div>
+
+    <div>
+      <button @click="openPage">Open Page</button>
+      <button @click="publish">Publish</button>
+    </div>
 
   </div>
 </template>

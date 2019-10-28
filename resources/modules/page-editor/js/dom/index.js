@@ -1,51 +1,50 @@
 import { mapValues, pick } from 'lodash';
 import { getIframeDocument } from '../iframe';
+import store from '../state/store';
 
-export function getDomNodeSelector(id = null) {
-  return id ? `[data-p="${id}"]` : '[data-p]';
+export function getNodeByIndex(index) {
+  return store.getters['dom/nodes'][index];
 }
 
-export function getNodeId(el) {
-  return el.dataset.p || null;
+function getNodeElementByIndex(index) {
+  return getNodeByIndex(index).htmlElement;
 }
 
-function getNodeElementById(id, document = getIframeDocument()) {
-  return document.querySelector(getDomNodeSelector(id));
+function getNodeRect(index) {
+  return getNodeElementByIndex(index)
+    .getBoundingClientRect();
 }
 
-function getNodeRect(id, document = getIframeDocument()) {
-  const element = getNodeElementById(id, document);
-
-  return element ? element.getBoundingClientRect() : null;
-}
-
-export function getNodePosition(id, document = getIframeDocument()) {
-  const nodeRect = getNodeRect(id, document)
+export function getNodePosition(index) {
+  const nodeRect = getNodeRect(index)
     .toJSON();
 
   return pick(mapValues(nodeRect, r => `${r}px`), ['top', 'left', 'width', 'height']);
 }
 
-export function reflectNodeSelection(selectionSet, selectedClassName = 'selected') {
-  if (selectionSet.length === 0) {
-    // ...
-  }
+export function getDomNodeSelector(index) {
+  return getNodeByIndex(index).nodeType;
+}
 
+export function reflectNodeSelection(selectionSet, selectedClassName = 'selected') {
   getIframeDocument()
     .querySelectorAll(`.${selectedClassName}`)
     .forEach((node) => {
       node.classList.remove(selectedClassName);
     });
 
-  selectionSet.forEach((nodeId) => {
-    getNodeElementById(nodeId)
+  selectionSet.forEach((index) => {
+    getNodeElementByIndex(index)
       .classList
       .add(selectedClassName);
   });
 }
 
-export function collectDomNodes(selector = getDomNodeSelector(), document = null) {
-  return (document || getIframeDocument()).querySelectorAll(selector);
+export function collectDomNodes(document) {
+  const { body } = document;
+
+  // Collect all nodes from the body including the body itself.
+  return [body, ...body.querySelectorAll(':not(.skip-collection)')];
 }
 
 function getTextContents(node) {
@@ -65,7 +64,7 @@ function getTextContents(node) {
 
 function getNodeAttributes(attributes) {
   const skipAttributes = [
-    'data-id', 'class',
+    // ...
   ];
 
   return Array.from(attributes)
@@ -78,17 +77,25 @@ function getNodeAttributes(attributes) {
 }
 
 export function serialize(rootNode) {
-  const tree = {
-    uuid: getNodeId(rootNode),
-    nodeType: rootNode.nodeName,
-    textContents: getTextContents(rootNode),
-    nodeAttributes: getNodeAttributes(rootNode.attributes),
-    children: [],
-  };
+  let nodeIndex = 0;
 
-  tree.children = [
-    ...rootNode.querySelectorAll(`:scope > ${getDomNodeSelector()}`),
-  ].map(child => serialize(child));
+  function serializeNode(node) {
+    const tree = {
+      nodeIndex,
+      nodeType: node.nodeName,
+      nodeAttributes: getNodeAttributes(node.attributes),
+      textContents: getTextContents(node),
+      children: [],
+    };
 
-  return tree;
+    nodeIndex += 1;
+
+    tree.children = [
+      ...node.querySelectorAll(':scope > :not(.skip-collection)'),
+    ].map(child => serializeNode(child));
+
+    return tree;
+  }
+
+  return serializeNode(rootNode);
 }

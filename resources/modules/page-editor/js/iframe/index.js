@@ -1,29 +1,22 @@
-import { getDomNodeSelector } from '../dom';
-
-export function getIframeElement() {
+function getIframeElement() {
   return document.getElementById('canvas-frame');
 }
 
-export function getIframeDocument(iframe = null) {
-  const element = iframe || getIframeElement();
-
-  return element.contentDocument || element.contentWindow.document;
+export function getIframeDocument(iframe = getIframeElement()) {
+  return iframe.contentDocument || iframe.contentWindow.document;
 }
 
 export function replaceIframePlaceholder(placeholder) {
-  const iframe = getIframeElement();
-
-  placeholder.parentNode.replaceChild(iframe, placeholder);
+  placeholder.parentNode.replaceChild(getIframeElement(), placeholder);
 }
 
 export async function wrapPageIntoIframe() {
   const iframe = getIframeElement();
-
   const { head, body } = getIframeDocument(iframe);
 
-  document.querySelectorAll(`#page-contents > ${getDomNodeSelector()}`)
+  document.querySelectorAll('#page-contents > *')
     .forEach((el) => {
-      iframe.contentDocument.body.appendChild(el);
+      body.appendChild(el);
     });
 
   body.appendChild(document.getElementById('local-app'));

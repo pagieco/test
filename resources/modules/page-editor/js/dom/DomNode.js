@@ -1,16 +1,17 @@
 import store from '../state/store';
-import { getNodeId } from './index';
 
 export default class DomNode {
-  constructor(htmlElement) {
+  constructor(htmlElement, index) {
     this.htmlElement = htmlElement;
-    this.id = getNodeId(htmlElement);
+    this.nodeType = String(htmlElement.nodeName).toLowerCase();
+    this.index = index;
 
     this.bindEventHandlers();
   }
 
   bindEventHandlers() {
     this.htmlElement.addEventListener('click', e => this.onClick(e));
+    this.htmlElement.addEventListener('dblclick', e => this.onDblClick(e));
   }
 
   onClick(e) {
@@ -18,7 +19,14 @@ export default class DomNode {
 
     store.dispatch('selection/setNodeSelection', {
       originalEvent: e,
-      nodeId: this.id,
+      nodeIndex: this.index,
     });
+  }
+
+  onDblClick(e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    store.dispatch('editingMode/enableFor', this.index);
   }
 }

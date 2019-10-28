@@ -6,6 +6,7 @@ import { collectDomNodes } from '../dom';
 import LocalEditor from './LocalEditor.vue';
 import SidebarLeft from './SidebarLeft.vue';
 import SidebarRight from './SidebarRight.vue';
+import event, { DOM_REPAINT } from '../services/event';
 import { getIframeDocument, replaceIframePlaceholder, wrapPageIntoIframe } from '../iframe';
 
 const StoreActions = [
@@ -16,6 +17,7 @@ const StoreActions = [
 export default {
   components: {
     Toolbar,
+    LocalEditor,
     SidebarLeft,
     SidebarRight,
   },
@@ -35,16 +37,19 @@ export default {
 
   methods: {
     async createLocalVueInstance(iframe) {
-      const iframeDocument = getIframeDocument(iframe);
+      const iframeDoc = getIframeDocument(iframe);
+      const { body } = iframeDoc;
 
       // eslint-disable-next-line no-new
       new Vue({
-        el: iframeDocument.body.querySelector('#local-app'),
+        el: body.querySelector('#local-app'),
         store: this.$store,
-        components: { LocalEditor },
         template: '<LocalEditor />',
+        components: { LocalEditor },
         created() {
-          this.$store.dispatch('dom/collectNodes', collectDomNodes());
+          this.$store.dispatch('dom/collectNodes', collectDomNodes(iframeDoc));
+
+          event.$emit(DOM_REPAINT);
         },
       });
     },
@@ -64,13 +69,15 @@ export default {
     <Toolbar/>
 
     <div class="canvas-wrapper">
-      <SidebarLeft />
+      <!-- sidebar-left -->
+      <SidebarLeft/>
 
       <div ref="iframePlaceholder">
         <!-- ... -->
       </div>
 
-      <SidebarRight />
+      <!-- sidebar-right -->
+      <SidebarRight/>
     </div>
 
   </div>

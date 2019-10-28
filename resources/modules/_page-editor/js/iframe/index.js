@@ -1,60 +1,40 @@
 import { getDomNodeSelector } from '../dom';
 
-/**
- * Get the iframe element.
- *
- * @returns {HTMLElement}
- */
-function getIframeElement() {
+export function getIframeElement() {
   return document.getElementById('canvas-frame');
 }
 
-/**
- * Get the iframe's document.
- *
- * @param   {HTMLElement | null} iframe
- * @returns {Document}
- */
 export function getIframeDocument(iframe = null) {
   const element = iframe || getIframeElement();
 
   return element.contentDocument || element.contentWindow.document;
 }
 
-/**
- * Wrap the page into an iframe element.
- *
- * @param   {string} selector
- * @returns {Promise<unknown>}
- */
-export function wrapPageIntoIframe(selector) {
-  return new Promise((resolve) => {
-    const iframe = document.createElement('iframe');
+export function replaceIframePlaceholder(placeholder) {
+  const iframe = getIframeElement();
 
-    iframe.id = 'canvas-frame';
+  placeholder.parentNode.replaceChild(iframe, placeholder);
+}
 
-    iframe.addEventListener('load', () => {
-      const { head, body } = getIframeDocument(iframe);
+export async function wrapPageIntoIframe() {
+  const iframe = getIframeElement();
 
-      document.querySelectorAll('link.editor-asset').forEach((asset) => {
-        head.appendChild(asset);
-      });
+  const { head, body } = getIframeDocument(iframe);
 
-      document.querySelectorAll(`#page-contents > ${getDomNodeSelector()}`).forEach((el) => {
-        body.appendChild(el);
-      });
-
-      document.querySelectorAll('script.editor-asset').forEach((asset) => {
-        body.appendChild(asset);
-      });
-
-      document.getElementById('page-contents').remove();
-
-      setTimeout(() => {
-        resolve();
-      }, 1000);
+  document.querySelectorAll(`#page-contents > ${getDomNodeSelector()}`)
+    .forEach((el) => {
+      iframe.contentDocument.body.appendChild(el);
     });
 
-    document.querySelector(selector).appendChild(iframe);
-  });
+  body.appendChild(document.getElementById('local-app'));
+
+  document.querySelectorAll('link.editor-asset')
+    .forEach((asset) => {
+      head.appendChild(asset);
+    });
+
+  document.getElementById('page-contents')
+    .remove();
+
+  return Promise.resolve(iframe);
 }
