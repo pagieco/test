@@ -4,6 +4,7 @@ import { serialize } from '../dom';
 import http from '../services/http';
 import { getConfig } from '../config';
 import { getIframeDocument } from '../iframe';
+import event, { HIGHLIGHTER_RECALCPOS } from '../services/event';
 
 export default {
   methods: {
@@ -21,6 +22,14 @@ export default {
     togglePreviewMode() {
       // ...
     },
+
+    setCanvasSize(size) {
+      this.$store.dispatch('style/setMediaQuery', size);
+
+      this.$nextTick(() => {
+        event.$emit(HIGHLIGHTER_RECALCPOS);
+      });
+    },
   },
 };
 
@@ -34,10 +43,10 @@ export default {
     </div>
 
     <div>
-      <button>Desktop</button>
-      <button>Tablet</button>
-      <button>Mobile Landscape</button>
-      <button>Mobile Portrait</button>
+      <button @click="setCanvasSize('desktop')">Desktop</button>
+      <button @click="setCanvasSize('tablet')">Tablet</button>
+      <button @click="setCanvasSize('mobile_landscape')">Mobile Landscape</button>
+      <button @click="setCanvasSize('mobile_portrait')">Mobile Portrait</button>
     </div>
 
     <div>

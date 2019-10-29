@@ -2,16 +2,16 @@ import store from '../state/store';
 
 export default class DomNode {
   constructor(htmlElement, index) {
-    this.htmlElement = htmlElement;
     this.nodeType = String(htmlElement.nodeName).toLowerCase();
+    this.htmlElement = htmlElement;
     this.index = index;
 
     this.bindEventHandlers();
   }
 
   bindEventHandlers() {
-    this.htmlElement.addEventListener('click', e => this.onClick(e));
-    this.htmlElement.addEventListener('dblclick', e => this.onDblClick(e));
+    this.htmlElement.addEventListener('click', this.onClick.bind(this));
+    this.htmlElement.addEventListener('dblclick', this.onDblClick.bind(this));
   }
 
   onClick(e) {
@@ -28,5 +28,10 @@ export default class DomNode {
     e.stopPropagation();
 
     store.dispatch('editingMode/enableFor', this.index);
+  }
+
+  setSelector(selector) {
+    this.selector = selector;
+    this.htmlElement.dataset.style = selector;
   }
 }

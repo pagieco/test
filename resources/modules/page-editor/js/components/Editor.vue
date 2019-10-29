@@ -6,6 +6,7 @@ import { collectDomNodes } from '../dom';
 import LocalEditor from './LocalEditor.vue';
 import SidebarLeft from './SidebarLeft.vue';
 import SidebarRight from './SidebarRight.vue';
+import { getCanvasSize } from '../style/media-query';
 import event, { DOM_REPAINT } from '../services/event';
 import { getIframeDocument, replaceIframePlaceholder, wrapPageIntoIframe } from '../iframe';
 
@@ -20,6 +21,12 @@ export default {
     LocalEditor,
     SidebarLeft,
     SidebarRight,
+  },
+
+  computed: {
+    canvasWidth() {
+      return getCanvasSize(this.$store.getters['style/currentMediaQuery']);
+    },
   },
 
   async mounted() {
@@ -68,12 +75,16 @@ export default {
 
     <Toolbar/>
 
-    <div class="canvas-wrapper">
+    <div class="editor-wrapper">
       <!-- sidebar-left -->
       <SidebarLeft/>
 
-      <div ref="iframePlaceholder">
-        <!-- ... -->
+      <div class="canvas-wrapper">
+        <div class="canvas-container" :style="{ '--canvasWidth': canvasWidth }">
+          <div ref="iframePlaceholder">
+            <!-- ... -->
+          </div>
+        </div>
       </div>
 
       <!-- sidebar-right -->

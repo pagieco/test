@@ -1,0 +1,16 @@
+#canvas-frame {
+  width: 100%;
+  height: 100%;
+}
+
+.canvas-wrapper {
+  background-color: #eee;
+  flex-grow: 1;
+}
+
+.canvas-container {
+  width: var(--canvasWidth);
+  margin: 0 auto;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+}

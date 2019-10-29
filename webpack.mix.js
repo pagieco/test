@@ -1,6 +1,6 @@
+const fs = require('fs');
 const mix = require('laravel-mix');
 const tailwindcss = require('tailwindcss');
-const fs = require('fs');
 
 fs.readdirSync('resources/modules')
   .forEach((dir) => {

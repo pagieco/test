@@ -348,20 +348,21 @@ template {
 [hidden] {
   display: none;
 }
-#editor {
-  display: flex;
-  flex-direction: column;
+#canvas-frame {
   width: 100%;
   height: 100%;
 }
 
 .canvas-wrapper {
+  background-color: #eee;
   flex-grow: 1;
-  display: flex;
 }
 
-#canvas-frame {
-  flex-grow: 1;
+.canvas-container {
+  width: var(--canvasWidth);
+  margin: 0 auto;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
 }
 
 #loading-overlay {
@@ -392,4 +393,16 @@ template {
   background-color: #eee;
   border-bottom: 1px solid #ddd;
   padding: 0.5em;
+}
+
+#editor {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.editor-wrapper {
+  flex-grow: 1;
+  display: flex;
 }

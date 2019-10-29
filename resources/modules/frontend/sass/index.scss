@@ -1,6 +1,8 @@
 @import "~normalize.css";
 @import "bootstrap";
 
+$resize-handle-offset: -4px;
+
 .highlighter {
   position: fixed;
   top: 0;
@@ -13,11 +15,32 @@
 .highlighter__element {
   position: absolute;
   pointer-events: none;
-  border: 1px solid blue;
+  border: 1px solid #007bff;
   border-radius: 2px;
+  box-shadow: 1px 2px 1px transparentize(#007bff, 0.75);
 }
 
-
-.test {
+.highlighter__resize--width,
+.highlighter__resize--height {
   position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: #ddefff;
+  border: 1px solid #007bff;
+  border-radius: 2px;
+  pointer-events: initial;
+}
+
+.highlighter__resize--width {
+  cursor: e-resize;
+  top: 50%;
+  transform: translateY(-50%);
+  right: $resize-handle-offset;
+}
+
+.highlighter__resize--height {
+  cursor: s-resize;
+  bottom: $resize-handle-offset;
+  transform: translateX(-50%);
+  left: 50%
 }

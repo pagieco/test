@@ -474,10 +474,32 @@ label {
 .highlighter__element {
   position: absolute;
   pointer-events: none;
-  border: 1px solid blue;
+  border: 1px solid #007bff;
   border-radius: 2px;
+  box-shadow: 1px 2px 1px rgba(0, 123, 255, 0.25);
 }
 
-.test {
+.highlighter__resize--width,
+.highlighter__resize--height {
   position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: #ddefff;
+  border: 1px solid #007bff;
+  border-radius: 2px;
+  pointer-events: initial;
+}
+
+.highlighter__resize--width {
+  cursor: e-resize;
+  top: 50%;
+  transform: translateY(-50%);
+  right: -4px;
+}
+
+.highlighter__resize--height {
+  cursor: s-resize;
+  bottom: -4px;
+  transform: translateX(-50%);
+  left: 50%;
 }

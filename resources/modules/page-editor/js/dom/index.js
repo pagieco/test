@@ -6,11 +6,11 @@ export function getNodeByIndex(index) {
   return store.getters['dom/nodes'][index];
 }
 
-function getNodeElementByIndex(index) {
+export function getNodeElementByIndex(index) {
   return getNodeByIndex(index).htmlElement;
 }
 
-function getNodeRect(index) {
+export function getNodeRect(index) {
   return getNodeElementByIndex(index)
     .getBoundingClientRect();
 }
@@ -23,7 +23,11 @@ export function getNodePosition(index) {
 }
 
 export function getDomNodeSelector(index) {
-  return getNodeByIndex(index).nodeType;
+  const node = getNodeByIndex(index);
+
+  return node.selector
+    ? `[data-style="${node.selector}"]`
+    : node.nodeType;
 }
 
 export function reflectNodeSelection(selectionSet, selectedClassName = 'selected') {
@@ -47,6 +51,12 @@ export function collectDomNodes(document) {
   return [body, ...body.querySelectorAll(':not(.skip-collection)')];
 }
 
+/**
+ * Get the text contents of the given node.
+ *
+ * @param   {HTMLElement} node
+ * @returns {string}
+ */
 function getTextContents(node) {
   let textContent = '';
 

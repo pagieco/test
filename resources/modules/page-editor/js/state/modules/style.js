@@ -2,9 +2,10 @@ import Vue from 'vue';
 import { head, kebabCase } from 'lodash';
 import { getDomNodeSelector } from '../../dom';
 import { reflectStylesheet } from '../../style';
+import { getMediaQuery } from '../../style/media-query';
 
 export const state = {
-  currentMediaQuery: 'screen',
+  currentMediaQuery: 'desktop',
   rules: {},
 };
 
@@ -19,7 +20,7 @@ export const getters = {
 
   styleRule(state, getters) {
     return (selection, prop) => {
-      const query = getters.currentMediaQuery;
+      const query = getMediaQuery(getters.currentMediaQuery);
 
       // If the mediaQuery isn't used before in the ruleset,
       // create an empty object for that ruleset.
@@ -57,7 +58,7 @@ export const getters = {
 
 export const mutations = {
   SET_STYLE_PROP(state, { nodeIndex, property, value }) {
-    const mq = state.currentMediaQuery;
+    const mq = getMediaQuery(state.currentMediaQuery);
     const selector = getDomNodeSelector(nodeIndex);
 
     if (!state.rules[mq]) {
@@ -78,6 +79,10 @@ export const mutations = {
       JSON.parse(JSON.stringify(state.rules)),
     );
   },
+
+  SET_MEDIA_QUERY(state, mediaQuery) {
+    state.currentMediaQuery = mediaQuery;
+  },
 };
 
 export const actions = {
@@ -91,5 +96,9 @@ export const actions = {
     selectionSet.forEach((nodeIndex) => {
       commit('SET_STYLE_PROP', { nodeIndex, ...style });
     });
-  }
+  },
+
+  setMediaQuery({ commit }, mediaQuery) {
+    commit('SET_MEDIA_QUERY', mediaQuery);
+  },
 };

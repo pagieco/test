@@ -2,9 +2,12 @@
 
 import { mapGetters } from 'vuex';
 import StyleProp from '../mixins/StyleProp';
+import ElementSelector from './inputs/ElementSelector.vue';
 
 export default {
   mixins: [StyleProp],
+
+  components: { ElementSelector },
 
   computed: {
     ...mapGetters({
@@ -22,6 +25,8 @@ export default {
 <template>
   <div class="sidebar sidebar--right" v-if="selectionSet.length">
     {{ selectionSet }}
+
+    <ElementSelector/>
 
     <input type="text"
            v-style-prop="'background-color'"
