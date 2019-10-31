@@ -37417,6 +37417,17 @@ function reflectStylesheet(rules) {
 
 /***/ }),
 
+/***/ "./resources/modules/collection-editor/sass/index.scss":
+/*!*************************************************************!*\
+  !*** ./resources/modules/collection-editor/sass/index.scss ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/modules/frontend/sass/index.scss":
 /*!****************************************************!*\
   !*** ./resources/modules/frontend/sass/index.scss ***!
@@ -37439,18 +37450,31 @@ function reflectStylesheet(rules) {
 
 /***/ }),
 
+/***/ "./resources/modules/workflow-editor/sass/index.scss":
+/*!***********************************************************!*\
+  !*** ./resources/modules/workflow-editor/sass/index.scss ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 0:
-/*!***********************************************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/modules/__page-editor/js/index.js ./resources/modules/__page-editor/sass/index.scss ./resources/modules/_page-editor/sass/index.scss ./resources/modules/frontend/sass/index.scss ./resources/modules/page-editor/sass/index.scss ***!
-  \***********************************************************************************************************************************************************************************************************************************************************/
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/modules/__page-editor/js/index.js ./resources/modules/__page-editor/sass/index.scss ./resources/modules/_page-editor/sass/index.scss ./resources/modules/collection-editor/sass/index.scss ./resources/modules/frontend/sass/index.scss ./resources/modules/page-editor/sass/index.scss ./resources/modules/workflow-editor/sass/index.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! /Users/jelle/Sites-2020/pagie/framework-test/resources/modules/__page-editor/js/index.js */"./resources/modules/__page-editor/js/index.js");
 __webpack_require__(/*! /Users/jelle/Sites-2020/pagie/framework-test/resources/modules/__page-editor/sass/index.scss */"./resources/modules/__page-editor/sass/index.scss");
 __webpack_require__(/*! /Users/jelle/Sites-2020/pagie/framework-test/resources/modules/_page-editor/sass/index.scss */"./resources/modules/_page-editor/sass/index.scss");
+__webpack_require__(/*! /Users/jelle/Sites-2020/pagie/framework-test/resources/modules/collection-editor/sass/index.scss */"./resources/modules/collection-editor/sass/index.scss");
 __webpack_require__(/*! /Users/jelle/Sites-2020/pagie/framework-test/resources/modules/frontend/sass/index.scss */"./resources/modules/frontend/sass/index.scss");
-module.exports = __webpack_require__(/*! /Users/jelle/Sites-2020/pagie/framework-test/resources/modules/page-editor/sass/index.scss */"./resources/modules/page-editor/sass/index.scss");
+__webpack_require__(/*! /Users/jelle/Sites-2020/pagie/framework-test/resources/modules/page-editor/sass/index.scss */"./resources/modules/page-editor/sass/index.scss");
+module.exports = __webpack_require__(/*! /Users/jelle/Sites-2020/pagie/framework-test/resources/modules/workflow-editor/sass/index.scss */"./resources/modules/workflow-editor/sass/index.scss");
 
 
 /***/ })

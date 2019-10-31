@@ -28,7 +28,7 @@ class CollectionEntryQueryBuilder
     protected function getModelFields(Collection $model): EloquentCollection
     {
         return $model->fields->filter(function ($field) {
-            return in_array($field->slug, array_keys(request()->get('filter')));
+            return in_array($field->slug, array_keys(request()->get('filter', [])));
         });
     }
 

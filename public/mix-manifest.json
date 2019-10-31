@@ -1,12 +1,15 @@
 {
-    "/js/__page-editor.js": "/js/__page-editor.js?id=90b7808b73437af4e98a",
+    "/js/__page-editor.js": "/js/__page-editor.js?id=fe52dca4788fa1b7b80a",
     "/css/__page-editor.css": "/css/__page-editor.css?id=c724dcb6e06c9fdc70af",
     "/css/_page-editor.css": "/css/_page-editor.css?id=392e4a687091e3798bf6",
-    "/css/frontend.css": "/css/frontend.css?id=96ffc588615903679892",
+    "/css/collection-editor.css": "/css/collection-editor.css?id=1a56f6f5ca95881bce3a",
+    "/css/frontend.css": "/css/frontend.css?id=d11ed95217d48215f50c",
     "/css/page-editor.css": "/css/page-editor.css?id=88954b0ce608ba207146",
+    "/css/workflow-editor.css": "/css/workflow-editor.css?id=1a56f6f5ca95881bce3a",
     "/js/_page-editor.js": "/js/_page-editor.js?id=073e72789d61cff15f6d",
     "/js/app.js": "/js/app.js?id=a0b8fe74835229eac60e",
-    "/js/frontend.js": "/js/frontend.js?id=25048f34fbedac0fcb83",
-    "/js/page-editor.js": "/js/page-editor.js?id=b2c0f4db597eb65be1d5",
-    "/js/workflow-editor.js": "/js/workflow-editor.js?id=db69084ddecc9e51031d"
+    "/js/collection-editor.js": "/js/collection-editor.js?id=916287b48f7d4d1b0ade",
+    "/js/frontend.js": "/js/frontend.js?id=991abb63ffcba8ceac6b",
+    "/js/page-editor.js": "/js/page-editor.js?id=519f7995b855be6fd309",
+    "/js/workflow-editor.js": "/js/workflow-editor.js?id=57f5f9ac9ea2939c2184"
 }

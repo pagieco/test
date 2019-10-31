@@ -5,7 +5,7 @@ namespace App\Domains\Page\Http\Controllers\App;
 use App\Domains\Page\Models\Page;
 use App\Http\Controllers\Controller;
 
-class PageDesignerController extends Controller
+class PageEditorController extends Controller
 {
     public function __construct()
     {

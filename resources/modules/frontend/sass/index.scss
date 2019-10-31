@@ -3,6 +3,10 @@
 
 $resize-handle-offset: -4px;
 
+body {
+  user-select: none;
+}
+
 .highlighter {
   position: fixed;
   top: 0;
