@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('picture')->nullable();
+            $table->boolean('has_access_to_backoffice')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

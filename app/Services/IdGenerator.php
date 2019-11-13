@@ -15,8 +15,8 @@ class IdGenerator
 
     public static function decode(int $id): array
     {
-        $shard = ($id >> static::$localBits) & pow(2, static::$shardBits) - 1;
-        $local = ($id) & pow(2, static::$localBits) - 1;
+        $shard = ($id >> static::$localBits) & (2 ** static::$shardBits) - 1;
+        $local = $id & (2 ** static::$localBits) - 1;
 
         return compact('shard', 'local');
     }

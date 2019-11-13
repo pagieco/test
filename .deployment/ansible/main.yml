@@ -19,4 +19,3 @@
     manager: "{{ hostvars[groups['managers'][0]]['inventory_hostname'] }}"
   roles:
     - swarm-join
-

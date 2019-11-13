@@ -25,7 +25,7 @@ class Reader
                 return static::readFromJson($filename);
         }
 
-        throw new UnreadableFileException;
+        throw new UnreadableFileException("Cannot read openapi file: {$filename}");
     }
 
     /**

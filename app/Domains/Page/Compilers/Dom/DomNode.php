@@ -43,7 +43,7 @@ class DomNode
 
         return array_filter($attributes, function ($value, $attribute) {
             return ! empty($value)
-                && ! in_array($attribute, $this->reservedAttributes);
+                && ! in_array($attribute, $this->reservedAttributes, true);
         }, ARRAY_FILTER_USE_BOTH);
     }
 
@@ -67,7 +67,7 @@ class DomNode
         return $element;
     }
 
-    protected function validateInput($input)
+    protected function validateInput($input): void
     {
         $requiredAttributes = ['uuid', 'nodeType'];
 

@@ -23,6 +23,29 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use App\Domains\Page\Compilers\StyleSheet\StylesheetCompiler;
 
+/**
+ * @property int id
+ * @property int user_id
+ * @property string name
+ * @property string hash
+ * @property string api_token
+ * @property array css_rules
+ * @property string css_file
+ * @property int used_storage
+ * @property \Illuminate\Support\Carbon created_at
+ * @property \Illuminate\Support\Carbon updated_at
+ * @property \Illuminate\Support\Collection assets
+ * @property \Illuminate\Support\Collection assetFolders
+ * @property \Illuminate\Support\Collection automations
+ * @property \Illuminate\Support\Collection collaborators
+ * @property \Illuminate\Support\Collection domains
+ * @property \Illuminate\Support\Collection emails
+ * @property \App\Domains\User\Models\User owner
+ * @property \Illuminate\Support\Collection forms
+ * @property \Illuminate\Support\Collection pages
+ * @property \Illuminate\Support\Collection profiles
+ * @property \Illuminate\Support\Collection workflows
+ */
 class Project extends Model
 {
     /**

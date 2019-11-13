@@ -20,6 +20,7 @@ class ProjectObserver
             $project->setAttribute('api_token', Project::generateApiToken());
         }
     }
+
     public function created(Project $project): void
     {
         $domain = $this->createInitialDomain($project);

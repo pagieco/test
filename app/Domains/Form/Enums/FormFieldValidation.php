@@ -6,6 +6,6 @@ use App\Models\Enums\Enum;
 
 final class FormFieldValidation extends Enum
 {
-    const Required = 'required';
-    const Email = 'email';
+    public const Required = 'required';
+    public const Email = 'email';
 }

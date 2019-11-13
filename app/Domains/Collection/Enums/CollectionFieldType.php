@@ -6,13 +6,13 @@ use App\Models\Enums\Enum;
 
 final class CollectionFieldType extends Enum
 {
-    const PlainText = 'plain-text';
-    const URL = 'url';
-    const Email = 'email';
-    const Phone = 'phone';
-    const Number = 'number';
-    const DateTime = 'date-time';
-    const Switch = 'switch';
-    const Option = 'option';
-    const Image = 'image';
+    public const PlainText = 'plain-text';
+    public const URL = 'url';
+    public const Email = 'email';
+    public const Phone = 'phone';
+    public const Number = 'number';
+    public const DateTime = 'date-time';
+    public const Switch = 'switch';
+    public const Option = 'option';
+    public const Image = 'image';
 }

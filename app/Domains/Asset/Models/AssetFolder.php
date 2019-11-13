@@ -7,6 +7,16 @@ use App\Models\Traits\HasExternalShardId;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Domains\Project\Models\Traits\BelongsToProject;
 
+/**
+ * @property int local_id
+ * @property int external_id
+ * @property int project_id
+ * @property string name
+ * @property string description
+ * @property \Illuminate\Support\Carbon created_at
+ * @property \Illuminate\Support\Carbon updated_at
+ * @property \Illuminate\Support\Collection assets
+ */
 class AssetFolder extends Model
 {
     use BelongsToProject;

@@ -8,7 +8,7 @@ class MediaQueryReducer implements ReducerInterface
     {
         $queries = array_keys($rules);
 
-        return array_reduce($queries, function ($carry, $item) use ($rules) {
+        return array_reduce($queries, static function ( $carry, $item) use ($rules) {
             if ($rules[$item]) {
                 $selectors = SelectorReducer::reduce($rules[$item]);
 

@@ -14,6 +14,26 @@ use Intervention\Image\Image as InterventionImage;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Domains\Project\Models\Traits\BelongsToProject;
 
+/**
+ * @property int local_id
+ * @property int external_id
+ * @property int project_id
+ * @property int asset_folder_id
+ * @property string hash
+ * @property string filename
+ * @property string original_filename
+ * @property string caption
+ * @property string description
+ * @property string extension
+ * @property string mimetype
+ * @property int filesize
+ * @property array extra_attributes
+ * @property string path
+ * @property string thumb_path
+ * @property \Illuminate\Support\Carbon created_at
+ * @property \Illuminate\Support\Carbon updated_at
+ * @property \App\Domains\Project\Models\Project project
+ */
 class Asset extends Model
 {
     use BelongsToProject;
@@ -88,7 +108,7 @@ class Asset extends Model
     /**
      * Create a tumbnail for this asset.
      *
-     * @return $this|\App\Models\Asset
+     * @return $this|\App\Domains\Asset\Models\Asset
      */
     public function createThumbnail(): Asset
     {
@@ -123,7 +143,7 @@ class Asset extends Model
      */
     public function getPath(string $filename = null): string
     {
-        if (is_null($filename)) {
+        if ($filename === null) {
             $filename = sprintf('%s/%s', $this->project->hash, $this->filename);
         }
 
@@ -162,13 +182,13 @@ class Asset extends Model
      * @param  \Illuminate\Http\UploadedFile $file
      * @param  \App\Domains\Project\Models\Project $project
      * @param  \App\Domains\Asset\Models\AssetFolder|null $folder
-     * @return \App\Models\Asset
+     * @return \App\Domains\Asset\Models\Asset
      */
     public static function upload(UploadedFile $file, Project $project, AssetFolder $folder = null): Asset
     {
         $path = $file->storeAs($project->hash, $file->getClientOriginalName());
 
-        $asset = new Asset([
+        $asset = new static([
             'hash' => static::getContentHash($file),
             'filename' => $file->getClientOriginalName(),
             'original_filename' => $file->getClientOriginalName(),
@@ -231,8 +251,9 @@ class Asset extends Model
      */
     protected function resizeImage(int $size): InterventionImage
     {
-        return Image::make($this->getPath($this->path))->resize(null, $size, function (Constraint $constraint): void {
-            $constraint->aspectRatio();
-        });
+        return Image::make($this->getPath($this->path))
+            ->resize(null, $size, static function (Constraint $constraint): void {
+                $constraint->aspectRatio();
+            });
     }
 }

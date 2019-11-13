@@ -58,11 +58,13 @@ trait InteractsWithProjects
      */
     public function currentProject(): Project
     {
-        if (is_null($this->current_project_id)) {
+        if ($this->current_project_id === null) {
             $this->switchToProject($this->projects->first());
 
             return $this->currentProject();
-        } elseif (! is_null($this->current_project_id)) {
+        }
+
+        if ($this->current_project_id !== null) {
             $currentProject = Project::find($this->current_project_id);
 
             return $currentProject ?: $this->refreshCurrentProject();

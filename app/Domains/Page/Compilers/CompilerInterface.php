@@ -4,5 +4,5 @@ namespace App\Domains\Page\Compilers;
 
 interface CompilerInterface
 {
-    public function compile($source);
+    public function compile($source): string;
 }

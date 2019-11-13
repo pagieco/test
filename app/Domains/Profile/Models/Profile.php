@@ -14,6 +14,29 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Domains\Project\Models\Traits\BelongsToProject;
 use App\Domains\Profile\Exceptions\InvalidProfileTypeException;
 
+/**
+ * @property int local_id
+ * @property int external_id
+ * @property int project_id
+ * @property string email
+ * @property string first_name
+ * @property string last_name
+ * @property string address_1
+ * @property string address_2
+ * @property string city
+ * @property string state
+ * @property string zip
+ * @property string country
+ * @property string phone
+ * @property string timezone
+ * @property array tags
+ * @property array custom_fields
+ * @property boolean has_consented
+ * @property \Illuminate\Support\Carbon consented_at
+ * @property \Illuminate\Support\Carbon created_at
+ * @property \Illuminate\Support\Carbon updated_at
+ * @property \Illuminate\Support\Collection events
+ */
 class Profile extends Model
 {
     use BelongsToProject;
@@ -134,7 +157,7 @@ class Profile extends Model
      */
     public function recordEvent(string $type, array $data): ProfileEvent
     {
-        if (! in_array($type, ProfileEventType::getValues())) {
+        if (! in_array($type, ProfileEventType::getValues(), true)) {
             throw new InvalidProfileTypeException('Invalid profile type: ' . $type);
         }
 

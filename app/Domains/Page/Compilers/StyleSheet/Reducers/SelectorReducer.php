@@ -8,7 +8,7 @@ class SelectorReducer implements ReducerInterface
     {
         $selectors = array_keys($rules);
 
-        return array_reduce($selectors, function ($carry, $item) use ($rules) {
+        return array_reduce($selectors, static function ( $carry, $item) use ($rules) {
             $properties = PropertyReducer::reduce($rules[$item]);
 
             return sprintf('%s%s{%s}', $carry, $item, $properties);

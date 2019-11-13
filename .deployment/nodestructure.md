@@ -1,0 +1,21 @@
+pagie.co.
+    prod.
+        ams3.
+            bastion.
+                bastion-e798d703-3412-4133-b52f-0238abc0ef13.ams3.prod.pagie.co.
+                bastion-7825c4e3-008a-40df-a969-eaee92d497c9.ams3.prod.pagie.co.
+            consul.
+                consul-0498aaa1-6ac1-4a41-83f6-edf7d456f95b.ams3.prod.pagie.co.
+                consul-20ca743e-7c75-4310-accb-3d86e260e066.ams3.prod.pagie.co.
+                consul-cb5d4227-09d1-4ff4-b445-62a4ce6f8192.ams3.prod.pagie.co.
+            swarm.
+                manager.
+                    manager-db904173-dab1-4eaf-acb6-c8d080d09929.swarm.ams3.prod.pagie.co.
+                    manager-380a05e4-730d-4c28-9bb7-2ec1c8fc54dc.swarm.ams3.prod.pagie.co.
+                    manager-e9287944-2a39-466a-ac7c-e5b56375c614.swarm.ams3.prod.pagie.co.
+                worker.
+                    worker-e783dc3a-a0a3-44fa-8f8d-bf09f5906ed4.swarm.ams3.prod.pagie.co.
+                    worker-6c4332f5-7dcf-413e-a1af-2fa8241dfa08.swarm.ams3.prod.pagie.co.
+                    worker-d1cf6ee4-6046-4d8e-bb9d-d489afb95a47.swarm.ams3.prod.pagie.co.
+                    worker-f91d04f3-e21d-43f4-b836-8a6b03dfc6e3.swarm.ams3.prod.pagie.co.
+                    worker-34bcb9a3-b8a9-406a-b1e9-b9ae52360533.swarm.ams3.prod.pagie.co.

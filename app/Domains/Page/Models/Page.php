@@ -13,6 +13,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Domains\Project\Models\Traits\BelongsToProject;
 use App\Domains\Workflow\Models\Traits\InteractsWithWorkflows;
 
+/**
+ * @property int local_id
+ * @property string name
+ * @property string slug
+ * @property \Illuminate\Support\Carbon published_at
+ */
 class Page extends Model implements Responsable
 {
     use BelongsToProject;

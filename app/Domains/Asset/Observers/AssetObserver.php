@@ -31,7 +31,13 @@ class AssetObserver
         $asset->project->incrementUsedStorageWith($asset->filesize);
     }
 
-    public function deleted(Asset $asset)
+    /**
+     * Listen to the asset model "deleted" event.
+     *
+     * @param  \App\Domains\Asset\Models\Asset $asset
+     * @return void
+     */
+    public function deleted(Asset $asset): void
     {
         $asset->project->decrementUsedStorageBy($asset->filesize);
     }

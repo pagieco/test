@@ -9,8 +9,27 @@ services:
       - 8500:8500
       - 8600:8600/udp
     volumes:
-      - ./config/consul.d:/etc/consul.d
+      - .service-resources/dev/consul:/etc/consul.d
     command: "agent -config-dir=/etc/consul.d -server -bind 0.0.0.0 -client 0.0.0.0 -bootstrap-expect=1 -ui"
+
+  registrator:
+    container_name: service.framework-test.registrator
+    image: gliderlabs/registrator:latest
+    command: consul://consul:8500
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock
+    depends_on:
+      - consul
+
+  cache:
+    container_name: service.framework-test.redis-cache
+    image: redis:latest
+    ports:
+      - 10755:3000
+    networks:
+      - service-overlay
+    depends_on:
+      - registrator
 
   mysql:
     container_name: service.framework-test.mysql
@@ -28,6 +47,31 @@ services:
       - 44008:3306
     networks:
       - service-overlay
+    depends_on:
+      - registrator
+
+  application:
+    container_name: service.framework-test.application
+    build: .
+    volumes:
+      - .:/app:cached
+    networks:
+      - service-overlay
+    depends_on:
+      - cache
+      - mysql
+
+  scheduler:
+    container_name: service.framework-test.scheduler
+    build: .
+    environment:
+      CONTAINER_ROLE: scheduler
+    volumes:
+      - .:/app:cached
+    networks:
+      - service-overlay
+    depends_on:
+      - application
 
   webserver:
     container_name: service.framework-test.webserver
@@ -40,24 +84,8 @@ services:
       - 13833:80
     networks:
       - service-overlay
-
-  application:
-    container_name: service.framework-test.application
-    build: .
-    volumes:
-      - .:/app:cached
-    networks:
-      - service-overlay
-
-  scheduler:
-    container_name: service.framework-test.scheduler
-    build: .
-    environment:
-      CONTAINER_ROLE: scheduler
-    volumes:
-      - .:/app:cached
-    networks:
-      - service-overlay
+    depends_on:
+      - application
 
 networks:
   service-overlay:

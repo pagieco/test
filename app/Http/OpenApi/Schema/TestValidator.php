@@ -62,7 +62,7 @@ class TestValidator
      *
      * @param  \cebe\openapi\spec\OpenApi $spec
      * @param  string $operationId
-     * @return \cebe\openapi\spec\Operation|null
+     * @return \cebe\openapi\spec\Operation
      */
     protected function getOperation(OpenApi $spec, string $operationId): Operation
     {
@@ -132,7 +132,7 @@ class TestValidator
                         break;
 
                     default:
-                        array_push($output, $key);
+                        $output[] = $key;
                 }
             }
         }
@@ -141,7 +141,7 @@ class TestValidator
             if ($value->properties) {
                 $output[$key] = $this->transformSchema($value->properties);
             } else {
-                array_push($output, $key);
+                $output[] = $key;
             }
         }
 

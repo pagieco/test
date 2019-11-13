@@ -67,7 +67,7 @@ class UploadAssetController extends Controller
     {
         $folder = AssetFolder::find($request->get('folder_id'));
 
-        if (! is_null($folder)) {
+        if ($folder !== null) {
             $this->authorize('view', $folder);
         }
 

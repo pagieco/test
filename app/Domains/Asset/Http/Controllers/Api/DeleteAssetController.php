@@ -24,6 +24,7 @@ class DeleteAssetController extends Controller
      * @param  \App\Domains\Asset\Models\Asset $asset
      * @return void
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Exception
      */
     public function __invoke(Asset $asset): void
     {

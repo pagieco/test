@@ -7,24 +7,24 @@ use App\Models\Enums\Enum;
 final class ProfileEventType extends Enum
 {
     // Tag events...
-    const AppliedTag = 'applied-tag';
-    const RemovedTag = 'removed-tag';
+    public const AppliedTag = 'applied-tag';
+    public const RemovedTag = 'removed-tag';
 
     // Email events...
-    const Bounced = 'bounced';
-    const IssuedSpamComplaint = 'issued-spam-complaint';
-    const MarkedAsUndeliverable = 'marked-as-undeliverable';
-    const OpenedEmail = 'opened-email';
-    const ClickedEmailLink = 'clicked-email-link';
+    public const Bounced = 'bounced';
+    public const IssuedSpamComplaint = 'issued-spam-complaint';
+    public const MarkedAsUndeliverable = 'marked-as-undeliverable';
+    public const OpenedEmail = 'opened-email';
+    public const ClickedEmailLink = 'clicked-email-link';
 
     // Form events...
-    const ConfirmedFormSubmission = 'confirmed-form-submission';
-    const SubmittedForm = 'submitted-form';
+    public const ConfirmedFormSubmission = 'confirmed-form-submission';
+    public const SubmittedForm = 'submitted-form';
 
     // Profile events...
-    const UpdatedEmailAddress = 'updated-email-address';
+    public const UpdatedEmailAddress = 'updated-email-address';
 
     // Page events...
-    const VisitedPage = 'visited-page';
-    const ClickedPageLink = 'clicked-page-link';
+    public const VisitedPage = 'visited-page';
+    public const ClickedPageLink = 'clicked-page-link';
 }

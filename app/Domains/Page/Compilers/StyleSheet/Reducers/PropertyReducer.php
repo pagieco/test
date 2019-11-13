@@ -8,7 +8,7 @@ class PropertyReducer implements ReducerInterface
     {
         $properties = array_keys($rules);
 
-        return array_reduce($properties, function ($carry, $item) use ($rules) {
+        return array_reduce($properties, static function ( $carry, $item) use ($rules) {
             return sprintf('%s%s:%s', $carry, $item, $rules[$item]);
         });
     }

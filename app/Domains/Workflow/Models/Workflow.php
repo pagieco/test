@@ -10,6 +10,15 @@ use App\Domains\Project\Models\Traits\BelongsToProject;
 use Symfony\Component\Workflow\Workflow as SymfonyWorkflow;
 use Symfony\Component\Workflow\MarkingStore\MethodMarkingStore;
 
+/**
+ * @property int id
+ * @property string name
+ * @property string description
+ * @property \Illuminate\Support\Carbon created_at
+ * @property \Illuminate\Support\Carbon updated_at
+ * @property \App\Domains\Project\Models\Project project
+ * @property \Illuminate\Database\Eloquent\Relations\HasMany steps
+ */
 class Workflow extends Model
 {
     use BelongsToProject;
@@ -54,7 +63,7 @@ class Workflow extends Model
      * Create a new step.
      *
      * @param  string $name
-     * @return \Illuminate\Database\Eloquent\Model
+     * @return \App\Models\Model
      */
     public function createStep($name): Model
     {
