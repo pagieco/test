@@ -1,3 +1,6 @@
 [submodule "resources/focus-ui"]
 	path = resources/focus-ui
 	url = https://github.com/pagieco/focus-ui.git
+[submodule "packages/pagieco"]
+	path = packages/pagieco
+	url = https://github.com/pagieco/Handlebars.git
