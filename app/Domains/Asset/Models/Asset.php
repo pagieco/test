@@ -231,8 +231,8 @@ class Asset extends Model
      */
     public static function getExtraAttributes(UploadedFile $file): array
     {
-        if (substr($file->getMimeType(), 0, 5) === 'image') {
-            list($width, $height) = getimagesize($file);
+        if (strpos($file->getMimeType(), 'image') === 0) {
+            [$width, $height] = getimagesize($file);
 
             return [
                 'width' => $width,

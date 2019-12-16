@@ -31,6 +31,7 @@ class GetAssetFoldersController extends Controller
     {
         $this->authorize('list', AssetFolder::class);
 
+        /** @var \Illuminate\Database\Eloquent\Collection $folders */
         $folders = $request->user()->currentProject()->assetFolders;
 
         abort_if($folders->isEmpty(), Response::HTTP_NO_CONTENT);

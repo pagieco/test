@@ -31,6 +31,7 @@ class GetWorkflowsController extends Controller
     {
         $this->authorize('list', Workflow::class);
 
+        /** @var \Illuminate\Database\Eloquent\Collection $workflows */
         $workflows = $request->user()->currentProject()->workflows;
 
         abort_if($workflows->isEmpty(), Response::HTTP_NO_CONTENT);

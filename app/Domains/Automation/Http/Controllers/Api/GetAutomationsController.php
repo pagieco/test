@@ -31,6 +31,7 @@ class GetAutomationsController extends Controller
     {
         $this->authorize('list', Automation::class);
 
+        /** @var \Illuminate\Database\Eloquent\Collection $automations */
         $automations = $request->user()->currentProject()->automations;
 
         abort_if($automations->isEmpty(), Response::HTTP_NO_CONTENT);

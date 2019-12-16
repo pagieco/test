@@ -11,13 +11,15 @@ use App\Domains\Domain\Http\Router\Resolvers\DomainResolver;
 
 class Resolver
 {
-    public $request;
+    public Request $request;
 
-    public $domain;
+    public ?Domain $domain;
 
-    protected $resolvers = [
+    protected array $resolvers = [
         PageResolver::class,
     ];
+
+    protected Responsable $resource;
 
     /**
      * Create a new resolver instance.

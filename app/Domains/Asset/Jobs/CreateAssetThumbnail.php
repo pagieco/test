@@ -13,12 +13,7 @@ class CreateAssetThumbnail implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    /**
-     * The asset instance.
-     *
-     * @var \App\Domains\Asset\Models\Asset
-     */
-    protected $asset;
+    protected Asset $asset;
 
     /**
      * Create a new job instance.

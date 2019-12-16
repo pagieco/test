@@ -2,9 +2,11 @@
 
 namespace App\Models\Enums;
 
+use ReflectionClass;
+
 abstract class Enum
 {
-    protected static $constCache = [];
+    protected static array $constCache = [];
 
     /**
      * Get all the enum keys.
@@ -49,10 +51,10 @@ abstract class Enum
      */
     protected static function getConstants(): array
     {
-        $calledClass = get_called_class();
+        $calledClass = static::class;
 
         if (! array_key_exists($calledClass, self::$constCache)) {
-            $reflect = new \ReflectionClass($calledClass);
+            $reflect = new ReflectionClass($calledClass);
 
             self::$constCache[$calledClass] = $reflect->getConstants();
         }

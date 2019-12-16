@@ -4,9 +4,9 @@ namespace App\Services;
 
 class IdGenerator
 {
-    public static $shardBits = 23;
+    public static int $shardBits = 23;
 
-    public static $localBits = 40;
+    public static int $localBits = 40;
 
     public static function encode(int $shard, int $local): int
     {

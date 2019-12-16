@@ -3,6 +3,7 @@
 namespace App\Domains\Asset\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use App\Services\IdGenerator;
 use App\Domains\Asset\Models\Asset;
 use App\Http\Controllers\Controller;
 use App\Domains\Asset\Models\AssetFolder;
@@ -65,12 +66,14 @@ class UploadAssetController extends Controller
      */
     protected function authorizeForFolder(Request $request): ?AssetFolder
     {
-        $folder = AssetFolder::find($request->get('folder_id'));
+        if ($request->has('folder_id')) {
+            $folder = AssetFolder::find(IdGenerator::decode($request->get('folder_id'))['local']);
 
-        if ($folder !== null) {
             $this->authorize('view', $folder);
+
+            return $folder;
         }
 
-        return $folder;
+        return null;
     }
 }

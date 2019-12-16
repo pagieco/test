@@ -89,17 +89,6 @@ class UpdateCurrentUserRequestTest extends TestCase
     }
 
     /** @test */
-    public function it_throws_a_422_exception_when_the_password_doesnt_match_the_regex_when_updating_the_current_user()
-    {
-        $this->login();
-
-        $this->makeRequest([
-            'password' => 'abcdef',
-            'password_confirmation' => 'abcdef',
-        ])->assertSchema('UpdateCurrentUser', Response::HTTP_UNPROCESSABLE_ENTITY);
-    }
-
-    /** @test */
     public function it_throws_a_422_exception_when_the_password_is_not_confirmed_when_updating_the_current_user()
     {
         $this->login();

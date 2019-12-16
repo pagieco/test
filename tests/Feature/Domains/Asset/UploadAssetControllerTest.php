@@ -88,7 +88,7 @@ class UploadAssetControllerTest extends TestCase
 
         $this->assertDatabaseHas('assets', [
             'external_id' => $response->json('data.id'),
-            'asset_folder_id' => $folder->id,
+            'asset_folder_id' => $folder->local_id,
         ]);
 
         Storage::assertExists($response->json('data.path'));

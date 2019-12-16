@@ -31,6 +31,7 @@ class GetAssetsController extends Controller
     {
         $this->authorize('list', Asset::class);
 
+        /** @var \Illuminate\Database\Eloquent\Collection $assets */
         $assets = $request->user()->currentProject()->assets;
 
         abort_if($assets->isEmpty(), Response::HTTP_NO_CONTENT);

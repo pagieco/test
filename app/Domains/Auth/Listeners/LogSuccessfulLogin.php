@@ -35,6 +35,7 @@ class LogSuccessfulLogin
      */
     public function handle(Login $event)
     {
+        /** @var \App\Domains\User\Models\User $user */
         $user = $event->user;
 
         $ipAddress = $this->request->ip();

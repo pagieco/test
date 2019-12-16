@@ -11,12 +11,9 @@ use Illuminate\Contracts\Support\Responsable;
 
 class FrontendController extends Controller
 {
-    const HALF_YEAR_IN_MINUTES = 60 * 24 * 365 / 2;
+    protected const HALF_YEAR_IN_MINUTES = 60 * 24 * 365 / 2;
 
-    /**
-     * @var \App\Domains\Page\Models\Page
-     */
-    protected $resource;
+    protected Responsable $resource;
 
     public function __invoke(Request $request)
     {
@@ -26,9 +23,7 @@ class FrontendController extends Controller
 
         $this->resource = $resolver->resolveResource();
 
-        return $this->respondWith(
-            $this->getContents($resolver)
-        );
+        return $this->respondWith($this->getContents($resolver));
     }
 
     protected function getContents($resolver)
@@ -44,7 +39,7 @@ class FrontendController extends Controller
     {
         $headers = $this->prepareResponseHeaders($this->resource);
 
-        return response($contents->render())->withHeaders($headers);
+        return response($contents)->withHeaders($headers);
     }
 
     protected function prepareResponseData(Resolver $resolver): array
@@ -60,7 +55,7 @@ class FrontendController extends Controller
         return $data;
     }
 
-    protected function prepareResponseHeaders(Responsable $resource)
+    protected function prepareResponseHeaders(Responsable $resource): array
     {
         $headers = [];
 

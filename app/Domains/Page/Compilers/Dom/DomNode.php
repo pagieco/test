@@ -9,13 +9,13 @@ use InvalidArgumentException;
 
 class DomNode
 {
-    protected $node;
+    protected array $node;
 
-    protected $reservedAttributes = [
+    protected array $reservedAttributes = [
         'contenteditable',
     ];
 
-    public function __construct($node)
+    public function __construct(array $node)
     {
         $this->node = $node;
 
@@ -67,7 +67,7 @@ class DomNode
         return $element;
     }
 
-    protected function validateInput($input): void
+    protected function validateInput(array $input): void
     {
         $requiredAttributes = ['uuid', 'nodeType'];
 
