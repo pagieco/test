@@ -9,9 +9,9 @@ use App\Domains\Auth\Models\AuthenticationLog;
 $factory->define(AuthenticationLog::class, function (Faker $faker) {
     return [
         'user_id' => factory(User::class)->create(),
-        'ip_address' => faker()->ipv4,
-        'user_agent' => faker()->userAgent,
-        'logged_in_at' => faker()->dateTime,
-        'logged_out_at' => faker()->dateTime,
+        'ip_address' => $faker->ipv4,
+        'user_agent' => $faker->userAgent,
+        'logged_in_at' => $faker->dateTime,
+        'logged_out_at' => $faker->dateTime,
     ];
 });
