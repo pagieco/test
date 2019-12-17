@@ -24,8 +24,8 @@ class CreateAssetsTable extends Migration
             $table->text('caption')->nullable();
             $table->text('description')->nullable();
             $table->string('extension');
-            $table->string('mimetype');
-            $table->integer('filesize');
+            $table->string('mime_type');
+            $table->integer('file_size');
             $table->json('extra_attributes')->nullable();
             $table->string('path');
             $table->string('thumb_path')->nullable();

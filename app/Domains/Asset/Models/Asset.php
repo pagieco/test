@@ -25,8 +25,8 @@ use App\Domains\Project\Models\Traits\BelongsToProject;
  * @property string caption
  * @property string description
  * @property string extension
- * @property string mimetype
- * @property int filesize
+ * @property string mime_type
+ * @property int file_size
  * @property array extra_attributes
  * @property string path
  * @property string thumb_path
@@ -65,8 +65,8 @@ class Asset extends Model
         'caption',
         'description',
         'extension',
-        'mimetype',
-        'filesize',
+        'mime_type',
+        'file_size',
         'extra_attributes',
         'path',
         'thumb_path',
@@ -132,7 +132,7 @@ class Asset extends Model
      */
     public function isImage(): bool
     {
-        return Str::contains($this->mimetype, 'image');
+        return Str::contains($this->mime_type, 'image');
     }
 
     /**
@@ -193,8 +193,8 @@ class Asset extends Model
             'filename' => $file->getClientOriginalName(),
             'original_filename' => $file->getClientOriginalName(),
             'extension' => $file->getClientOriginalExtension(),
-            'mimetype' => $file->getClientMimeType(),
-            'filesize' => $file->getSize(),
+            'mime_type' => $file->getClientMimeType(),
+            'file_size' => $file->getSize(),
             'extra_attributes' => static::getExtraAttributes($file),
             'path' => $path,
         ]);

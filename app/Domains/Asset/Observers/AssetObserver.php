@@ -28,7 +28,7 @@ class AssetObserver
     {
         CreateAssetThumbnail::dispatch($asset);
 
-        $asset->project->incrementUsedStorageWith($asset->filesize);
+        $asset->project->incrementUsedStorageWith($asset->file_size);
     }
 
     /**
@@ -39,6 +39,6 @@ class AssetObserver
      */
     public function deleted(Asset $asset): void
     {
-        $asset->project->decrementUsedStorageBy($asset->filesize);
+        $asset->project->decrementUsedStorageBy($asset->file_size);
     }
 }

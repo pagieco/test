@@ -48,6 +48,8 @@ use App\Domains\Page\Compilers\StyleSheet\StylesheetCompiler;
  */
 class Project extends Model
 {
+    public const PERSONAL = 'personal';
+
     /**
      * The table associated with the model.
      *

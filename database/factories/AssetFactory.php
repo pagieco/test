@@ -28,8 +28,8 @@ $factory->define(Asset::class, function (Faker $faker) {
         'asset_folder_id' => factory(AssetFolder::class)->create()->local_id,
         'filename' => $filename,
         'extension' => $extension,
-        'mimetype' => $faker->mimeType,
-        'filesize' => $faker->randomNumber(),
+        'mime_type' => $faker->mimeType,
+        'file_size' => $faker->randomNumber(),
         'path' => $path,
     ];
 });

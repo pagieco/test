@@ -3,6 +3,7 @@
 namespace App\Domains\Auth\Listeners;
 
 use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Logout;
 use Illuminate\Auth\Events\OtherDeviceLogout;
 use App\Domains\Auth\Models\AuthenticationLog;
 
@@ -13,7 +14,7 @@ class LogSuccessfulLogout
      *
      * @var \Illuminate\Http\Request
      */
-    protected $request;
+    protected Request $request;
 
     /**
      * Create the event listener.
@@ -32,7 +33,7 @@ class LogSuccessfulLogout
      * @param  \Illuminate\Auth\Events\Logout $event
      * @return void
      */
-    public function handle($event)
+    public function handle(Logout $event)
     {
         if (! $event->user || $event instanceof OtherDeviceLogout) {
             return;

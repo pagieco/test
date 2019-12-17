@@ -39,7 +39,7 @@ class AssetObserverTest extends TestCase
 
         $project->refresh();
 
-        $this->assertEquals($asset->filesize, $project->used_storage);
+        $this->assertEquals($asset->file_size, $project->used_storage);
     }
 
     /** @test */
@@ -51,6 +51,6 @@ class AssetObserverTest extends TestCase
 
         $asset->delete();
 
-        $this->assertEquals($used - $asset->filesize, $asset->project->used_storage);
+        $this->assertEquals($used - $asset->file_size, $asset->project->used_storage);
     }
 }

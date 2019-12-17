@@ -24,7 +24,7 @@ class AssetsTableSeeder extends Seeder
 
             $asset = tap(Asset::upload($file, $project))->save();
 
-            $asset->update(['mimetype' => 'image/jpeg']);
+            $asset->update(['mime_type' => 'image/jpeg']);
 
             $asset->createThumbnail();
         }

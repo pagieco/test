@@ -79,7 +79,7 @@ class AssetTest extends TestCase
     public function it_returns_true_when_the_asset_is_an_image_based_on_the_mimetype()
     {
         $asset = factory(Asset::class)->create([
-            'mimetype' => 'image/jpeg',
+            'mime_type' => 'image/jpeg',
         ]);
 
         $this->assertTrue($asset->isImage());
@@ -89,7 +89,7 @@ class AssetTest extends TestCase
     public function it_returns_false_when_the_asset_is_not_an_image_based_on_the_mimetype()
     {
         $asset = factory(Asset::class)->create([
-            'mimetype' => 'application/pdf',
+            'mime_type' => 'application/pdf',
         ]);
 
         $this->assertFalse($asset->isImage());
@@ -101,7 +101,7 @@ class AssetTest extends TestCase
         Storage::fake();
 
         $asset = factory(Asset::class)->create([
-            'mimetype' => 'image/jpeg',
+            'mime_type' => 'image/jpeg',
         ]);
 
         $asset->createThumbnail();
@@ -117,7 +117,7 @@ class AssetTest extends TestCase
         Storage::fake();
 
         $asset = factory(Asset::class)->create([
-            'mimetype' => 'application/pdf',
+            'mime_type' => 'application/pdf',
         ]);
 
         $asset->createThumbnail();

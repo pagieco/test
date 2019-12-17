@@ -14,7 +14,7 @@ class LogSuccessfulLogin
      *
      * @var \Illuminate\Http\Request
      */
-    protected $request;
+    protected Request $request;
 
     /**
      * Create the event listener.
