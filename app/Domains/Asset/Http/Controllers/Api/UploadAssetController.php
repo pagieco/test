@@ -50,7 +50,9 @@ class UploadAssetController extends Controller
     {
         $file = $request->file('asset');
 
-        $folder = $this->authorizeForFolder($request);
+        $folder = $request->has('folder_id')
+            ? $this->authorizeForFolder($request)
+            : null;
 
         $asset = Asset::upload($file, $request->user()->currentProject(), $folder);
 
@@ -66,14 +68,12 @@ class UploadAssetController extends Controller
      */
     protected function authorizeForFolder(Request $request): ?AssetFolder
     {
-        if ($request->has('folder_id')) {
-            $folder = AssetFolder::find(IdGenerator::decode($request->get('folder_id'))['local']);
+        $id = IdGenerator::decode($request->folder_id)['local'];
 
-            $this->authorize('view', $folder);
+        $folder = AssetFolder::findOrFail($id);
 
-            return $folder;
-        }
+        $this->authorize('view', $folder);
 
-        return null;
+        return $folder;
     }
 }

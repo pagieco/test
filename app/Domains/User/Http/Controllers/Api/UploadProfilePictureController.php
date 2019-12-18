@@ -18,13 +18,15 @@ class UploadProfilePictureController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * Upload a new profile picture.
+     *
+     * @param  \App\Domains\User\Http\Requests\UploadProfilePictureRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function __invoke(UploadProfilePictureRequest $request)
     {
-        $user = $request->user();
-
-        $user->update([
-            'picture' => $user->uploadprofilepicture($request->file('picture')),
-        ]);
+        $request->user()->uploadprofilepicture($request->file('picture'));
 
         return Response::created();
     }

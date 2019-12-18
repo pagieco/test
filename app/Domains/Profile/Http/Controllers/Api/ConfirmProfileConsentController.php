@@ -10,6 +10,13 @@ use App\Domains\Profile\Models\Profile;
 
 class ConfirmProfileConsentController extends Controller
 {
+    /**
+     * Confirm consent of the given profile.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Domains\Profile\Models\Profile $profile
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function __invoke(Request $request, Profile $profile): JsonResponse
     {
         // Abort the request when the given signature in the request is invalid or there is no signature at all.

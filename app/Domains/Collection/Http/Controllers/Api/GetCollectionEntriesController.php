@@ -10,11 +10,23 @@ use App\Domains\Collection\Http\Resources\CollectionEntriesResource;
 
 class GetCollectionEntriesController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->middleware('auth');
     }
 
+    /**
+     * Get the entries of the given collection.
+     *
+     * @param  \App\Domains\Collection\Models\Collection $collection
+     * @return \App\Domains\Collection\Http\Resources\CollectionEntriesResource
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function __invoke(Collection $collection)
     {
         $this->authorize('list-entries', $collection);

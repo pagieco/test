@@ -1,0 +1,12 @@
+@mixin alias-text {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin text-style-body {
+    font-family: 'Roboto', serif;
+    font-weight: 400;
+    font-kerning: normal;
+    font-feature-settings: 'kern', 'liga', 'clig', 'calt';
+    word-wrap: break-word;
+}

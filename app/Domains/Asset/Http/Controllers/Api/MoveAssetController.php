@@ -46,9 +46,9 @@ class MoveAssetController extends Controller
      */
     protected function authorizeForFolder(Request $request): AssetFolder
     {
-        $folder = AssetFolder::findOrFail(
-            IdGenerator::decode($request->get('folder_id'))['local']
-        );
+        $id = IdGenerator::decode($request->folder_id)['local'];
+
+        $folder = AssetFolder::findOrFail($id);
 
         $this->authorize('view', $folder);
 

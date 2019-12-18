@@ -86,13 +86,15 @@ class User extends Authenticatable implements MustVerifyEmail
      * Upload the user's profile picture.
      *
      * @param  \Illuminate\Http\UploadedFile $file
-     * @return mixed
+     * @return void
      */
-    public function uploadProfilePicture(UploadedFile $file)
+    public function uploadProfilePicture(UploadedFile $file): void
     {
         $filename = sprintf('%s.%s', $this->id, $file->getClientOriginalExtension());
 
-        return $file->storeAs(null, $filename);
+        $this->update([
+            'picture' => $file->storeAs(null, $filename),
+        ]);
     }
 
     /**
@@ -100,7 +102,7 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @return void
      */
-    public function fetchGravatar()
+    public function fetchGravatar(): void
     {
         if ($gravatar = app(Gravatar::class)->fetch($this->email_hash)) {
             $filename = sprintf('profile-pictures/%s.jpeg', $this->email_hash);

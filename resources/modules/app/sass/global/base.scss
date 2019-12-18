@@ -1,0 +1,26 @@
+html,
+body {
+    @include text-style-body;
+}
+
+html {
+    @include alias-text;
+
+    position: relative;
+    font-size: 100%;
+    text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+}
+
+body {
+    min-height: 100%;
+    padding: 0;
+    margin: 0;
+    color: $body-text-color;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
