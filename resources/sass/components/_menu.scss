@@ -1,0 +1,34 @@
+.menu + .menu {
+  margin-top: 3rem;
+}
+
+.menu__title {
+  margin: 0.75rem 1rem;
+  font-size: 85%;
+  line-height: 1;
+  color: color(gray, 500);
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+}
+
+.menu__items {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.menu__item {
+  display: flex;
+  width: 100%;
+}
+
+.menu__link {
+  @include button-base;
+
+  width: 100%;
+  color: color(gray, 700);
+
+  &:hover {
+    background-color: color(gray, 200);
+  }
+}

@@ -1,0 +1,11 @@
+.grid-container {
+  width: 100%;
+  max-width: 64rem;
+  padding-right: $grid-spacing;
+  padding-left: $grid-spacing;
+  margin: 0 auto;
+
+  &.grid-container--fluid {
+    max-width: 100%;
+  }
+}
